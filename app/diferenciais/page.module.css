@@ -1,0 +1,45 @@
+.lista {
+  border-top: 2px solid var(--tinta-900);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 8px 24px;
+  padding-block: 32px;
+  border-bottom: 1px solid var(--filete);
+}
+
+@media (min-width: 900px) {
+  .item {
+    grid-template-columns: 88px 5fr 7fr;
+    gap: 48px;
+    align-items: baseline;
+  }
+}
+
+.numero {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--verde-400);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.titulo {
+  font-size: 1.375rem;
+}
+
+.descricao {
+  grid-column: 2 / -1;
+  color: var(--tinta-500);
+  font-size: var(--fs-pequeno);
+}
+
+@media (min-width: 900px) {
+  .descricao {
+    grid-column: auto;
+    font-size: var(--fs-corpo);
+  }
+}

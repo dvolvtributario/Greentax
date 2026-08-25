@@ -1,0 +1,180 @@
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--papel);
+  border-bottom: 1px solid var(--filete);
+}
+
+.barra {
+  width: 100%;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+@media (min-width: 900px) {
+  .barra {
+    height: 84px;
+  }
+}
+
+.marca {
+  flex: none;
+  display: block;
+}
+
+.logo {
+  height: 26px;
+  width: auto;
+}
+
+@media (min-width: 900px) {
+  .logo {
+    height: 30px;
+  }
+}
+
+/* -------------------------------------------------------- navegação */
+
+.nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    display: block;
+    margin-right: auto;
+    margin-left: 48px;
+  }
+}
+
+.lista {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.link {
+  display: block;
+  position: relative;
+  padding-block: 30px;
+  font-size: var(--fs-pequeno);
+  font-weight: 500;
+  color: var(--tinta-600);
+  transition: color 120ms linear;
+}
+
+.link:hover {
+  color: var(--tinta-900);
+}
+
+.link[aria-current="page"] {
+  color: var(--tinta-900);
+  font-weight: 600;
+}
+
+.link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--verde-700);
+}
+
+/* ------------------------------------------------------------ ações */
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.cta {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cta {
+    display: inline-flex;
+  }
+}
+
+.alternador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  background: none;
+  border: 0;
+  color: var(--tinta-900);
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .alternador {
+    display: none;
+  }
+}
+
+.alternador svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ----------------------------------------------------- menu mobile */
+
+.painel {
+  border-top: 1px solid var(--filete);
+  background: var(--papel);
+}
+
+@media (min-width: 1024px) {
+  .painel {
+    display: none;
+  }
+}
+
+.painelInterno {
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding: 8px var(--gutter) 28px;
+}
+
+.linkMobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--filete);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--tinta-800);
+}
+
+.linkMobile[aria-current="page"] {
+  color: var(--verde-700);
+  font-weight: 600;
+}
+
+.linkMobile svg {
+  width: 16px;
+  height: 16px;
+  color: var(--tinta-300);
+}
+
+.ctaMobile {
+  display: flex;
+  margin-top: 24px;
+  width: 100%;
+}

@@ -1,0 +1,61 @@
+.hero {
+  border-bottom: 1px solid var(--filete);
+  background: var(--papel);
+  padding-block: clamp(3rem, 1.5rem + 4vw, 5rem);
+}
+
+.rotulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-700);
+}
+
+.rotulo::before {
+  content: "";
+  width: 28px;
+  height: 3px;
+  background: var(--verde-400);
+}
+
+.grade {
+  margin-top: 28px;
+  display: grid;
+  gap: 28px;
+}
+
+@media (min-width: 940px) {
+  .grade {
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+    align-items: end;
+  }
+}
+
+.titulo {
+  font-size: var(--fs-h1);
+  max-width: 18ch;
+}
+
+.lead {
+  font-size: var(--fs-corpo-g);
+  color: var(--tinta-500);
+  max-width: 46ch;
+  padding-left: 0;
+  border-left: 0;
+}
+
+@media (min-width: 940px) {
+  .lead {
+    padding-left: 28px;
+    border-left: 1px solid var(--filete);
+  }
+}
+
+.extra {
+  margin-top: 36px;
+}

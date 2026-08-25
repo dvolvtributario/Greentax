@@ -1,11 +1,3 @@
-/**
- * Conteúdo institucional do site, transcrito do documento
- * "Briefing de Criação + Copy Institucional — Site Greentax (v1.0)".
- *
- * A copy vive aqui, separada do layout, para que ajustes de texto não exijam
- * mexer em componentes.
- */
-
 export type Solucao = {
   slug: string;
   titulo: string;
@@ -13,6 +5,7 @@ export type Solucao = {
   href: string;
 };
 
+/** Cards de soluções da Home (Copy — Página 1, "Bloco de soluções"). */
 export const solucoesResumo: Solucao[] = [
   {
     slug: "contabil",
@@ -41,6 +34,7 @@ export const solucoesResumo: Solucao[] = [
   },
 ];
 
+/** Diferenciais (Copy — Páginas 1 e 5). */
 export const diferenciais = [
   {
     titulo: "Inteligência antes da burocracia",
@@ -69,6 +63,7 @@ export const diferenciais = [
   },
 ];
 
+/** Pilares estratégicos da marca (Copy — Página 2). */
 export const pilares = [
   {
     titulo: "Inteligência",
@@ -92,6 +87,7 @@ export const pilares = [
   },
 ];
 
+/** Serviços recorrentes (Copy — Página 3). */
 export const servicosRecorrentes = [
   {
     titulo: "Área Contábil",
@@ -125,6 +121,7 @@ export const servicosRecorrentes = [
   },
 ];
 
+/** Consultoria estratégica e serviços avulsos (Copy — Página 4). */
 export const servicosConsultoria = [
   {
     titulo: "Societário",
@@ -157,6 +154,7 @@ export const servicosConsultoria = [
   },
 ];
 
+/** Opções do campo "Serviço de interesse" do formulário (Copy — Página 8). */
 export const servicosInteresse = [
   "Contábil, Fiscal e Trabalhista",
   "Consultoria Estratégica",

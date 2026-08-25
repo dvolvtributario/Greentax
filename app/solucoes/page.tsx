@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero } from "@/components/sections/page-hero";
-import { CtaFinal } from "@/components/sections/cta-final";
-import { Section } from "@/components/ui/section";
-import { IconeCalculadora, IconeCrescimento, IconeSeta } from "@/components/ui/icons";
+import { PageHero } from "@/components/sections/PageHero";
+import { CtaFinal } from "@/components/sections/CtaFinal";
+import { Section } from "@/components/ui/Section";
+import { Marca, Seta } from "@/components/ui/Icons";
+import p from "@/app/paginas.module.css";
+import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Soluções",
@@ -15,7 +17,6 @@ export const metadata: Metadata = {
 const frentes = [
   {
     href: "/solucoes/contabil-fiscal-trabalhista",
-    icone: IconeCalculadora,
     etiqueta: "Serviço recorrente",
     titulo: "Contábil, Fiscal e Trabalhista",
     resumo:
@@ -29,7 +30,6 @@ const frentes = [
   },
   {
     href: "/solucoes/consultoria-estrategica",
-    icone: IconeCrescimento,
     etiqueta: "Sob demanda",
     titulo: "Consultoria Estratégica",
     resumo:
@@ -47,74 +47,47 @@ export default function Solucoes() {
   return (
     <>
       <PageHero
-        sobretitulo="Soluções"
+        rotulo="Soluções"
         titulo="Soluções para cada fase do seu negócio"
-        descricao="Duas frentes complementares: a rotina que mantém sua empresa em dia e a estratégia que faz diferença no caixa."
+        lead="Duas frentes complementares: a rotina que mantém sua empresa em dia e a estratégia que faz diferença no caixa."
       />
 
       <Section>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {frentes.map((frente) => {
-            const Icone = frente.icone;
-            return (
-              <Link
-                key={frente.href}
-                href={frente.href}
-                className="group flex flex-col rounded-card border border-ink-200 bg-surface p-8 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card-hover sm:p-10"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-50">
-                    <Icone className="size-6 text-brand-700" />
-                  </span>
-                  <span className="rounded-full bg-ink-100 px-3 py-1 text-xs font-semibold tracking-wide text-ink-500 uppercase">
-                    {frente.etiqueta}
-                  </span>
-                </div>
-
-                <h2 className="mt-6 text-2xl font-bold text-ink-900">
-                  {frente.titulo}
-                </h2>
-                <p className="mt-3 leading-relaxed text-ink-500">
-                  {frente.resumo}
-                </p>
-
-                <ul className="mt-6 flex-1 space-y-2.5 border-t border-ink-100 pt-6">
-                  {frente.itens.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink-700"
-                    >
-                      <span
-                        aria-hidden
-                        className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-500"
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <span className="mt-7 inline-flex items-center gap-1.5 font-semibold text-brand-800">
-                  {frente.cta}
-                  <IconeSeta className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        <div className={estilos.frentes}>
+          {frentes.map((frente, i) => (
+            <Link key={frente.href} href={frente.href} className={estilos.frente}>
+              <div className={estilos.frenteTopo}>
+                <span className={estilos.frenteNumero}>
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-              </Link>
-            );
-          })}
+                <span className={estilos.frenteEtiqueta}>{frente.etiqueta}</span>
+              </div>
+
+              <h2 className={estilos.frenteTitulo}>{frente.titulo}</h2>
+              <p className={estilos.frenteResumo}>{frente.resumo}</p>
+
+              <ul className={estilos.frenteLista}>
+                {frente.itens.map((item) => (
+                  <li key={item} className={p.item}>
+                    <Marca />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <span className={estilos.frenteAcao}>
+                {frente.cta}
+                <Seta />
+              </span>
+            </Link>
+          ))}
         </div>
 
-        <p className="mt-10 rounded-card border border-ink-200 bg-surface-2 p-6 text-[0.9375rem] leading-relaxed text-ink-500">
-          <strong className="font-semibold text-ink-900">
-            Atendimento a pessoa física.
-          </strong>{" "}
-          Também cuidamos de serviços pontuais como a Declaração de Imposto de Renda
-          para sócios e clientes das empresas atendidas — descrito na página de{" "}
-          <Link
-            href="/solucoes/consultoria-estrategica"
-            className="font-semibold text-brand-800 underline underline-offset-4"
-          >
-            Consultoria Estratégica
-          </Link>
-          .
+        <p className={p.nota}>
+          <strong>Atendimento a pessoa física.</strong> Também cuidamos de serviços
+          pontuais como a Declaração de Imposto de Renda para sócios e clientes das
+          empresas atendidas — descrito na página de{" "}
+          <Link href="/solucoes/consultoria-estrategica">Consultoria Estratégica</Link>.
         </p>
       </Section>
 

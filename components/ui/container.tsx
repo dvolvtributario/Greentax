@@ -1,22 +1,23 @@
-import { cn } from "@/lib/utils";
+import estilos from "./Container.module.css";
 
 export function Container({
   children,
+  largura = "padrao",
   className,
-  size = "default",
 }: {
   children: React.ReactNode;
+  largura?: "padrao" | "estreito" | "largo";
   className?: string;
-  size?: "default" | "narrow" | "wide";
 }) {
-  const larguras = {
-    narrow: "max-w-3xl",
-    default: "max-w-6xl",
-    wide: "max-w-7xl",
-  };
+  const variante =
+    largura === "estreito"
+      ? estilos.estreito
+      : largura === "largo"
+        ? estilos.largo
+        : "";
 
   return (
-    <div className={cn("mx-auto w-full px-5 sm:px-8", larguras[size], className)}>
+    <div className={[estilos.container, variante, className].filter(Boolean).join(" ")}>
       {children}
     </div>
   );

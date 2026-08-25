@@ -1,0 +1,142 @@
+.rodape {
+  background: var(--verde-900);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--fs-pequeno);
+}
+
+.interno {
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding: 64px var(--gutter) 40px;
+}
+
+.topo {
+  display: grid;
+  gap: 48px;
+}
+
+@media (min-width: 860px) {
+  .topo {
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: 56px;
+  }
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.conceito {
+  margin-top: 20px;
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.endereco {
+  margin-top: 26px;
+  display: flex;
+  gap: 12px;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.endereco svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--verde-400);
+}
+
+.tituloColuna {
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: #fff;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.itens {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itens a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color 120ms linear;
+}
+
+.itens a:hover {
+  color: #fff;
+}
+
+.itens svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--verde-400);
+}
+
+.pendente {
+  margin-top: 20px;
+}
+
+/* -------------------------------------------------------------- LGPD */
+
+.lgpd {
+  margin-top: 56px;
+  display: flex;
+  gap: 14px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 90ch;
+}
+
+.lgpd svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--verde-400);
+}
+
+/* ------------------------------------------------------------- legal */
+
+.legal {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: var(--fs-mini);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (min-width: 860px) {
+  .legal {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.legalLinks {
+  display: flex;
+  gap: 24px;
+  flex: none;
+}
+
+.legalLinks a:hover {
+  color: #fff;
+}

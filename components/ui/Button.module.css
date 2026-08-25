@@ -1,0 +1,104 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-size: var(--fs-pequeno);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    background-color 120ms linear,
+    border-color 120ms linear,
+    color 120ms linear;
+}
+
+.base:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* --- portes --- */
+
+.md {
+  height: 44px;
+  padding-inline: 22px;
+}
+
+.lg {
+  height: 52px;
+  padding-inline: 28px;
+  font-size: var(--fs-corpo);
+}
+
+/* --- variantes --- */
+
+.solido {
+  background: var(--verde-700);
+  border-color: var(--verde-700);
+  color: #fff;
+}
+
+.solido:hover {
+  background: var(--verde-900);
+  border-color: var(--verde-900);
+}
+
+.contorno {
+  background: transparent;
+  border-color: var(--filete-forte);
+  color: var(--tinta-900);
+}
+
+.contorno:hover {
+  border-color: var(--tinta-900);
+}
+
+.claro {
+  background: #fff;
+  border-color: #fff;
+  color: var(--verde-900);
+}
+
+.claro:hover {
+  background: var(--verde-100);
+  border-color: var(--verde-100);
+}
+
+.contornoClaro {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.contornoClaro:hover {
+  border-color: #fff;
+}
+
+.texto {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--verde-400);
+  padding-bottom: 3px;
+  color: var(--verde-700);
+  font-size: var(--fs-pequeno);
+  font-weight: 600;
+}
+
+.texto:hover {
+  border-bottom-color: var(--verde-700);
+  color: var(--verde-900);
+}
+
+.icone {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}

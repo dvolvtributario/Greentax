@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 
+
 const components: MDXComponents = {
   a: ({ href = "", children, ...props }) => {
     const interno = href.startsWith("/") || href.startsWith("#");

@@ -1,0 +1,103 @@
+.secao {
+  padding-block: clamp(3rem, 1.5rem + 4vw, 4.5rem);
+}
+
+.grade {
+  display: grid;
+  gap: 56px;
+}
+
+@media (min-width: 980px) {
+  .grade {
+    grid-template-columns: 7fr 5fr;
+    gap: 80px;
+    align-items: start;
+  }
+}
+
+.tituloForm {
+  font-size: 1.5rem;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--tinta-900);
+}
+
+.aviso {
+  margin-top: 14px;
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-500);
+}
+
+.obrigatorio {
+  color: var(--verde-600);
+  font-weight: 600;
+}
+
+.form {
+  margin-top: 36px;
+}
+
+/* --------------------------------------------------------- institucional */
+
+.painel {
+  border: 1px solid var(--filete);
+  background: var(--papel-2);
+  padding: 32px 28px;
+}
+
+.painelTitulo {
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--tinta-900);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--filete-forte);
+}
+
+.dados {
+  margin-top: 20px;
+}
+
+.dado {
+  display: flex;
+  gap: 14px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--filete);
+  font-size: var(--fs-pequeno);
+  line-height: 1.6;
+}
+
+.dado svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--verde-700);
+}
+
+.dado a {
+  color: var(--verde-700);
+  font-weight: 600;
+  border-bottom: 1px solid var(--verde-400);
+}
+
+.lgpd {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+  font-size: var(--fs-mini);
+  color: var(--tinta-500);
+  line-height: 1.65;
+}
+
+.lgpd svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  margin-top: 2px;
+  color: var(--verde-700);
+}
+
+.pendenteMapa {
+  margin-top: 24px;
+}

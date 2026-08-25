@@ -1,74 +1,41 @@
-import { cn } from "@/lib/utils";
+import estilos from "./Pendente.module.css";
 
 /**
- * Marca visualmente uma lacuna de conteúdo ainda não fornecida pela Greentax.
+ * Marca uma lacuna de conteúdo ainda não fornecida pela Greentax.
  *
- * Todas as pendências do site usam este componente — para listar o que falta,
- * basta procurar por `<Pendente` no projeto.
- *
- * Antes de publicar, cada ocorrência deve ser substituída pelo conteúdo real.
- * Se alguma sobrar, ela aparece de forma evidente na página (é intencional:
- * uma lacuna esquecida tem que incomodar).
+ * Para listar tudo o que falta: `grep -rn "<Pendente" app components`.
+ * Cada ocorrência deve sair antes da publicação.
  */
 export function Pendente({
   titulo,
   children,
-  className,
   compacto = false,
   tema = "claro",
+  className,
 }: {
   titulo: string;
   children?: React.ReactNode;
-  className?: string;
   compacto?: boolean;
-  /** Use "escuro" quando o bloco estiver sobre fundo verde (rodapé). */
+  /** "escuro" quando o bloco fica sobre o verde do rodapé. */
   tema?: "claro" | "escuro";
+  className?: string;
 }) {
-  const escuro = tema === "escuro";
-
   return (
     <div
       role="note"
       data-pendente
-      className={cn(
-        "rounded-card border-2 border-dashed",
-        escuro
-          ? "border-amber-300/50 bg-amber-200/10"
-          : "border-amber-300 bg-amber-50/70",
-        compacto ? "p-4" : "p-6 sm:p-8",
+      className={[
+        estilos.pendente,
+        compacto ? estilos.compacto : "",
+        tema === "escuro" ? estilos.escuro : "",
         className,
-      )}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <p
-        className={cn(
-          "flex items-center gap-2 text-xs font-bold tracking-[0.14em] uppercase",
-          escuro ? "text-amber-200" : "text-amber-700",
-        )}
-      >
-        <span
-          aria-hidden
-          className="inline-block size-1.5 rounded-full bg-amber-400"
-        />
-        A preencher
-      </p>
-      <p
-        className={cn(
-          "mt-2 font-semibold",
-          escuro ? "text-amber-50" : "text-amber-900",
-        )}
-      >
-        {titulo}
-      </p>
-      {children ? (
-        <div
-          className={cn(
-            "mt-2 text-sm leading-relaxed",
-            escuro ? "text-amber-100/90" : "text-amber-800",
-          )}
-        >
-          {children}
-        </div>
-      ) : null}
+      <span className={estilos.rotulo}>A preencher</span>
+      <p className={estilos.titulo}>{titulo}</p>
+      {children ? <div className={estilos.corpo}>{children}</div> : null}
     </div>
   );
 }

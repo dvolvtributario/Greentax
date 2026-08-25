@@ -1,0 +1,61 @@
+.cartao {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 28px;
+  background: var(--papel);
+  transition: background-color 120ms linear;
+}
+
+.cartao:hover {
+  background: var(--papel-2);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: var(--fs-mini);
+  color: var(--tinta-500);
+}
+
+.categoria {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--verde-700);
+}
+
+.separador {
+  width: 1px;
+  height: 12px;
+  background: var(--filete-forte);
+}
+
+.titulo {
+  margin-top: 16px;
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+.resumo {
+  margin-top: 10px;
+  flex: 1;
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-500);
+}
+
+.acao {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-pequeno);
+  font-weight: 600;
+  color: var(--verde-700);
+}
+
+.acao svg {
+  width: 15px;
+  height: 15px;
+}

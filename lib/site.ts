@@ -15,6 +15,7 @@ export const site = {
   assinatura: "Contabilidade e Assessoria Empresarial",
   cnpj: "37.026.778/0001-80",
 
+  /** Ajuste para o domínio definitivo antes de publicar. */
   url: "https://www.greentax.com.br",
 
   conceito: "Contabilidade que acompanha a evolução da sua empresa.",
@@ -36,7 +37,6 @@ export const site = {
   contato: {
     whatsappNumero: "5518997506584",
     whatsappExibicao: "(18) 99750-6584",
-    /** PENDENTE: e-mail institucional da Greentax ainda não informado. */
     email: null as string | null,
   },
 

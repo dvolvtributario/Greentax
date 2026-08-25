@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/ui/container";
-import { CtaFinal } from "@/components/sections/cta-final";
-import { IconeSeta } from "@/components/ui/icons";
+import { Container } from "@/components/ui/Container";
+import { CtaFinal } from "@/components/sections/CtaFinal";
+import { Seta } from "@/components/ui/Icons";
 import { carregarArtigo, formatarData, listarSlugs } from "@/lib/blog";
 import { site } from "@/lib/site";
+import estilos from "./page.module.css";
 
 export function generateStaticParams() {
   return listarSlugs().map((slug) => ({ slug }));
@@ -68,38 +69,31 @@ export default async function ArtigoPage({ params }: PageProps<"/blog/[slug]">) 
         }}
       />
 
-      <article className="py-14 sm:py-20">
-        <Container size="narrow">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-800"
-          >
-            <IconeSeta className="size-4 rotate-180" />
+      <article className={estilos.artigo}>
+        <Container largura="estreito">
+          <Link href="/blog" className={estilos.voltar}>
+            <Seta />
             Voltar para o blog
           </Link>
 
-          <header className="mt-8 border-b border-ink-200 pb-8">
-            <div className="flex flex-wrap items-center gap-3 text-sm">
-              <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-800">
-                {artigo.categoria}
-              </span>
-              <time dateTime={artigo.data} className="text-ink-500">
-                {formatarData(artigo.data)}
-              </time>
+          <header className={estilos.cabecalho}>
+            <div className={estilos.meta}>
+              <span className={estilos.categoria}>{artigo.categoria}</span>
+              <span aria-hidden className={estilos.separador} />
+              <time dateTime={artigo.data}>{formatarData(artigo.data)}</time>
               {artigo.autor ? (
-                <span className="text-ink-500">· {artigo.autor}</span>
+                <>
+                  <span aria-hidden className={estilos.separador} />
+                  <span>{artigo.autor}</span>
+                </>
               ) : null}
             </div>
 
-            <h1 className="mt-5 text-3xl leading-[1.15] font-bold sm:text-4xl">
-              {artigo.titulo}
-            </h1>
-            <p className="mt-4 text-lg leading-relaxed text-ink-500">
-              {artigo.resumo}
-            </p>
+            <h1 className={estilos.titulo}>{artigo.titulo}</h1>
+            <p className={estilos.resumo}>{artigo.resumo}</p>
           </header>
 
-          <div className="prose prose-greentax mt-10 max-w-none">
+          <div className={estilos.prosa}>
             <Conteudo />
           </div>
         </Container>

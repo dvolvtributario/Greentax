@@ -1,30 +1,69 @@
 # Site institucional Greentax — guia do projeto
 
-Site em Next.js 16 (App Router), React 19, TypeScript e Tailwind CSS v4,
+Site em **Next.js 16 (App Router) + React 19 + TypeScript + CSS Modules**,
 construído a partir do documento *Briefing de Criação + Copy Institucional —
 Site Greentax, v1.0*.
+
+---
+
+## Stack
+
+| Camada | Escolha |
+| --- | --- |
+| Framework | Next.js 16 (App Router, Turbopack) |
+| Componentes | React 19 (Server Components por padrão) |
+| CSS | **CSS Modules + uma folha global de tokens** — sem Tailwind |
+| Ícones | SVG próprio (`components/ui/Icons.tsx`) — sem biblioteca |
+| Animações | Apenas transições de cor de 120 ms |
+| Fonte | Inter variável, hospedada no projeto |
+| Formulário | React Hook Form + Server Action |
+| Backend | Next.js (Server Actions) |
 
 ---
 
 ## Rodar localmente
 
 ```bash
-npm install     # necessário: o projeto ganhou novas dependências (MDX)
+npm install
 npm run dev     # http://localhost:3000
-npm run build   # build de produção
-npx eslint .    # lint
+npm run build
+npx eslint .
 ```
+
+---
+
+## A linguagem visual
+
+A referência é a comunicação institucional de Deloitte, PwC e EY: autoridade
+construída por hierarquia de informação, não por efeito visual.
+
+**As regras que o projeto segue — vale mantê-las ao criar telas novas:**
+
+- **Sem raio de borda.** Tudo é retângulo, inclusive botões e campos.
+- **Sem sombra.** A separação entre blocos é feita por filetes de 1px.
+- **Sem gradiente, sem blob, sem ilustração decorativa.**
+- **Sem animação de entrada.** Nada aparece, desliza ou pulsa. As únicas
+  transições são de cor, em 120 ms, no hover.
+- **Cor é acento, não superfície.** O verde marca filetes, rótulos e o CTA. O
+  fundo é branco ou cinza muito claro.
+- **Hierarquia pela tipografia e pelo espaço em branco.**
+- **Cada seção abre com um filete grosso + rótulo em caixa alta + título.** É o
+  padrão que dá ritmo ao site inteiro (`<CabecalhoSecao>`).
+- **Números grandes como prova de autoridade** — a faixa de indicadores usa
+  numerais de até 80px, separados por filetes verticais.
+- **Grades com filetes**, não cards flutuantes (`<Grade>`).
 
 ---
 
 ## Estrutura
 
 ```
-app/                          rotas (App Router)
-├─ page.tsx                   Home
+app/
+├─ globals.css                tokens, reset e tipografia base — SÓ isso
+├─ paginas.module.css         padrões compartilhados pelas páginas internas
 ├─ layout.tsx                 layout raiz, metadata global, JSON-LD
-├─ globals.css                design tokens (cores, sombras, tipografia)
-├─ fonts/                     Inter variável, hospedada localmente
+├─ page.tsx / page.module.css Home
+├─ fonts/                     Inter variável (woff2) + licença OFL
 ├─ quem-somos/
 ├─ solucoes/
 │  ├─ page.tsx                hub das duas frentes
@@ -34,29 +73,30 @@ app/                          rotas (App Router)
 ├─ nichos/
 ├─ blog/
 │  ├─ page.tsx                listagem com filtro por categoria
-│  └─ [slug]/page.tsx         artigo
+│  └─ [slug]/                 artigo (estilos de prosa no módulo)
 ├─ contato/
 │  ├─ page.tsx
 │  └─ acoes.ts                Server Action do formulário
 ├─ politica-de-privacidade/
-├─ sitemap.ts                 sitemap.xml gerado
-├─ robots.ts                  robots.txt gerado
-├─ icon.png / apple-icon.png / favicon.ico
+├─ sitemap.ts, robots.ts
+└─ icon.png, apple-icon.png, favicon.ico
 
 components/
-├─ layout/                    Header, Footer
-├─ sections/                  blocos reutilizáveis entre páginas
-└─ ui/                        primitivas (botão, container, seção, ícones)
+├─ layout/     Header, Footer
+├─ sections/   blocos reutilizáveis entre páginas
+└─ ui/         Container, Section, Button, Pendente, Icons
 
 lib/
-├─ site.ts                    DADOS INSTITUCIONAIS — edite aqui
-├─ conteudo.ts                copy das páginas
-├─ blog.ts                    leitura dos artigos MDX
-└─ utils.ts
+├─ site.ts       DADOS INSTITUCIONAIS — edite aqui
+├─ conteudo.ts   copy das páginas
+└─ blog.ts       leitura dos artigos MDX
 
-content/blog/                 artigos em .mdx
-public/marca/                 arquivos do logotipo
+content/blog/    artigos em .mdx
+public/marca/    arquivos do logotipo
 ```
+
+Cada componente tem seu `.module.css` ao lado. Os nomes de classe são locais:
+não existe colisão entre arquivos e não há folha global crescendo sem controle.
 
 ---
 
@@ -68,8 +108,9 @@ public/marca/                 arquivos do logotipo
 | Domínio do site (antes de publicar!) | `lib/site.ts` → `site.url` |
 | Números de prova social | `lib/site.ts` → `site.indicadores` |
 | Textos das páginas | `lib/conteudo.ts` |
-| Cores e sombras | `app/globals.css` |
+| Cores, tamanhos de fonte, espaçamentos | `app/globals.css` (bloco `:root`) |
 | Itens do menu | `lib/site.ts` → `navegacao` |
+| Estilo de um componente | o `.module.css` ao lado dele |
 
 ---
 
@@ -79,34 +120,33 @@ Extraída do logotipo oficial, medida pixel a pixel — não estimada.
 
 | Token | Hex | Contraste sobre branco | Uso |
 | --- | --- | --- | --- |
-| `brand-800` | `#166936` | 6.76:1 ✅ AA | Verde institucional. Texto, CTAs, links. |
-| `brand-600` | `#428436` | 4.58:1 ✅ AA | Verde claro escurecido, seguro para texto pequeno. |
-| `brand-500` | `#509F41` | 3.29:1 ⚠️ | Verde claro da marca. **Só** ícones, gráficos e títulos grandes. |
-| `ink-500` | `#5C6560` | 6.03:1 ✅ AA | Texto de apoio. |
-| `ink-900` | `#101512` | 18.45:1 ✅ | Títulos. |
+| `--verde-700` | `#166936` | 6.76:1 ✅ AA | Verde institucional. Texto, CTAs, links. |
+| `--verde-500` | `#428436` | 4.58:1 ✅ AA | Verde claro escurecido, seguro para texto pequeno. |
+| `--verde-400` | `#509f41` | 3.29:1 ⚠️ | Verde claro da marca. **Só** filetes, numerais e marcadores. |
+| `--tinta-500` | `#667075` | 5.3:1 ✅ AA | Texto de apoio. |
+| `--tinta-900` | `#14181a` | ~17:1 ✅ | Títulos. |
 
-> ⚠️ O verde claro (`brand-500`) reprova no WCAG AA para texto pequeno. Ele é a
-> cor de destaque da marca e funciona bem em elementos gráficos, mas nunca deve
-> virar cor de parágrafo ou de link no corpo do texto.
+> ⚠️ O verde claro reprova no WCAG AA para texto pequeno. Ele é a cor de
+> destaque da marca e funciona em elementos gráficos, mas nunca deve virar cor
+> de parágrafo ou de link no corpo do texto.
 
 ### Arquivos de marca
 
 | Arquivo | Uso |
 | --- | --- |
-| `public/marca/greentax-logo.png` | Lockup completo (wordmark + assinatura), fundo transparente |
-| `public/marca/greentax-logo-branco.png` | Versão negativa, para fundos escuros/verdes |
-| `public/marca/greentax-wordmark.png` | Só o wordmark — usado no header, onde a assinatura ficaria ilegível |
-| `public/marca/greentax-wordmark-branco.png` | Wordmark negativo |
-| `public/marca/greentax-icone.png` | Monograma GT, recolorido para a paleta do wordmark |
+| `greentax-logo.png` | Lockup completo (wordmark + assinatura), fundo transparente |
+| `greentax-logo-branco.png` | Versão negativa, para fundos escuros |
+| `greentax-wordmark.png` | Só o wordmark — usado no header, onde a assinatura ficaria ilegível |
+| `greentax-wordmark-branco.png` | Wordmark negativo |
+| `greentax-icone.png` | Monograma GT, recolorido para a paleta do wordmark |
 
-**Nota sobre o monograma:** o arquivo original do GT usava verdes diferentes do
-wordmark (`#097340` / `#4DAD43`, mais esmeralda). Ele foi recolorido para os
-tons do wordmark (`#166936` / `#509F41`) para que favicon e header combinem.
+**Monograma:** o arquivo original do GT usava verdes diferentes do wordmark
+(`#097340` / `#4dad43`, mais esmeralda). Foi recolorido para os tons do
+wordmark para que favicon e header combinem.
 
-**Nota sobre formato:** todos os arquivos recebidos eram raster (PNG/JPG). As
-resoluções são suficientes para uso em tela, mas se algum dia for preciso
-imprimir ou aplicar em tamanho grande, vale pedir o **SVG ou AI original** a
-quem criou o logotipo.
+**Formato:** todos os arquivos recebidos eram raster. As resoluções bastam para
+tela, mas para impressão ou aplicação em tamanho grande vale pedir o **SVG ou AI
+original** a quem criou o logotipo.
 
 ---
 
@@ -125,41 +165,40 @@ export const artigo = {
 };
 ```
 
-A listagem lê a pasta sozinha — não é preciso registrar o artigo em lugar nenhum.
+A listagem lê a pasta sozinha — não é preciso registrar o artigo em lugar
+nenhum. O arquivo `modelo-de-artigo.mdx` é um gabarito: **apague-o** quando o
+primeiro conteúdo real for publicado.
 
-O arquivo `modelo-de-artigo.mdx` é só um gabarito: **apague-o** quando o primeiro
-conteúdo real for publicado.
-
-Se um dia a Greentax quiser publicar por painel em vez de por commit, o único
-arquivo a mudar é `lib/blog.ts` — as páginas continuam iguais.
+Para migrar para um CMS no futuro, o único arquivo a mudar é `lib/blog.ts`.
 
 ---
 
 ## Formulário de contato
 
-O formulário valida os campos, tem proteção anti-spam (honeypot) e exige
-consentimento LGPD explícito. **A entrega do lead ainda não está configurada.**
+React Hook Form no cliente (validação em `onTouched`, sem re-render
+desnecessário) e uma Server Action que **revalida tudo no servidor** — a
+validação do cliente é conveniência, não segurança. Tem honeypot anti-spam e
+exige consentimento LGPD explícito.
 
-Para ativar sem escolher um CRM agora, crie um `.env.local`:
+**A entrega do lead ainda não está configurada.** Para ativar sem escolher um
+CRM agora, crie um `.env.local`:
 
 ```
 CONTATO_WEBHOOK_URL=https://…
 ```
 
 Pode apontar para Zapier, Make, n8n, WhatsApp Business API ou um endpoint
-próprio. O lead é enviado como JSON via POST.
+próprio. O lead vai como JSON via POST.
 
-> 🚨 **Sem essa variável, o lead é apenas registrado no log do servidor — ou
-> seja, na prática ele se perde.** Não publique o site em produção sem
-> configurar a entrega.
+> 🚨 **Sem essa variável, o lead é apenas registrado no log do servidor — na
+> prática, ele se perde.** Não publique em produção sem configurar a entrega.
 
 ---
 
 ## Pendências
 
-Todas as lacunas de conteúdo estão marcadas no código com o componente
-`<Pendente>` e aparecem visualmente na página (de propósito — lacuna esquecida
-tem que incomodar). Para listar todas:
+Todas as lacunas de conteúdo estão marcadas com o componente `<Pendente>` e
+aparecem visualmente na página (de propósito). Para listar:
 
 ```bash
 grep -rn "<Pendente" app components
@@ -187,23 +226,31 @@ grep -rn "<Pendente" app components
 
 ## Decisões técnicas registradas
 
-**Fonte hospedada localmente.** A Inter vem de um `.woff2` dentro do projeto
-(`app/fonts/`) em vez de ser baixada do Google Fonts durante o build. O build
-funciona offline e não depende da disponibilidade de um serviço externo.
-Licença OFL incluída.
+**CSS Modules, não Tailwind.** Os estilos ficam ao lado do componente, com
+nomes de classe escopados. Os valores compartilhados (cor, tipo, espaço) vivem
+como custom properties no `:root` de `globals.css` — mudar a paleta inteira é
+editar um bloco.
+
+**Fonte hospedada localmente.** A Inter vem de um `.woff2` dentro do projeto em
+vez de ser baixada do Google Fonts no build. O build funciona offline e não
+depende de serviço externo. Licença OFL incluída.
+
+**Ícones em SVG próprio.** São doze ícones; nenhuma biblioteca justificaria o
+peso. Traço de 1,5px com terminações retas, coerente com a ausência de cantos
+arredondados.
 
 **Filtro do blog por URL.** As categorias usam `?categoria=` com links reais em
-vez de estado no cliente: funciona sem JavaScript, é indexável e o usuário pode
-compartilhar o link filtrado.
+vez de estado no cliente: funciona sem JavaScript, é indexável e o link filtrado
+pode ser compartilhado.
 
 **Dados estruturados.** `AccountingService` (schema.org) no layout raiz e
 `BlogPosting` em cada artigo, para busca local em Araçatuba/SP.
 
 **Sem banner de cookies ainda.** O site hoje não carrega nenhum script de
-terceiros — nem Google Analytics, nem Meta Pixel, nem iframe do Maps. Enquanto
-for assim, não há cookie que exija consentimento. O banner passa a ser
-obrigatório no momento em que qualquer uma dessas ferramentas entrar.
+terceiros — nem Analytics, nem Pixel, nem iframe do Maps. Enquanto for assim,
+não há cookie que exija consentimento. O banner passa a ser obrigatório no
+momento em que qualquer uma dessas ferramentas entrar.
 
 **Acessibilidade.** Skip link, foco visível, `aria-current` na navegação,
-`aria-invalid` e mensagens de erro associadas nos campos do formulário,
-`prefers-reduced-motion` respeitado.
+`aria-invalid` e mensagens de erro associadas nos campos, `prefers-reduced-motion`
+respeitado.

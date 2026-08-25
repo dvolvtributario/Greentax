@@ -1,26 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { site } from "@/lib/site";
 
-/**
- * Inter (variável) hospedada no próprio projeto, em vez de baixada do Google
- * durante o build. Vantagens: o build funciona offline e não depende da
- * disponibilidade do Google Fonts.
- *
- * Arquivo extraído do pacote @fontsource-variable/inter. Licença OFL em
- * app/fonts/inter-LICENSE.txt. Subset "latin", que cobre todos os acentos
- * do português.
- */
+
 const inter = localFont({
   src: "./fonts/inter-variable-latin.woff2",
   weight: "100 900",
   style: "normal",
   display: "swap",
   variable: "--font-inter",
-  fallback: ["ui-sans-serif", "system-ui", "Segoe UI", "Arial", "sans-serif"],
+  fallback: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -58,7 +50,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/** Dados estruturados para busca local (schema.org). */
+export const viewport: Viewport = {
+  themeColor: "#166936",
+};
+
 const dadosEstruturados = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
@@ -83,12 +78,8 @@ const dadosEstruturados = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="pt-BR"
-      data-scroll-behavior="smooth"
-      className={`${inter.variable} antialiased`}
-    >
-      <body className="flex min-h-dvh flex-col">
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={inter.variable}>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -96,15 +87,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
 
-        <a
-          href="#conteudo"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-brand-800 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white"
-        >
+        <a href="#conteudo" className="pular-para-conteudo">
           Ir para o conteúdo
         </a>
 
         <Header />
-        <main id="conteudo" className="flex-1">
+        <main id="conteudo" style={{ flex: 1 }}>
           {children}
         </main>
         <Footer />
@@ -112,7 +100,3 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     </html>
   );
 }
-
-export const viewport: Viewport = {
-  themeColor: "#166936",
-};

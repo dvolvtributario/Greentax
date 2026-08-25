@@ -1,0 +1,68 @@
+.faixa {
+  border-block: 1px solid var(--filete);
+  background: var(--papel-2);
+  padding-block: clamp(3rem, 1.5rem + 4vw, 4.5rem);
+}
+
+.indicadores {
+  display: grid;
+  gap: 32px;
+}
+
+@media (min-width: 760px) {
+  .indicadores {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .indicador + .indicador {
+    border-left: 1px solid var(--filete-forte);
+    padding-left: 40px;
+  }
+
+  .indicador:not(:last-child) {
+    padding-right: 40px;
+  }
+}
+
+.valor {
+  display: block;
+  font-size: clamp(3.25rem, 2rem + 4vw, 5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--verde-800);
+  font-variant-numeric: tabular-nums;
+}
+
+.sufixo {
+  color: var(--verde-400);
+}
+
+.legenda {
+  display: block;
+  margin-top: 16px;
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-500);
+  max-width: 22ch;
+}
+
+/* ------------------------------------------------------------- logos */
+
+.clientes {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--filete);
+}
+
+.tituloClientes {
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--tinta-500);
+}
+
+.pendenteClientes {
+  margin-top: 20px;
+}

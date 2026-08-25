@@ -1,0 +1,57 @@
+.pagina {
+  padding-block: clamp(3rem, 1.5rem + 4vw, 4.5rem);
+}
+
+.rotulo {
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-700);
+}
+
+.titulo {
+  margin-top: 16px;
+}
+
+.lead {
+  margin-top: 20px;
+  font-size: var(--fs-corpo-g);
+  color: var(--tinta-500);
+}
+
+.aviso {
+  margin-top: 36px;
+}
+
+.texto {
+  margin-top: 48px;
+  border-top: 1px solid var(--filete);
+}
+
+.texto h2 {
+  margin-top: 44px;
+  font-size: 1.25rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--filete);
+}
+
+.texto h2:first-child {
+  margin-top: 40px;
+}
+
+.texto p {
+  margin-top: 16px;
+  color: var(--tinta-600);
+}
+
+.texto ul {
+  margin-top: 16px;
+  padding-left: 20px;
+  list-style: disc;
+  color: var(--tinta-600);
+}
+
+.texto li + li {
+  margin-top: 6px;
+}
