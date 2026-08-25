@@ -1,0 +1,64 @@
+export const artigo = {
+  titulo: "Modelo de artigo — como publicar no blog da Greentax",
+  resumo:
+    "Este é um artigo de exemplo que mostra a estrutura de um post. Use-o como base e apague quando o primeiro conteúdo real entrar no ar.",
+  categoria: "Gestão",
+  data: "2026-08-25",
+  autor: "Equipe Greentax",
+};
+
+> **Este artigo é um modelo, não conteúdo publicável.** Ele existe para você ver
+> o layout funcionando e para servir de gabarito. Apague este arquivo quando o
+> primeiro artigo real da Greentax for escrito.
+
+## Como publicar um artigo
+
+Cada artigo é um arquivo `.mdx` dentro de `content/blog/`. O nome do arquivo vira
+o endereço do post: `content/blog/reforma-tributaria-pme.mdx` fica acessível em
+`/blog/reforma-tributaria-pme`.
+
+Todo arquivo começa com o bloco de metadados abaixo — sem ele o artigo não
+aparece na listagem:
+
+```js
+export const artigo = {
+  titulo: "Título do artigo",
+  resumo: "Uma ou duas frases que aparecem no card da listagem.",
+  categoria: "Tributário", // Tributário | Trabalhista | Gestão | Tecnologia
+  data: "2026-09-15", // formato ISO — usado para ordenar
+  autor: "Equipe Greentax",
+};
+```
+
+Depois disso, escreva normalmente em Markdown. A listagem se atualiza sozinha:
+não é preciso registrar o artigo em nenhum outro lugar.
+
+## O que dá para usar no texto
+
+Títulos com `##` e `###`, **negrito**, *itálico*, [links](/contato), listas e
+citações. Tabelas também funcionam:
+
+| Regime | Obrigação acessória | Periodicidade |
+| --- | --- | --- |
+| Simples Nacional | PGDAS-D | Mensal |
+| Simples Nacional | DEFIS | Anual |
+
+## Sobre o tom
+
+O briefing define a linguagem do blog: consultiva e direta, focada em decisão e
+resultado — não em obrigação cumprida. O pilar a reforçar é sempre
+&ldquo;inteligência antes da burocracia&rdquo;: explicar o que a informação
+significa para o negócio de quem lê, não apenas o que a lei exige.
+
+## Pautas sugeridas no briefing
+
+- Mudanças na legislação (Reforma Tributária)
+- Simples Nacional
+- Folha de pagamento e eSocial
+- Planejamento tributário
+- Gestão financeira para PMEs
+
+Uma observação técnica importante: conteúdo tributário envelhece rápido e erra
+caro. Todo artigo com número, alíquota, prazo ou artigo de lei deve ser revisado
+por um responsável técnico da Greentax antes de ir ao ar, e vale registrar a data
+da última revisão no próprio texto.

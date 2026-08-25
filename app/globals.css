@@ -1,26 +1,112 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========================================================
+   Greentax — design tokens
+   Cores extraídas do logotipo oficial (medidas no arquivo,
+   não estimadas). Ver docs/marca.md para o relatório de
+   contraste de cada tom.
+   ========================================================= */
+@theme {
+  /* Verde institucional — cor primária de texto e CTAs de maior peso */
+  --color-brand-50: #f1f8ef;
+  --color-brand-100: #dcedd8;
+  --color-brand-200: #bcdcb5;
+  --color-brand-500: #509f41; /* verde claro da marca — SÓ gráficos/ícones/títulos grandes (3.29:1) */
+  --color-brand-600: #428436; /* verde claro escurecido — seguro para texto (4.58:1) */
+  --color-brand-700: #1d7a41;
+  --color-brand-800: #166936; /* verde escuro da marca — primário (6.76:1) */
+  --color-brand-900: #0f5029;
+  --color-brand-950: #0a3419;
+
+  /* Neutros */
+  --color-ink-900: #101512;
+  --color-ink-700: #333b36;
+  --color-ink-500: #5c6560; /* texto de apoio (6.03:1) */
+  --color-ink-300: #a8afaa;
+  --color-ink-200: #e3e8e4;
+  --color-ink-100: #f0f3f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #f7faf7;
+
+  /* Sombra suave dos cards (estética tech-consultiva do briefing) */
+  --shadow-card: 0 1px 2px rgb(16 21 18 / 0.04), 0 8px 24px -12px rgb(16 21 18 / 0.12);
+  --shadow-card-hover: 0 1px 2px rgb(16 21 18 / 0.05), 0 16px 40px -16px rgb(16 21 18 / 0.18);
+
+  --radius-card: 0.875rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Tema tipográfico dos artigos do blog (usado como `prose prose-greentax`). */
+@utility prose-greentax {
+  --tw-prose-body: var(--color-ink-700);
+  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-lead: var(--color-ink-500);
+  --tw-prose-links: var(--color-brand-800);
+  --tw-prose-bold: var(--color-ink-900);
+  --tw-prose-counters: var(--color-ink-500);
+  --tw-prose-bullets: var(--color-brand-500);
+  --tw-prose-hr: var(--color-ink-200);
+  --tw-prose-quotes: var(--color-ink-900);
+  --tw-prose-quote-borders: var(--color-brand-500);
+  --tw-prose-captions: var(--color-ink-500);
+  --tw-prose-code: var(--color-brand-900);
+  --tw-prose-pre-code: var(--color-ink-100);
+  --tw-prose-pre-bg: var(--color-brand-950);
+  --tw-prose-th-borders: var(--color-ink-200);
+  --tw-prose-td-borders: var(--color-ink-200);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink-900);
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-100);
+    color: var(--color-brand-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-800);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
