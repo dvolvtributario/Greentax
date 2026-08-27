@@ -10,7 +10,7 @@ import estilos from "./page.module.css";
 export const metadata: Metadata = {
   title: "Diferenciais",
   description:
-    "Inteligência antes da burocracia, relacionamento próximo, tecnologia que aproxima e planejamento para crescer — por que empresas escolhem a Greentax.",
+    "Veja como a Greentax trabalha com rotina contábil, informação, tecnologia e atendimento próximo.",
   alternates: { canonical: "/diferenciais" },
 };
 
@@ -19,8 +19,8 @@ export default function Diferenciais() {
     <>
       <PageHero
         rotulo="Diferenciais"
-        titulo="Mais do que contabilidade em dia"
-        lead="Cumprir obrigações é o mínimo esperado. O que diferencia a Greentax é o que vem depois disso."
+        titulo="O jeito de trabalhar aparece nos detalhes."
+        lead="Prazo, resposta, conferência e conversa com o cliente fazem parte do serviço tanto quanto a entrega das obrigações."
       />
 
       <Section>
@@ -35,49 +35,40 @@ export default function Diferenciais() {
         </ol>
       </Section>
 
-      {/* Tecnologia */}
       <Section fundo="papel2">
         <div className={p.duasColunas}>
           <CabecalhoSecao
             rotulo="Tecnologia"
-            titulo="Tecnologia que aproxima"
-            lead="Plataforma própria para acompanhar a empresa em tempo real, acesso digital a faturamento, certidões e impostos, e comunicação direta com o time."
+            titulo="Ferramenta boa é a que deixa o trabalho mais claro."
+            lead="A Greentax usa recursos digitais para acompanhar documentos, informações e prazos, mantendo o contato com a equipe por perto."
           />
-          <Pendente titulo="Detalhes da plataforma / aplicativo do cliente">
+          <Pendente titulo="Detalhes da plataforma do cliente">
             <p>
-              O briefing menciona um ERP/aplicativo do cliente e uma cláusula
-              contratual de comunicação prioritária por plataforma própria. Para
-              fechar esta seção preciso saber:
+              Esta área será preenchida com o nome da plataforma, as funções disponíveis
+              para o cliente e, se autorizado, imagens da interface.
             </p>
             <ul>
-              <li>Nome da plataforma e se ela já está no ar</li>
-              <li>O que o cliente consegue fazer nela hoje</li>
-              <li>Se haverá link de acesso (login) no menu do site</li>
-              <li>Prints ou mockups da interface, se puderem ser divulgados</li>
+              <li>Nome da plataforma e situação atual</li>
+              <li>Funções disponíveis hoje</li>
+              <li>Possível link de acesso pelo menu do site</li>
+              <li>Prints ou mockups autorizados para divulgação</li>
             </ul>
-            <p>
-              O item 10 do briefing pede deixar a área reservada para essa integração
-              mesmo que ela não entre na v1.
-            </p>
           </Pendente>
         </div>
       </Section>
 
-      {/* Depoimentos */}
       <Section>
         <div className={p.duasColunas}>
           <CabecalhoSecao rotulo="Prova social" titulo="O que dizem nossos clientes" />
           <Pendente titulo="Depoimentos e cases">
-            O briefing marca este bloco como &ldquo;se houver&rdquo;. Se a Greentax
-            reunir depoimentos, o ideal é nome, empresa, cargo e — quando possível —
-            um resultado concreto (valor recuperado, tempo economizado). Sem
-            autorização por escrito, melhor deixar a seção fora do ar do que publicar
-            depoimento genérico.
+            O bloco entra no site quando houver depoimentos autorizados. O ideal é
+            informar nome, empresa, cargo e, quando possível, um resultado que possa ser
+            comprovado.
           </Pendente>
         </div>
       </Section>
 
-      <CtaFinal titulo="Fale com a Greentax" rotulo="Fale com a Greentax" />
+      <CtaFinal titulo="Quer conhecer a forma de trabalho da Greentax?" rotulo="Fale com a Greentax" />
     </>
   );
 }

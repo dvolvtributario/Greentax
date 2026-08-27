@@ -9,11 +9,10 @@ import p from "@/app/paginas.module.css";
 export const metadata: Metadata = {
   title: "Consultoria Estratégica",
   description:
-    "Planejamento tributário, recuperação de créditos, transação tributária, PER/DCOMP, serviços societários e suporte em fiscalizações — sob demanda e sob medida.",
+    "Planejamento tributário, recuperação de créditos, transações, PER/DCOMP, serviços societários e suporte em fiscalizações.",
   alternates: { canonical: "/solucoes/consultoria-estrategica" },
 };
 
-/** Serviços de maior valor percebido — destacados conforme o briefing. */
 const destaques = [
   "Planejamento tributário",
   "Recuperação de créditos tributários",
@@ -26,12 +25,15 @@ export default function ConsultoriaEstrategica() {
     <>
       <PageHero
         rotulo="Sob demanda"
-        titulo="Quando sua empresa precisa de mais do que rotina."
-        lead="Nascemos como consultoria tributária e é essa expertise que colocamos à disposição das empresas que querem ir além da contabilidade recorrente: planejar, reduzir riscos e recuperar valores que fazem diferença no caixa."
+        titulo="Algumas decisões pedem uma análise fora da rotina."
+        lead="A Greentax começou na consultoria tributária. Essa experiência continua disponível para empresas que precisam revisar uma situação, encontrar créditos, organizar uma estratégia ou lidar com uma fiscalização."
       />
 
       <Section fundo="papel2" compacta>
-        <CabecalhoSecao rotulo="Maior valor percebido" titulo="Onde a diferença aparece no caixa" />
+        <CabecalhoSecao
+          rotulo="Onde a consultoria pode ajudar"
+          titulo="Questões que merecem olhar detalhado"
+        />
         <div className={`${p.etiquetas} ${p.espaco}`}>
           {destaques.map((item) => (
             <span key={item} className={p.etiqueta}>
@@ -63,17 +65,17 @@ export default function ConsultoriaEstrategica() {
 
         <div className={p.aviso}>
           <p>
-            Esses serviços são prestados sob demanda, mediante autorização prévia —
-            porque cada estratégia é desenhada para a realidade específica da sua
-            empresa, não é um pacote padrão.
+            Esses serviços são contratados separadamente. Primeiro entendemos o caso,
+            os documentos disponíveis e o objetivo da empresa; depois definimos o
+            trabalho necessário.
           </p>
         </div>
       </Section>
 
       <CtaFinal
-        titulo="Quando sua empresa precisa de mais do que rotina, a Greentax já está lá."
-        descricao="Comece por um diagnóstico: entendemos seu cenário e apontamos onde há oportunidade real."
-        rotulo="Agendar diagnóstico"
+        titulo="Tem uma situação tributária que precisa ser analisada?"
+        descricao="Conte o que aconteceu e quais documentos você já tem. A partir daí, avaliamos o caminho possível."
+        rotulo="Agendar conversa"
       />
     </>
   );

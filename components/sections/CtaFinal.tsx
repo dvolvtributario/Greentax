@@ -5,7 +5,7 @@ import { whatsappLink } from "@/lib/site";
 import estilos from "./CtaFinal.module.css";
 
 export function CtaFinal({
-  titulo = "Pronto para ter uma contabilidade que pensa junto com você?",
+  titulo = "Quer conversar sobre a contabilidade da sua empresa?",
   descricao,
   rotulo = "Solicitar proposta",
   href = "/contato",

@@ -10,7 +10,7 @@ import p from "@/app/paginas.module.css";
 export const metadata: Metadata = {
   title: "Contábil, Fiscal e Trabalhista",
   description:
-    "O que está incluso no serviço recorrente da Greentax: escrituração contábil, apuração de tributos, obrigações acessórias, folha de pagamento, eSocial e EFD-Reinf.",
+    "Escrituração contábil, apuração de tributos, obrigações acessórias, folha de pagamento, eSocial e EFD-Reinf.",
   alternates: { canonical: "/solucoes/contabil-fiscal-trabalhista" },
 };
 
@@ -19,8 +19,8 @@ export default function ContabilFiscalTrabalhista() {
     <>
       <PageHero
         rotulo="Serviço recorrente"
-        titulo="O básico bem-feito, com visão estratégica."
-        lead="Cuidamos de toda a rotina contábil, fiscal e trabalhista da sua empresa com precisão técnica e comunicação próxima — para que você tenha segurança no que já é obrigação e clareza sobre o que isso significa para o seu negócio."
+        titulo="A rotina da sua empresa em ordem, com alguém para conversar."
+        lead="Cuidamos da parte contábil, fiscal e trabalhista e explicamos o que você precisa saber para acompanhar a empresa sem depender de termos técnicos a cada fechamento."
       />
 
       <Section>
@@ -45,23 +45,23 @@ export default function ContabilFiscalTrabalhista() {
 
         <div className={p.aviso}>
           <p>
-            O escopo e os valores variam conforme o porte e o enquadramento tributário
-            da sua empresa. Fale com a gente para uma proposta sob medida.
+            O escopo e o valor do serviço dependem do porte, da atividade e do
+            enquadramento tributário. A proposta é montada depois de entendermos a
+            realidade da empresa.
           </p>
         </div>
 
         <p className={p.nota}>
-          Consultoria tributária, planejamento e recuperação de créditos são tratados
-          separadamente, na página de{" "}
+          Planejamento tributário, recuperação de créditos e outros trabalhos
+          específicos ficam na página de{" "}
           <Link href="/solucoes/consultoria-estrategica">
             Consultoria Estratégica e Serviços Avulsos
-          </Link>
-          .
+          </Link>.
         </p>
       </Section>
 
       <CtaFinal
-        titulo="Quer saber o que a mensalidade cobre para o seu enquadramento?"
+        titulo="Quer saber o que entra na rotina da sua empresa?"
         rotulo="Solicitar proposta personalizada"
       />
     </>

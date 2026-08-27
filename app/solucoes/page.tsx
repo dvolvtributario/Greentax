@@ -10,7 +10,7 @@ import estilos from "./page.module.css";
 export const metadata: Metadata = {
   title: "Soluções",
   description:
-    "Serviço contábil, fiscal e trabalhista recorrente e consultoria estratégica sob demanda — planejamento tributário, recuperação de créditos e serviços societários.",
+    "Serviços contábeis, fiscais e trabalhistas para a rotina da empresa e consultoria para questões tributárias, societárias e situações específicas.",
   alternates: { canonical: "/solucoes" },
 };
 
@@ -20,7 +20,7 @@ const frentes = [
     etiqueta: "Serviço recorrente",
     titulo: "Contábil, Fiscal e Trabalhista",
     resumo:
-      "O básico bem-feito, com visão estratégica. Toda a rotina contábil, fiscal e trabalhista da sua empresa com precisão técnica e comunicação próxima.",
+      "A rotina da empresa acompanhada de perto: escrituração, tributos, folha e obrigações, com espaço para tirar dúvidas ao longo do caminho.",
     itens: [
       "Escrituração contábil, balancetes e balanço patrimonial",
       "Apuração de tributos e entrega de obrigações acessórias",
@@ -33,7 +33,7 @@ const frentes = [
     etiqueta: "Sob demanda",
     titulo: "Consultoria Estratégica",
     resumo:
-      "Quando sua empresa precisa de mais do que rotina. Nascemos como consultoria tributária e é essa expertise que colocamos à disposição de quem quer ir além da contabilidade recorrente.",
+      "Uma análise específica para quando surge uma questão tributária, societária ou financeira que pede mais tempo e conhecimento técnico.",
     itens: [
       "Planejamento e estratégias tributárias sob medida",
       "Levantamento e recuperação de créditos tributários",
@@ -48,8 +48,8 @@ export default function Solucoes() {
     <>
       <PageHero
         rotulo="Soluções"
-        titulo="Soluções para cada fase do seu negócio"
-        lead="Duas frentes complementares: a rotina que mantém sua empresa em dia e a estratégia que faz diferença no caixa."
+        titulo="O serviço certo para o momento da sua empresa"
+        lead="A rotina contábil, fiscal e trabalhista fica organizada. Quando aparece uma questão fora do dia a dia, a Greentax também pode assumir a análise."
       />
 
       <Section>
@@ -84,16 +84,16 @@ export default function Solucoes() {
         </div>
 
         <p className={p.nota}>
-          <strong>Atendimento a pessoa física.</strong> Também cuidamos de serviços
-          pontuais como a Declaração de Imposto de Renda para sócios e clientes das
-          empresas atendidas descrito na página de{" "}
+          <strong>Atendimento a pessoa física.</strong> Também fazemos serviços
+          pontuais, como a Declaração de Imposto de Renda para sócios e clientes das
+          empresas atendidas. Veja os detalhes na página de{" "}
           <Link href="/solucoes/consultoria-estrategica">Consultoria Estratégica</Link>.
         </p>
       </Section>
 
       <CtaFinal
-        titulo="Não sabe qual frente faz mais sentido para a sua empresa?"
-        descricao="O primeiro contato é consultivo e sem compromisso. A gente entende seu momento e indica o caminho."
+        titulo="Está em dúvida sobre qual serviço faz sentido?"
+        descricao="Conte o que está acontecendo na sua empresa. A conversa começa pelo seu caso, não por uma lista de pacotes."
         rotulo="Falar com um especialista"
       />
     </>

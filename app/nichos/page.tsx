@@ -7,7 +7,7 @@ import { Pendente } from "@/components/ui/Pendente";
 export const metadata: Metadata = {
   title: "Nichos de Atendimento",
   description:
-    "Cada setor tem suas próprias particularidades fiscais e de gestão. Conheça os segmentos em que a Greentax desenvolveu conhecimento aprofundado.",
+    "Conheça os setores atendidos pela Greentax e os pontos fiscais e de gestão que merecem atenção em cada atividade.",
   alternates: { canonical: "/nichos" },
 };
 
@@ -23,42 +23,31 @@ export default function Nichos() {
       <Section largura="estreito">
         <Pendente titulo="Segmentos prioritários a definir">
           <p>
-            Esta é a maior lacuna do projeto. O briefing (itens 6 e 11) pede validar
-            de <strong>3 a 6 nichos</strong> com base na carteira atual da consultoria
-            antes de escrever a copy — e a copy final entrega apenas o modelo a
-            repetir, não os segmentos.
+            O briefing pede a escolha de 3 a 6 nichos com base na carteira atual. Essa
+            confirmação precisa vir antes da publicação para evitar uma página genérica.
           </p>
 
           <p>
-            <strong>Estrutura definida para cada segmento:</strong>
+            <strong>Para cada segmento, o conteúdo terá:</strong>
           </p>
           <ol>
             <li>Nome do segmento</li>
-            <li>
-              Frase de abertura reconhecendo o desafio específico do setor + como a
-              Greentax resolve
-            </li>
-            <li>2 a 3 pontos de atenção fiscal/tributária relevantes para o segmento</li>
+            <li>Um problema comum da atividade e como a Greentax trabalha esse ponto</li>
+            <li>De 2 a 3 questões fiscais ou tributárias que merecem atenção</li>
           </ol>
 
           <p>
-            <strong>Pista que já está no briefing:</strong> a menção a Monofásicos e
-            Substituição Tributária no contrato indica atuação forte em{" "}
-            <em>comércio e revenda</em> — provavelmente um dos nichos a priorizar.
-          </p>
-
-          <p>
-            Assim que a lista existir, os dados entram em <code>lib/conteudo.ts</code>{" "}
-            e esta página passa a renderizar os segmentos com o CTA
-            &ldquo;Sou desse segmento, quero saber mais&rdquo;.
+            A referência a operações com produtos monofásicos e substituição tributária
+            indica que comércio e revenda podem estar entre os segmentos a considerar.
+            Isso precisa ser confirmado pela equipe antes de entrar no site.
           </p>
         </Pendente>
       </Section>
 
       <CtaFinal
-        titulo="Não encontrou o seu segmento?"
-        descricao="Atendemos empresas de perfis variados. Conte sobre o seu negócio e a gente diz como pode ajudar."
-        rotulo="Solicitar atendimento especializado"
+        titulo="Seu segmento ainda não aparece aqui?"
+        descricao="Conte como sua empresa funciona. A equipe pode avaliar a situação mesmo que o setor ainda não esteja nesta página."
+        rotulo="Falar sobre minha empresa"
       />
     </>
   );

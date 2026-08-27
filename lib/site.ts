@@ -1,28 +1,19 @@
 /**
  * Fonte única de verdade para os dados institucionais da Greentax.
- *
- * Tudo que aparece em mais de uma página do site vem daqui. Para trocar um
- * telefone, um endereço ou uma rede social, altere APENAS este arquivo.
- *
- * Campos marcados como `null` são lacunas conhecidas, ainda pendentes de
- * informação da Greentax. Os componentes tratam `null` como "não renderizar"
- * ou como bloco a preencher — nada quebra enquanto o dado não chega.
  */
-
 export const site = {
   nome: "Greentax",
   razaoSocial: "GREENTAX CONTABILIDADE E ASSESSORIA EMPRESARIAL LTDA",
   assinatura: "Contabilidade e Assessoria Empresarial",
   cnpj: "37.026.778/0001-80",
 
-  /** Ajuste para o domínio definitivo antes de publicar. */
   url: "https://www.greentax.com.br",
 
-  conceito: "Contabilidade que acompanha a evolução da sua empresa.",
+  conceito: "Contabilidade para quem precisa entender o próprio negócio.",
   promessa:
-    "Você cuida do crescimento do seu negócio. Nós cuidamos da inteligência contábil, fiscal e tributária que sustenta esse crescimento.",
+    "Você cuida da operação. A Greentax acompanha os números, os tributos e as obrigações para que as decisões do dia a dia tenham informação confiável por trás.",
   descricao:
-    "Contabilidade consultiva em Araçatuba/SP. Vamos além do cumprimento das obrigações fiscais e contábeis: atuamos como parceiros estratégicos de empresas que buscam crescer com organização, segurança e inteligência na tomada de decisões.",
+    "A Greentax presta serviços contábeis, fiscais e trabalhistas em Araçatuba/SP, com atendimento próximo e foco em informação útil para a gestão. O trabalho combina rotina, análise tributária e orientação para as decisões da empresa.",
 
   endereco: {
     logradouro: "Avenida Brasília, 2121",
@@ -47,11 +38,6 @@ export const site = {
     },
   ],
 
-  /**
-   * PENDENTE: números de prova social.
-   * O briefing é explícito — não usar dados fictícios. Enquanto forem `null`,
-   * a seção de indicadores da Home renderiza um bloco "a preencher".
-   */
   indicadores: {
     empresasAtendidas: null as number | null,
     anosDeMercado: null as number | null,

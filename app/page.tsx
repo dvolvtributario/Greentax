@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 };
 
 const pratica = [
-  "Obrigações contábeis, fiscais e trabalhistas entregues no prazo.",
-  "Apuração de tributos com análise para pagar o que é justo.",
-  "Acompanhamento consultivo, não apenas execução de tarefas.",
-  "Planejamento tributário e recuperação de créditos quando faz sentido.",
+  "Obrigações contábeis, fiscais e trabalhistas acompanhadas e entregues no prazo.",
+  "Tributos apurados de acordo com o enquadramento e a operação da empresa.",
+  "Atendimento próximo para dúvidas que surgem durante a rotina.",
+  "Planejamento tributário e recuperação de créditos quando houver uma oportunidade concreta.",
 ];
 
 export default async function Home() {
@@ -31,7 +31,6 @@ export default async function Home() {
 
   return (
     <>
-      {/* --- HERO --- */}
       <section className={estilos.hero}>
         <Container>
           <p className={estilos.rotulo}>Contabilidade consultiva</p>
@@ -56,7 +55,7 @@ export default async function Home() {
             </div>
 
             <div className={estilos.pratica}>
-              <h2 className={estilos.praticaTitulo}>O que muda na prática</h2>
+              <h2 className={estilos.praticaTitulo}>O que você encontra aqui</h2>
               <ul className={estilos.praticaLista}>
                 {pratica.map((item) => (
                   <li key={item} className={estilos.praticaItem}>
@@ -70,24 +69,23 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* --- INSTITUCIONAL --- */}
       <Section>
         <div className={estilos.institucional}>
           <CabecalhoSecao
             rotulo="Quem é a Greentax"
-            titulo="Mais do que cumprir obrigações, parceria estratégica."
+            titulo="A contabilidade precisa conversar com o negócio."
           />
           <div className={estilos.texto}>
             <p>
-              A Greentax é uma empresa de contabilidade consultiva que vai além do
-              cumprimento das obrigações fiscais e contábeis. Atuamos como parceiros
-              estratégicos de empresas que buscam crescer com organização, segurança
-              e inteligência na tomada de decisões.
+              A rotina contábil gera informações que podem ajudar muito mais do que no
+              fechamento do mês. Quando os números estão organizados, fica mais fácil
+              entender custos, tributos, resultados e os efeitos de uma decisão.
             </p>
             <p>
-              Unimos excelência técnica, tecnologia e atendimento próximo para
-              transformar informações contábeis e tributárias em direcionamentos que
-              fortalecem a gestão da sua empresa.
+              É nesse ponto que a Greentax trabalha: cuidando das obrigações e
+              conversando com o empresário sobre o que os dados mostram. O atendimento
+              reúne conhecimento contábil, fiscal e tributário com tecnologia e contato
+              próximo.
             </p>
             <div className={estilos.textoAcao}>
               <Botao href="/quem-somos" variante="texto">
@@ -99,12 +97,11 @@ export default async function Home() {
         </div>
       </Section>
 
-      {/* --- SOLUÇÕES --- */}
       <Section fundo="papel2">
         <CabecalhoSecao
           rotulo="Soluções"
-          titulo="Soluções para cada fase do seu negócio"
-          lead="Do que é obrigação ao que é estratégia, com a mesma consistência técnica."
+          titulo="O que a Greentax pode assumir na sua empresa"
+          lead="A rotina fica organizada e, quando aparece uma questão específica, você conta com uma equipe para analisar o caso."
         />
 
         <Grade colunas={4} className={estilos.grade}>
@@ -122,11 +119,10 @@ export default async function Home() {
         </Grade>
       </Section>
 
-      {/* --- DIFERENCIAIS --- */}
       <Section>
         <CabecalhoSecao
           rotulo="Diferenciais"
-          titulo="Por que empresas escolhem a Greentax"
+          titulo="Como a Greentax trabalha no dia a dia"
         />
 
         <div className={estilos.diferenciais}>
@@ -144,33 +140,30 @@ export default async function Home() {
         </div>
       </Section>
 
-      {/* --- PROVA SOCIAL --- */}
       <ProvaSocial />
 
-      {/* --- NICHOS --- */}
       <Section>
         <CabecalhoSecao
           rotulo="Nichos de atendimento"
-          titulo="Especialistas no seu tipo de negócio"
-          lead="Entendemos que cada setor tem suas próprias particularidades fiscais e de gestão, por isso desenvolvemos conhecimento aprofundado nos segmentos que mais atendemos."
+          titulo="Conhecimento que começa pela realidade de cada setor"
+          lead="Cada atividade tem regras, margens e problemas próprios. A página de nichos será construída a partir dos segmentos que fazem parte da carteira da Greentax."
         />
         <Pendente
           titulo="Segmentos prioritários ainda não definidos"
           className={estilos.pendenteNichos}
         >
-          O briefing (item 11) pede validar de 3 a 6 nichos com base na carteira
-          atual antes da redação. Assim que estiverem definidos, eles entram aqui e
-          ganham a página completa em <code>/nichos</code>.
+          O briefing pede validar de 3 a 6 nichos com base na carteira atual antes da
+          redação. Assim que estiverem definidos, eles entram aqui e ganham a página
+          completa em <code>/nichos</code>.
         </Pendente>
       </Section>
 
-      {/* --- BLOG --- */}
       <Section fundo="papel2">
         <div className={estilos.blogTopo}>
           <CabecalhoSecao
             rotulo="Central de conteúdo"
-            titulo="Conteúdo para quem decide"
-            lead="Tributário, gestão e tecnologia explicados de forma simples, direto para o seu negócio."
+            titulo="Informação para quem precisa decidir"
+            lead="Tributário, gestão e tecnologia explicados sem transformar uma dúvida prática em um texto cheio de termos técnicos."
           />
           <Botao href="/blog" variante="contorno">
             Ver todos os artigos

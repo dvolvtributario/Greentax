@@ -58,7 +58,7 @@ export function Header() {
 
         <div className={estilos.acoes}>
           <Botao href="/contato" className={estilos.cta}>
-            Solicitar proposta
+            Falar com a Greentax
           </Botao>
 
           <button
@@ -98,7 +98,7 @@ export function Header() {
             className={estilos.ctaMobile}
             onClick={() => setAberto(false)}
           >
-            Solicitar proposta
+            Falar com a Greentax
           </Botao>
         </nav>
       </div>

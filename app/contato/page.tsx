@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/sections/PageHero";
 import { FormularioContato } from "@/components/sections/FormularioContato";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 import { Envelope, Escudo, Instagram, Local, Whatsapp } from "@/components/ui/Icons";
+import { PageHero } from "@/components/sections/PageHero";
 import { site, whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
@@ -12,7 +12,7 @@ import estilos from "./page.module.css";
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Fale com quem entende do seu negócio. Conte um pouco sobre sua empresa e retornamos com um diagnóstico inicial, sem compromisso.",
+    "Conte o que sua empresa precisa. A Greentax avalia o cenário e retorna com um diagnóstico inicial.",
   alternates: { canonical: "/contato" },
 };
 
@@ -20,17 +20,17 @@ const faq = [
   {
     pergunta: "Trocar de contabilidade dá trabalho?",
     resposta:
-      "A migração é conduzida por nós. Solicitamos os arquivos ao escritório anterior, conferimos a situação fiscal e societária da empresa e assumimos as obrigações a partir da competência combinada.",
+      "A Greentax conduz a mudança. Primeiro solicita os arquivos ao escritório anterior e confere a situação fiscal e societária. Depois, assume as obrigações a partir da competência combinada com a empresa.",
   },
   {
     pergunta: "Quais documentos preciso separar?",
     resposta:
-      "No primeiro contato, nada. Para a proposta, ajuda saber o faturamento aproximado, o regime tributário, o número de funcionários e o ramo de atividade.",
+      "Para iniciar a conversa, nenhum documento específico. Para montar a proposta, ajuda ter o faturamento aproximado, o regime tributário, o número de funcionários e o ramo de atividade.",
   },
   {
-    pergunta: "Em quanto tempo recebo o retorno?",
+    pergunta: "Quando recebo o retorno?",
     resposta:
-      "O primeiro retorno é um diagnóstico inicial, sem compromisso. A proposta formal depende do porte e do enquadramento da empresa.",
+      "O primeiro contato serve para entender a empresa e a necessidade apresentada. O prazo da proposta depende das informações necessárias para avaliar o porte e o enquadramento.",
   },
 ];
 
@@ -39,15 +39,15 @@ export default function Contato() {
     <>
       <PageHero
         rotulo="Contato"
-        titulo="Fale com quem entende do seu negócio"
-        lead="Conte um pouco sobre sua empresa e retornamos com um diagnóstico inicial, sem compromisso."
+        titulo="Conte o que está acontecendo na sua empresa."
+        lead="Explique sua necessidade pelo formulário. A primeira conversa serve para entender o caso e indicar o próximo passo."
       />
 
       <section className={estilos.secao}>
         <Container>
           <div className={estilos.grade}>
             <div>
-              <h2 className={estilos.tituloForm}>Solicitar proposta</h2>
+              <h2 className={estilos.tituloForm}>Vamos conversar</h2>
               <p className={estilos.aviso}>
                 Campos marcados com <span className={estilos.obrigatorio}>*</span> são
                 obrigatórios.
@@ -107,17 +107,15 @@ export default function Contato() {
                 <p className={estilos.lgpd}>
                   <Escudo />
                   <span>
-                    Seus dados estão seguros com a gente. Tratamos todas as informações
-                    em conformidade com a Lei Geral de Proteção de Dados (LGPD).
+                    Os dados enviados pelo formulário são tratados conforme a Lei Geral
+                    de Proteção de Dados (LGPD).
                   </span>
                 </p>
               </div>
 
               <Pendente compacto titulo="Mapa de localização" className={estilos.pendenteMapa}>
-                O briefing pede um mapa. Recomendo o embed do Google Maps carregado
-                apenas após clique — um iframe do Maps carregado direto grava cookies
-                de terceiros antes do consentimento, o que conflita com a LGPD.
-                Preciso do CEP para fechar o endereço exato.
+                Adicionar o mapa depois de definir a ferramenta de mapas e a regra de
+                consentimento para cookies de terceiros.
               </Pendente>
             </aside>
           </div>
@@ -134,10 +132,6 @@ export default function Contato() {
             </div>
           ))}
         </dl>
-        <p className={p.nota}>
-          Estas respostas foram redigidas como ponto de partida, vale a Greentax
-          revisar os prazos e o processo de migração antes de publicar.
-        </p>
       </Section>
     </>
   );

@@ -5,89 +5,85 @@ export type Solucao = {
   href: string;
 };
 
-/** Cards de soluções da Home (Copy — Página 1, "Bloco de soluções"). */
 export const solucoesResumo: Solucao[] = [
   {
     slug: "contabil",
     titulo: "Contábil",
-    resumo: "Escrituração, balanços e demonstrações no prazo certo.",
+    resumo: "Escrituração, balanços e demonstrações acompanhados de perto.",
     href: "/solucoes/contabil-fiscal-trabalhista",
   },
   {
     slug: "fiscal",
     titulo: "Fiscal e Tributário",
-    resumo: "Apuração de tributos com inteligência para pagar o que é justo.",
+    resumo: "Apuração de tributos com atenção ao enquadramento e às receitas da empresa.",
     href: "/solucoes/contabil-fiscal-trabalhista",
   },
   {
     slug: "trabalhista",
     titulo: "Trabalhista e Previdenciário",
-    resumo: "Folha, encargos e obrigações sem dor de cabeça.",
+    resumo: "Folha, encargos e obrigações com acompanhamento da rotina.",
     href: "/solucoes/contabil-fiscal-trabalhista",
   },
   {
     slug: "consultoria",
     titulo: "Consultoria Estratégica",
     resumo:
-      "Planejamento tributário e recuperação de créditos para quem quer ir além da rotina.",
+      "Planejamento tributário e recuperação de créditos para situações que pedem uma análise específica.",
     href: "/solucoes/consultoria-estrategica",
   },
 ];
 
-/** Diferenciais (Copy — Páginas 1 e 5). */
 export const diferenciais = [
   {
-    titulo: "Inteligência antes da burocracia",
+    titulo: "Informação antes da burocracia",
     descricao:
-      "Cumprir obrigações é o mínimo esperado. Nosso papel é gerar informação útil para decisões melhores.",
+      "A rotina precisa estar em ordem. A partir dela, organizamos os números para que você consiga enxergar o que está acontecendo na empresa.",
   },
   {
-    titulo: "Relacionamento próximo",
+    titulo: "Conversa que acompanha a rotina",
     descricao:
-      "Cada cliente é acompanhado de forma consultiva e transparente, não apenas nos prazos de entrega.",
+      "Você fala com quem conhece o trabalho da sua empresa e entende o contexto antes de responder uma dúvida ou orientar uma decisão.",
   },
   {
-    titulo: "Tecnologia que aproxima",
+    titulo: "Tecnologia no lugar certo",
     descricao:
-      "Soluções digitais que tornam a experiência mais simples e acessível, sem perder o atendimento humano.",
+      "Ferramentas digitais ajudam a acompanhar documentos, prazos e informações sem transformar o atendimento em uma sequência de telas e senhas.",
   },
   {
-    titulo: "Planejamento para crescer",
+    titulo: "Tributos tratados como parte da gestão",
     descricao:
-      "Empresas sólidas crescem quando unem organização, estratégia e visão de longo prazo.",
+      "O enquadramento tributário, as receitas e a operação precisam conversar. A análise serve para encontrar alternativas dentro da lei.",
   },
   {
-    titulo: "Confiança construída diariamente",
+    titulo: "Confiança construída no trabalho diário",
     descricao:
-      "Competência técnica, ética e consistência em cada entrega.",
+      "Prazo cumprido, informação conferida e resposta clara. É assim que uma relação profissional ganha consistência.",
   },
 ];
 
-/** Pilares estratégicos da marca (Copy — Página 2). */
 export const pilares = [
   {
     titulo: "Inteligência",
     descricao:
-      "Utilizamos conhecimento técnico e análise para apoiar decisões mais seguras e estratégicas.",
+      "Conhecimento técnico e leitura dos números para apoiar decisões com informação que faça sentido para a empresa.",
   },
   {
     titulo: "Tecnologia",
     descricao:
-      "A tecnologia simplifica processos, aproxima o cliente da informação e torna a experiência mais eficiente.",
+      "Recursos digitais para reduzir tarefas manuais, facilitar o acesso aos dados e deixar a comunicação mais simples.",
   },
   {
     titulo: "Relacionamento",
     descricao:
-      "Construímos relações de longo prazo baseadas em proximidade, confiança e transparência.",
+      "Atendimento próximo, com espaço para entender o negócio, explicar os caminhos e acompanhar o que foi combinado.",
   },
   {
     titulo: "Evolução",
     descricao:
-      "Acompanhamos o crescimento dos nossos clientes, adaptando soluções às novas fases e desafios de cada negócio.",
+      "A estrutura da empresa muda com o tempo. O atendimento acompanha essas mudanças e revê as necessidades de cada fase.",
   },
 ];
 
-/** Serviços recorrentes (Copy — Página 3). */
 export const servicosRecorrentes = [
   {
     titulo: "Área Contábil",
@@ -121,7 +117,6 @@ export const servicosRecorrentes = [
   },
 ];
 
-/** Consultoria estratégica e serviços avulsos (Copy — Página 4). */
 export const servicosConsultoria = [
   {
     titulo: "Societário",
@@ -154,7 +149,6 @@ export const servicosConsultoria = [
   },
 ];
 
-/** Opções do campo "Serviço de interesse" do formulário (Copy — Página 8). */
 export const servicosInteresse = [
   "Contábil, Fiscal e Trabalhista",
   "Consultoria Estratégica",
