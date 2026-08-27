@@ -23,7 +23,6 @@
 /* --- cabeçalho de seção --- */
 
 .cabecalho {
-  border-top: 2px solid var(--tinta-900);
   padding-top: 20px;
   max-width: 52ch;
 }

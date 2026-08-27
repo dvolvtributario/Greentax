@@ -21,7 +21,6 @@
   font-size: var(--fs-h2);
   color: #fff;
   max-width: 20ch;
-  border-top: 2px solid var(--verde-400);
   padding-top: 24px;
 }
 

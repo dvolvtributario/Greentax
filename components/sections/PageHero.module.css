@@ -15,13 +15,6 @@
   color: var(--verde-700);
 }
 
-.rotulo::before {
-  content: "";
-  width: 28px;
-  height: 3px;
-  background: var(--verde-400);
-}
-
 .grade {
   margin-top: 28px;
   display: grid;

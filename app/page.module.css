@@ -17,13 +17,6 @@
   color: var(--verde-700);
 }
 
-.rotulo::before {
-  content: "";
-  width: 28px;
-  height: 3px;
-  background: var(--verde-400);
-}
-
 .titulo {
   margin-top: 28px;
   font-size: var(--fs-display);
@@ -74,9 +67,7 @@
   flex: none;
 }
 
-/* Lista "o que muda na prática" — filetes, sem card */
 .pratica {
-  border-top: 1px solid var(--tinta-900);
   padding-top: 18px;
 }
 

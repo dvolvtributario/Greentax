@@ -17,7 +17,7 @@ export default function Nichos() {
       <PageHero
         rotulo="Nichos de atendimento"
         titulo="Especialistas no seu tipo de negócio"
-        lead="Entendemos que cada setor tem suas próprias particularidades fiscais e de gestão — por isso desenvolvemos conhecimento aprofundado nos segmentos que mais atendemos."
+        lead="Entendemos que cada setor tem suas próprias particularidades fiscais e de gestão, por isso desenvolvemos conhecimento aprofundado nos segmentos que mais atendemos."
       />
 
       <Section largura="estreito">

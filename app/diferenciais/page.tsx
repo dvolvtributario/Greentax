@@ -41,7 +41,7 @@ export default function Diferenciais() {
           <CabecalhoSecao
             rotulo="Tecnologia"
             titulo="Tecnologia que aproxima"
-            lead="Plataforma própria para acompanhar a empresa em tempo real — acesso digital a faturamento, certidões e impostos, e comunicação direta com o time."
+            lead="Plataforma própria para acompanhar a empresa em tempo real, acesso digital a faturamento, certidões e impostos, e comunicação direta com o time."
           />
           <Pendente titulo="Detalhes da plataforma / aplicativo do cliente">
             <p>

@@ -11,7 +11,7 @@ import estilos from "./page.module.css";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Tributário, gestão e tecnologia explicados de forma simples — para você tomar decisões melhores para o seu negócio.",
+    "Tributário, gestão e tecnologia explicados de forma simples, para você tomar decisões melhores para o seu negócio.",
   alternates: { canonical: "/blog" },
 };
 
@@ -27,7 +27,7 @@ export default async function Blog({ searchParams }: PageProps<"/blog">) {
       <PageHero
         rotulo="Central de conteúdo"
         titulo="Conteúdo para quem decide"
-        lead="Tributário, gestão e tecnologia, explicados de forma simples — para você tomar decisões melhores para o seu negócio."
+        lead="Tributário, gestão e tecnologia, explicados de forma simples, para você tomar decisões melhores para o seu negócio."
       />
 
       <Section>

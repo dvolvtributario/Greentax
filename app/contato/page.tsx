@@ -135,7 +135,7 @@ export default function Contato() {
           ))}
         </dl>
         <p className={p.nota}>
-          Estas respostas foram redigidas como ponto de partida — vale a Greentax
+          Estas respostas foram redigidas como ponto de partida, vale a Greentax
           revisar os prazos e o processo de migração antes de publicar.
         </p>
       </Section>

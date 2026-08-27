@@ -75,7 +75,7 @@ export default async function Home() {
         <div className={estilos.institucional}>
           <CabecalhoSecao
             rotulo="Quem é a Greentax"
-            titulo="Mais do que cumprir obrigações — parceria estratégica."
+            titulo="Mais do que cumprir obrigações, parceria estratégica."
           />
           <div className={estilos.texto}>
             <p>
@@ -104,7 +104,7 @@ export default async function Home() {
         <CabecalhoSecao
           rotulo="Soluções"
           titulo="Soluções para cada fase do seu negócio"
-          lead="Do que é obrigação ao que é estratégia — com a mesma consistência técnica."
+          lead="Do que é obrigação ao que é estratégia, com a mesma consistência técnica."
         />
 
         <Grade colunas={4} className={estilos.grade}>
@@ -152,7 +152,7 @@ export default async function Home() {
         <CabecalhoSecao
           rotulo="Nichos de atendimento"
           titulo="Especialistas no seu tipo de negócio"
-          lead="Entendemos que cada setor tem suas próprias particularidades fiscais e de gestão — por isso desenvolvemos conhecimento aprofundado nos segmentos que mais atendemos."
+          lead="Entendemos que cada setor tem suas próprias particularidades fiscais e de gestão, por isso desenvolvemos conhecimento aprofundado nos segmentos que mais atendemos."
         />
         <Pendente
           titulo="Segmentos prioritários ainda não definidos"

@@ -86,7 +86,7 @@ export default function Solucoes() {
         <p className={p.nota}>
           <strong>Atendimento a pessoa física.</strong> Também cuidamos de serviços
           pontuais como a Declaração de Imposto de Renda para sócios e clientes das
-          empresas atendidas — descrito na página de{" "}
+          empresas atendidas descrito na página de{" "}
           <Link href="/solucoes/consultoria-estrategica">Consultoria Estratégica</Link>.
         </p>
       </Section>
