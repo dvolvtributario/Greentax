@@ -66,6 +66,7 @@ export const navegacao = [
   { titulo: "Nichos", href: "/nichos" },
   { titulo: "Blog", href: "/blog" },
   { titulo: "Contato", href: "/contato" },
+  { titulo: "Área do Cliente", href: "/area-do-cliente" },
 ] as const;
 
 export const whatsappLink = (mensagem?: string) => {
