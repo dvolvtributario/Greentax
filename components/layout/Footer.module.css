@@ -89,14 +89,13 @@
   margin-top: 20px;
 }
 
-/* -------------------------------------------------------------- LGPD */
+/* --- LGPD --- */
 
 .lgpd {
   margin-top: 56px;
   display: flex;
   gap: 14px;
   padding-top: 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
   max-width: 90ch;
 }
 
@@ -108,7 +107,7 @@
   color: var(--verde-400);
 }
 
-/* ------------------------------------------------------------- legal */
+/* --- legal --- */
 
 .legal {
   margin-top: 36px;

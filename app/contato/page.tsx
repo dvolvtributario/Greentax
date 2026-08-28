@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { FormularioContato } from "@/components/sections/FormularioContato";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { Pendente } from "@/components/ui/Pendente";
 import { Envelope, Escudo, Instagram, Local, Whatsapp } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { site, whatsappLink } from "@/lib/site";
@@ -113,10 +112,17 @@ export default function Contato() {
                 </p>
               </div>
 
-              <Pendente compacto titulo="Mapa de localização" className={estilos.pendenteMapa}>
-                Adicionar o mapa depois de definir a ferramenta de mapas e a regra de
-                consentimento para cookies de terceiros.
-              </Pendente>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.091425208732!2d-50.437224799999996!3d-21.228222899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9496435a5c7055b3%3A0xf0a7ee7a90e78908!2sDvolv%20Intelig%C3%AAncia%20tribut%C3%A1ria!5e0!3m2!1spt-BR!2sbr!4v1787861041430!5m2!1spt-BR!2sbr"
+                className={estilos.pendenteMapa}
+                width="500"
+                height="450"
+                style={{ border: 0 }}
+                title="Mapa de localização da Greentax"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
             </aside>
           </div>
         </Container>

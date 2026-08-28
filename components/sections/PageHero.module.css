@@ -45,7 +45,6 @@
 @media (min-width: 940px) {
   .lead {
     padding-left: 28px;
-    border-left: 1px solid var(--filete);
   }
 }
 

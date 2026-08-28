@@ -158,7 +158,6 @@
 .aviso a {
   color: var(--verde-700);
   font-weight: 600;
-  border-bottom: 1px solid var(--verde-400);
 }
 
 /* --- etiquetas --- */
