@@ -85,15 +85,12 @@
   padding: 0;
   background: none;
   border: 0;
-  border-bottom: 1px solid var(--verde-400);
-  padding-bottom: 3px;
   color: var(--verde-700);
   font-size: var(--fs-pequeno);
   font-weight: 600;
 }
 
 .texto:hover {
-  border-bottom-color: var(--verde-700);
   color: var(--verde-900);
 }
 

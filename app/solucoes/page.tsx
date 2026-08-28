@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaFinal } from "@/components/sections/CtaFinal";
 import { Section } from "@/components/ui/Section";
-import { Marca, Seta } from "@/components/ui/Icons";
+import { Seta } from "@/components/ui/Icons";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
@@ -68,8 +68,8 @@ export default function Solucoes() {
 
               <ul className={estilos.frenteLista}>
                 {frente.itens.map((item) => (
-                  <li key={item} className={p.item}>
-                    <Marca />
+                  <li key={item} className={`${p.item} ${estilos.frenteItem}`}>
+                    <span className={estilos.frenteMarcador} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}

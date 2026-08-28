@@ -87,17 +87,17 @@
   display: flex;
   gap: 14px;
   padding-block: 16px;
-  border-bottom: 1px solid var(--filete);
   font-size: var(--fs-pequeno);
   color: var(--tinta-800);
 }
 
-.praticaItem svg {
-  width: 17px;
-  height: 17px;
+.praticaMarcador {
+  width: 6px;
+  height: 6px;
   flex: none;
-  margin-top: 3px;
-  color: var(--verde-600);
+  margin-top: 9px;
+  border-radius: 50%;
+  background: var(--verde-600);
 }
 
 /* --- institucional --- */
@@ -131,6 +131,9 @@
 
 .grade {
   margin-top: 48px;
+  gap: 25px;
+  background: transparent;
+  border: 0;
 }
 
 .solucao {
@@ -184,7 +187,7 @@
 .diferenciais {
   margin-top: 48px;
   display: grid;
-  gap: 0;
+  gap: 25px;
 }
 
 @media (min-width: 780px) {
@@ -198,8 +201,6 @@
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 20px;
-  padding-block: 28px;
-  border-top: 1px solid var(--filete);
 }
 
 .diferencialNumero {

@@ -4,7 +4,7 @@ import { Botao } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
-import { Marca, Seta } from "@/components/ui/Icons";
+import { Seta } from "@/components/ui/Icons";
 import { CtaFinal } from "@/components/sections/CtaFinal";
 import { ProvaSocial } from "@/components/sections/ProvaSocial";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
@@ -59,7 +59,7 @@ export default async function Home() {
               <ul className={estilos.praticaLista}>
                 {pratica.map((item) => (
                   <li key={item} className={estilos.praticaItem}>
-                    <Marca />
+                    <span className={estilos.praticaMarcador} aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
