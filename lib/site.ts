@@ -28,7 +28,7 @@ export const site = {
   contato: {
     whatsappNumero: "5518997506584",
     whatsappExibicao: "(18) 99750-6584",
-    email: null as string | null,
+    email: "mike-escatolin@greentaxcontabilidade.com.br",
   },
 
   redes: [

@@ -4,13 +4,13 @@ import { Botao } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
-import { Seta } from "@/components/ui/Icons";
+import { Seta, Whatsapp } from "@/components/ui/Icons";
 import { CtaFinal } from "@/components/sections/CtaFinal";
 import { ProvaSocial } from "@/components/sections/ProvaSocial";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
 import { listarArtigos } from "@/lib/blog";
 import { diferenciais, solucoesResumo } from "@/lib/conteudo";
-import { site } from "@/lib/site";
+import { site, whatsappLink } from "@/lib/site";
 import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -40,14 +40,33 @@ export default async function Home() {
             <span className={estilos.destaque}>evolução</span> da sua empresa.
           </h1>
 
+          <div className={estilos.atalhos}>
+            <p className={estilos.atalhosTitulo}>Como podemos ajudar?</p>
+            <div className={estilos.atalhosBotoes}>
+              <Botao
+                href={whatsappLink("Olá! Quero trocar de contador e gostaria de entender como funciona.")}
+                externo
+                porte="lg"
+              >
+                <Whatsapp className={estilos.atalhoIcone} />
+                Quero trocar de contador
+              </Botao>
+              <Botao
+                href={whatsappLink("Olá! Quero abrir minha empresa e gostaria de receber orientação.")}
+                externo
+                variante="contorno"
+                porte="lg"
+              >
+                <Whatsapp className={estilos.atalhoIcone} />
+                Quero abrir minha empresa
+              </Botao>
+            </div>
+          </div>
+
           <div className={estilos.heroBase}>
             <div>
               <p className={estilos.lead}>{site.promessa}</p>
               <div className={estilos.acoes}>
-                <Botao href="/contato" porte="lg">
-                  Solicitar proposta
-                  <Seta className={estilos.icone} />
-                </Botao>
                 <Botao href="/solucoes" variante="contorno" porte="lg">
                   Conhecer as soluções
                 </Botao>

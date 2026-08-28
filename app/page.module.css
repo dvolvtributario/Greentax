@@ -27,6 +27,36 @@
   color: var(--verde-700);
 }
 
+.atalhos {
+  margin-top: 32px;
+}
+
+.atalhosTitulo {
+  font-size: var(--fs-pequeno);
+  font-weight: 600;
+  color: var(--tinta-900);
+}
+
+.atalhosBotoes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.atalhoIcone {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+@media (min-width: 620px) {
+  .atalhosBotoes {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
 .heroBase {
   margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
   padding-top: 36px;

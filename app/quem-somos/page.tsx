@@ -77,7 +77,7 @@ export default function QuemSomos() {
                 Para isso, a tecnologia entra como ferramenta de trabalho e não como
                 substituta do contato entre pessoas.
               </p>
-              <p className={p.citacao}>
+              <p>
                 Informação contábil só ganha valor quando ajuda alguém a tomar uma decisão.
               </p>
             </div>

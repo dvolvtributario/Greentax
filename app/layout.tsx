@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import ChatbotContabilidade from "./chatbotcontabilidade";
 import { site } from "@/lib/site";
 
 
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <ChatbotContabilidade />
       </body>
     </html>
   );

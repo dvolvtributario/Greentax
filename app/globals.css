@@ -193,6 +193,42 @@ code {
   font-weight: 600;
 }
 
+@keyframes chatbotBotaoEntrada {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.82);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chatbotPainelEntrada {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+    transform-origin: bottom right;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transform-origin: bottom right;
+  }
+}
+
+.chatbotBotaoEntrada {
+  animation: chatbotBotaoEntrada 700ms ease-out both;
+}
+
+.chatbotPainelEntrada {
+  animation: chatbotPainelEntrada 320ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

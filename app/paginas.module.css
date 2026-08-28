@@ -56,8 +56,8 @@
 
 .subtitulo {
   font-size: 1.375rem;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--filete);
+  border: 0;
+  padding-bottom: 0;
 }
 
 .corpo {
@@ -124,7 +124,6 @@
   display: flex;
   gap: 14px;
   padding-block: 14px;
-  border-bottom: 1px solid var(--filete);
   font-size: var(--fs-pequeno);
   color: var(--tinta-800);
 }
@@ -189,18 +188,19 @@
 
 .espacoG {
   margin-top: 56px;
+  gap: 25px;
+  background: var(--papel);
+  border: 0;
 }
 
 /* --- FAQ --- */
 
 .faq {
   margin-top: 40px;
-  border-top: 1px solid var(--tinta-900);
 }
 
 .faqItem {
   padding-block: 28px;
-  border-bottom: 1px solid var(--filete);
   display: grid;
   gap: 8px;
 }

@@ -39,7 +39,6 @@
 /* --- institucional --- */
 
 .painel {
-  border: 1px solid var(--filete);
   background: var(--papel-2);
   padding: 32px 28px;
 }
@@ -62,7 +61,6 @@
   display: flex;
   gap: 14px;
   padding-block: 16px;
-  border-bottom: 1px solid var(--filete);
   font-size: var(--fs-pequeno);
   line-height: 1.6;
 }
