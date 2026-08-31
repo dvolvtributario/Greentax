@@ -8,6 +8,7 @@ import { Seta, Whatsapp } from "@/components/ui/Icons";
 import { CtaFinal } from "@/components/sections/CtaFinal";
 import { ProvaSocial } from "@/components/sections/ProvaSocial";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
+import { FAQ } from "@/components/sections/FAQ";
 import { listarArtigos } from "@/lib/blog";
 import { diferenciais, solucoesResumo } from "@/lib/conteudo";
 import { site, whatsappLink } from "@/lib/site";
@@ -24,6 +25,34 @@ const pratica = [
   "Tributos apurados de acordo com o enquadramento e a operação da empresa.",
   "Atendimento próximo para dúvidas que surgem durante a rotina.",
   "Planejamento tributário e recuperação de créditos quando houver uma oportunidade concreta.",
+];
+
+const faq = [
+  {
+    pergunta: "Quais serviços nós oferecemos?",
+    resposta:
+      "A Greentax trabalha em três áreas principais: Contábil (com escrituração, balanços e demonstrações), Fiscal e Tributário (com apuração de tributos e otimização), e Trabalhista (com folha de pagamento e encargos). Além disso, oferecemos consultoria estratégica com planejamento tributário, recuperação de créditos e serviços societários como abertura e alteração de empresas.",
+  },
+  {
+    pergunta: "Como funciona a troca de contador?",
+    resposta:
+      "A Greentax conduz o processo de forma tranquila. Solicitamos os arquivos ao contador anterior, conferimos a situação fiscal e societária da empresa, e assumimos as obrigações a partir da competência combinada com você. Você não fica descoberto em nenhum momento.",
+  },
+  {
+    pergunta: "Quais formatos de empresa atendemos?",
+    resposta:
+      "Atendemos MEI (Microempreendedor Individual), ME (Microempresa), pequenas e médias empresas. Trabalhamos com diferentes regimes tributários: Simples Nacional, Lucro Presumido e Lucro Real. Cada estrutura tem suas particularidades, e o atendimento se adapta ao porte e à necessidade da empresa.",
+  },
+  {
+    pergunta: "Minha empresa precisa de certificado digital?",
+    resposta:
+      "O certificado digital é obrigatório para algumas obrigações, como a transmissão de eSocial e EFD-Reinf. A necessidade exata depende do porte da empresa, da quantidade de funcionários e do regime tributário. Durante o primeiro contato, orientamos se é necessário na sua situação específica.",
+  },
+  {
+    pergunta: "Como a contabilidade pode ajudar a pagar menos imposto?",
+    resposta:
+      "A contabilidade ajuda através da escolha correta do enquadramento tributário, da segregação de receitas, da identificação de créditos tributários e do planejamento estratégico. Quando os números estão organizados, fica mais fácil enxergar oportunidades dentro da lei para otimizar a carga tributária.",
+  },
 ];
 
 export default async function Home() {
@@ -196,6 +225,14 @@ export default async function Home() {
             ))}
           </Grade>
         ) : null}
+      </Section>
+
+      <Section>
+        <CabecalhoSecao
+          rotulo="Perguntas frequentes"
+          titulo="Dúvidas comuns sobre contabilidade"
+        />
+        <FAQ itens={faq} />
       </Section>
 
       <CtaFinal />
