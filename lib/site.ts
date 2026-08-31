@@ -39,9 +39,9 @@ export const site = {
   ],
 
   indicadores: {
-    empresasAtendidas: null as number | null,
-    anosDeMercado: null as number | null,
-    obrigacoesNoPrazo: null as number | null,
+    empresasAtendidas: 50,
+    anosDeMercado: 5,
+    obrigacoesNoPrazo: 100,
   },
 } as const;
 

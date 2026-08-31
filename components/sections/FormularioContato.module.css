@@ -74,7 +74,7 @@
     linear-gradient(135deg, var(--tinta-600) 50%, transparent 50%);
   background-position:
     calc(100% - 12px) calc(50% + 2px),
-    calc(100% - 7px) calc(50% + 2px);
+    calc(100% - 8px) calc(50% + 2px);
   background-size: 5px 5px;
   background-repeat: no-repeat;
   padding-right: 28px;
@@ -82,7 +82,8 @@
 
 .area {
   resize: vertical;
-  min-height: 108px;
+  height: 30px;
+  padding: 0px 0;
 }
 
 .invalido {
@@ -96,7 +97,7 @@
   color: var(--erro);
 }
 
-/* ------------------------------------------------------------ opções */
+/* --- opções --- */
 
 .opcoes {
   display: flex;
@@ -176,7 +177,7 @@
   align-self: flex-start;
 }
 
-/* ------------------------------------------------------------ sucesso */
+/* --- sucesso --- */
 
 .sucesso {
   border: 1px solid var(--verde-700);

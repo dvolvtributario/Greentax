@@ -83,13 +83,19 @@ function isLeaf(nodeKey) {
 export default function ChatbotContabilidade() {
   const [path, setPath] = useState(["start"]);
   const [isOpen, setIsOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const scrollRef = useRef(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsOpen(true), 1400);
-
+    const timer = window.setTimeout(() => setShowNotification(true), 3000);
     return () => window.clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (showNotification && isOpen) {
+      setShowNotification(false);
+    }
+  }, [isOpen, showNotification]);
 
   const currentKey = path[path.length - 1];
   const currentNode = FLOW[currentKey];
@@ -102,6 +108,7 @@ export default function ChatbotContabilidade() {
 
   function handleSelect(nextKey) {
     setPath((p) => [...p, nextKey]);
+    setShowNotification(true);
   }
 
   function handleBack() {
@@ -120,29 +127,67 @@ export default function ChatbotContabilidade() {
 
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        title="Abrir assistente contábil"
-        className="chatbotBotaoEntrada"
-        style={{
-          position: "fixed",
-          bottom: 24,
-          right: 24,
-          width: 58,
-          height: 58,
-          borderRadius: "50%",
-          background: "#0F2B1D",
-          border: "none",
-          boxShadow: "0 8px 24px rgba(15,43,29,0.35)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          zIndex: 9999,
-        }}
-      >
-        <MessageCircle size={24} color="#F7F5F0" />
-      </button>
+      <>
+        <button
+          onClick={() => setIsOpen(true)}
+          title="Abrir assistente contábil"
+          className="chatbotBotaoEntrada"
+          style={{
+            position: "fixed",
+            bottom: 24,
+            right: 24,
+            width: 58,
+            height: 58,
+            borderRadius: "50%",
+            background: "#0F2B1D",
+            border: "none",
+            boxShadow: "0 8px 24px rgba(15,43,29,0.35)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            zIndex: 9999,
+          }}
+        >
+          <MessageCircle size={24} color="#F7F5F0" />
+        </button>
+
+        {showNotification && (
+          <div
+            style={{
+              position: "fixed",
+              bottom: 100,
+              right: 24,
+              background: "#0F2B1D",
+              color: "#F7F5F0",
+              padding: "12px 16px",
+              borderRadius: 8,
+              fontSize: 14,
+              boxShadow: "0 8px 24px rgba(15,43,29,0.35)",
+              zIndex: 9998,
+              animation: "slideIn 0.3s ease-out",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <MessageCircle size={18} />
+              <span>Nova mensagem do assistente</span>
+            </div>
+          </div>
+        )}
+
+        <style>{`
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateX(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+        `}</style>
+      </>
     );
   }
 
