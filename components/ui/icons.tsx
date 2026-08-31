@@ -37,6 +37,12 @@ export const Marca = (p: Props) => (
   </svg>
 );
 
+export const Ponto = (p: Props) => (
+  <svg {...base} {...p} fill="currentColor">
+    <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+  </svg>
+);
+
 export const Menos = (p: Props) => (
   <svg {...base} {...p}>
     <path d="M5 12h14" />

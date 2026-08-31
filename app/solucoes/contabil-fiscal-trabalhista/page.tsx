@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaFinal } from "@/components/sections/CtaFinal";
 import { Section } from "@/components/ui/Section";
-import { Marca } from "@/components/ui/Icons";
+import { Ponto } from "@/components/ui/Icons";
 import { servicosRecorrentes } from "@/lib/conteudo";
 import p from "@/app/paginas.module.css";
 
@@ -34,7 +34,7 @@ export default function ContabilFiscalTrabalhista() {
               <ul className={`${p.lista} ${p.listaDupla}`}>
                 {bloco.itens.map((item) => (
                   <li key={item} className={p.item}>
-                    <Marca />
+                    <Ponto />
                     <span>{item}</span>
                   </li>
                 ))}

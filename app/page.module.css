@@ -159,11 +159,25 @@
 
 /* --- soluções --- */
 
-.grade {
+.gradeSolucoes {
+  display: grid;
   margin-top: 48px;
   gap: 25px;
   background: transparent;
   border: 0;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 999px) {
+  .gradeSolucoes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 699px) {
+  .gradeSolucoes {
+    grid-template-columns: 1fr;
+  }
 }
 
 .solucao {

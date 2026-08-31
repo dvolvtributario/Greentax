@@ -123,7 +123,7 @@ export default async function Home() {
           lead="A rotina fica organizada e, quando aparece uma questão específica, você conta com uma equipe para analisar o caso."
         />
 
-        <Grade colunas={4} className={estilos.grade}>
+        <Grade colunas={4} className={estilos.gradeSolucoes}>
           {solucoesResumo.map((solucao, i) => (
             <Link key={solucao.slug} href={solucao.href} className={estilos.solucao}>
               <span className={estilos.numero}>{String(i + 1).padStart(2, "0")}</span>
