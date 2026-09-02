@@ -1,9 +1,81 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Pendente } from "@/components/ui/Pendente";
 import { site } from "@/lib/site";
 import estilos from "./ProvaSocial.module.css";
 
 const formatar = (n: number) => new Intl.NumberFormat("pt-BR").format(n);
+
+function Contador({ valor, atraso = 0 }: { valor: number; atraso?: number }) {
+  const referencia = useRef<HTMLSpanElement>(null);
+  const [visivel, setVisivel] = useState(false);
+  const [atual, setAtual] = useState(0);
+
+  useEffect(() => {
+    const elemento = referencia.current;
+
+    if (!elemento) return;
+
+    const observador = new IntersectionObserver(
+      ([entrada]) => {
+        if (entrada.isIntersecting) {
+          setVisivel(true);
+          observador.unobserve(elemento);
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observador.observe(elemento);
+    return () => observador.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visivel) return;
+
+    const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frameId = 0;
+
+    if (reduzirMovimento) {
+      frameId = requestAnimationFrame(() => setAtual(valor));
+      return () => cancelAnimationFrame(frameId);
+    }
+
+    const duracao = 2400;
+    let inicio = 0;
+
+    function animar(agora: number) {
+      const progresso = Math.min((agora - inicio) / duracao, 1);
+      const suavizado = 1 - Math.pow(1 - progresso, 3);
+      setAtual(Math.round(valor * suavizado));
+
+      if (progresso < 1) {
+        frameId = requestAnimationFrame(animar);
+      }
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      inicio = performance.now();
+      frameId = requestAnimationFrame(animar);
+    }, atraso);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      cancelAnimationFrame(frameId);
+    };
+  }, [atraso, valor, visivel]);
+
+  return (
+    <span
+      ref={referencia}
+      className={`${estilos.valor} ${visivel ? estilos.valorVisivel : ""}`}
+    >
+      {formatar(atual)}
+    </span>
+  );
+}
 
 /**
  * Indicadores numéricos + logos de clientes.
@@ -29,12 +101,12 @@ export function ProvaSocial() {
       <Container>
         {preenchidos.length > 0 ? (
           <dl className={estilos.indicadores}>
-            {preenchidos.map((item) => (
+              {preenchidos.map((item, index) => (
               <div key={item.legenda} className={estilos.indicador}>
                 <dt className="sr-only">{item.legenda}</dt>
                 <dd>
-                  <span className={estilos.valor}>
-                    {formatar(item.valor as number)}
+                  <span className={estilos.valorWrapper}>
+                    <Contador valor={item.valor as number} atraso={index * 250} />
                     <span className={estilos.sufixo}>{item.sufixo}</span>
                   </span>
                   <span className={estilos.legenda}>{item.legenda}</span>

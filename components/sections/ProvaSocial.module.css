@@ -1,3 +1,9 @@
+@property --atraso-contador {
+  syntax: "<time>";
+  inherits: false;
+  initial-value: 0ms;
+}
+
 .faixa {
   border-block: 1px solid var(--filete);
   background: var(--papel-2);
@@ -16,7 +22,6 @@
   }
 
   .indicador + .indicador {
-    border-left: 1px solid var(--filete-forte);
     padding-left: 40px;
   }
 
@@ -25,7 +30,7 @@
   }
 }
 
-.valor {
+.valorWrapper {
   display: block;
   font-size: clamp(3.25rem, 2rem + 4vw, 5rem);
   font-weight: 600;
@@ -33,6 +38,23 @@
   letter-spacing: -0.035em;
   color: var(--verde-800);
   font-variant-numeric: tabular-nums;
+}
+
+.valor {
+  display: inline-block;
+}
+
+.valorVisivel {
+  animation: crescerIndicador 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--atraso-contador);
+}
+
+.indicador:nth-child(2) .valorVisivel {
+  --atraso-contador: 250ms;
+}
+
+.indicador:nth-child(3) .valorVisivel {
+  --atraso-contador: 500ms;
 }
 
 .sufixo {
@@ -65,4 +87,21 @@
 
 .pendenteClientes {
   margin-top: 20px;
+}
+
+@keyframes crescerIndicador {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .valorVisivel {
+    animation: none;
+  }
 }
