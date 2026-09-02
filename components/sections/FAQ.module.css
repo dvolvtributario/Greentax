@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 32px;
 }
 
 .faqItem {
@@ -39,7 +40,7 @@
   color: var(--tinta-900);
   margin: 0;
   padding: 0;
-  flex: 1;
+  flex: 5;
 }
 
 .faqSeta {
@@ -53,7 +54,7 @@
 }
 
 .faqResposta {
-  padding: 0 16px 16px 16px;
+  padding: 8px 16px 16px 16px;
   margin: 0;
   font-size: var(--fs-pequeno);
   color: var(--tinta-600);
