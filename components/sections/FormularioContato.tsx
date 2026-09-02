@@ -16,6 +16,12 @@ export function FormularioContato() {
   const [enviado, setEnviado] = useState(false);
   const [erroGeral, setErroGeral] = useState<string | null>(null);
 
+  function ajustarAltura(evento: React.FormEvent<HTMLTextAreaElement>) {
+    const area = evento.currentTarget;
+    area.style.height = "auto";
+    area.style.height = `${area.scrollHeight}px`;
+  }
+
   const {
     register,
     handleSubmit,
@@ -25,6 +31,7 @@ export function FormularioContato() {
     mode: "onTouched",
     defaultValues: { jaCliente: "Não", servico: "" },
   });
+  const mensagem = register("mensagem");
 
   async function aoEnviar(dados: DadosContato) {
     setErroGeral(null);
@@ -79,6 +86,7 @@ export function FormularioContato() {
           <input
             id="nome"
             type="text"
+            maxLength={100}
             autoComplete="name"
             aria-invalid={!!errors.nome}
             className={juntar(estilos.entrada, !!errors.nome && estilos.invalido)}
@@ -97,6 +105,7 @@ export function FormularioContato() {
           <input
             id="empresa"
             type="text"
+            maxLength={100}
             autoComplete="organization"
             className={estilos.entrada}
             {...register("empresa")}
@@ -110,11 +119,15 @@ export function FormularioContato() {
           <input
             id="telefone"
             type="tel"
+            maxLength={50}
             inputMode="tel"
             autoComplete="tel"
             placeholder="(18) 99999-9999"
             aria-invalid={!!errors.telefone}
             className={juntar(estilos.entrada, !!errors.telefone && estilos.invalido)}
+            onInput={(evento) => {
+              evento.currentTarget.value = evento.currentTarget.value.replace(/\D/g, "");
+            }}
             {...register("telefone", {
               required: "Informe um telefone com DDD.",
               validate: (v) =>
@@ -133,6 +146,7 @@ export function FormularioContato() {
           <input
             id="email"
             type="email"
+            maxLength={50}
             autoComplete="email"
             aria-invalid={!!errors.email}
             className={juntar(estilos.entrada, !!errors.email && estilos.invalido)}
@@ -189,9 +203,14 @@ export function FormularioContato() {
         <textarea
           id="mensagem"
           rows={4}
+          maxLength={1000}
           placeholder="Conte um pouco sobre sua empresa e o que você precisa."
           className={estilos.area}
-          {...register("mensagem")}
+          {...mensagem}
+          onChange={(evento) => {
+            ajustarAltura(evento);
+            mensagem.onChange(evento);
+          }}
         />
       </div>
 

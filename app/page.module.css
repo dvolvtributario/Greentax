@@ -2,8 +2,13 @@
 
 .hero {
   padding-top: clamp(3rem, 1.5rem + 4vw, 5rem);
-  padding-bottom: clamp(3rem, 1.5rem + 4vw, 4.5rem);
-  border-bottom: 1px solid var(--filete);
+  padding-bottom: 0;
+}
+
+.heroFaixa {
+  margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  background: var(--papel-2);
+  border-block: 1px solid var(--filete);
 }
 
 .rotulo {
@@ -58,9 +63,7 @@
 }
 
 .heroBase {
-  margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
-  padding-top: 36px;
-  border-top: 1px solid var(--filete);
+  padding-block: 36px clamp(3rem, 1.5rem + 4vw, 4.5rem);
   display: grid;
   gap: 40px;
 }

@@ -154,6 +154,7 @@ export default function ChatbotContabilidade() {
 
         {showNotification && (
           <div
+            className="chatbotNotificacao"
             style={{
               position: "fixed",
               bottom: 100,

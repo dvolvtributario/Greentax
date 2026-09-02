@@ -225,6 +225,22 @@ code {
   animation: chatbotBotaoEntrada 700ms ease-out both;
 }
 
+.chatbotNotificacao {
+  isolation: isolate;
+}
+
+.chatbotNotificacao::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  background: #0f2b1d;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
 .chatbotPainelEntrada {
   animation: chatbotPainelEntrada 320ms ease-out both;
 }

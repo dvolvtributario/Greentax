@@ -92,29 +92,34 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className={estilos.heroBase}>
-            <div>
-              <p className={estilos.lead}>{site.promessa}</p>
-              <div className={estilos.acoes}>
-                <Botao href="/solucoes" variante="contorno" porte="lg">
-                  Conhecer as soluções
-                </Botao>
+        </Container>
+
+        <div className={estilos.heroFaixa}>
+          <Container>
+            <div className={estilos.heroBase}>
+              <div>
+                <p className={estilos.lead}>{site.promessa}</p>
+                <div className={estilos.acoes}>
+                  <Botao href="/solucoes" variante="contorno" porte="lg">
+                    Conhecer as soluções
+                  </Botao>
+                </div>
+              </div>
+
+              <div className={estilos.pratica}>
+                <h2 className={estilos.praticaTitulo}>O que você encontra aqui</h2>
+                <ul className={estilos.praticaLista}>
+                  {pratica.map((item) => (
+                    <li key={item} className={estilos.praticaItem}>
+                      <span className={estilos.praticaMarcador} aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-
-            <div className={estilos.pratica}>
-              <h2 className={estilos.praticaTitulo}>O que você encontra aqui</h2>
-              <ul className={estilos.praticaLista}>
-                {pratica.map((item) => (
-                  <li key={item} className={estilos.praticaItem}>
-                    <span className={estilos.praticaMarcador} aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </section>
 
       <Section>
