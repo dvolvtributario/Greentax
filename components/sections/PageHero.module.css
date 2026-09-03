@@ -1,5 +1,4 @@
 .hero {
-  border-bottom: 1px solid var(--filete);
   background: var(--papel);
   padding-block: clamp(3rem, 1.5rem + 4vw, 5rem);
 }

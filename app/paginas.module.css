@@ -82,7 +82,7 @@
   display: grid;
   gap: 20px;
   padding-block: 40px;
-  border-top: 1px solid var(--filete);
+  
 }
 
 @media (min-width: 940px) {
