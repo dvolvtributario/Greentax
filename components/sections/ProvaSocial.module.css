@@ -6,7 +6,7 @@
 
 .faixa {
   border-block: 1px solid var(--filete);
-  background: var(--papel-2);
+  background: var(--papel);
   padding-block: clamp(3rem, 1.5rem + 4vw, 4.5rem);
 }
 

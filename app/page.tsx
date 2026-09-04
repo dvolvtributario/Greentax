@@ -122,7 +122,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <Section>
+      <Section fundo="papel2">
         <div className={estilos.institucional}>
           <CabecalhoSecao
             rotulo="Quem é a Greentax"
@@ -150,7 +150,7 @@ export default async function Home() {
         </div>
       </Section>
 
-      <Section fundo="papel2">
+      <Section>
         <CabecalhoSecao
           rotulo="Soluções"
           titulo="O que a Greentax pode assumir na sua empresa"
@@ -172,7 +172,7 @@ export default async function Home() {
         </Grade>
       </Section>
 
-      <Section>
+      <Section fundo="papel2">
         <CabecalhoSecao
           rotulo="Diferenciais"
           titulo="Como a Greentax trabalha no dia a dia"
@@ -195,7 +195,7 @@ export default async function Home() {
 
       <ProvaSocial />
 
-      <Section>
+      <Section fundo="papel2">
         <CabecalhoSecao
           rotulo="Nichos de atendimento"
           titulo="Conhecimento que começa pela realidade de cada setor"
@@ -211,7 +211,7 @@ export default async function Home() {
         </Pendente>
       </Section>
 
-      <Section fundo="papel2">
+      <Section>
         <div className={estilos.blogTopo}>
           <CabecalhoSecao
             rotulo="Central de conteúdo"
@@ -232,7 +232,7 @@ export default async function Home() {
         ) : null}
       </Section>
 
-      <Section>
+      <Section fundo="papel2">
         <CabecalhoSecao
           rotulo="Perguntas frequentes"
           titulo="Dúvidas comuns sobre contabilidade"

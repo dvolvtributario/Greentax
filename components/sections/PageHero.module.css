@@ -1,6 +1,53 @@
 .hero {
+  position: relative;
+  overflow: hidden;
   background: var(--papel);
   padding-block: clamp(3rem, 1.5rem + 4vw, 5rem);
+}
+
+.heroComImagem::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    var(--papel) 0%,
+    var(--papel) 42%,
+    rgba(255, 255, 255, 0.76) 68%,
+    rgba(255, 255, 255, 0.16) 100%
+  );
+  pointer-events: none;
+}
+
+.imagemWrap {
+  position: absolute;
+  inset: 0 0 0 42%;
+}
+
+.imagem {
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero > :not(.imagemWrap) {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 939px) {
+  .heroComImagem::before {
+    background: linear-gradient(
+      180deg,
+      var(--papel) 0%,
+      rgba(255, 255, 255, 0.94) 56%,
+      rgba(255, 255, 255, 0.36) 100%
+    );
+  }
+
+  .imagemWrap {
+    inset: 42% 0 0;
+  }
 }
 
 .rotulo {

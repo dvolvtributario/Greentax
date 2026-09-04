@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { FormularioContato } from "@/components/sections/FormularioContato";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
 import { Envelope, Escudo, Instagram, Local, Whatsapp } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { site, whatsappLink } from "@/lib/site";
-import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -14,24 +12,6 @@ export const metadata: Metadata = {
     "Conte o que sua empresa precisa. A Greentax avalia o cenário e retorna com um diagnóstico inicial.",
   alternates: { canonical: "/contato" },
 };
-
-const faq = [
-  {
-    pergunta: "Trocar de contabilidade dá trabalho?",
-    resposta:
-      "A Greentax conduz a mudança. Primeiro solicita os arquivos ao escritório anterior e confere a situação fiscal e societária. Depois, assume as obrigações a partir da competência combinada com a empresa.",
-  },
-  {
-    pergunta: "Quais documentos preciso separar?",
-    resposta:
-      "Para iniciar a conversa, nenhum documento específico. Para montar a proposta, ajuda ter o faturamento aproximado, o regime tributário, o número de funcionários e o ramo de atividade.",
-  },
-  {
-    pergunta: "Quando recebo o retorno?",
-    resposta:
-      "O primeiro contato serve para entender a empresa e a necessidade apresentada. O prazo da proposta depende das informações necessárias para avaliar o porte e o enquadramento.",
-  },
-];
 
 export default function Contato() {
   return (

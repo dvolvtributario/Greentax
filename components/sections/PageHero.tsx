@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import estilos from "./PageHero.module.css";
 
@@ -5,15 +6,32 @@ export function PageHero({
   rotulo,
   titulo,
   lead,
+  imagem,
   children,
 }: {
   rotulo: string;
   titulo: React.ReactNode;
   lead?: React.ReactNode;
+  imagem?: {
+    src: string;
+    alt: string;
+  };
   children?: React.ReactNode;
 }) {
   return (
-    <section className={estilos.hero}>
+    <section className={`${estilos.hero} ${imagem ? estilos.heroComImagem : ""}`}>
+      {imagem ? (
+        <div className={estilos.imagemWrap}>
+          <Image
+            className={estilos.imagem}
+            src={imagem.src}
+            alt={imagem.alt}
+            fill
+            priority
+            sizes="(max-width: 939px) 100vw, 58vw"
+          />
+        </div>
+      ) : null}
       <Container>
         <p className={estilos.rotulo}>{rotulo}</p>
         <div className={estilos.grade}>

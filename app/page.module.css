@@ -1,14 +1,32 @@
 /* --- hero --- */
 
 .hero {
+  position: relative;
+  overflow: hidden;
   padding-top: clamp(3rem, 1.5rem + 4vw, 5rem);
-  padding-bottom: 0;
+  padding-bottom: clamp(3rem, 1.5rem + 4vw, 5rem);
+  background: var(--papel);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 600px;
+  background:
+    linear-gradient(90deg, var(--papel) 0%, var(--papel) 43%, rgba(255, 255, 255, 0.7) 68%, rgba(255, 255, 255, 0.18) 100%),
+    url("/marca/hero-gestao.jpg") right center / cover no-repeat;
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .heroFaixa {
   margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
-  background: var(--papel-2);
-  border-block: 1px solid var(--filete);
+  background: var(--papel);
 }
 
 .rotulo {
@@ -69,6 +87,15 @@
 }
 
 @media (min-width: 940px) {
+  .hero {
+    min-height: 650px;
+  }
+
+  .hero::before {
+    height: 560px;
+    background-position: center;
+  }
+
   .heroBase {
     grid-template-columns: 6fr 5fr;
     gap: 80px;

@@ -20,7 +20,11 @@ export default function QuemSomos() {
       <PageHero
         rotulo="Quem Somos"
         titulo="Contabilidade faz mais sentido quando você entende o que os números estão dizendo."
-        lead="A Greentax une rotina contábil, conhecimento tributário e atendimento próximo para ajudar o empresário a acompanhar a própria empresa."
+        lead=""
+        imagem={{
+          src: "/marca/reuniao.jpg",
+          alt: "",
+        }}
       />
 
       <Section>
