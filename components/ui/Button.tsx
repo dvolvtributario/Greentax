@@ -36,7 +36,13 @@ export function Botao({
 
   if (externo) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cls}
+        onClick={onClick}
+      >
         {children}
       </a>
     );

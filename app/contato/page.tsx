@@ -127,18 +127,6 @@ export default function Contato() {
           </div>
         </Container>
       </section>
-
-      <Section fundo="papel2" largura="estreito">
-        <h2>Dúvidas comuns</h2>
-        <dl className={p.faq}>
-          {faq.map((item) => (
-            <div key={item.pergunta} className={p.faqItem}>
-              <dt className={p.faqPergunta}>{item.pergunta}</dt>
-              <dd className={p.faqResposta}>{item.resposta}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
     </>
   );
 }

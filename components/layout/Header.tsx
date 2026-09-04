@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navegacao } from "@/lib/site";
+import { navegacao, whatsappLink } from "@/lib/site";
 import { Botao } from "@/components/ui/Button";
 import { Fechar, Menu, Seta } from "@/components/ui/Icons";
 import estilos from "./Header.module.css";
@@ -57,7 +57,7 @@ export function Header() {
         </nav>
 
         <div className={estilos.acoes}>
-          <Botao href="/contato" className={estilos.cta}>
+          <Botao href={whatsappLink()} externo className={estilos.cta}>
             Falar com a Greentax
           </Botao>
 
@@ -93,7 +93,8 @@ export function Header() {
           </ul>
 
           <Botao
-            href="/contato"
+            href={whatsappLink()}
+            externo
             porte="lg"
             className={estilos.ctaMobile}
             onClick={() => setAberto(false)}
