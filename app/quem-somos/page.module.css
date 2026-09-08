@@ -2,6 +2,22 @@
   padding: 32px 28px;
 }
 
+.pilarIcone {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 24px;
+  color: var(--verde-400);
+}
+
+.pilarIcone img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
 .pilarNumero {
   display: block;
   font-size: var(--fs-mini);

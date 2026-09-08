@@ -1,8 +1,21 @@
+import type { LucideIcon } from "lucide-react";
+import { BrainCircuit, Cpu, Handshake, TrendingUp } from "lucide-react";
+
 export type Solucao = {
   slug: string;
   titulo: string;
   resumo: string;
   href: string;
+};
+
+export type Pilar = {
+  titulo: string;
+  descricao: string;
+  icone: LucideIcon;
+  imagem?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export const solucoesResumo: Solucao[] = [
@@ -61,24 +74,28 @@ export const diferenciais = [
   },
 ];
 
-export const pilares = [
+export const pilares: Pilar[] = [
   {
     titulo: "Inteligência",
+    icone: BrainCircuit,
     descricao:
       "Conhecimento técnico e leitura dos números para apoiar decisões com informação que faça sentido para a empresa.",
   },
   {
     titulo: "Tecnologia",
+    icone: Cpu,
     descricao:
       "Recursos digitais para reduzir tarefas manuais, facilitar o acesso aos dados e deixar a comunicação mais simples.",
   },
   {
     titulo: "Relacionamento",
+    icone: Handshake,
     descricao:
       "Atendimento próximo, com espaço para entender o negócio, explicar os caminhos e acompanhar o que foi combinado.",
   },
   {
     titulo: "Evolução",
+    icone: TrendingUp,
     descricao:
       "A estrutura da empresa muda com o tempo. O atendimento acompanha essas mudanças e revê as necessidades de cada fase.",
   },

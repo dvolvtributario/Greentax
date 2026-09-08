@@ -19,7 +19,11 @@ export default function Contato() {
       <PageHero
         rotulo="Contato"
         titulo="Conte o que está acontecendo na sua empresa."
-        lead="Explique sua necessidade pelo formulário. A primeira conversa serve para entender o caso e indicar o próximo passo."
+        lead=""
+        imagem={{
+          src: "/marca/hero-contato.jpg",
+          alt: "",
+        }}
       />
 
       <section className={estilos.secao}>

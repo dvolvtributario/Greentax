@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { CtaFinal } from "@/components/sections/CtaFinal";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
@@ -97,6 +98,18 @@ export default function QuemSomos() {
         <Grade colunas={4} className={p.espacoG}>
           {pilares.map((pilar, i) => (
             <div key={pilar.titulo} className={estilos.pilar}>
+              <div className={estilos.pilarIcone}>
+                {pilar.imagem ? (
+                  <Image
+                    src={pilar.imagem.src}
+                    alt={pilar.imagem.alt}
+                    width={48}
+                    height={48}
+                  />
+                ) : (
+                  <pilar.icone aria-hidden="true" size={44} strokeWidth={1.5} />
+                )}
+              </div>
               <span className={estilos.pilarNumero}>{String(i + 1).padStart(2, "0")}</span>
               <h3 className={estilos.pilarTitulo}>{pilar.titulo}</h3>
               <p className={estilos.pilarTexto}>{pilar.descricao}</p>

@@ -14,8 +14,8 @@
     90deg,
     var(--papel) 0%,
     var(--papel) 42%,
-    rgba(255, 255, 255, 0.76) 68%,
-    rgba(255, 255, 255, 0.16) 100%
+    rgba(255, 255, 255, 0.35) 68%,
+    rgba(255, 255, 255, 0.15) 100%
   );
   pointer-events: none;
 }
@@ -27,7 +27,7 @@
 
 .imagem {
   object-fit: cover;
-  object-position: center;
+  object-position: 65% 17%;
 }
 
 .hero > :not(.imagemWrap) {

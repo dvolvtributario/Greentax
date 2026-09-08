@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, ArrowLeft, RotateCcw, Send, Minus } from "lucide-react";
+import { MessageCircle, ArrowLeft, Send, Minus } from "lucide-react";
 import { whatsappLink } from "@/lib/site";
 
 const FLOW = {
@@ -115,10 +115,6 @@ export default function ChatbotContabilidade() {
     if (path.length > 1) {
       setPath((p) => p.slice(0, -1));
     }
-  }
-
-  function handleRestart() {
-    setPath(["start"]);
   }
 
   const whatsappHref = whatsappLink(
