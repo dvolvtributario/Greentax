@@ -10,17 +10,19 @@ export function Section({
   largura = "padrao",
   compacta = false,
   id,
+  className,
 }: {
   children: React.ReactNode;
   fundo?: Fundo;
   largura?: "padrao" | "estreito" | "largo";
   compacta?: boolean;
   id?: string;
+  className?: string;
 }) {
   return (
     <section
       id={id}
-      className={[estilos.secao, estilos[fundo], compacta ? estilos.compacta : ""]
+      className={[estilos.secao, estilos[fundo], compacta ? estilos.compacta : "", className]
         .filter(Boolean)
         .join(" ")}
     >

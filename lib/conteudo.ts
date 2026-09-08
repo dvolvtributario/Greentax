@@ -1,11 +1,25 @@
 import type { LucideIcon } from "lucide-react";
-import { BrainCircuit, Cpu, Handshake, TrendingUp } from "lucide-react";
+import {
+  BookOpenCheck,
+  BrainCircuit,
+  BriefcaseBusiness,
+  Calculator,
+  Cpu,
+  Handshake,
+  Lightbulb,
+  TrendingUp,
+} from "lucide-react";
 
 export type Solucao = {
   slug: string;
   titulo: string;
   resumo: string;
   href: string;
+  icone: LucideIcon;
+  imagem?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export type Pilar = {
@@ -24,18 +38,21 @@ export const solucoesResumo: Solucao[] = [
     titulo: "Contábil",
     resumo: "Escrituração, balanços e demonstrações acompanhados de perto.",
     href: "/solucoes/contabil-fiscal-trabalhista",
+    icone: Calculator,
   },
   {
     slug: "fiscal",
     titulo: "Fiscal e Tributário",
     resumo: "Apuração de tributos com atenção ao enquadramento e às receitas da empresa.",
     href: "/solucoes/contabil-fiscal-trabalhista",
+    icone: BookOpenCheck,
   },
   {
     slug: "trabalhista",
     titulo: "Trabalhista e Previdenciário",
     resumo: "Folha, encargos e obrigações com acompanhamento da rotina.",
     href: "/solucoes/contabil-fiscal-trabalhista",
+    icone: BriefcaseBusiness,
   },
   {
     slug: "consultoria",
@@ -43,6 +60,7 @@ export const solucoesResumo: Solucao[] = [
     resumo:
       "Planejamento tributário e recuperação de créditos para situações que pedem uma análise específica.",
     href: "/solucoes/consultoria-estrategica",
+    icone: Lightbulb,
   },
 ];
 

@@ -85,7 +85,7 @@ function Contador({ valor, atraso = 0 }: { valor: number; atraso?: number }) {
  * `site.indicadores` estiver com `null`, a seção mostra a lacuna em vez de
  * inventar números.
  */
-export function ProvaSocial() {
+export function ProvaSocial({ className }: { className?: string }) {
   const { empresasAtendidas, anosDeMercado, obrigacoesNoPrazo } = site.indicadores;
 
   const indicadores = [
@@ -97,7 +97,7 @@ export function ProvaSocial() {
   const preenchidos = indicadores.filter((i) => i.valor !== null);
 
   return (
-    <section className={estilos.faixa}>
+    <section className={[estilos.faixa, className].filter(Boolean).join(" ")}>
       <Container>
         {preenchidos.length > 0 ? (
           <dl className={estilos.indicadores}>

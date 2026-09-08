@@ -19,7 +19,7 @@ const inter = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.nome} — Contabilidade consultiva em Araçatuba/SP`,
+    default: `${site.nome} | Contabilidade consultiva em Araçatuba/SP`,
     template: `%s | ${site.nome}`,
   },
   description: site.descricao,

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Botao } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Revelar } from "@/components/ui/Revelar";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 import { Seta, Whatsapp } from "@/components/ui/Icons";
@@ -15,7 +17,7 @@ import { site, whatsappLink } from "@/lib/site";
 import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: `${site.nome} — Contabilidade consultiva em Araçatuba/SP`,
+  title: `${site.nome} | Contabilidade consultiva em Araçatuba/SP`,
   description: site.descricao,
   alternates: { canonical: "/" },
 };
@@ -60,9 +62,10 @@ export default async function Home() {
 
   return (
     <>
-      <section className={estilos.hero}>
-        <Container>
-          <p className={estilos.rotulo}>Contabilidade consultiva</p>
+      <Revelar>
+        <section className={`${estilos.hero} ${estilos.surgirTexto}`}>
+          <Container>
+            <p className={estilos.rotulo}>Contabilidade consultiva</p>
 
           <h1 className={estilos.titulo}>
             Contabilidade que acompanha a{" "}
@@ -121,12 +124,15 @@ export default async function Home() {
           </Container>
         </div>
       </section>
+      </Revelar>
 
-      <Section fundo="papel2">
+      <Revelar>
+        <Section fundo="papel2" className={`${estilos.institucionalSecao} ${estilos.apareceEsquerda}`}>
         <div className={estilos.institucional}>
           <CabecalhoSecao
             rotulo="Quem é a Greentax"
             titulo="A contabilidade precisa conversar com o negócio."
+            claro
           />
           <div className={estilos.texto}>
             <p>
@@ -141,7 +147,11 @@ export default async function Home() {
               próximo.
             </p>
             <div className={estilos.textoAcao}>
-              <Botao href="/quem-somos" variante="texto">
+              <Botao
+                href="/quem-somos"
+                variante="texto"
+                className={estilos.linkHistoria}
+              >
                 Conheça nossa história
                 <Seta className={estilos.icone} />
               </Botao>
@@ -149,17 +159,31 @@ export default async function Home() {
           </div>
         </div>
       </Section>
+      </Revelar>
 
-      <Section>
-        <CabecalhoSecao
-          rotulo="Soluções"
-          titulo="O que a Greentax pode assumir na sua empresa"
-          lead="A rotina fica organizada e, quando aparece uma questão específica, você conta com uma equipe para analisar o caso."
-        />
+      <Revelar>
+        <Section className={estilos.surgirTexto}>
+          <CabecalhoSecao
+            rotulo="Soluções"
+            titulo="O que a Greentax pode assumir na sua empresa"
+            lead="A rotina fica organizada e, quando aparece uma questão específica, você conta com uma equipe para analisar o caso."
+          />
 
         <Grade colunas={4} className={estilos.gradeSolucoes}>
           {solucoesResumo.map((solucao, i) => (
             <Link key={solucao.slug} href={solucao.href} className={estilos.solucao}>
+              <div className={estilos.solucaoIcone}>
+                {solucao.imagem ? (
+                  <Image
+                    src={solucao.imagem.src}
+                    alt={solucao.imagem.alt}
+                    width={48}
+                    height={48}
+                  />
+                ) : (
+                  <solucao.icone aria-hidden="true" size={44} strokeWidth={1.5} />
+                )}
+              </div>
               <span className={estilos.numero}>{String(i + 1).padStart(2, "0")}</span>
               <h3 className={estilos.solucaoTitulo}>{solucao.titulo}</h3>
               <p className={estilos.solucaoResumo}>{solucao.resumo}</p>
@@ -171,12 +195,14 @@ export default async function Home() {
           ))}
         </Grade>
       </Section>
+      </Revelar>
 
-      <Section fundo="papel2">
-        <CabecalhoSecao
-          rotulo="Diferenciais"
-          titulo="Como a Greentax trabalha no dia a dia"
-        />
+      <Revelar>
+        <Section fundo="papel2" className={estilos.apareceEsquerda}>
+          <CabecalhoSecao
+            rotulo="Diferenciais"
+            titulo="Como a Greentax trabalha no dia a dia"
+          />
 
         <div className={estilos.diferenciais}>
           {diferenciais.map((item, i) => (
@@ -192,15 +218,19 @@ export default async function Home() {
           ))}
         </div>
       </Section>
+      </Revelar>
 
-      <ProvaSocial />
+      <Revelar>
+        <ProvaSocial className={estilos.surgirTexto} />
+      </Revelar>
 
-      <Section fundo="papel2">
-        <CabecalhoSecao
-          rotulo="Nichos de atendimento"
-          titulo="Conhecimento que começa pela realidade de cada setor"
-          lead="Cada atividade tem regras, margens e problemas próprios. A página de nichos será construída a partir dos segmentos que fazem parte da carteira da Greentax."
-        />
+      <Revelar>
+        <Section fundo="papel2" className={estilos.apareceEsquerda}>
+          <CabecalhoSecao
+            rotulo="Nichos de atendimento"
+            titulo="Conhecimento que começa pela realidade de cada setor"
+            lead="Cada atividade tem regras, margens e problemas próprios. A página de nichos será construída a partir dos segmentos que fazem parte da carteira da Greentax."
+          />
         <Pendente
           titulo="Segmentos prioritários ainda não definidos"
           className={estilos.pendenteNichos}
@@ -210,9 +240,11 @@ export default async function Home() {
           completa em <code>/nichos</code>.
         </Pendente>
       </Section>
+      </Revelar>
 
-      <Section>
-        <div className={estilos.blogTopo}>
+      <Revelar>
+        <Section className={estilos.surgirTexto}>
+          <div className={estilos.blogTopo}>
           <CabecalhoSecao
             rotulo="Central de conteúdo"
             titulo="Informação para quem precisa decidir"
@@ -231,14 +263,17 @@ export default async function Home() {
           </Grade>
         ) : null}
       </Section>
+      </Revelar>
 
-      <Section fundo="papel2">
-        <CabecalhoSecao
-          rotulo="Perguntas frequentes"
-          titulo="Dúvidas comuns sobre contabilidade"
-        />
+      <Revelar>
+        <Section fundo="papel2" className={estilos.apareceEsquerda}>
+          <CabecalhoSecao
+            rotulo="Perguntas frequentes"
+            titulo="Dúvidas comuns sobre contabilidade"
+          />
         <FAQ itens={faq} />
       </Section>
+      </Revelar>
 
       <CtaFinal />
     </>
