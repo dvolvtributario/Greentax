@@ -7,7 +7,6 @@ import { Revelar } from "@/components/ui/Revelar";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 import { Seta, Whatsapp } from "@/components/ui/Icons";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { ProvaSocial } from "@/components/sections/ProvaSocial";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
 import { FAQ } from "@/components/sections/FAQ";
@@ -274,8 +273,6 @@ export default async function Home() {
         <FAQ itens={faq} />
       </Section>
       </Revelar>
-
-      <CtaFinal />
     </>
   );
 }

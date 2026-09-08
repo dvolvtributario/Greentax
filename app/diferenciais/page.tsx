@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 import { diferenciais } from "@/lib/conteudo";
@@ -67,8 +66,6 @@ export default function Diferenciais() {
           </Pendente>
         </div>
       </Section>
-
-      <CtaFinal titulo="Quer conhecer a forma de trabalho da Greentax?" rotulo="Fale com a Greentax" />
     </>
   );
 }

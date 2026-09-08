@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { Section } from "@/components/ui/Section";
 import { Seta } from "@/components/ui/Icons";
 import p from "@/app/paginas.module.css";
@@ -90,12 +89,6 @@ export default function Solucoes() {
           <Link href="/solucoes/consultoria-estrategica">Consultoria Estratégica</Link>.
         </p>
       </Section>
-
-      <CtaFinal
-        titulo="Está em dúvida sobre qual serviço faz sentido?"
-        descricao="Conte o que está acontecendo na sua empresa. A conversa começa pelo seu caso, não por uma lista de pacotes."
-        rotulo="Falar com um especialista"
-      />
     </>
   );
 }

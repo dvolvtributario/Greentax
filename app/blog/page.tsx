@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
@@ -88,11 +87,6 @@ export default async function Blog({ searchParams }: PageProps<"/blog">) {
           </Pendente>
         </div>
       </Section>
-
-      <CtaFinal
-        titulo="Prefere falar direto com quem entende do seu negócio?"
-        rotulo="Solicitar proposta"
-      />
     </>
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Ponto } from "@/components/ui/Icons";
 import { servicosConsultoria } from "@/lib/conteudo";
@@ -71,12 +70,6 @@ export default function ConsultoriaEstrategica() {
           </p>
         </div>
       </Section>
-
-      <CtaFinal
-        titulo="Tem uma situação tributária que precisa ser analisada?"
-        descricao="Conte o que aconteceu e quais documentos você já tem. A partir daí, avaliamos o caminho possível."
-        rotulo="Agendar conversa"
-      />
     </>
   );
 }

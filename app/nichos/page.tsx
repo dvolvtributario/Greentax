@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 
@@ -43,12 +42,6 @@ export default function Nichos() {
           </p>
         </Pendente>
       </Section>
-
-      <CtaFinal
-        titulo="Seu segmento ainda não aparece aqui?"
-        descricao="Conte como sua empresa funciona. A equipe pode avaliar a situação mesmo que o setor ainda não esteja nesta página."
-        rotulo="Falar sobre minha empresa"
-      />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { Section } from "@/components/ui/Section";
 import { Ponto } from "@/components/ui/Icons";
 import { servicosRecorrentes } from "@/lib/conteudo";
@@ -59,11 +58,6 @@ export default function ContabilFiscalTrabalhista() {
           </Link>.
         </p>
       </Section>
-
-      <CtaFinal
-        titulo="Quer saber o que entra na rotina da sua empresa?"
-        rotulo="Solicitar proposta personalizada"
-      />
     </>
   );
 }

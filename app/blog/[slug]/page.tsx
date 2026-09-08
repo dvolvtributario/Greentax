@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { Seta } from "@/components/ui/Icons";
 import { carregarArtigo, formatarData, listarSlugs } from "@/lib/blog";
 import { site } from "@/lib/site";
@@ -98,12 +97,6 @@ export default async function ArtigoPage({ params }: PageProps<"/blog/[slug]">) 
           </div>
         </Container>
       </article>
-
-      <CtaFinal
-        titulo="Ficou com dúvida sobre como isso afeta a sua empresa?"
-        descricao="O primeiro contato é consultivo e sem compromisso."
-        rotulo="Falar com um especialista"
-      />
     </>
   );
 }

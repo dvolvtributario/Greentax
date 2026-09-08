@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { enderecoLinhaUnica, navegacao, site, whatsappLink } from "@/lib/site";
-import { Envelope, Escudo, Instagram, Local, Whatsapp } from "@/components/ui/Icons";
+import { Botao } from "@/components/ui/Button";
+import { Envelope, Escudo, Instagram, Local, Seta, Whatsapp } from "@/components/ui/Icons";
 import { Pendente } from "@/components/ui/Pendente";
 import estilos from "./Footer.module.css";
 
@@ -100,6 +101,24 @@ export function Footer() {
                 aparece aqui automaticamente.
               </Pendente>
             ) : null}
+
+            <div className={estilos.acoes}>
+              <Botao href="/contato" variante="claro" porte="md">
+                Solicitar proposta
+                <Seta className={estilos.icone} />
+              </Botao>
+              <Botao
+                href={whatsappLink(
+                  "Olá! Vim pelo site da Greentax e gostaria de falar com um especialista.",
+                )}
+                externo
+                variante="contornoClaro"
+                porte="md"
+              >
+                <Whatsapp className={estilos.icone} />
+                Falar no WhatsApp
+              </Botao>
+            </div>
           </div>
         </div>
 

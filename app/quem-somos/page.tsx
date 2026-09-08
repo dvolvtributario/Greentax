@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
-import { CtaFinal } from "@/components/sections/CtaFinal";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 import { pilares } from "@/lib/conteudo";
@@ -152,12 +151,6 @@ export default function QuemSomos() {
           </Pendente>
         </div>
       </Section>
-
-      <CtaFinal
-        titulo="Quer entender como a Greentax pode entrar na rotina da sua empresa?"
-        rotulo="Conheça nossas soluções"
-        href="/solucoes"
-      />
     </>
   );
 }
