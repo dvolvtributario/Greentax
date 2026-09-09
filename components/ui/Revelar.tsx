@@ -20,17 +20,32 @@ export function Revelar({
     const elemento = referencia.current;
     if (!elemento) return;
 
+    const tornarVisivel = () => {
+      elemento.setAttribute("data-visivel", "true");
+    };
+
+    if (typeof IntersectionObserver === "undefined") {
+      tornarVisivel();
+      return;
+    }
+
     const observador = new IntersectionObserver(
       ([entrada]) => {
         if (!entrada.isIntersecting) return;
-        elemento.setAttribute("data-visivel", "true");
+        tornarVisivel();
         observador.disconnect();
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
 
     observador.observe(elemento);
-    return () => observador.disconnect();
+
+    const timeout = setTimeout(tornarVisivel, 4000);
+
+    return () => {
+      observador.disconnect();
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (

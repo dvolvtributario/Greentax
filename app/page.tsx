@@ -126,7 +126,7 @@ export default async function Home() {
       </Revelar>
 
       <Revelar>
-        <Section fundo="papel2" className={`${estilos.institucionalSecao} ${estilos.apareceEsquerda}`}>
+        <Section className={`${estilos.institucionalSecao} ${estilos.apareceEsquerda}`}>
         <div className={estilos.institucional}>
           <CabecalhoSecao
             rotulo="Quem é a Greentax"
