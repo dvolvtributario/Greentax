@@ -27,7 +27,7 @@
 
 .imagem {
   object-fit: cover;
-  object-position: 65% 17%;
+  object-position: 65% 28%;
 }
 
 .hero > :not(.imagemWrap) {

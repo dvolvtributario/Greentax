@@ -11,6 +11,7 @@ export function Section({
   compacta = false,
   id,
   className,
+  decoracao,
 }: {
   children: React.ReactNode;
   fundo?: Fundo;
@@ -18,6 +19,7 @@ export function Section({
   compacta?: boolean;
   id?: string;
   className?: string;
+  decoracao?: React.ReactNode;
 }) {
   return (
     <section
@@ -26,6 +28,7 @@ export function Section({
         .filter(Boolean)
         .join(" ")}
     >
+      {decoracao}
       <Container largura={largura}>{children}</Container>
     </section>
   );

@@ -61,8 +61,9 @@ export default async function Home() {
 
   return (
     <>
+      <link rel="preload" as="image" href="/marca/hero-gestao.jpg" />
       <Revelar>
-        <section className={`${estilos.hero} ${estilos.surgirTexto}`}>
+        <section className={estilos.hero}>
           <Container>
             <p className={estilos.rotulo}>Contabilidade consultiva</p>
 

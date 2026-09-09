@@ -49,7 +49,15 @@ export default function QuemSomos() {
         </div>
       </Section>
 
-      <Section fundo="papel2">
+      <Section
+        fundo="nenhum"
+        className={estilos.compromisso}
+        decoracao={
+          <div className={estilos.compromissoImagem}>
+            <Image src="/marca/nosso-compromisso.jpg" alt="" fill sizes="100vw" />
+          </div>
+        }
+      >
         <div className={p.meioAMeio}>
           <div>
             <h2 className={p.subtitulo}>Nosso compromisso</h2>
