@@ -20,19 +20,17 @@ export function Revelar({
     const elemento = referencia.current;
     if (!elemento) return;
 
-    const tornarVisivel = () => {
-      elemento.setAttribute("data-visivel", "true");
-    };
-
     if (typeof IntersectionObserver === "undefined") {
-      tornarVisivel();
+      elemento.setAttribute("data-visivel", "true");
       return;
     }
+
+    elemento.setAttribute("data-visivel", "false");
 
     const observador = new IntersectionObserver(
       ([entrada]) => {
         if (!entrada.isIntersecting) return;
-        tornarVisivel();
+        elemento.setAttribute("data-visivel", "true");
         observador.disconnect();
       },
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
@@ -40,7 +38,9 @@ export function Revelar({
 
     observador.observe(elemento);
 
-    const timeout = setTimeout(tornarVisivel, 4000);
+    const timeout = setTimeout(() => {
+      elemento.setAttribute("data-visivel", "true");
+    }, 4000);
 
     return () => {
       observador.disconnect();
@@ -49,7 +49,7 @@ export function Revelar({
   }, []);
 
   return (
-    <div ref={referencia} data-visivel="false" className={className}>
+    <div ref={referencia} className={className}>
       {children}
     </div>
   );

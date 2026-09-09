@@ -2,7 +2,7 @@ import { Children } from "react";
 import { Container } from "./Container";
 import estilos from "./Section.module.css";
 
-type Fundo = "papel" | "papel2" | "verde";
+type Fundo = "papel" | "papel2" | "verde" | "nenhum";
 
 export function Section({
   children,
@@ -22,7 +22,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={[estilos.secao, estilos[fundo], compacta ? estilos.compacta : "", className]
+      className={[estilos.secao, fundo !== "nenhum" ? estilos[fundo] : "", compacta ? estilos.compacta : "", className]
         .filter(Boolean)
         .join(" ")}
     >

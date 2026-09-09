@@ -26,8 +26,8 @@
    quando a seção entra no viewport. Fundos brancos "surgem"; fundos cinza
    deslizam da esquerda para a direita. */
 
-.surgirTexto :is(h1, h2, h3, p, li, span, a, button):not(.valor),
-.apareceEsquerda :is(h1, h2, h3, p, li, span, a, button) {
+[data-visivel="false"] .surgirTexto :is(h1, h2, h3, p, li, span, a, button):not(.valor),
+[data-visivel="false"] .apareceEsquerda :is(h1, h2, h3, p, li, span, a, button) {
   opacity: 0;
 }
 
