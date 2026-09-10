@@ -259,9 +259,13 @@
   display: grid;
   margin-top: 48px;
   gap: 25px;
-  background: transparent;
-  border: 0;
+  background: transparent !important;
+  border: 0 !important;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.gradeSolucoes > * {
+  background: transparent !important;
 }
 
 @media (max-width: 999px) {

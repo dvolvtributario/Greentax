@@ -37,12 +37,12 @@
   z-index: 2;
 }
 
-.compromisso .corpo p {
-  color: var(--papel);
+.compromisso .corpoFundoEscuro p {
+  color: #fff;
 }
 
 .compromisso h2 {
-  color: var(--papel);
+  color: #509f41;
 }
 
 .pilarIcone {

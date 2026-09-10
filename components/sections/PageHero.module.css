@@ -14,7 +14,7 @@
     90deg,
     var(--papel) 0%,
     var(--papel) 42%,
-    rgba(255, 255, 255, 0.35) 68%,
+    rgba(255, 255, 255, 0.35) 55%,
     rgba(255, 255, 255, 0.15) 100%
   );
   pointer-events: none;
@@ -40,7 +40,7 @@
     background: linear-gradient(
       180deg,
       var(--papel) 0%,
-      rgba(255, 255, 255, 0.94) 56%,
+      rgba(255, 255, 255, 0.94) 55%,
       rgba(255, 255, 255, 0.36) 100%
     );
   }

@@ -61,7 +61,7 @@ export default function QuemSomos() {
         <div className={p.meioAMeio}>
           <div>
             <h2 className={p.subtitulo}>Nosso compromisso</h2>
-            <div className={p.corpo}>
+            <div className={`${p.corpo} ${estilos.corpoFundoEscuro}`}>
               <p>
                 Trabalhamos com clareza sobre prazos, documentos, responsabilidades e
                 decisões que dependem de informação contábil ou tributária.
@@ -80,7 +80,7 @@ export default function QuemSomos() {
 
           <div>
             <h2 className={p.subtitulo}>Onde queremos chegar</h2>
-            <div className={p.corpo}>
+            <div className={`${p.corpo} ${estilos.corpoFundoEscuro}`}>
               <p>
                 Queremos construir relações de longo prazo com empresas que valorizam
                 informação bem tratada, conversa direta e acompanhamento próximo.
