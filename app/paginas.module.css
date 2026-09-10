@@ -188,8 +188,12 @@
 .espacoG {
   margin-top: 56px;
   gap: 25px;
-  background: var(--papel);
-  border: 0;
+  background: var(--papel) !important;
+  border: 0 !important;
+}
+
+.espacoG > * {
+  background: transparent !important;
 }
 
 /* --- FAQ --- */
