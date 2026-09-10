@@ -13,6 +13,7 @@ import { FAQ } from "@/components/sections/FAQ";
 import { listarArtigos } from "@/lib/blog";
 import { diferenciais, solucoesResumo } from "@/lib/conteudo";
 import { site, whatsappLink } from "@/lib/site";
+import { listarLogosClientes } from "@/lib/clientes";
 import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -58,6 +59,7 @@ const faq = [
 
 export default async function Home() {
   const destaques = (await listarArtigos()).slice(0, 3);
+  const logosClientes = listarLogosClientes();
 
   return (
     <>
@@ -221,7 +223,7 @@ export default async function Home() {
       </Revelar>
 
       <Revelar>
-        <ProvaSocial className={estilos.surgirTexto} />
+        <ProvaSocial logos={logosClientes} className={estilos.surgirTexto} />
       </Revelar>
 
       <Revelar>

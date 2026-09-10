@@ -91,12 +91,6 @@ export default function ChatbotContabilidade() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    if (showNotification && isOpen) {
-      setShowNotification(false);
-    }
-  }, [isOpen, showNotification]);
-
   const currentKey = path[path.length - 1];
   const currentNode = FLOW[currentKey];
 
@@ -125,7 +119,10 @@ export default function ChatbotContabilidade() {
     return (
       <>
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setIsOpen(true);
+            setShowNotification(false);
+          }}
           title="Abrir assistente contábil"
           className="chatbotBotaoEntrada"
           style={{

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Pendente } from "@/components/ui/Pendente";
 import { site } from "@/lib/site";
@@ -85,7 +86,13 @@ function Contador({ valor, atraso = 0 }: { valor: number; atraso?: number }) {
  * `site.indicadores` estiver com `null`, a seção mostra a lacuna em vez de
  * inventar números.
  */
-export function ProvaSocial({ className }: { className?: string }) {
+export function ProvaSocial({
+  logos = [],
+  className,
+}: {
+  logos?: { src: string; alt: string }[];
+  className?: string;
+}) {
   const { empresasAtendidas, anosDeMercado, obrigacoesNoPrazo } = site.indicadores;
 
   const indicadores = [
@@ -132,10 +139,38 @@ export function ProvaSocial({ className }: { className?: string }) {
 
         <div className={estilos.clientes}>
           <h2 className={estilos.tituloClientes}>Empresas que confiam na Greentax</h2>
-          <Pendente compacto titulo="Logos de clientes" className={estilos.pendenteClientes}>
-            Reunir as logos autorizadas em <code>public/clientes/</code>. Vale pedir
-            autorização por escrito antes de publicar a marca de cada cliente.
-          </Pendente>
+          {logos.length > 0 ? (
+            <div className={estilos.carrossel}>
+              <div className={estilos.carrosselCena}>
+                <div className={estilos.carrosselRastro}>
+                  {[...logos, ...logos].map((logo, i) => {
+                    const esticada = logo.src.includes("TALITA FRANCO");
+                    return (
+                      <div key={`${logo.src}-${i}`} className={estilos.cliente}>
+                        <Image
+                          src={logo.src}
+                          alt={logo.alt}
+                          width={280}
+                          height={160}
+                          className={[
+                            estilos.clienteLogo,
+                            esticada ? estilos.clienteLogoEsticada : "",
+                          ]
+                            .filter(Boolean)
+                            .join(" ")}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Pendente compacto titulo="Logos de clientes" className={estilos.pendenteClientes}>
+              Reunir as logos autorizadas em <code>public/clientes/</code>. Vale pedir
+              autorização por escrito antes de publicar a marca de cada cliente.
+            </Pendente>
+          )}
         </div>
       </Container>
     </section>
