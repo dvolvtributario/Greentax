@@ -196,6 +196,202 @@
   background: transparent !important;
 }
 
+/* --- grade de cards afastados --- */
+
+.gradeEspacada {
+  gap: 18px !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.gradeEspacada > * {
+  background: var(--papel);
+  border: 1px solid var(--filete);
+}
+
+/* --- cards de benefício --- */
+
+.beneficio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 34px 30px;
+  height: 100%;
+  background: var(--papel);
+  transition: background-color 120ms linear;
+}
+
+a.beneficio {
+  color: inherit;
+}
+
+a.beneficio:hover {
+  background: var(--papel-2);
+}
+
+.beneficioIcone {
+  display: flex;
+  align-items: center;
+  color: var(--verde-700);
+  margin-bottom: 8px;
+}
+
+.beneficio h3 {
+  font-size: 1.125rem;
+}
+
+.beneficio p {
+  color: var(--tinta-500);
+  font-size: var(--fs-pequeno);
+  line-height: 1.55;
+}
+
+.beneficioAcao {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--verde-700);
+  font-weight: 600;
+  font-size: var(--fs-pequeno);
+}
+
+.beneficioAcao svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.grupoTitulo {
+  margin-top: 56px;
+  margin-bottom: 24px;
+}
+
+/* --- blocos inclusos (resumo técnico compacto) --- */
+
+.inclusos {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 32px;
+}
+
+.inclusosTitulo {
+  font-size: 1.125rem;
+}
+
+.inclusos ul {
+  display: grid;
+  gap: 12px;
+}
+
+.inclusos li {
+  display: flex;
+  gap: 12px;
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-700);
+  line-height: 1.5;
+}
+
+.inclusos li svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  margin-top: 3px;
+  color: var(--verde-600);
+}
+
+/* --- como funciona (passos) --- */
+
+.passos {
+  margin-top: 44px;
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 700px) {
+  .passos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .passos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.passo {
+  background: var(--papel);
+  padding: 30px 28px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.passoNumero {
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--verde-400);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+}
+
+.passo h3 {
+  font-size: 1.125rem;
+}
+
+.passo p {
+  color: var(--tinta-500);
+  font-size: var(--fs-pequeno);
+  line-height: 1.55;
+}
+
+/* --- estatísticas --- */
+
+.estatisticas {
+  margin-top: 44px;
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 700px) {
+  .estatisticas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.estatistica {
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  padding: 32px 28px;
+  display: grid;
+  gap: 8px;
+}
+
+.estatisticaValor {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--verde-700);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.estatisticaRotulo {
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-600);
+}
+
+/* --- ícone dentro de botão --- */
+
+.iconeBotao {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
 /* --- FAQ --- */
 
 .faq {
