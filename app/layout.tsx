@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Fraunces } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -14,6 +15,12 @@ const inter = localFont({
   display: "swap",
   variable: "--font-inter",
   fallback: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -79,7 +86,7 @@ const dadosEstruturados = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" className={inter.variable}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
         <script
           type="application/ld+json"

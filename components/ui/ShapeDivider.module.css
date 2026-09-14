@@ -1,0 +1,15 @@
+.embrulho {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: clamp(48px, 8vw, 120px);
+}
+
+.espelhado {
+  transform: scaleY(-1);
+}

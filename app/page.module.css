@@ -22,10 +22,6 @@
   }
 }
 
-/* Animação dirigida por scroll: o <Revelar /> marca data-visivel="true"
-   quando a seção entra no viewport. Fundos brancos "surgem"; fundos cinza
-   deslizam da esquerda para a direita. */
-
 [data-visivel="false"] .surgirTexto :is(h1, h2, h3, p, li, span, a, button):not(.valor),
 [data-visivel="false"] .apareceEsquerda :is(h1, h2, h3, p, li, span, a, button) {
   opacity: 0;
@@ -43,34 +39,26 @@
 
 .hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  padding-top: clamp(3rem, 1.5rem + 4vw, 5rem);
-  padding-bottom: clamp(3rem, 1.5rem + 4vw, 5rem);
+  padding-block: clamp(5rem, 3rem + 6vw, 8rem);
   background: var(--papel);
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  inset: 0 0 auto;
-  height: 600px;
+  inset: 0;
+  z-index: -1;
   background:
-    linear-gradient(90deg, var(--papel) 0%, 
-    var(--papel) 43%, 
-    rgba(255, 255, 255, 0.5) 60%,
-    rgba(255, 255, 255, 0.18) 100%),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.78) 36%,
+      rgba(255, 255, 255, 0.24) 52%,
+      rgba(255, 255, 255, 0) 88%
+    ),
     url("/marca/hero-gestao.jpg") right center / cover no-repeat;
-  pointer-events: none;
-}
-
-.hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-.heroFaixa {
-  margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
-  background: var(--papel);
 }
 
 .rotulo {
@@ -84,85 +72,48 @@
   color: var(--verde-700);
 }
 
+.heroConteudo {
+  position: relative;
+  z-index: 1;
+}
+
 .titulo {
   margin-top: 28px;
   font-size: var(--fs-display);
-  max-width: 17ch;
+  max-width: 18ch;
 }
 
 .destaque {
   color: var(--verde-700);
 }
 
-.atalhos {
-  margin-top: 32px;
-}
-
-.atalhosTitulo {
-  font-size: var(--fs-pequeno);
-  font-weight: 600;
-  color: var(--tinta-900);
-}
-
-.atalhosBotoes {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.atalhoIcone {
-  width: 18px;
-  height: 18px;
-  flex: none;
-}
-
-@media (min-width: 620px) {
-  .atalhosBotoes {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
-
-.heroBase {
-  padding-block: 36px clamp(3rem, 1.5rem + 4vw, 4.5rem);
-  display: grid;
-  gap: 40px;
-}
-
-@media (min-width: 940px) {
-  .hero {
-    min-height: 650px;
-  }
-
-  .hero::before {
-    height: 560px;
-    background-position: center;
-  }
-
-  .heroBase {
-    grid-template-columns: 6fr 5fr;
-    gap: 80px;
-  }
-}
-
 .lead {
+  margin-top: 24px;
   font-size: var(--fs-corpo-g);
-  color: var(--tinta-500);
-  max-width: 44ch;
+  color: var(--tinta-850);
+  max-width: 46ch;
 }
 
 .acoes {
-  margin-top: 32px;
+  margin-top: 36px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 @media (min-width: 520px) {
   .acoes {
     flex-direction: row;
+    flex-wrap: wrap;
   }
+}
+
+.botaoHeroContorno {
+  border-color: var(--tinta-900);
+}
+
+.botaoHeroContorno:hover {
+  border-color: var(--tinta-900);
 }
 
 .icone {
@@ -171,213 +122,137 @@
   flex: none;
 }
 
-.pratica {
-  padding-top: 18px;
-}
-
-.praticaTitulo {
-  font-size: var(--fs-rotulo);
-  font-weight: 700;
-  letter-spacing: var(--ls-rotulo);
-  text-transform: uppercase;
-  color: var(--tinta-500);
-}
-
-.praticaLista {
-  margin-top: 6px;
-}
-
-.praticaItem {
-  display: flex;
-  gap: 14px;
-  padding-block: 16px;
-  font-size: var(--fs-pequeno);
-  color: var(--tinta-800);
-}
-
-.praticaMarcador {
-  width: 6px;
-  height: 6px;
-  flex: none;
-  margin-top: 9px;
-  border-radius: 50%;
-  background: var(--verde-600);
-}
-
-/* --- institucional --- */
-
-.institucionalSecao {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  background:
-    linear-gradient(rgba(15, 43, 29, 0.78), rgba(15, 43, 29, 0.78)),
-    url("/marca/quem-somos.jpg") center / cover no-repeat;
-  color: var(--papel);
-}
-
-.institucional {
-  display: grid;
-  gap: 36px;
-}
-
-.institucional .texto p {
-  color: var(--papel);
-}
-
-@media (min-width: 940px) {
-  .institucional {
-    grid-template-columns: 5fr 7fr;
-    gap: 80px;
+@media (max-width: 720px) {
+  .hero::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 255, 255, 0.84) 46%,
+        rgba(255, 255, 255, 0.28) 100%
+      ),
+      url("/marca/hero-gestao.jpg") 62% center / cover no-repeat;
   }
 }
 
-.texto > p + p {
-  margin-top: 20px;
-}
+/* --- cards de soluções --- */
 
-.texto p {
-  font-size: var(--fs-corpo-g);
-  color: var(--tinta-600);
-}
-
-.textoAcao {
-  margin-top: 32px;
-}
-
-.linkHistoria {
-  color: #fff;
-}
-
-.linkHistoria:hover {
-  color: var(--verde-200);
-}
-
-/* --- soluções --- */
-
-.gradeSolucoes {
+.gradeServicos {
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
   display: grid;
-  margin-top: 48px;
-  gap: 25px;
-  background: transparent !important;
-  border: 0 !important;
-  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  grid-template-columns: 1fr;
 }
 
-.gradeSolucoes > * {
-  background: transparent !important;
-}
-
-@media (max-width: 999px) {
-  .gradeSolucoes {
+@media (min-width: 640px) {
+  .gradeServicos {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 699px) {
-  .gradeSolucoes {
-    grid-template-columns: 1fr;
+@media (min-width: 1000px) {
+  .gradeServicos {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.solucao {
+.servico {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 32px 28px;
-  transition: background-color 120ms linear;
+  border: 1px solid var(--filete);
+  border-radius: 18px;
+  background: var(--papel);
+  overflow: hidden;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
 }
 
-.solucao:hover {
-  background: var(--papel-2);
+.servico:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 2px 8px rgba(15, 43, 29, 0.08),
+    0 26px 48px -20px rgba(15, 43, 29, 0.3);
 }
 
-.solucaoIcone {
-  display: flex;
+.servicoNumero {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
-  width: 56px;
-  height: 56px;
-  margin-bottom: 24px;
-  color: var(--verde-400);
-}
-
-.solucaoIcone img {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-
-.numero {
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding-inline: 10px;
+  border-radius: 999px;
+  background: var(--papel);
   font-size: var(--fs-mini);
   font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--verde-400);
+  letter-spacing: 0.08em;
+  color: var(--verde-700);
   font-variant-numeric: tabular-nums;
 }
 
-.solucaoTitulo {
-  margin-top: 20px;
+.servicoImagem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: var(--papel-3);
+  color: var(--verde-300);
+}
+
+.servicoImagem img {
+  object-fit: cover;
+}
+
+.servicoCorpo {
+  display: grid;
+  gap: 10px;
+  padding: 20px 20px 24px;
+}
+
+.servicoTitulo {
   font-size: 1.1875rem;
 }
 
-.solucaoResumo {
-  margin-top: 12px;
-  flex: 1;
+.servicoResumo {
   font-size: var(--fs-pequeno);
   color: var(--tinta-500);
 }
 
-.solucaoAcao {
-  margin-top: 28px;
+.servicoAcao {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-top: 8px;
   font-size: var(--fs-pequeno);
   font-weight: 600;
   color: var(--verde-700);
 }
 
-.solucaoAcao svg {
+.servicoAcao svg {
   width: 15px;
   height: 15px;
 }
 
-/* --- diferenciais --- */
-
-.diferenciais {
-  margin-top: 48px;
-  display: grid;
-  gap: 25px;
-}
-
-@media (min-width: 780px) {
-  .diferenciais {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 64px;
-  }
-}
-
-.diferencial {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 20px;
-}
-
-.diferencialNumero {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--verde-400);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
-}
-
-.diferencialTexto {
-  margin-top: 8px;
-  font-size: var(--fs-pequeno);
-  color: var(--tinta-500);
+.gradeAcoes {
+  margin-top: clamp(2.25rem, 1.5rem + 2vw, 3rem);
+  display: flex;
+  justify-content: center;
 }
 
 /* --- blog --- */
+
+/* Fundo cinza do blog sem as bordas retas: a cor desce direto até o bloco
+   verde do CTA, e a partir do topo nasce do branco dos logos. */
+.blog {
+  background: var(--papel-2);
+}
 
 .blogTopo {
   display: flex;
@@ -395,9 +270,69 @@
 }
 
 .blogGrade {
-  margin-top: 48px;
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
 }
 
-.pendenteNichos {
-  margin-top: 40px;
+@media (min-width: 640px) {
+  .blogGrade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .blogGrade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- faixa CTA verde --- */
+
+.faixaCta {
+  background: var(--verde-900);
+  color: #fff;
+  padding-block: clamp(3.5rem, 2rem + 5vw, 5.5rem);
+  text-align: center;
+}
+
+.faixaCtaRotulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-100);
+}
+
+.faixaCtaRotulo::before,
+.faixaCtaRotulo::after {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: var(--verde-400);
+}
+
+.faixaCtaTitulo {
+  margin-top: 24px;
+  max-width: 24ch;
+  margin-inline: auto;
+  color: #fff;
+  font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem);
+}
+
+.faixaCtaTexto {
+  margin: 18px auto 0;
+  max-width: 52ch;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.faixaCtaAcoes {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
 }

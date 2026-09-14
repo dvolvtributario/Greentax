@@ -89,9 +89,11 @@ function Contador({ valor, atraso = 0 }: { valor: number; atraso?: number }) {
 export function ProvaSocial({
   logos = [],
   className,
+  mostrarIndicadores = true,
 }: {
   logos?: { src: string; alt: string }[];
   className?: string;
+  mostrarIndicadores?: boolean;
 }) {
   const { empresasAtendidas, anosDeMercado, obrigacoesNoPrazo } = site.indicadores;
 
@@ -104,9 +106,18 @@ export function ProvaSocial({
   const preenchidos = indicadores.filter((i) => i.valor !== null);
 
   return (
-    <section className={[estilos.faixa, className].filter(Boolean).join(" ")}>
+    <section
+      className={[
+        estilos.faixa,
+        mostrarIndicadores ? "" : estilos.semIndicadores,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <Container>
-        {preenchidos.length > 0 ? (
+        {mostrarIndicadores ? (
+          preenchidos.length > 0 ? (
           <dl className={estilos.indicadores}>
               {preenchidos.map((item, index) => (
               <div key={item.legenda} className={estilos.indicador}>
@@ -135,7 +146,8 @@ export function ProvaSocial({
               fictícios, então nada foi inventado aqui.
             </p>
           </Pendente>
-        )}
+        )
+        ) : null}
 
         <div className={estilos.clientes}>
           <h2 className={estilos.tituloClientes}>Empresas que confiam na Greentax</h2>

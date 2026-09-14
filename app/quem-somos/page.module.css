@@ -39,11 +39,20 @@
   padding: 32px 28px;
 }
 
+.recorteOnda {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .compromisso {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   color: var(--papel);
+  padding-top: calc(var(--secao-y) + 1rem);
+  clip-path: url("#onda-compromisso");
 }
 
 .compromisso::before {
@@ -116,4 +125,8 @@
   margin-top: 12px;
   font-size: var(--fs-pequeno);
   color: var(--tinta-500);
+}
+
+.time {
+  background: var(--papel-2);
 }

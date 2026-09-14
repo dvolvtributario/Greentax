@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
+import ShapeDivider from "@/components/ui/ShapeDivider";
 import { Pendente } from "@/components/ui/Pendente";
 import { pilares } from "@/lib/conteudo";
 import p from "@/app/paginas.module.css";
@@ -52,9 +53,19 @@ export default function QuemSomos() {
         </Section>
       </Revelar>
 
+      {/* As ondas passam a fazer parte da própria foto: o recorte do
+          compromisso ganha a onda em cima e embaixo, no lugar do verde chapado. */}
+      <svg aria-hidden="true" focusable="false" className={estilos.recorteOnda}>
+        <defs>
+          <clipPath id="onda-compromisso" clipPathUnits="objectBoundingBox">
+            <path d="M0,0.042 C0.104,0.028 0.198,0.025 0.299,0.04 C0.424,0.059 0.528,0.078 0.639,0.068 C0.75,0.058 0.840,0.042 1,0.042 L1,0.958 C0.896,0.972 0.802,0.975 0.701,0.96 C0.576,0.941 0.472,0.922 0.361,0.932 C0.25,0.942 0.160,0.958 0,0.958 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
       <Revelar>
         <Section
-          fundo="nenhum"
+          fundo="verde"
           className={`${estilos.compromisso} ${estilos.surgirTexto}`}
           decoracao={
             <div className={estilos.compromissoImagem}>
@@ -132,8 +143,15 @@ export default function QuemSomos() {
         </Section>
       </Revelar>
 
+      {/* Arco cinza sobe no branco e entra na faixa do Time. */}
       <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
+        <ShapeDivider forma="arco" cor="var(--papel-2)" />
+      </Revelar>
+
+      <Revelar>
+        <Section
+          fundo="nenhum"
+          className={`${estilos.apareceEsquerda} ${estilos.time}`}>
           <div className={p.duasColunas}>
             <CabecalhoSecao
               rotulo="Time"
@@ -152,6 +170,11 @@ export default function QuemSomos() {
             </Pendente>
           </div>
         </Section>
+      </Revelar>
+
+      {/* Arco branco espelha a curva de entrada e fecha a faixa cinza do Time. */}
+      <Revelar>
+        <ShapeDivider forma="arco" cor="var(--papel)" fundo="var(--papel-2)" />
       </Revelar>
 
       <Revelar>

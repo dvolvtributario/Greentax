@@ -39,6 +39,12 @@ export const solucoesResumo: Solucao[] = [
     resumo: "Escrituração, balanços e demonstrações acompanhados de perto.",
     href: "/solucoes/contabil-fiscal-trabalhista",
     icone: Calculator,
+    // IMAGEM PENDENTE - ainda em estado provisório. Trocar por uma foto
+    // própria (ex.: demonstrações contábeis organizadas sobre a mesa).
+    imagem: {
+      src: "/marca/contabil-fiscal-trabalhista.jpg",
+      alt: "Documentos contábeis em cima de uma mesa de trabalho",
+    },
   },
   {
     slug: "fiscal",
@@ -46,6 +52,12 @@ export const solucoesResumo: Solucao[] = [
     resumo: "Apuração de tributos com atenção ao enquadramento e às receitas da empresa.",
     href: "/solucoes/contabil-fiscal-trabalhista",
     icone: BookOpenCheck,
+    // IMAGEM PENDENTE - ainda em estado provisório. Trocar por uma foto
+    // própria (ex.: análise de documentos e guias de tributos).
+    imagem: {
+      src: "/marca/consultoria-planejamento.jpg",
+      alt: "Análise de documentos e números para apuração de tributos",
+    },
   },
   {
     slug: "trabalhista",
@@ -53,6 +65,12 @@ export const solucoesResumo: Solucao[] = [
     resumo: "Folha, encargos e obrigações com acompanhamento da rotina.",
     href: "/solucoes/contabil-fiscal-trabalhista",
     icone: BriefcaseBusiness,
+    // IMAGEM PENDENTE - ainda em estado provisório. Trocar por uma foto
+    // própria (ex.: folha de pagamento e processos de admissão).
+    imagem: {
+      src: "/marca/consultoria-transacao.jpg",
+      alt: "Documentos trabalhistas e de pagamento de equipe",
+    },
   },
   {
     slug: "consultoria",
@@ -61,6 +79,12 @@ export const solucoesResumo: Solucao[] = [
       "Planejamento tributário e recuperação de créditos para situações que pedem uma análise específica.",
     href: "/solucoes/consultoria-estrategica",
     icone: Lightbulb,
+    // IMAGEM PENDENTE - ainda em estado provisório. Trocar por uma foto
+    // própria (ex.: reunião de definição de estratégia tributária).
+    imagem: {
+      src: "/marca/consultoria-estrategica.jpg",
+      alt: "Reunião de consultoria estratégica com cliente",
+    },
   },
 ];
 

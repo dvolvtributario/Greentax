@@ -4,14 +4,14 @@ import Link from "next/link";
 import { Botao } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Revelar } from "@/components/ui/Revelar";
-import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
-import { Pendente } from "@/components/ui/Pendente";
+import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Seta, Whatsapp } from "@/components/ui/Icons";
+import ShapeDivider from "@/components/ui/ShapeDivider";
 import { ProvaSocial } from "@/components/sections/ProvaSocial";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
 import { FAQ } from "@/components/sections/FAQ";
 import { listarArtigos } from "@/lib/blog";
-import { diferenciais, solucoesResumo } from "@/lib/conteudo";
+import { solucoesResumo } from "@/lib/conteudo";
 import { site, whatsappLink } from "@/lib/site";
 import { listarLogosClientes } from "@/lib/clientes";
 import estilos from "./page.module.css";
@@ -21,13 +21,6 @@ export const metadata: Metadata = {
   description: site.descricao,
   alternates: { canonical: "/" },
 };
-
-const pratica = [
-  "Obrigações contábeis, fiscais e trabalhistas acompanhadas e entregues no prazo.",
-  "Tributos apurados de acordo com o enquadramento e a operação da empresa.",
-  "Atendimento próximo para dúvidas que surgem durante a rotina.",
-  "Planejamento tributário e recuperação de créditos quando houver uma oportunidade concreta.",
-];
 
 const faq = [
   {
@@ -63,104 +56,35 @@ export default async function Home() {
 
   return (
     <>
-      <link rel="preload" as="image" href="/marca/hero-gestao.jpg" />
       <Revelar>
         <section className={estilos.hero}>
-          <Container>
+          <Container className={estilos.heroConteudo}>
             <p className={estilos.rotulo}>Contabilidade consultiva</p>
-
-          <h1 className={estilos.titulo}>
-            Contabilidade que acompanha a{" "}
-            <span className={estilos.destaque}>evolução</span> da sua empresa.
-          </h1>
-
-          <div className={estilos.atalhos}>
-            <p className={estilos.atalhosTitulo}>Como podemos ajudar?</p>
-            <div className={estilos.atalhosBotoes}>
+            <h1 className={estilos.titulo}>
+              Contabilidade que acompanha a{" "}
+              <span className={estilos.destaque}>evolução</span> da sua empresa.
+            </h1>
+            <p className={estilos.lead}>{site.promessa}</p>
+            <div className={estilos.acoes}>
               <Botao
                 href={whatsappLink("Olá! Quero trocar de contador e gostaria de entender como funciona.")}
                 externo
                 porte="lg"
               >
-                <Whatsapp className={estilos.atalhoIcone} />
+                <Whatsapp className={estilos.icone} />
                 Quero trocar de contador
               </Botao>
               <Botao
-                href={whatsappLink("Olá! Quero abrir minha empresa e gostaria de receber orientação.")}
-                externo
+                href="/solucoes"
                 variante="contorno"
                 porte="lg"
+                className={estilos.botaoHeroContorno}
               >
-                <Whatsapp className={estilos.atalhoIcone} />
-                Quero abrir minha empresa
+                Conhecer as soluções
               </Botao>
-            </div>
-          </div>
-
-        </Container>
-
-        <div className={estilos.heroFaixa}>
-          <Container>
-            <div className={estilos.heroBase}>
-              <div>
-                <p className={estilos.lead}>{site.promessa}</p>
-                <div className={estilos.acoes}>
-                  <Botao href="/solucoes" variante="contorno" porte="lg">
-                    Conhecer as soluções
-                  </Botao>
-                </div>
-              </div>
-
-              <div className={estilos.pratica}>
-                <h2 className={estilos.praticaTitulo}>O que você encontra aqui</h2>
-                <ul className={estilos.praticaLista}>
-                  {pratica.map((item) => (
-                    <li key={item} className={estilos.praticaItem}>
-                      <span className={estilos.praticaMarcador} aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </Container>
-        </div>
-      </section>
-      </Revelar>
-
-      <Revelar>
-        <Section fundo="nenhum" className={`${estilos.institucionalSecao} ${estilos.apareceEsquerda}`}>
-        <div className={estilos.institucional}>
-          <CabecalhoSecao
-            rotulo="Quem é a Greentax"
-            titulo="A contabilidade precisa conversar com o negócio."
-            claro
-          />
-          <div className={estilos.texto}>
-            <p>
-              A rotina contábil gera informações que podem ajudar muito mais do que no
-              fechamento do mês. Quando os números estão organizados, fica mais fácil
-              entender custos, tributos, resultados e os efeitos de uma decisão.
-            </p>
-            <p>
-              É nesse ponto que a Greentax trabalha: cuidando das obrigações e
-              conversando com o empresário sobre o que os dados mostram. O atendimento
-              reúne conhecimento contábil, fiscal e tributário com tecnologia e contato
-              próximo.
-            </p>
-            <div className={estilos.textoAcao}>
-              <Botao
-                href="/quem-somos"
-                variante="texto"
-                className={estilos.linkHistoria}
-              >
-                Conheça nossa história
-                <Seta className={estilos.icone} />
-              </Botao>
-            </div>
-          </div>
-        </div>
-      </Section>
+        </section>
       </Revelar>
 
       <Revelar>
@@ -171,110 +95,133 @@ export default async function Home() {
             lead="A rotina fica organizada e, quando aparece uma questão específica, você conta com uma equipe para analisar o caso."
           />
 
-        <Grade colunas={4} className={estilos.gradeSolucoes}>
-          {solucoesResumo.map((solucao, i) => (
-            <Link key={solucao.slug} href={solucao.href} className={estilos.solucao}>
-              <div className={estilos.solucaoIcone}>
-                {solucao.imagem ? (
-                  <Image
-                    src={solucao.imagem.src}
-                    alt={solucao.imagem.alt}
-                    width={48}
-                    height={48}
-                  />
-                ) : (
-                  <solucao.icone aria-hidden="true" size={44} strokeWidth={1.5} />
-                )}
-              </div>
-              <span className={estilos.numero}>{String(i + 1).padStart(2, "0")}</span>
-              <h3 className={estilos.solucaoTitulo}>{solucao.titulo}</h3>
-              <p className={estilos.solucaoResumo}>{solucao.resumo}</p>
-              <span className={estilos.solucaoAcao}>
-                Ver detalhes
-                <Seta />
-              </span>
-            </Link>
-          ))}
-        </Grade>
-      </Section>
+          <div className={estilos.gradeServicos}>
+            {solucoesResumo.map((solucao, i) => (
+              <Link key={solucao.slug} href={solucao.href} className={estilos.servico}>
+                <span className={estilos.servicoNumero}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className={estilos.servicoImagem}>
+                  {solucao.imagem ? (
+                    <Image
+                      src={solucao.imagem.src}
+                      alt={solucao.imagem.alt}
+                      fill
+                      sizes="(max-width: 639px) 100vw, (max-width: 999px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <solucao.icone aria-hidden="true" size={44} strokeWidth={1.5} />
+                  )}
+                </div>
+                <div className={estilos.servicoCorpo}>
+                  <h3 className={estilos.servicoTitulo}>{solucao.titulo}</h3>
+                  <p className={estilos.servicoResumo}>{solucao.resumo}</p>
+                  <span className={estilos.servicoAcao}>
+                    Ver detalhes
+                    <Seta />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className={estilos.gradeAcoes}>
+            <Botao href="/solucoes" variante="contorno">
+              Conhecer todas as soluções
+            </Botao>
+          </div>
+        </Section>
       </Revelar>
 
       <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="Diferenciais"
-            titulo="Como a Greentax trabalha no dia a dia"
-          />
+        <ProvaSocial
+          logos={logosClientes}
+          mostrarIndicadores={false}
+          className={estilos.surgirTexto}
+        />
+      </Revelar>
 
-        <div className={estilos.diferenciais}>
-          {diferenciais.map((item, i) => (
-            <div key={item.titulo} className={estilos.diferencial}>
-              <span className={estilos.diferencialNumero}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3>{item.titulo}</h3>
-                <p className={estilos.diferencialTexto}>{item.descricao}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* Arco cinza sobe sobre o branco dos logos, antes da Central de conteúdo. */}
+      <Revelar>
+        <ShapeDivider forma="arco" cor="var(--papel-2)" />
       </Revelar>
 
       <Revelar>
-        <ProvaSocial logos={logosClientes} className={estilos.surgirTexto} />
-      </Revelar>
-
-      <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="Nichos de atendimento"
-            titulo="Conhecimento que começa pela realidade de cada setor"
-            lead="Cada atividade tem regras, margens e problemas próprios. A página de nichos será construída a partir dos segmentos que fazem parte da carteira da Greentax."
-          />
-        <Pendente
-          titulo="Segmentos prioritários ainda não definidos"
-          className={estilos.pendenteNichos}
+        <Section
+          fundo="nenhum"
+          className={`${estilos.apareceEsquerda} ${estilos.blog}`}
         >
-          O briefing pede validar de 3 a 6 nichos com base na carteira atual antes da
-          redação. Assim que estiverem definidos, eles entram aqui e ganham a página
-          completa em <code>/nichos</code>.
-        </Pendente>
-      </Section>
+          <div className={estilos.blogTopo}>
+            <CabecalhoSecao
+              rotulo="Central de conteúdo"
+              titulo="Informação para quem precisa decidir"
+              lead="Tributário, gestão e tecnologia explicados sem transformar uma dúvida prática em um texto cheio de termos técnicos."
+            />
+            <Botao href="/blog" variante="contorno">
+              Ver todos os artigos
+            </Botao>
+          </div>
+
+          {destaques.length > 0 ? (
+            <div className={estilos.blogGrade}>
+              {destaques.map((artigo) => (
+                <CartaoArtigo key={artigo.slug} artigo={artigo} />
+              ))}
+            </div>
+          ) : null}
+        </Section>
+      </Revelar>
+
+      {/* Onda suave: começa alta à esquerda, faz uma crista, desce devagar e termina alta. */}
+      <Revelar>
+        <ShapeDivider
+          forma="onda"
+          cor="var(--verde-900)"
+          fundo="var(--papel-2)"
+          altura="clamp(75px, 9vw, 125px)"
+        />
+      </Revelar>
+
+      <Revelar>
+        <section className={estilos.faixaCta}>
+          <Container>
+            <p className={estilos.faixaCtaRotulo}>Atendimento próximo</p>
+            <h2 className={estilos.faixaCtaTitulo}>
+              Você cuida da operação. A Greentax acompanha os números, os tributos e
+              as obrigações.
+            </h2>
+            <p className={estilos.faixaCtaTexto}>
+              A conversa começa simples, com uma mensagem de WhatsApp. Contamos como
+              o trabalho funciona e avaliamos o que faz sentido para a sua empresa.
+            </p>
+            <div className={estilos.faixaCtaAcoes}>
+              <Botao
+                href={whatsappLink("Olá! Quero conversar com a Greentax sobre contabilidade.")}
+                externo
+                variante="claro"
+                porte="lg"
+              >
+                <Whatsapp className={estilos.icone} />
+                Falar com a Greentax
+              </Botao>
+            </div>
+          </Container>
+        </section>
+      </Revelar>
+
+      {/* Arco branco sobe no verde do CTA, antes do FAQ. */}
+      <Revelar>
+        <ShapeDivider forma="arco" cor="var(--papel)" />
       </Revelar>
 
       <Revelar>
         <Section className={estilos.surgirTexto}>
-          <div className={estilos.blogTopo}>
-          <CabecalhoSecao
-            rotulo="Central de conteúdo"
-            titulo="Informação para quem precisa decidir"
-            lead="Tributário, gestão e tecnologia explicados sem transformar uma dúvida prática em um texto cheio de termos técnicos."
-          />
-          <Botao href="/blog" variante="contorno">
-            Ver todos os artigos
-          </Botao>
-        </div>
-
-        {destaques.length > 0 ? (
-          <Grade colunas={3} className={estilos.blogGrade}>
-            {destaques.map((artigo) => (
-              <CartaoArtigo key={artigo.slug} artigo={artigo} />
-            ))}
-          </Grade>
-        ) : null}
-      </Section>
-      </Revelar>
-
-      <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
           <CabecalhoSecao
             rotulo="Perguntas frequentes"
             titulo="Dúvidas comuns sobre contabilidade"
           />
-        <FAQ itens={faq} />
-      </Section>
+          <FAQ itens={faq} />
+        </Section>
       </Revelar>
     </>
   );

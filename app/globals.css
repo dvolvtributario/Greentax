@@ -106,6 +106,7 @@ h1,
 h2,
 h3,
 h4 {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   color: var(--tinta-900);
   font-weight: 600;
   letter-spacing: var(--ls-titulo);

@@ -28,6 +28,10 @@ export type Artigo = {
   categoria: Categoria;
   data: string; 
   autor?: string;
+  imagem?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export type ArtigoComSlug = Artigo & { slug: string };

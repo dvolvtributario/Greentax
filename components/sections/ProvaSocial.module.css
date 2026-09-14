@@ -5,9 +5,19 @@
 }
 
 .faixa {
-  border-block: 1px solid var(--filete);
   background: var(--papel);
   padding-block: clamp(3rem, 1.5rem + 4vw, 4.5rem);
+}
+
+/* Quando a faixa mostra apenas os logos, a seção de indicadores não
+   deve empurrar o cabeçalho dos logos para baixo. */
+.semIndicadores {
+  padding-block: clamp(2.5rem, 1.25rem + 3vw, 3.5rem);
+}
+
+.semIndicadores .clientes {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .indicadores {
