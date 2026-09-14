@@ -13,7 +13,7 @@ import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
-import { Ponto, Whatsapp } from "@/components/ui/Icons";
+import { Ponto, Seta, Whatsapp } from "@/components/ui/Icons";
 import { servicosRecorrentes } from "@/lib/conteudo";
 import { site, whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
@@ -82,6 +82,8 @@ const passos = [
   },
 ];
 
+const inclusosIcones = [Calculator, TrendingUp, Users];
+
 const faq = [
   {
     pergunta: "Como funciona a troca de contador?",
@@ -124,10 +126,10 @@ const estatisticas = [
 export default function ContabilFiscalTrabalhista() {
   return (
     <>
-      <PageHero
+<PageHero
         rotulo="Contábil, Fiscal e Trabalhista"
         titulo="A rotina da sua empresa em ordem, sem pagar imposto a mais."
-        lead=""
+        lead="Da escrituração e dos tributos no prazo à folha de pagamento e às obrigações acessórias, tudo com quem conhece o seu negócio."
       >
         <div className={estilos.heroAcoes}>
           <Botao
@@ -150,8 +152,8 @@ export default function ContabilFiscalTrabalhista() {
           <Grade colunas={3} className={`${p.gradeEspacada} ${p.espaco}`}>
             {beneficios.map((beneficio) => (
               <div key={beneficio.titulo} className={p.beneficio}>
-                <span className={p.beneficioIcone}>
-                  <beneficio.icone aria-hidden="true" size={32} strokeWidth={1.5} />
+                <span className={estilos.beneficioIconeChip}>
+                  <beneficio.icone aria-hidden="true" size={26} strokeWidth={1.5} />
                 </span>
                 <h3>{beneficio.titulo}</h3>
                 <p>{beneficio.texto}</p>
@@ -168,21 +170,34 @@ export default function ContabilFiscalTrabalhista() {
             titulo="A parte técnica, resumida para conferir"
             lead="Três frentes cobertas pelo trabalho de rotina: contábil, fiscal e trabalhista."
           />
-          <Grade colunas={3} className={`${p.gradeEspacada} ${p.espaco}`}>
-            {servicosRecorrentes.map((bloco) => (
-              <div key={bloco.titulo} className={p.inclusos}>
-                <h3 className={p.inclusosTitulo}>{bloco.titulo}</h3>
-                <ul>
-                  {bloco.itens.map((item) => (
-                    <li key={item}>
-                      <Ponto />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </Grade>
+          <div className={estilos.servicos}>
+            {servicosRecorrentes.map((bloco, indice) => {
+              const Icone = inclusosIcones[indice];
+              return (
+                <article key={bloco.titulo} className={estilos.servico}>
+                  <span className={estilos.servicoChip}>
+                    <Icone aria-hidden="true" size={24} strokeWidth={1.5} />
+                  </span>
+                  <h3 className={estilos.servicoTitulo}>{bloco.titulo}</h3>
+                  <ul className={estilos.servicoLista}>
+                    {bloco.itens.map((item) => (
+                      <li key={item}>
+                        <Ponto />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    className={estilos.servicoLink}
+                    href={whatsappLink(`Olá! Quero entender o que está incluso na ${bloco.titulo} da Greentax.`)}
+                  >
+                    Entender o meu caso
+                    <Seta />
+                  </a>
+                </article>
+              );
+            })}
+          </div>
           <div className={p.aviso}>
             <p>
               O escopo e o valor do serviço dependem do porte, da atividade e do
@@ -199,13 +214,13 @@ export default function ContabilFiscalTrabalhista() {
             rotulo="Como funciona"
             titulo="Da conversa inicial à rotina no prazo"
           />
-          <div className={p.passos}>
+          <div className={estilos.passos}>
             {passos.map((passo) => (
-              <div key={passo.numero} className={p.passo}>
-                <span className={p.passoNumero}>{passo.numero}</span>
-                <h3>{passo.titulo}</h3>
-                <p>{passo.texto}</p>
-              </div>
+              <article key={passo.numero} className={estilos.passo}>
+                <span className={estilos.passoNumero}>{passo.numero}</span>
+                <h3 className={estilos.passoTitulo}>{passo.titulo}</h3>
+                <p className={estilos.passoTexto}>{passo.texto}</p>
+              </article>
             ))}
           </div>
         </Section>
@@ -217,22 +232,46 @@ export default function ContabilFiscalTrabalhista() {
             rotulo="A Greentax"
             titulo="Números que acompanham o trabalho"
           />
-          <div className={p.estatisticas}>
+          <div className={estilos.estatisticas}>
             {estatisticas.map((estatistica) => (
-              <div key={estatistica.rotulo} className={p.estatistica}>
-                <span className={p.estatisticaValor}>{estatistica.valor}</span>
-                <span className={p.estatisticaRotulo}>{estatistica.rotulo}</span>
+              <div key={estatistica.rotulo} className={estilos.estatistica}>
+                <span className={estilos.estatisticaValor}>{estatistica.valor}</span>
+                <span className={estilos.estatisticaRotulo}>{estatistica.rotulo}</span>
               </div>
             ))}
           </div>
-          <p className={p.nota}>
-            Planejamento tributário, recuperação de créditos e outros trabalhos
-            específicos ficam na página de{" "}
-            <Link href="/solucoes/consultoria-estrategica">
-              Consultoria Estratégica
-            </Link>
-            .
-          </p>
+        </Section>
+      </Revelar>
+
+      <Revelar>
+        <Section fundo="verde" className={estilos.apareceEsquerda}>
+          <div className={estilos.cta}>
+            <CabecalhoSecao
+              claro
+              rotulo="Próximo passo"
+              titulo="Vamos colocar a rotina da sua empresa em ordem."
+              lead="Converse com a equipe sobre o momento atual do seu negócio e receba uma proposta sob medida, sem compromisso."
+            />
+            <div className={estilos.ctaAcoes}>
+              <Botao
+                href={whatsappLink("Olá! Quero entender como a Greentax pode cuidar da rotina contábil, fiscal e trabalhista da minha empresa.")}
+                externo
+                porte="lg"
+                variante="claro"
+              >
+                <Whatsapp className={p.iconeBotao} />
+                Quero conversar
+              </Botao>
+            </div>
+            <p className={estilos.ctaNota}>
+              Planejamento tributário, recuperação de créditos e outros trabalhos
+              específicos ficam na página de{" "}
+              <Link href="/solucoes/consultoria-estrategica">
+                Consultoria Estratégica
+              </Link>
+              .
+            </p>
+          </div>
         </Section>
       </Revelar>
 

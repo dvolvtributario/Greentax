@@ -1,25 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import {
-  BadgeCheck,
-  BookOpenCheck,
-  BriefcaseBusiness,
-  Building2,
-  Calculator,
-  HandCoins,
-  Handshake,
-  Lightbulb,
-  MessagesSquare,
-  PiggyBank,
-  ShieldCheck,
-  TrendingUp,
-} from "lucide-react";
+import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
-import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
+import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
-import { Seta, Whatsapp } from "@/components/ui/Icons";
+import { Ponto, Whatsapp } from "@/components/ui/Icons";
 import { whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
@@ -31,69 +17,40 @@ export const metadata: Metadata = {
   alternates: { canonical: "/solucoes" },
 };
 
-const rotina = [
+const servicos = [
   {
-    icone: BookOpenCheck,
-    titulo: "Escrituração sempre em dia",
-    texto: "Balancetes, balanço e demonstrações na lei, sem atraso nem surpresa.",
+    tag: "A rotina da empresa",
+    titulo: "Contábil, Fiscal e Trabalhista",
+    texto:
+      "A rotina mensal em ordem: escrituração, tributos no prazo, folha de pagamento e obrigações acessórias, sem multa, sem atraso e sem pagar imposto a mais.",
+    destaques: [
+      "Escrituração e demonstrações dentro da lei",
+      "Apuração de tributos pela operação real",
+      "Folha, eSocial e EFD-Reinf processados no prazo",
+    ],
+    imagem: "/marca/contabil-fiscal-trabalhista.jpg",
+    alt: "Equipe da Greentax em reunião com cliente",
+    href: "/solucoes/contabil-fiscal-trabalhista",
+    ctaPrincipal: "Conhecer a rotina",
+    ctaMensagem:
+      "Olá! Quero entender como funciona a contabilidade recorrente da Greentax.",
   },
   {
-    icone: Calculator,
-    titulo: "Impostos no valor certo",
-    texto: "Apuração com o enquadramento e as receitas reais, sem pagar a mais no PGDAS-D.",
-  },
-  {
-    icone: BriefcaseBusiness,
-    titulo: "Folha de pagamento sem susto",
-    texto: "Folha, pró-labore, eSocial e EFD-Reinf processados e transmitidos no prazo.",
-  },
-  {
-    icone: TrendingUp,
-    titulo: "Relatórios que você entende",
-    texto: "Informações mensais em linguagem comum, para acompanhar o resultado sem termos técnicos.",
-  },
-  {
-    icone: MessagesSquare,
-    titulo: "Dúvidas respondidas no dia a dia",
-    texto: "Alguém que conhece a sua empresa para conversar antes de tomar decisão.",
-  },
-  {
-    icone: BadgeCheck,
-    titulo: "Obrigações acessórias entregues",
-    texto: "DEFIS, PGDAS-D e DCTFWeb no prazo, sem multa e sem atraso.",
-  },
-];
-
-const sobDemanda = [
-  {
-    icone: Lightbulb,
-    titulo: "Planejamento tributário",
-    texto: "Revisão do enquadramento e das receitas para reduzir a carga de impostos dentro da lei.",
-  },
-  {
-    icone: HandCoins,
-    titulo: "Recuperação de créditos",
-    texto: "Pagamentos a maior identificados e devolvidos para o caixa da empresa.",
-  },
-  {
-    icone: Handshake,
-    titulo: "Transação e parcelamento",
-    texto: "Débitos com a União, estado e município renegociados em condições que cabem no caixa.",
-  },
-  {
-    icone: ShieldCheck,
-    titulo: "Defesa em fiscalizações",
-    texto: "Resposta técnica, organizada e no prazo para intimações e fiscalizações.",
-  },
-  {
-    icone: Building2,
-    titulo: "Abertura e serviços societários",
-    texto: "Empresa aberta, contratos em dia e registros em órgãos de classe resolvidos.",
-  },
-  {
-    icone: PiggyBank,
-    titulo: "Imposto de Renda (pessoa física)",
-    texto: "Declaração para sócios e clientes das empresas atendidas.",
+    tag: "Sob demanda",
+    titulo: "Consultoria Estratégica",
+    texto:
+      "Para as situações que pedem um olhar dedicado: planejamento tributário, recuperação de créditos, transação de débitos e defesa em fiscalizações.",
+    destaques: [
+      "Planejamento tributário para pagar menos, dentro da lei",
+      "Levantamento e recuperação de créditos",
+      "Transação, parcelamento e defesa em fiscalizações",
+    ],
+    imagem: "/marca/consultoria-estrategica.jpg",
+    alt: "Análise de documentos para planejamento tributário",
+    href: "/solucoes/consultoria-estrategica",
+    ctaPrincipal: "Conhecer a consultoria",
+    ctaMensagem:
+      "Olá! Tenho uma situação tributária e quero entender como a consultoria da Greentax pode ajudar.",
   },
 ];
 
@@ -141,53 +98,60 @@ export default function Solucoes() {
             <Whatsapp className={p.iconeBotao} />
             Quero conversar
           </Botao>
-          <Botao href="#solucoes" variante="contorno" porte="lg">
-            Ver todas as soluções
-          </Botao>
         </div>
       </PageHero>
 
       <Revelar>
-        <Section id="solucoes" className={estilos.surgirTexto}>
+        <Section className={estilos.surgirTexto}>
           <CabecalhoSecao
-            rotulo="Nossas soluções"
-            titulo="Tudo o que fazemos pelo seu negócio, em um só lugar"
-            lead="Da rotina mensal às situações específicas, você encontra aqui o serviço certo para cada momento da empresa."
+            rotulo="Nossos serviços"
+            titulo="Duas frentes para cuidar da sua empresa"
+            lead="A rotina mensal e as situações que pedem um olhar dedicado. Escolha a frente que atende ao momento do seu negócio."
           />
-
-          <h3 className={`${p.subtitulo} ${p.grupoTitulo}`}>Rotina da empresa</h3>
-          <Grade colunas={3} className={p.gradeEspacada}>
-            {rotina.map((item) => (
-              <Link key={item.titulo} href="/solucoes/contabil-fiscal-trabalhista" className={p.beneficio}>
-                <span className={p.beneficioIcone}>
-                  <item.icone aria-hidden="true" size={32} strokeWidth={1.5} />
-                </span>
-                <h3>{item.titulo}</h3>
-                <p>{item.texto}</p>
-                <span className={p.beneficioAcao}>
-                  Ver detalhes
-                  <Seta />
-                </span>
-              </Link>
+          <div className={estilos.servicos}>
+            {servicos.map((servico, indice) => (
+              <article
+                key={servico.titulo}
+                className={`${estilos.servico} ${indice % 2 === 1 ? estilos.servicoInvertido : ""}`}
+              >
+                <div className={estilos.servicoImagem}>
+                  <Image
+                    src={servico.imagem}
+                    alt={servico.alt}
+                    fill
+                    sizes="(max-width: 899px) 100vw, 50vw"
+                  />
+                </div>
+                <div className={estilos.servicoConteudo}>
+                  <span className={estilos.servicoTag}>{servico.tag}</span>
+                  <h2 className={estilos.servicoTitulo}>{servico.titulo}</h2>
+                  <p className={estilos.servicoTexto}>{servico.texto}</p>
+                  <ul className={estilos.servicoLista}>
+                    {servico.destaques.map((item) => (
+                      <li key={item}>
+                        <Ponto />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className={estilos.servicoAcoes}>
+                    <Botao href={servico.href} porte="md">
+                      {servico.ctaPrincipal}
+                    </Botao>
+                    <Botao
+                      href={whatsappLink(servico.ctaMensagem)}
+                      externo
+                      variante="contorno"
+                      porte="md"
+                    >
+                      <Whatsapp className={p.iconeBotao} />
+                      Conversar no WhatsApp
+                    </Botao>
+                  </div>
+                </div>
+              </article>
             ))}
-          </Grade>
-
-          <h3 className={`${p.subtitulo} ${p.grupoTitulo}`}>Sob demanda</h3>
-          <Grade colunas={3} className={p.gradeEspacada}>
-            {sobDemanda.map((item) => (
-              <Link key={item.titulo} href="/solucoes/consultoria-estrategica" className={p.beneficio}>
-                <span className={p.beneficioIcone}>
-                  <item.icone aria-hidden="true" size={32} strokeWidth={1.5} />
-                </span>
-                <h3>{item.titulo}</h3>
-                <p>{item.texto}</p>
-                <span className={p.beneficioAcao}>
-                  Ver detalhes
-                  <Seta />
-                </span>
-              </Link>
-            ))}
-          </Grade>
+          </div>
         </Section>
       </Revelar>
 

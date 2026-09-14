@@ -40,3 +40,228 @@
   flex-wrap: wrap;
   gap: 14px;
 }
+
+/* --- cards de benefício com chip de ícone (estilo Biztop) --- */
+
+.beneficioIconeChip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  background: var(--verde-050);
+  color: var(--verde-800);
+  border: 1px solid var(--filete);
+  margin-bottom: 18px;
+}
+
+.beneficioIconeChip svg {
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+/* --- cards de serviço (inclusos) estilo Biztop --- */
+
+.servicos {
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 900px) {
+  .servicos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.servico {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  padding: 34px 30px;
+}
+
+.servicoChip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--verde-100);
+  color: var(--verde-800);
+}
+
+.servicoChip svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+
+.servicoTitulo {
+  font-size: 1.25rem;
+}
+
+.servicoLista {
+  display: grid;
+  gap: 12px;
+}
+
+.servicoLista li {
+  display: flex;
+  gap: 12px;
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-700);
+  line-height: 1.5;
+}
+
+.servicoLista svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  margin-top: 4px;
+  color: var(--verde-600);
+}
+
+.servicoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: var(--fs-pequeno);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-700);
+  transition: color 120ms linear;
+}
+
+.servicoLink:hover {
+  color: var(--verde-900);
+}
+
+.servicoLink svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+/* --- passos (estilo Biztop: numerais grandes "01") --- */
+
+.passos {
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 700px) {
+  .passos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .passos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.passo {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  padding: 34px 28px;
+}
+
+.passoNumero {
+  font-size: clamp(2.5rem, 2rem + 1.5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--verde-400);
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+}
+
+.passoTitulo {
+  font-size: 1.125rem;
+}
+
+.passoTexto {
+  color: var(--tinta-500);
+  font-size: var(--fs-pequeno);
+  line-height: 1.55;
+}
+
+/* --- estatísticas (estilo Biztop: resultado com filete de destaque) --- */
+
+.estatisticas {
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 700px) {
+  .estatisticas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.estatistica {
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  border-top: 3px solid var(--verde-500);
+  padding: 40px 28px;
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.estatisticaValor {
+  font-size: clamp(3rem, 2rem + 2.5vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--verde-700);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.estatisticaRotulo {
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-600);
+  line-height: 1.45;
+}
+
+/* --- faixa CTA (estilo Biztop) --- */
+
+.cta {
+  display: grid;
+  justify-items: start;
+}
+
+.ctaAcoes {
+  margin-top: 36px;
+}
+
+.ctaNota {
+  margin-top: 44px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--verde-100);
+  font-size: var(--fs-pequeno);
+  max-width: 60ch;
+}
+
+.ctaNota a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

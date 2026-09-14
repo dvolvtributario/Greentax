@@ -41,6 +41,130 @@
   gap: 14px;
 }
 
+/* --- blocos editoriais numerados (estilo MNTN) --- */
+
+.secaoVerdeClaro {
+  background: var(--verde-400);
+}
+
+.cabecalhoGrama span {
+  color: #0b3f21;
+}
+
+.cabecalhoGrama h2 {
+  color: #14181a;
+}
+
+.cabecalhoGrama p {
+  color: var(--verde-100);
+  border: 0;
+}
+
+.blocos {
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: clamp(3rem, 2rem + 3vw, 4.5rem);
+}
+
+.bloco {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .bloco {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  .blocoInvertido .blocoImagem {
+    order: -1;
+  }
+}
+
+.blocoTexto {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+
+.blocoNumero {
+  font-size: clamp(3.5rem, 2.5rem + 2vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--verde-900);
+  font-variant-numeric: tabular-nums;
+}
+
+.blocoTag {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-900);
+}
+
+.blocoTag::before {
+  content: "";
+  width: 56px;
+  height: 2px;
+  background: var(--verde-900);
+}
+
+.blocoTitulo {
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.blocoTexto p {
+  color: var(--verde-900);
+  font-size: var(--fs-corpo-g);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+.blocoLeiaMais {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: var(--fs-pequeno);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-900);
+  transition: color 120ms linear;
+}
+
+.blocoLeiaMais:hover {
+  color: #fff;
+}
+
+.blocoLeiaMais svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.blocoImagem {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--papel-2);
+  border: 1px solid var(--filete);
+  overflow: hidden;
+}
+
+.blocoImagem img {
+  object-fit: cover;
+  object-position: center;
+}
+
 .afastarCards {
-  margin-top: clamp(2.5vw, 1.5rem + 2.5vw, 2rem);
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
 }

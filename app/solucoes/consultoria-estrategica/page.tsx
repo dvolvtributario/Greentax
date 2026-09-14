@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { HandCoins, Handshake, Lightbulb, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
-import { Ponto, Whatsapp } from "@/components/ui/Icons";
+import { Ponto, Seta, Whatsapp } from "@/components/ui/Icons";
 import { servicosConsultoria } from "@/lib/conteudo";
 import { whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
@@ -20,24 +20,36 @@ export const metadata: Metadata = {
 
 const cenarios = [
   {
-    icone: Lightbulb,
+    numero: "01",
+    tagline: "Reduzir a carga",
     titulo: "Planejamento tributário",
-    texto: "Revisão do enquadramento e das receitas para reduzir a carga de impostos dentro da lei.",
+    texto:
+      "Revisão do enquadramento e das receitas para reduzir a carga de impostos dentro da lei. Analisamos a operação real da empresa e apontamos o caminho com a menor tributação possível, sem risco.",
+    imagem: "/marca/consultoria-planejamento.jpg",
   },
   {
-    icone: HandCoins,
+    numero: "02",
+    tagline: "Dinheiro de volta",
     titulo: "Recuperação de créditos",
-    texto: "Pagamentos a maior identificados e devolvidos para o caixa da empresa.",
+    texto:
+      "Pagamentos a maior identificados e devolvidos para o caixa da empresa. Levantamos tributos pagos a maior ou passíveis de compensação e cuidamos do pedido até a efetivação.",
+    imagem: "/marca/consultoria-creditos.jpg",
   },
   {
-    icone: Handshake,
+    numero: "03",
+    tagline: "Acordo com o fisco",
     titulo: "Transação e parcelamento",
-    texto: "Débitos com a União, estado e município renegociados em condições que cabem.",
+    texto:
+      "Débitos com a União, estado e município renegociados em condições que cabem no caixa. Avaliamos cada dívida e negociamos a modalidade mais vantajosa, sem perder prazos.",
+    imagem: "/marca/consultoria-transacao.jpg",
   },
   {
-    icone: ShieldCheck,
+    numero: "04",
+    tagline: "Resposta no prazo",
     titulo: "Defesa em fiscalizações",
-    texto: "Intimações respondidas com organização, fundamento e no prazo.",
+    texto:
+      "Intimações respondidas com organização, fundamento e no prazo. Organizamos os documentos, avaliamos a situação e conduzimos a resposta até a conclusão.",
+    imagem: "/marca/consultoria-defesa.jpg",
   },
 ];
 
@@ -103,7 +115,11 @@ export default function ConsultoriaEstrategica() {
       <PageHero
         rotulo="Consultoria Estratégica"
         titulo="Quando surge uma questão que pede um olhar dedicado."
-        lead=""
+        lead="Cada situação tributária tem um caminho próprio. Antes de decidir qualquer coisa, entendemos o caso, os prazos e o que você espera do resultado."
+        imagem={{
+          src: "/marca/hero-consultoria.jpg",
+          alt: "",
+        }}
       >
         <div className={estilos.heroAcoes}>
           <Botao
@@ -118,22 +134,44 @@ export default function ConsultoriaEstrategica() {
       </PageHero>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
-          <CabecalhoSecao
-            rotulo="Quando a consultoria entra"
-            titulo="Situações que pedem um olhar dedicado"
-          />
-          <Grade colunas={2} className={`${p.gradeEspacada} ${estilos.afastarCards}`}>
-            {cenarios.map((cenario) => (
-              <div key={cenario.titulo} className={p.beneficio}>
-                <span className={p.beneficioIcone}>
-                  <cenario.icone aria-hidden="true" size={32} strokeWidth={1.5} />
-                </span>
-                <h3>{cenario.titulo}</h3>
-                <p>{cenario.texto}</p>
-              </div>
+        <Section fundo="nenhum" className={`${estilos.secaoVerdeClaro} ${estilos.apareceEsquerda}`}>
+          <div className={estilos.cabecalhoGrama}>
+            <CabecalhoSecao
+              rotulo="Quando a consultoria entra"
+              titulo="Situações que pedem um olhar dedicado"
+              lead="Quatro trabalhos comuns de consultoria. Em todos, o primeiro passo é o mesmo: entender o caso antes de decidir qualquer coisa."
+            />
+          </div>
+          <div className={estilos.blocos}>
+            {cenarios.map((cenario, indice) => (
+              <article
+                key={cenario.titulo}
+                className={`${estilos.bloco} ${indice % 2 === 1 ? estilos.blocoInvertido : ""}`}
+              >
+                <div className={estilos.blocoTexto}>
+                  <span className={estilos.blocoNumero}>{cenario.numero}</span>
+                  <span className={estilos.blocoTag}>{cenario.tagline}</span>
+                  <h2 className={estilos.blocoTitulo}>{cenario.titulo}</h2>
+                  <p>{cenario.texto}</p>
+                  <a
+                    className={estilos.blocoLeiaMais}
+                    href={whatsappLink(`Olá! Quero entender como a consultoria da Greentax pode ajudar com: ${cenario.titulo}.`)}
+                  >
+                    Entender o meu caso
+                    <Seta />
+                  </a>
+                </div>
+                <div className={estilos.blocoImagem}>
+                  <Image
+                    src={cenario.imagem}
+                    alt={cenario.titulo}
+                    fill
+                    sizes="(max-width: 899px) 100vw, 50vw"
+                  />
+                </div>
+              </article>
             ))}
-          </Grade>
+          </div>
         </Section>
       </Revelar>
 
