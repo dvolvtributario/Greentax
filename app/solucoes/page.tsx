@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PageHero } from "@/components/sections/PageHero";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
+import { Container } from "@/components/ui/Container";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
 import { Ponto, Whatsapp } from "@/components/ui/Icons";
@@ -80,29 +80,28 @@ const faq = [
 export default function Solucoes() {
   return (
     <>
-      <PageHero
-        rotulo="Soluções"
-        titulo="Contabilidade para o dia a dia e para a estratégia do seu negócio."
-        lead=""
-        imagem={{
-          src: "/marca/hero-solucoes.jpg",
-          alt: "",
-        }}
-      >
-        <div className={estilos.heroAcoes}>
-          <Botao
-            href={whatsappLink("Olá! Quero entender qual solução a Greentax recomenda para a minha empresa.")}
-            externo
-            porte="lg"
-          >
-            <Whatsapp className={p.iconeBotao} />
-            Quero conversar
-          </Botao>
-        </div>
-      </PageHero>
+      <section className={estilos.hero}>
+        <Container>
+          <p className={estilos.rotulo}>Soluções</p>
+          <h1 className={estilos.titulo}>
+            Contabilidade para o dia a dia e para a estratégia do seu negócio.
+          </h1>
+          <div className={estilos.acoes}>
+            <Botao
+              href={whatsappLink("Olá! Quero entender qual solução a Greentax recomenda para a minha empresa.")}
+              externo
+              variante="claro"
+              porte="lg"
+            >
+              <Whatsapp className={p.iconeBotao} />
+              Quero conversar
+            </Botao>
+          </div>
+        </Container>
+      </section>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
+        <Section className={estilos.deslizaEsquerda}>
           <CabecalhoSecao
             rotulo="Nossos serviços"
             titulo="Duas frentes para cuidar da sua empresa"

@@ -22,6 +22,18 @@
   }
 }
 
+@keyframes deslizaEsquerda {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 [data-visivel="false"] .surgirTexto :is(h1, h2, h3, p, li, span, a, button),
 [data-visivel="false"] .apareceEsquerda :is(h1, h2, h3, p, li, span, a, button) {
   opacity: 0;
@@ -35,10 +47,64 @@
   animation: apareceEsquerda 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.heroAcoes {
+.deslizaEsquerda {
+  overflow: hidden;
+}
+
+[data-visivel="false"] .deslizaEsquerda .servico {
+  opacity: 0;
+}
+
+[data-visivel="true"] .deslizaEsquerda .servico {
+  animation: deslizaEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-visivel="true"] .deslizaEsquerda .servico + .servico {
+  animation-delay: 260ms;
+}
+
+.hero {
+  position: relative;
+  background: var(--verde-900);
+  color: #fff;
+  text-align: center;
+  padding-block: clamp(5rem, 3rem + 6vw, 8rem);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 64px));
+}
+
+.rotulo {
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-100);
+}
+
+.rotulo::before,
+.rotulo::after {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background: var(--verde-400);
+}
+
+.titulo {
+  margin-top: 28px;
+  margin-inline: auto;
+  max-width: 22ch;
+  color: #fff;
+  font-size: clamp(2.1rem, 1.3rem + 2vw, 3rem);
+  text-wrap: balance;
+}
+
+.acoes {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
 }
 
 /* --- vitrine de serviços (estilo Alexi: imagem + texto lado a lado) --- */

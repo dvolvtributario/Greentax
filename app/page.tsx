@@ -88,7 +88,7 @@ export default async function Home() {
       </Revelar>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
+        <Section className={`${estilos.surgirTexto} ${estilos.deslizaEsquerda}`}>
           <CabecalhoSecao
             rotulo="Soluções"
             titulo="O que a Greentax pode assumir na sua empresa"

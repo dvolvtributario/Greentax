@@ -8,12 +8,14 @@ import ChatbotContabilidade from "./chatbotcontabilidade";
 import { site } from "@/lib/site";
 
 
-const inter = localFont({
-  src: "./fonts/inter-variable-latin.woff2",
-  weight: "100 900",
-  style: "normal",
+const generalSans = localFont({
+  src: [
+    { path: "./fonts/general-sans/variable-latin-normal.woff2", style: "normal" },
+    { path: "./fonts/general-sans/variable-latin-italic.woff2", style: "italic" },
+  ],
+  weight: "200 700",
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-general-sans",
   fallback: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
 });
 
@@ -86,7 +88,7 @@ const dadosEstruturados = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${generalSans.variable} ${fraunces.variable}`}>
       <body>
         <script
           type="application/ld+json"

@@ -114,7 +114,7 @@ export default function QuemSomos() {
       </Revelar>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
+        <Section className={`${estilos.surgirTexto} ${estilos.deslizaEsquerda}`}>
           <CabecalhoSecao
             rotulo="Pilares"
             titulo="Quatro ideias que orientam nosso trabalho"
@@ -172,9 +172,14 @@ export default function QuemSomos() {
         </Section>
       </Revelar>
 
-      {/* Arco branco espelha a curva de entrada e fecha a faixa cinza do Time. */}
+      {/* Arco cinza espelha a curva de entrada: o domo desce para fora, fechando a faixa do Time. */}
       <Revelar>
-        <ShapeDivider forma="arco" cor="var(--papel)" fundo="var(--papel-2)" />
+        <ShapeDivider
+          forma="arco"
+          cor="var(--papel-2)"
+          fundo="var(--papel)"
+          espelhado
+        />
       </Revelar>
 
       <Revelar>

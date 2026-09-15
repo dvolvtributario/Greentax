@@ -20,6 +20,7 @@ export default function Contato() {
         rotulo="Contato"
         titulo="Conte o que está acontecendo na sua empresa."
         lead=""
+        cobertura
         imagem={{
           src: "/marca/hero-contato.jpg",
           alt: "",

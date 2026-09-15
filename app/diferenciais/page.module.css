@@ -1,40 +1,65 @@
-.item {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 8px 24px;
-  padding-block: 32px;
+/* --- seção dos diferenciais --- */
+
+.principal {
+  padding-top: clamp(6rem, 4rem + 8vw, 10rem);
+  padding-bottom: var(--secao-y);
 }
 
-@media (min-width: 900px) {
-  .item {
-    grid-template-columns: 88px 5fr 7fr;
-    gap: 48px;
-    align-items: baseline;
+/* --- cards de diferenciais --- */
+
+.grade {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 700px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
+
+  .diferencial:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.diferencial {
+  display: grid;
+  gap: 8px;
+  padding: 4px 42px;
+  background: none;
 }
 
 .numero {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  letter-spacing: 0.1em;
   color: var(--verde-400);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
 }
 
 .titulo {
-  font-size: 1.375rem;
+  font-size: 1.675rem;
 }
 
 .descricao {
-  grid-column: 2 / -1;
   color: var(--tinta-500);
-  font-size: var(--fs-pequeno);
+  font-size: 1.05rem;
+  line-height: 1.95;
+  max-width: 52ch;
 }
 
-@media (min-width: 900px) {
-  .descricao {
-    grid-column: auto;
-    font-size: var(--fs-corpo);
-  }
+/* --- onda em camadas --- */
+
+.onda {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.onda svg {
+  display: block;
+  width: 100%;
+  height: clamp(140px, 18vw, 260px);
 }

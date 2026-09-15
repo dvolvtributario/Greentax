@@ -20,6 +20,34 @@
   pointer-events: none;
 }
 
+.heroCobertura .imagemWrap {
+  inset: 0;
+}
+
+.heroCobertura .imagem {
+  object-position: 50% 30%;
+}
+
+.heroCobertura .rotulo {
+  justify-content: flex-end;
+}
+
+.heroCobertura .grade {
+  grid-template-columns: 1fr;
+  text-align: right;
+}
+
+.heroCobertura :is(.titulo, .lead) {
+  margin-inline-start: auto;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.heroCobertura .lead {
+  border-left: 0;
+  padding-left: 0;
+}
+
 .imagemWrap {
   position: absolute;
   inset: 0 0 0 42%;

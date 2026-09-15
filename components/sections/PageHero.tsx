@@ -7,6 +7,7 @@ export function PageHero({
   titulo,
   lead,
   imagem,
+  cobertura = false,
   children,
 }: {
   rotulo: string;
@@ -16,10 +17,19 @@ export function PageHero({
     src: string;
     alt: string;
   };
+  cobertura?: boolean;
   children?: React.ReactNode;
 }) {
   return (
-    <section className={`${estilos.hero} ${imagem ? estilos.heroComImagem : ""}`}>
+    <section
+      className={`${estilos.hero} ${
+        imagem
+          ? cobertura
+            ? estilos.heroCobertura
+            : estilos.heroComImagem
+          : ""
+      }`}
+    >
       {imagem ? (
         <div className={estilos.imagemWrap}>
           <Image
@@ -28,7 +38,7 @@ export function PageHero({
             alt={imagem.alt}
             fill
             priority
-            sizes="(max-width: 939px) 100vw, 58vw"
+            sizes={cobertura ? "100vw" : "(max-width: 939px) 100vw, 58vw"}
           />
         </div>
       ) : null}

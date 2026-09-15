@@ -192,7 +192,7 @@ export default function ChatbotContabilidade() {
         position: "fixed",
         bottom: 24,
         right: 24,
-        fontFamily: "'Inter', system-ui, sans-serif",
+        fontFamily: "var(--font-general-sans), 'General Sans', system-ui, sans-serif",
         width: 380,
         maxWidth: "calc(100vw - 32px)",
         background: "#F7F5F0",
