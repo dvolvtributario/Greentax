@@ -37,6 +37,21 @@
 
 .grade {
   margin-top: 40px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .vazio {

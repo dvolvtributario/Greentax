@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
-import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
+import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Pendente } from "@/components/ui/Pendente";
 import { CATEGORIAS, listarArtigos } from "@/lib/blog";
 import estilos from "./page.module.css";
@@ -51,11 +51,11 @@ export default async function Blog({ searchParams }: PageProps<"/blog">) {
         </nav>
 
         {artigos.length > 0 ? (
-          <Grade colunas={3} className={estilos.grade}>
+          <div className={estilos.grade}>
             {artigos.map((artigo) => (
               <CartaoArtigo key={artigo.slug} artigo={artigo} />
             ))}
-          </Grade>
+          </div>
         ) : (
           <p className={estilos.vazio}>Nenhum artigo nesta categoria ainda.</p>
         )}

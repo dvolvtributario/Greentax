@@ -27,7 +27,7 @@
   --erro: #a4261d;
 
   /* --- Tipografia --- */
-  --fonte: var(--font-general-sans), "General Sans", "Segoe UI", Roboto, Helvetica, Arial,
+  --fonte: var(--font-atkinson), "Atkinson Hyperlegible", "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
 
   --fs-display: clamp(2.75rem, 1.6rem + 3.4vw, 4.25rem);
@@ -106,7 +106,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-family: var(--font-titulo), "Montserrat", "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--tinta-900);
   font-weight: 600;
   letter-spacing: var(--ls-titulo);
@@ -244,6 +244,38 @@ code {
 
 .chatbotPainelEntrada {
   animation: chatbotPainelEntrada 320ms ease-out both;
+}
+
+@keyframes chatbotBalaoEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chatbotBalaoEntrada {
+  animation: chatbotBalaoEntrada 300ms ease-out both;
+}
+
+@keyframes chatbotOpcoesEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chatbotOpcoesEntrada {
+  animation: chatbotOpcoesEntrada 260ms ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {

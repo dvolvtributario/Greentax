@@ -89,6 +89,85 @@
   background: var(--verde-700);
 }
 
+/* --- drop-down de Diferenciais --- */
+
+.itemDropdown {
+  position: relative;
+}
+
+.linkComSeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.seta {
+  color: var(--tinta-500);
+  transition: transform 200ms ease;
+}
+
+.itemDropdown:hover .seta,
+.itemDropdown:focus-within .seta {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 50%;
+  z-index: 60;
+  width: 260px;
+  padding: 8px;
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  border-top: 2px solid var(--verde-700);
+  box-shadow: 0 20px 44px -20px rgba(15, 43, 29, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(6px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms;
+}
+
+.itemDropdown:hover .dropdown,
+.itemDropdown:focus-within .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownItem {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  color: inherit;
+  transition: background-color 120ms linear;
+}
+
+.dropdownItem + .dropdownItem {
+  border-top: 1px solid var(--filete);
+}
+
+.dropdownItem:hover {
+  background: var(--verde-050);
+}
+
+.dropdownTag {
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--verde-700);
+}
+
+.dropdownTitulo {
+  font-size: var(--fs-pequeno);
+  font-weight: 600;
+  color: var(--tinta-900);
+}
+
 /* --- ações --- */
 
 .acoes {

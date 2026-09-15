@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Fraunces } from "next/font/google";
+import { Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -8,21 +8,27 @@ import ChatbotContabilidade from "./chatbotcontabilidade";
 import { site } from "@/lib/site";
 
 
-const generalSans = localFont({
-  src: [
-    { path: "./fonts/general-sans/variable-latin-normal.woff2", style: "normal" },
-    { path: "./fonts/general-sans/variable-latin-italic.woff2", style: "italic" },
-  ],
-  weight: "200 700",
+const atkinson = Atkinson_Hyperlegible({
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
-  variable: "--font-general-sans",
-  fallback: ["ui-sans-serif", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
+  variable: "--font-atkinson",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: [
+    {
+      path: "./fonts/gotham/montserrat-variable-wght-normal.ttf",
+      style: "normal",
+    },
+    {
+      path: "./fonts/gotham/montserrat-variable-wght-italic.ttf",
+      style: "italic",
+    },
+  ],
+  weight: "100 900",
   display: "swap",
-  variable: "--font-serif",
+  variable: "--font-titulo",
 });
 
 export const metadata: Metadata = {
@@ -88,7 +94,7 @@ const dadosEstruturados = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${generalSans.variable} ${fraunces.variable}`}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${atkinson.variable} ${montserrat.variable}`}>
       <body>
         <script
           type="application/ld+json"

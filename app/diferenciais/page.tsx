@@ -3,6 +3,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { Pendente } from "@/components/ui/Pendente";
+import { Revelar } from "@/components/ui/Revelar";
 import { diferenciais } from "@/lib/conteudo";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
@@ -24,17 +25,19 @@ export default function Diferenciais() {
       />
 
       <section className={estilos.principal}>
-        <Container>
-          <ol className={estilos.grade}>
-            {diferenciais.map((item, i) => (
-              <li key={item.titulo} className={estilos.diferencial}>
-                <span className={estilos.numero}>{String(i + 1).padStart(2, "0")}</span>
-                <h2 className={estilos.titulo}>{item.titulo}</h2>
-                <p className={estilos.descricao}>{item.descricao}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
+        <Revelar className={estilos.deslizaGrade}>
+          <Container>
+            <ol className={estilos.grade}>
+              {diferenciais.map((item, i) => (
+                <li key={item.titulo} className={estilos.diferencial}>
+                  <span className={estilos.numero}>{String(i + 1).padStart(2, "0")}</span>
+                  <h2 className={estilos.titulo}>{item.titulo}</h2>
+                  <p className={estilos.descricao}>{item.descricao}</p>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </Revelar>
       </section>
 
       <div className={estilos.onda} aria-hidden="true">

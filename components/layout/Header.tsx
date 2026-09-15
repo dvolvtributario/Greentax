@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { navegacao, whatsappLink } from "@/lib/site";
 import { Botao } from "@/components/ui/Button";
 import { Fechar, Menu, Seta } from "@/components/ui/Icons";
+import { ChevronDown } from "lucide-react";
 import estilos from "./Header.module.css";
 
 export function Header() {
@@ -42,17 +43,56 @@ export function Header() {
 
         <nav aria-label="Principal" className={estilos.nav}>
           <ul className={estilos.lista}>
-            {navegacao.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={estilos.link}
-                  aria-current={ativo(item.href) ? "page" : undefined}
-                >
-                  {item.titulo}
-                </Link>
-              </li>
-            ))}
+            {navegacao.map((item) => {
+              if (item.href === "/solucoes") {
+                return (
+                  <li key={item.href} className={estilos.itemDropdown}>
+                    <Link
+                      href={item.href}
+                      className={`${estilos.link} ${estilos.linkComSeta}`}
+                      aria-current={ativo(item.href) ? "page" : undefined}
+                      onClick={(e) => e.currentTarget.blur()}
+                    >
+                      {item.titulo}
+                      <ChevronDown size={14} className={estilos.seta} aria-hidden="true" />
+                    </Link>
+                    <div className={estilos.dropdown}>
+                      <Link
+                        href="/solucoes/contabil-fiscal-trabalhista"
+                        className={estilos.dropdownItem}
+                        onClick={(e) => e.currentTarget.blur()}
+                      >
+                        <span className={estilos.dropdownTag}>A rotina da empresa</span>
+                        <span className={estilos.dropdownTitulo}>
+                          Contábil, Fiscal e Trabalhista
+                        </span>
+                      </Link>
+                      <Link
+                        href="/solucoes/consultoria-estrategica"
+                        className={estilos.dropdownItem}
+                        onClick={(e) => e.currentTarget.blur()}
+                      >
+                        <span className={estilos.dropdownTag}>Sob demanda</span>
+                        <span className={estilos.dropdownTitulo}>
+                          Consultoria Estratégica
+                        </span>
+                      </Link>
+                    </div>
+                  </li>
+                );
+              }
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={estilos.link}
+                    aria-current={ativo(item.href) ? "page" : undefined}
+                  >
+                    {item.titulo}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

@@ -93,6 +93,7 @@ export default function ChatbotContabilidade() {
 
   const currentKey = path[path.length - 1];
   const currentNode = FLOW[currentKey];
+  const viewKey = path.join(">");
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -192,7 +193,7 @@ export default function ChatbotContabilidade() {
         position: "fixed",
         bottom: 24,
         right: 24,
-        fontFamily: "var(--font-general-sans), 'General Sans', system-ui, sans-serif",
+        fontFamily: "var(--font-atkinson), 'Atkinson Hyperlegible', system-ui, sans-serif",
         width: 380,
         maxWidth: "calc(100vw - 32px)",
         background: "#F7F5F0",
@@ -233,7 +234,7 @@ export default function ChatbotContabilidade() {
           </div>
           <div
             style={{
-              fontFamily: "'Fraunces', Georgia, serif",
+              fontFamily: "var(--font-titulo), 'Montserrat', Georgia, serif",
               fontSize: 16,
               lineHeight: 1.1,
             }}
@@ -270,19 +271,30 @@ export default function ChatbotContabilidade() {
           gap: 14,
         }}
       >
-        {path.map((key, i) => (
-          <div key={i} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {i > 0 && (
-              <div style={{ alignSelf: "flex-end" }}>
-                <UserBubble text={FLOW[path[i - 1]].options.find((o) => o.next === key)?.label} />
-              </div>
-            )}
-            <BotBubble text={FLOW[key].text} />
-          </div>
-        ))}
+        {path.map((key, i) => {
+          const ultimo = i === path.length - 1;
+          return (
+            <div
+              key={ultimo ? viewKey : i}
+              className={ultimo ? "chatbotBalaoEntrada" : undefined}
+              style={{ display: "flex", flexDirection: "column", gap: 8 }}
+            >
+              {i > 0 && (
+                <div style={{ alignSelf: "flex-end" }}>
+                  <UserBubble text={FLOW[path[i - 1]].options.find((o) => o.next === key)?.label} />
+                </div>
+              )}
+              <BotBubble text={FLOW[key].text} />
+            </div>
+          );
+        })}
 
         {!isLeaf(currentKey) ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 4 }}>
+          <div
+            key={viewKey}
+            className="chatbotOpcoesEntrada"
+            style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 4 }}
+          >
             {currentNode.options.map((opt) => (
               <button
                 key={opt.next}

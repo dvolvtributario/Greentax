@@ -13,7 +13,7 @@
 @keyframes apareceEsquerda {
   from {
     opacity: 0;
-    transform: translateX(-56px);
+    transform: translateX(-100vw);
   }
 
   to {
@@ -44,7 +44,11 @@
 }
 
 [data-visivel="true"] .apareceEsquerda :is(h1, h2, h3, p, li, span, a, button) {
-  animation: apareceEsquerda 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: apareceEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.apareceEsquerda {
+  overflow: hidden;
 }
 
 .deslizaEsquerda {
