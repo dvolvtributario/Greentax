@@ -1,7 +1,7 @@
 /* --- seção dos diferenciais --- */
 
 .principal {
-  padding-top: clamp(6rem, 4rem + 8vw, 10rem);
+  padding-top: var(--secao-y);
   padding-bottom: var(--secao-y);
 }
 
@@ -109,7 +109,8 @@
 
 /* --- onda em camadas --- */
 
-.onda {
+.onda,
+.ondaInvertida {
   display: block;
   width: 100%;
   line-height: 0;
@@ -120,4 +121,11 @@
   display: block;
   width: 100%;
   height: clamp(140px, 18vw, 260px);
+}
+
+.ondaInvertida svg {
+  display: block;
+  width: 100%;
+  height: clamp(140px, 18vw, 260px);
+  transform: scale(-1, -1);
 }

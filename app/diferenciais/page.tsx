@@ -24,6 +24,27 @@ export default function Diferenciais() {
         lead="Prazo, resposta, conferência e conversa com o cliente fazem parte do serviço tanto quanto a entrega das obrigações."
       />
 
+      <div className={estilos.ondaInvertida} aria-hidden="true">
+        <svg
+          viewBox="0 0 1440 600"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M 0 135 C 280 230, 650 220, 930 140 C 1130 90, 1300 20, 1440 10 L 1440 600 L 0 600 Z"
+            fill="var(--verde-500)"
+          />
+          <path
+            d="M 0 160 C 280 255, 650 245, 930 165 C 1130 115, 1300 45, 1440 40 L 1440 600 L 0 600 Z"
+            fill="var(--verde-700)"
+          />
+          <path
+            d="M 0 185 C 280 280, 650 270, 930 190 C 1130 140, 1300 70, 1440 70 L 1440 600 L 0 600 Z"
+            fill="var(--verde-900)"
+          />
+        </svg>
+      </div>
+
       <section className={estilos.principal}>
         <Revelar className={estilos.deslizaGrade}>
           <Container>

@@ -101,11 +101,11 @@
     url("/marca/hero-gestao.jpg") right center / cover no-repeat;
 }
 
-.rotulo {
+.hero .rotulo {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: var(--fs-rotulo);
+  font-size: 0.950rem;
   font-weight: 700;
   letter-spacing: var(--ls-rotulo);
   text-transform: uppercase;
