@@ -156,7 +156,6 @@ export function ProvaSocial({
               <div className={estilos.carrosselCena}>
                 <div className={estilos.carrosselRastro}>
                   {[...logos, ...logos].map((logo, i) => {
-                    const esticada = logo.src.includes("TALITA FRANCO");
                     return (
                       <div key={`${logo.src}-${i}`} className={estilos.cliente}>
                         <Image
@@ -164,12 +163,8 @@ export function ProvaSocial({
                           alt={logo.alt}
                           width={280}
                           height={160}
-                          className={[
-                            estilos.clienteLogo,
-                            esticada ? estilos.clienteLogoEsticada : "",
-                          ]
-                            .filter(Boolean)
-                            .join(" ")}
+                          loading="eager"
+                          className={estilos.clienteLogo}
                         />
                       </div>
                     );

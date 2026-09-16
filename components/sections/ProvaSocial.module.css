@@ -104,7 +104,7 @@
   position: relative;
   margin-top: 20px;
   overflow: hidden;
-  padding-block: 28px;
+  padding-block: clamp(36px, 2rem + 2vw, 64px);
   perspective: 900px;
   perspective-origin: 50% 30%;
   mask-image: linear-gradient(
@@ -136,6 +136,7 @@
   width: max-content;
   animation: rolarLogos 45s linear infinite;
   transform-style: preserve-3d;
+  will-change: transform;
 }
 
 @keyframes rolarLogos {
@@ -166,8 +167,6 @@
   transition:
     transform 260ms ease,
     box-shadow 260ms ease;
-  transform-style: preserve-3d;
-  transform: translateZ(0);
 }
 
 .cliente::before {
@@ -182,54 +181,28 @@
     rgba(15, 43, 29, 0.35),
     transparent 72%
   );
-  filter: blur(7px);
-  transform: translateZ(-16px);
   pointer-events: none;
   z-index: -1;
 }
 
-/* Profundidade escalonada: cada card flutua em um plano diferente,
-   criando parallax quando a esteira rola. */
-.cliente:nth-child(4n + 1) {
-  transform: translateZ(18px);
-}
-
-.cliente:nth-child(4n + 2) {
-  transform: translateZ(48px) scale(1.05);
-}
-
-.cliente:nth-child(4n + 3) {
-  transform: translateZ(6px);
-}
-
-.cliente:nth-child(4n + 4) {
-  transform: translateZ(34px) scale(1.02);
-}
-
 .cliente:hover {
-  transform: rotateY(-18deg) translateY(-14px) translateZ(60px)
-    scale(1.06);
+  transform: rotateX(-16deg) translateZ(96px) scale(1.1);
+  z-index: 2;
   box-shadow:
     0 2px 8px rgba(15, 43, 29, 0.12),
     0 48px 80px -20px rgba(15, 43, 29, 0.45);
-  z-index: 1;
 }
 
 .clienteLogo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
   opacity: 0.9;
   filter: saturate(0.92);
   transition:
     opacity 220ms ease,
     filter 220ms ease,
     transform 220ms ease;
-}
-
-.clienteLogoEsticada {
-  object-fit: fill;
-  padding-inline: 2px;
 }
 
 .cliente:hover .clienteLogo {
@@ -265,5 +238,9 @@
 @media (prefers-reduced-motion: reduce) {
   .valorVisivel {
     animation: none;
+  }
+
+  .cliente:hover {
+    transform: rotateX(-16deg) translateZ(48px) scale(1.1);
   }
 }
