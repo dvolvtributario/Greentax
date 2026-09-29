@@ -218,7 +218,7 @@ grep -rn "<Pendente" app components
 | 10 | **Mapa** de localização (depende do CEP) | `/contato` |
 | 11 | **Materiais ricos** para download + captura de e-mail | `/blog` |
 | 12 | **Política de Privacidade** — revisão jurídica, DPO, retenção | `/politica-de-privacidade` |
-| 13 | **Banner de cookies** — depende de decidir as ferramentas de análise | global |
+| 13 | ~~**Banner de cookies**~~ — **resolvido**: banner de 2 camadas no ar (ver “Decisões técnicas”) | global |
 | 14 | **Domínio definitivo** | `lib/site.ts` → `site.url` |
 | 15 | **Linha do tempo** da empresa (opcional) | `/quem-somos` |
 
@@ -246,10 +246,32 @@ pode ser compartilhado.
 **Dados estruturados.** `AccountingService` (schema.org) no layout raiz e
 `BlogPosting` em cada artigo, para busca local em Araçatuba/SP.
 
-**Sem banner de cookies ainda.** O site hoje não carrega nenhum script de
-terceiros — nem Analytics, nem Pixel, nem iframe do Maps. Enquanto for assim,
-não há cookie que exija consentimento. O banner passa a ser obrigatório no
-momento em que qualquer uma dessas ferramentas entrar.
+**Banner de cookies no ar.** O consentimento é gerado por
+`components/cookies/BannerCookies` — camada 1 fixa no rodapé com “Aceitar
+todos”, “Rejeitar não necessários” (mesmo destaque) e “Personalizar”, e camada 2
+com um toggle por categoria (necessários travados ativos, análise e marketing
+desligados por padrão). A escolha fica no cookie `greentax_consent` (12 meses,
+`SameSite=Lax`, legível pelo cliente) e é lida pelo hook `useConsentimento`. A
+prova vai ao servidor pela server action `app/consentimento/actions.ts`: sempre
+no log do servidor e, quando `CONSENT_WEBHOOK_URL` estiver definida, também num
+webhook — a falha do webhook nunca bloqueia o visitante. Categorias e scripts por
+categoria vivem em `lib/cookies.ts`: as listas de análise e marketing estão
+vazias, então nenhum script de terceiro é injetado; ao ligar o GA4 ou o Pixel,
+basta lançar o script na lista da categoria certa. Aumentar `VERSÃO_POLITICA`
+faz o banner reaparecer para todo mundo. A revogação fica no rodapé
+(“Preferências de cookies”) e a tabela oficial de cookies está na §7 da política
+de privacidade. Único terceiro embarcado: o iframe do Google Maps em `/contato`,
+nomeado na mesma seção.
+
+**Painel administrativo é local e nunca vai ao ar.** `app/admin/` está no
+`.gitignore`, então `/admin` e `/admin/login` não existem no deploy — a rota vira
+404 lá. As envs `ADMIN_SENHA` e `ADMIN_SESSION_SECRET` só existem no
+`.env.local` (sem elas a checagem falha fechado: tudo redireciona pro login). O
+fluxo de publicação é: texto escrito no painel local → `content/blog/<slug>.mdx`
+e `public/blog/imagens/*` versionados → build/deploy. `proxy.ts`, a sessão em
+`greentax_admin` (8h, `httpOnly`) e o `disallow: /admin` do `robots.ts`
+permanecem como trava extra caso o painel seja ligado em produção — por isso
+esse cookie não aparece na tabela da §7 da política.
 
 **Acessibilidade.** Skip link, foco visível, `aria-current` na navegação,
 `aria-invalid` e mensagens de erro associadas nos campos, `prefers-reduced-motion`

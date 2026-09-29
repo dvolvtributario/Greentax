@@ -94,11 +94,65 @@ export default function PoliticaDePrivacidade() {
             {site.contato.email ? ` ou pelo e-mail ${site.contato.email}` : ""}.
           </p>
 
-          <h2>7. Cookies</h2>
+          <h2 id="cookies">7. Cookies</h2>
           <p>
-            Utilizamos cookies estritamente necessários ao funcionamento do site.
-            Cookies de análise ou de publicidade só são ativados mediante o seu
-            consentimento, manifestado no aviso exibido no primeiro acesso.
+            Este site usa cookies próprios, estritamente necessários ao seu
+            funcionamento. Cookies de análise ou de publicidade só são ativados
+            mediante o seu consentimento, manifestado no aviso exibido no primeiro
+            acesso. Você pode revogar essa escolha a qualquer momento, sem custo,
+            pelo link <strong>“Preferências de cookies”</strong> no rodapé.
+          </p>
+
+          <div className={estilos.tabelaWrap}>
+            <table className={estilos.tabela}>
+              <thead>
+                <tr>
+                  <th scope="col">Cookie</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Finalidade</th>
+                  <th scope="col">Duração</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <code>greentax_consent</code>
+                  </td>
+                  <td>Necessário</td>
+                  <td>
+                    Registra a sua escolha no aviso de cookies e a versão da lista
+                    vigente.
+                  </td>
+                  <td>12 meses</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            <strong>Categorias de consentimento.</strong> Além dos necessários,
+            há duas categorias que só são ativadas com o seu aceite:{" "}
+            <strong>Análise</strong> (medição agregada de uso do site) e{" "}
+            <strong>Marketing</strong> (publicidade e remarketing). Nenhuma
+            ferramenta dessas está ativa no momento; quando uma delas for
+            adicionada, ela passa a constar nesta tabela e só será carregada
+            depois do seu consentimento.
+          </p>
+          <p>
+            <strong>Conteúdo de terceiros.</strong> A página de contato exibe um
+            mapa do Google Maps incorporado. Ao carregar esse conteúdo, o Google
+            pode instalar cookies sob o domínio dele e tratar dados como o seu
+            endereço IP, conforme a política de privacidade do Google. Nenhum
+            outro conteúdo de terceiros é incorporado a este site.
+          </p>
+          <p>
+            <strong>Como revogar.</strong> Abra “Preferências de cookies” no
+            rodapé, ajuste as categorias e salve. A retirada do consentimento é
+            gratuita e imediata e não afeta a licitude do tratamento feito antes
+            dela, nos termos do art. 8º, § 5º, da LGPD.
+          </p>
+          <p className={estilos.atualizacao}>
+            Última atualização desta seção: 29 de setembro de 2026.
           </p>
 
           <h2>8. Segurança</h2>
@@ -126,14 +180,11 @@ export default function PoliticaDePrivacidade() {
               armazenados.
             </li>
             <li>
-              <strong>Ferramentas de terceiros:</strong> se o site usará Google
-              Analytics, Meta Pixel ou similares, elas precisam ser nomeadas aqui e o
-              aviso de cookies precisa ser implementado.
-            </li>
-            <li>
-              <strong>Aviso de cookies:</strong> o item 10 do briefing pede o banner
-              com consentimento explícito — ainda não construído, porque depende da
-              decisão sobre as ferramentas acima.
+              <strong>Ferramentas de terceiros:</strong> o mapa do Google Maps já
+              está nomeado na seção 7. Se o site passar a usar Google Analytics,
+              Meta Pixel ou similares, elas precisam ser nomeadas aqui, lançadas
+              em <code>lib/cookies.ts</code> e — como o banner já está no ar —
+              passam a exigir aceite prévio do visitante.
             </li>
             <li>
               <strong>Revisão jurídica</strong> do texto completo.

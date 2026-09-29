@@ -166,10 +166,24 @@
 
 .legalLinks {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   flex: none;
 }
 
 .legalLinks a:hover {
+  color: #fff;
+}
+
+.legalLinks button {
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.legalLinks button:hover {
   color: #fff;
 }

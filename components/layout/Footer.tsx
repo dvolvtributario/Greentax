@@ -4,6 +4,7 @@ import { enderecoLinhaUnica, navegacao, site, whatsappLink } from "@/lib/site";
 import { Botao } from "@/components/ui/Button";
 import { Envelope, Escudo, Instagram, Local, Seta, Whatsapp } from "@/components/ui/Icons";
 import { Pendente } from "@/components/ui/Pendente";
+import { BotaoPreferencias } from "@/components/cookies/BotaoPreferencias";
 import estilos from "./Footer.module.css";
 
 export function Footer() {
@@ -138,6 +139,7 @@ export function Footer() {
           </p>
           <div className={estilos.legalLinks}>
             <Link href="/politica-de-privacidade">Política de Privacidade</Link>
+            <BotaoPreferencias />
             <span>© {ano}</span>
           </div>
         </div>

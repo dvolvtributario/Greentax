@@ -34,6 +34,7 @@
   font-size: 1.25rem;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--filete);
+  scroll-margin-top: 96px;
 }
 
 .texto h2:first-child {
@@ -54,4 +55,52 @@
 
 .texto li + li {
   margin-top: 6px;
+}
+
+.tabelaWrap {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-pequeno);
+}
+
+.tabela th,
+.tabela td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--filete);
+}
+
+.tabela th {
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--verde-700);
+  white-space: nowrap;
+}
+
+.tabela td {
+  color: var(--tinta-600);
+  line-height: 1.6;
+}
+
+.tabela tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela code {
+  font-size: var(--fs-mini);
+  color: var(--tinta-800);
+  white-space: nowrap;
+}
+
+.texto .atualizacao {
+  font-size: var(--fs-mini);
+  color: var(--tinta-500);
 }

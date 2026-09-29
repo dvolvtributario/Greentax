@@ -17,7 +17,7 @@ export const site = {
 
   endereco: {
     logradouro: "Avenida Brasília, 2121",
-    complemento: "Edifício New York Tower, 13º andar — Sala 1315",
+    complemento: "Edifício New York Tower, 13º andar — Sala 1314",
     bairro: "Jardim Nova Yorque",
     cidade: "Araçatuba",
     estado: "SP",

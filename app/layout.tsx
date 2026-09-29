@@ -4,6 +4,8 @@ import { Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BannerCookies } from "@/components/cookies/BannerCookies";
+import { ScriptsConsentimento } from "@/components/cookies/ScriptsConsentimento";
 import ChatbotContabilidade from "./chatbotcontabilidade";
 import { site } from "@/lib/site";
 
@@ -113,6 +115,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <ChatbotContabilidade />
+        <BannerCookies />
+        <ScriptsConsentimento />
       </body>
     </html>
   );
