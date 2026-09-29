@@ -116,10 +116,6 @@ export default function ConsultoriaEstrategica() {
         rotulo="Consultoria Estratégica"
         titulo="Quando surge uma questão que pede um olhar dedicado."
         lead="Cada situação tributária tem um caminho próprio. Antes de decidir qualquer coisa, entendemos o caso, os prazos e o que você espera do resultado."
-        imagem={{
-          src: "/marca/hero-consultoria.jpg",
-          alt: "",
-        }}
       >
         <div className={estilos.heroAcoes}>
           <Botao

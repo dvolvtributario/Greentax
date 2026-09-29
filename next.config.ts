@@ -4,6 +4,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Permite que arquivos .mdx sejam tratados como páginas/conteúdo.
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  images: {
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    minimumCacheTTL: 86400,
+  },
 };
 
 const withMDX = createMDX({
