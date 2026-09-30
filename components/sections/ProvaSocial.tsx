@@ -78,14 +78,6 @@ function Contador({ valor, atraso = 0 }: { valor: number; atraso?: number }) {
   );
 }
 
-/**
- * Indicadores numéricos + logos de clientes.
- *
- * O briefing é explícito: "os números precisam ser fornecidos/validados pela
- * Greentax antes da publicação — não usar dados fictícios". Enquanto
- * `site.indicadores` estiver com `null`, a seção mostra a lacuna em vez de
- * inventar números.
- */
 export function ProvaSocial({
   logos = [],
   className,

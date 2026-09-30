@@ -8,11 +8,6 @@ import {
   type Preferencias,
 } from "@/lib/cookies";
 
-/**
- * `undefined` → ainda no servidor ou antes da hidratação (nada é renderizado).
- * `null`      → visitante ainda não escolheu.
- * objeto      → escolha gravada no cookie.
- */
 export type PreferenciasOuIndefinido = Preferencias | null | undefined;
 
 let cookieLido: string | undefined;
@@ -46,10 +41,6 @@ function obterSnapshotNoServidor(): PreferenciasOuIndefinido {
   return undefined;
 }
 
-/**
- * `document.cookie` não emite eventos, então o próprio banner avisa quando
- * grava uma escolha e o store é relido.
- */
 function assinar(aoAtualizar: () => void) {
   window.addEventListener(EVENTO_CONSENTIMENTO, aoAtualizar);
   return () => window.removeEventListener(EVENTO_CONSENTIMENTO, aoAtualizar);

@@ -68,13 +68,6 @@ export const CATEGORIAS: CategoriaInfo[] = [
   },
 ];
 
-/**
- * Scripts de terceiros por categoria. Enquanto as listas estiverem
- * vazias, nenhum script externo é injetado — o gate já está pronto.
- *
- * Exemplo ao ativar o GA4:
- *   { id: "ga4", src: "https://www.googletagmanager.com/gtag/js?id=G-XXXX", categoria: "analise" }
- */
 export const scriptsPorCategoria: Record<
   Exclude<Categoria, "necessarios">,
   ScriptConsentido[]

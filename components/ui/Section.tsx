@@ -34,10 +34,6 @@ export function Section({
   );
 }
 
-/**
- * Cabeçalho padrão de seção: filete grosso, rótulo em caixa alta, título.
- * É o elemento que dá o ritmo institucional a todas as páginas.
- */
 export function CabecalhoSecao({
   rotulo,
   titulo,
@@ -66,13 +62,6 @@ export function CabecalhoSecao({
   );
 }
 
-/**
- * Grade com filetes de 1px entre as células — sem cards flutuantes.
- *
- * O número de colunas nunca passa da quantidade de itens: com dois artigos
- * publicados, uma grade de três colunas deixaria uma célula vazia mostrando o
- * cinza do filete.
- */
 export function Grade({
   children,
   colunas = 3,

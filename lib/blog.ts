@@ -1,17 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-/**
- * Blog em arquivos MDX.
- *
- * Cada artigo é um arquivo em `content/blog/<slug>.mdx` que exporta um objeto
- * `artigo` com os metadados. A listagem é montada lendo a pasta — publicar um
- * novo texto é criar o arquivo, sem registrar nada em lugar nenhum.
- *
- * Se um dia a Greentax quiser publicar por painel, esta camada é o único ponto
- * que muda: troca-se a leitura de disco por chamadas ao CMS e as páginas
- * continuam iguais.
- */
 
 export const CATEGORIAS = [
   "Tributário",

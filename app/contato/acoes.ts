@@ -11,7 +11,6 @@ export type DadosContato = {
   servico: string;
   mensagem?: string;
   consentimento: boolean;
-  /** Honeypot: campo invisível que só um robô preenche. */
   website?: string;
 };
 

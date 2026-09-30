@@ -1,11 +1,3 @@
-/**
- * Conjunto de ícones em SVG próprio.
- *
- * Traço fino, terminações retas — coerente com a ausência de cantos
- * arredondados no restante do site. Sem biblioteca externa: são poucos
- * ícones e nenhum deles justifica uma dependência.
- */
-
 type Props = React.SVGProps<SVGSVGElement>;
 
 const base = {

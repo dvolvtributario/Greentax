@@ -2,11 +2,6 @@
 
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 
-/**
- * Dispara a animação de entrada quando o bloco entra no viewport.
- * Marca o container com `data-visivel="true"` para que o CSS da página
- * decida o que animar (surgir no fundo branco, deslizar no fundo cinza).
- */
 export function Revelar({
   children,
   className,
