@@ -1,37 +1,28 @@
-/**
- * Fonte única de verdade sobre cookies do site.
- *
- * Tudo que for adicionado no futuro (GA4, Meta Pixel…) entra em
- * `scriptsPorCategoria` e na tabela da política de privacidade.
- */
-
-export type Categoria = "necessarios" | "analise" | "marketing";
+export type Categoria =
+  | "necessarios"
+  | "analise"
+  | "marketing"
+  | "terceiros";
 
 export type Preferencias = Record<Categoria, boolean>;
 
 export type ScriptConsentido = {
-  /** Identificador único (usado como key do React). */
   id: string;
   src: string;
   categoria: Exclude<Categoria, "necessarios">;
 };
 
-/** Nome do cookie que guarda a escolha do visitante. */
 export const COOKIE_CONSENTIMENTO = "greentax_consent";
 
-/** Validade do consentimento: 12 meses. */
 export const DURACAO_CONSENTIMENTO = 60 * 60 * 24 * 365;
 
-/**
- * Versão da lista de cookies. Ao mudar qualquer coisa nesta página,
- * incremente — todo mundo é consultado de novo.
- */
-export const VERSAO_POLITICA = "2026-09-1";
+export const VERSAO_POLITICA = "2026-09-2";
 
 export const PREFERENCIAS_PADRAO: Preferencias = {
   necessarios: true,
   analise: false,
   marketing: false,
+  terceiros: false,
 };
 
 export type CategoriaInfo = {
@@ -39,7 +30,6 @@ export type CategoriaInfo = {
   titulo: string;
   descricao: string;
   cookies: string[];
-  /** Necessários são sempre ativos e não podem ser desligados. */
   obrigatoria: boolean;
 };
 
@@ -68,6 +58,14 @@ export const CATEGORIAS: CategoriaInfo[] = [
     cookies: [],
     obrigatoria: false,
   },
+  {
+    id: "terceiros",
+    titulo: "Conteúdo de terceiros",
+    descricao:
+      "Conteúdos incorporados de outros sites, como o mapa da Google na página de contato. Sem o seu aceite, o mapa só é carregado se você clicar em carregar.",
+    cookies: ["Definidos pela Google ao carregar o mapa (ex.: NID)"],
+    obrigatoria: false,
+  },
 ];
 
 /**
@@ -83,26 +81,23 @@ export const scriptsPorCategoria: Record<
 > = {
   analise: [],
   marketing: [],
+  terceiros: [],
 };
 
-/**
- * Serializa as preferências para o cookie.
- *
- * O `cookies().set()` do Next já aplica `encodeURIComponent` na gravação e
- * `decodeURIComponent` na leitura — por isso aqui vai o JSON puro: codificar
- * duas vezes faria o banner reaparecer a cada visita.
- */
-export function serializarPreferencias(preferencias: Preferencias): string {
+export function serializarPreferencias(
+  preferencias: Preferencias,
+  origem?: string,
+): string {
   return JSON.stringify({
     v: VERSAO_POLITICA,
     c: preferencias,
     t: new Date().toISOString(),
+    ...(origem ? { o: origem } : {}),
   });
 }
 
 function interpretarValor(valor: string): string {
-  // No servidor o valor chega decodificado; no navegador, via document.cookie,
-  // ele vem codificado. Nos dois casos o parse abaixo precisa encontrar JSON.
+
   if (valor.trimStart().startsWith("{")) return valor;
 
   try {
@@ -112,20 +107,16 @@ function interpretarValor(valor: string): string {
   }
 }
 
-/**
- * Lê o cookie de consentimento. Retorna `null` quando não existe,
- * está corrompido ou foi emitido para uma versão antiga da política —
- * nesses casos o banner volta a aparecer.
- */
 export function analisarPreferencias(
   valor: string | undefined | null,
-): { preferencias: Preferencias; versao: string } | null {
+): { preferencias: Preferencias; versao: string; origem?: string } | null {
   if (!valor) return null;
 
   try {
     const bruto = JSON.parse(interpretarValor(valor)) as {
       v?: unknown;
       c?: Partial<Preferencias>;
+      o?: unknown;
     };
 
     if (bruto.v !== VERSAO_POLITICA) return null;
@@ -136,15 +127,16 @@ export function analisarPreferencias(
         necessarios: true,
         analise: bruto.c.analise === true,
         marketing: bruto.c.marketing === true,
+        terceiros: bruto.c.terceiros === true,
       },
       versao: String(bruto.v),
+      ...(typeof bruto.o === "string" ? { origem: bruto.o } : {}),
     };
   } catch {
     return null;
   }
 }
 
-/** Lê o cookie direto no navegador (client components). */
 export function lerPreferenciasNoNavegador(): Preferencias | null {
   if (typeof document === "undefined") return null;
 
@@ -158,8 +150,6 @@ export function lerPreferenciasNoNavegador(): Preferencias | null {
     ?.preferencias ?? null;
 }
 
-/** Evento disparado quando as preferências mudam (banner → demais componentes). */
 export const EVENTO_CONSENTIMENTO = "greentax:consentimento-alterado";
 
-/** Evento disparado pelo rodapé para reabrir o centro de preferências. */
 export const EVENTO_ABRIR_PREFERENCIAS = "greentax:abrir-preferencias";

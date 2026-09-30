@@ -1,6 +1,3 @@
-/**
- * Fonte única de verdade para os dados institucionais da Greentax.
- */
 export const site = {
   nome: "Greentax",
   razaoSocial: "GREENTAX CONTABILIDADE E ASSESSORIA EMPRESARIAL LTDA",

@@ -249,19 +249,25 @@ pode ser compartilhado.
 **Banner de cookies no ar.** O consentimento é gerado por
 `components/cookies/BannerCookies` — camada 1 fixa no rodapé com “Aceitar
 todos”, “Rejeitar não necessários” (mesmo destaque) e “Personalizar”, e camada 2
-com um toggle por categoria (necessários travados ativos, análise e marketing
-desligados por padrão). A escolha fica no cookie `greentax_consent` (12 meses,
-`SameSite=Lax`, legível pelo cliente) e é lida pelo hook `useConsentimento`. A
-prova vai ao servidor pela server action `app/consentimento/actions.ts`: sempre
-no log do servidor e, quando `CONSENT_WEBHOOK_URL` estiver definida, também num
-webhook — a falha do webhook nunca bloqueia o visitante. Categorias e scripts por
-categoria vivem em `lib/cookies.ts`: as listas de análise e marketing estão
-vazias, então nenhum script de terceiro é injetado; ao ligar o GA4 ou o Pixel,
-basta lançar o script na lista da categoria certa. Aumentar `VERSÃO_POLITICA`
-faz o banner reaparecer para todo mundo. A revogação fica no rodapé
+com um toggle por categoria (necessários travados ativos; análise, marketing e
+conteúdo de terceiros desligados por padrão). A escolha fica no cookie
+`greentax_consent` (12 meses, `SameSite=Lax`, legível pelo cliente), que guarda
+também a origem da decisão (banner/rodapé) e a data, e é lida pelo hook
+`useConsentimento`. A prova vai ao servidor pela server action
+`app/consentimento/actions.ts`: sempre no log do servidor e, quando
+`CONSENT_WEBHOOK_URL` estiver definida, também num webhook — a falha do webhook
+nunca bloqueia o visitante. Categorias e scripts por categoria vivem em
+`lib/cookies.ts`: as listas de análise, marketing e terceiros estão vazias,
+então nenhum script de terceiro é injetado; ao ligar o GA4 ou o Pixel, basta
+lançar o script na lista da categoria certa. Aumentar `VERSAO_POLITICA` faz o
+banner reaparecer para todo mundo. A revogação fica no rodapé
 (“Preferências de cookies”) e a tabela oficial de cookies está na §7 da política
 de privacidade. Único terceiro embarcado: o iframe do Google Maps em `/contato`,
-nomeado na mesma seção.
+nomeado na mesma seção — com gate híbrido em
+`components/sections/MapaGoogle`: se a categoria “terceiros” foi aceita ele
+carrega sozinho; se não (ou se o visitante ainda não escolheu), aparece um
+placeholder com botão, e o clique vale como consentimento pontual (registrado
+no log por `registrarCliqueMapa`). O iframe nunca é renderizado no servidor.
 
 **Painel administrativo é local e nunca vai ao ar.** `app/admin/` está no
 `.gitignore`, então `/admin` e `/admin/login` não existem no deploy — a rota vira

@@ -24,7 +24,7 @@ function interpretar(formData: FormData): Preferencias {
   const operacao = String(formData.get("operacao") ?? "");
 
   if (operacao === "aceitar") {
-    return { necessarios: true, analise: true, marketing: true };
+    return { necessarios: true, analise: true, marketing: true, terceiros: true };
   }
 
   if (operacao === "personalizar") {
@@ -32,15 +32,14 @@ function interpretar(formData: FormData): Preferencias {
       necessarios: true,
       analise: formData.get("analise") === "sim",
       marketing: formData.get("marketing") === "sim",
+      terceiros: formData.get("terceiros") === "sim",
     };
   }
 
-  // "recusar" e qualquer valor inesperado caem aqui: só o necessário.
   return { ...PREFERENCIAS_PADRAO };
 }
 
 async function registrarProva(registro: Record<string, unknown>): Promise<void> {
-  // Prova mínima sempre disponível nas logs do servidor.
   console.log("[consentimento]", JSON.stringify(registro));
 
   const webhook = process.env.CONSENT_WEBHOOK_URL;
@@ -54,7 +53,6 @@ async function registrarProva(registro: Record<string, unknown>): Promise<void> 
       signal: AbortSignal.timeout(5000),
     });
   } catch (erro) {
-    // A prova complementar é opcional: a falha nunca bloqueia o visitante.
     console.error("[consentimento] falha ao enviar prova ao webhook:", erro);
   }
 }
@@ -73,13 +71,17 @@ export async function salvarPreferencias(
   const aceitoEm = new Date().toISOString();
 
   const armario = await cookies();
-  armario.set(COOKIE_CONSENTIMENTO, serializarPreferencias(preferencias), {
-    httpOnly: false,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: DURACAO_CONSENTIMENTO,
-    path: "/",
-  });
+  armario.set(
+    COOKIE_CONSENTIMENTO,
+    serializarPreferencias(preferencias, origem),
+    {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: DURACAO_CONSENTIMENTO,
+      path: "/",
+    },
+  );
 
   await registrarProva({
     versao: VERSAO_POLITICA,
@@ -89,4 +91,20 @@ export async function salvarPreferencias(
   });
 
   return { ok: true, preferencias };
+}
+
+/**
+ * Consentimento pontual do mapa do Google: quando o visitante carrega o
+ * mapa sem ter aceito a categoria "terceiros", o clique é a prova — e a
+ * prova fica, como as demais, no log do servidor.
+ */
+export async function registrarCliqueMapa(): Promise<void> {
+  console.log(
+    "[mapa]",
+    JSON.stringify({
+      evento: "mapa-carregado-sob-demanda",
+      em: new Date().toISOString(),
+      origem: "clique",
+    }),
+  );
 }

@@ -97,10 +97,11 @@ export default function PoliticaDePrivacidade() {
           <h2 id="cookies">7. Cookies</h2>
           <p>
             Este site usa cookies próprios, estritamente necessários ao seu
-            funcionamento. Cookies de análise ou de publicidade só são ativados
-            mediante o seu consentimento, manifestado no aviso exibido no primeiro
-            acesso. Você pode revogar essa escolha a qualquer momento, sem custo,
-            pelo link <strong>“Preferências de cookies”</strong> no rodapé.
+            funcionamento. Cookies de análise, de publicidade ou de conteúdo
+            de terceiros só são ativados mediante o seu consentimento,
+            manifestado no aviso exibido no primeiro acesso. Você pode revogar
+            essa escolha a qualquer momento, sem custo, pelo link{" "}
+            <strong>“Preferências de cookies”</strong> no rodapé.
           </p>
 
           <div className={estilos.tabelaWrap}>
@@ -131,19 +132,24 @@ export default function PoliticaDePrivacidade() {
 
           <p>
             <strong>Categorias de consentimento.</strong> Além dos necessários,
-            há duas categorias que só são ativadas com o seu aceite:{" "}
-            <strong>Análise</strong> (medição agregada de uso do site) e{" "}
-            <strong>Marketing</strong> (publicidade e remarketing). Nenhuma
-            ferramenta dessas está ativa no momento; quando uma delas for
+            há três categorias que só são ativadas com o seu aceite:{" "}
+            <strong>Análise</strong> (medição agregada de uso do site),{" "}
+            <strong>Marketing</strong> (publicidade e remarketing) e{" "}
+            <strong>Conteúdo de terceiros</strong> (mapas incorporados). As
+            duas primeiras estão vazias hoje; quando uma ferramenta for
             adicionada, ela passa a constar nesta tabela e só será carregada
             depois do seu consentimento.
           </p>
           <p>
-            <strong>Conteúdo de terceiros.</strong> A página de contato exibe um
-            mapa do Google Maps incorporado. Ao carregar esse conteúdo, o Google
-            pode instalar cookies sob o domínio dele e tratar dados como o seu
-            endereço IP, conforme a política de privacidade do Google. Nenhum
-            outro conteúdo de terceiros é incorporado a este site.
+            <strong>Conteúdo de terceiros.</strong> A página de contato exibe
+            um mapa do Google Maps incorporado. O mapa só é carregado de forma
+            automática se você aceitar a categoria Conteúdo de terceiros; sem
+            essa aceite, ele aparece com um botão e só carrega se você clicar
+            nele, o que vale como consentimento pontual para aquele carregamento.
+            A cada carregamento, o Google pode instalar cookies sob o domínio
+            dele e tratar dados como o seu endereço IP, conforme a política de
+            privacidade do Google. Nenhum outro conteúdo de terceiros é
+            incorporado a este site.
           </p>
           <p>
             <strong>Como revogar.</strong> Abra “Preferências de cookies” no
@@ -152,7 +158,7 @@ export default function PoliticaDePrivacidade() {
             dela, nos termos do art. 8º, § 5º, da LGPD.
           </p>
           <p className={estilos.atualizacao}>
-            Última atualização desta seção: 29 de setembro de 2026.
+            Última atualização desta seção: 30 de setembro de 2026.
           </p>
 
           <h2>8. Segurança</h2>

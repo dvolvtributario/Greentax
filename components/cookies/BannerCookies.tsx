@@ -84,8 +84,9 @@ export function BannerCookies() {
           <div className={estilos.conteudo}>
             <p className={estilos.texto}>
               Usamos cookies. Os necessários mantêm o site funcionando; os de
-              análise e de publicidade só são ativados se você permitir. Você
-              pode mudar de ideia quando quiser pelo rodapé.{" "}
+              análise, publicidade e conteúdo de terceiros só são ativados se
+              você permitir. Você pode mudar de ideia quando quiser pelo
+              rodapé.{" "}
               <Link
                 href="/politica-de-privacidade#cookies"
                 className={estilos.link}

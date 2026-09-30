@@ -54,6 +54,8 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
     servico: dados.servico,
     mensagem: dados.mensagem?.trim() ?? "",
     recebidoEm: new Date().toISOString(),
+    consentimentoAceito: true,
+    consentimentoEm: new Date().toISOString(),
   };
 
   // ---------------------------------------------------------------------
