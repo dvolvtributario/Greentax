@@ -50,10 +50,12 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
     empresa: dados.empresa?.trim() ?? "",
     telefone: dados.telefone.trim(),
     email: dados.email.trim(),
-    jaCliente: dados.jaCliente,
+    jaCliente: dados.jaCliente === "Sim",
     servico: dados.servico,
     mensagem: dados.mensagem?.trim() ?? "",
     recebidoEm: new Date().toISOString(),
+    // Prova do consentimento LGPD do formulário: vai junto com o lead
+    // (webhook ou log do servidor), para registrar quando e que ele aceitou.
     consentimentoAceito: true,
     consentimentoEm: new Date().toISOString(),
   };

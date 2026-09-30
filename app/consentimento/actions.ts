@@ -93,11 +93,6 @@ export async function salvarPreferencias(
   return { ok: true, preferencias };
 }
 
-/**
- * Consentimento pontual do mapa do Google: quando o visitante carrega o
- * mapa sem ter aceito a categoria "terceiros", o clique é a prova — e a
- * prova fica, como as demais, no log do servidor.
- */
 export async function registrarCliqueMapa(): Promise<void> {
   console.log(
     "[mapa]",
