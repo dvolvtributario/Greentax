@@ -42,7 +42,11 @@ export function listarSlugs(): string[] {
   if (!fs.existsSync(DIRETORIO)) return [];
   return fs
     .readdirSync(DIRETORIO)
-    .filter((arquivo) => arquivo.endsWith(".mdx"))
+    // Arquivos iniciados com "_" são templates internos (ex.: _modelo.mdx),
+    // não artigos publicados. O prefixo "_" também impede o slug de passar
+    // na validação da rota/painel. Eles são necessários: sem nenhum .mdx na
+    // pasta, o import dinâmico de carregarArtigo falha no build.
+    .filter((arquivo) => arquivo.endsWith(".mdx") && !arquivo.startsWith("_"))
     .map((arquivo) => arquivo.replace(/\.mdx$/, ""));
 }
 

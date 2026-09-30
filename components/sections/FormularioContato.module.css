@@ -36,7 +36,7 @@
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: var(--tinta-300);
+  color: var(--tinta-500);
 }
 
 .entrada,
@@ -56,7 +56,7 @@
 
 .entrada::placeholder,
 .area::placeholder {
-  color: var(--tinta-300);
+  color: var(--tinta-500);
 }
 
 .entrada:focus,

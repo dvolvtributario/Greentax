@@ -7,7 +7,10 @@ export const COOKIE_ADMIN = "greentax_admin";
 const DURACAO = 8 * 60 * 60;
 
 function segredo(): string | null {
-  return process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_SENHA || null;
+  // Nunca usar a senha como segredo de assinatura: quem sabe a senha (ou a
+  // vaza num log) poderia forjar tokens de sessão. Sem segredo dedicado, falha
+  // fechado (não cria sessão).
+  return process.env.ADMIN_SESSION_SECRET || null;
 }
 
 function comparacao(valor: string): Buffer {

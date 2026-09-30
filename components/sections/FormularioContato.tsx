@@ -89,13 +89,18 @@ export function FormularioContato() {
             maxLength={100}
             autoComplete="name"
             aria-invalid={!!errors.nome}
+            aria-describedby={errors.nome ? "erro-nome" : undefined}
             className={juntar(estilos.entrada, !!errors.nome && estilos.invalido)}
             {...register("nome", {
               required: "Informe seu nome completo.",
               minLength: { value: 3, message: "Informe seu nome completo." },
             })}
           />
-          {errors.nome ? <p className={estilos.erro}>{errors.nome.message}</p> : null}
+          {errors.nome ? (
+            <p id="erro-nome" role="alert" className={estilos.erro}>
+              {errors.nome.message}
+            </p>
+          ) : null}
         </div>
 
         <div className={estilos.campo}>
@@ -124,6 +129,7 @@ export function FormularioContato() {
             autoComplete="tel"
             placeholder="(18) 99999-9999"
             aria-invalid={!!errors.telefone}
+            aria-describedby={errors.telefone ? "erro-telefone" : undefined}
             className={juntar(estilos.entrada, !!errors.telefone && estilos.invalido)}
             onInput={(evento) => {
               evento.currentTarget.value = evento.currentTarget.value.replace(/\D/g, "");
@@ -135,7 +141,9 @@ export function FormularioContato() {
             })}
           />
           {errors.telefone ? (
-            <p className={estilos.erro}>{errors.telefone.message}</p>
+            <p id="erro-telefone" role="alert" className={estilos.erro}>
+              {errors.telefone.message}
+            </p>
           ) : null}
         </div>
 
@@ -149,6 +157,7 @@ export function FormularioContato() {
             maxLength={50}
             autoComplete="email"
             aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "erro-email" : undefined}
             className={juntar(estilos.entrada, !!errors.email && estilos.invalido)}
             {...register("email", {
               required: "Informe um e-mail válido.",
@@ -158,7 +167,11 @@ export function FormularioContato() {
               },
             })}
           />
-          {errors.email ? <p className={estilos.erro}>{errors.email.message}</p> : null}
+          {errors.email ? (
+            <p id="erro-email" role="alert" className={estilos.erro}>
+              {errors.email.message}
+            </p>
+          ) : null}
         </div>
       </div>
 
@@ -181,6 +194,7 @@ export function FormularioContato() {
         <select
           id="servico"
           aria-invalid={!!errors.servico}
+          aria-describedby={errors.servico ? "erro-servico" : undefined}
           className={juntar(estilos.selecao, !!errors.servico && estilos.invalido)}
           {...register("servico", { required: "Selecione o serviço de interesse." })}
         >
@@ -193,7 +207,11 @@ export function FormularioContato() {
             </option>
           ))}
         </select>
-        {errors.servico ? <p className={estilos.erro}>{errors.servico.message}</p> : null}
+        {errors.servico ? (
+          <p id="erro-servico" role="alert" className={estilos.erro}>
+            {errors.servico.message}
+          </p>
+        ) : null}
       </div>
 
       <div className={estilos.campo}>
@@ -225,6 +243,7 @@ export function FormularioContato() {
           <input
             type="checkbox"
             aria-invalid={!!errors.consentimento}
+            aria-describedby={errors.consentimento ? "erro-consentimento" : undefined}
             {...register("consentimento", {
               required: "É preciso concordar com o tratamento dos dados para enviar.",
             })}
@@ -236,7 +255,9 @@ export function FormularioContato() {
           </span>
         </label>
         {errors.consentimento ? (
-          <p className={estilos.erro}>{errors.consentimento.message}</p>
+          <p id="erro-consentimento" role="alert" className={estilos.erro}>
+            {errors.consentimento.message}
+          </p>
         ) : null}
       </div>
 

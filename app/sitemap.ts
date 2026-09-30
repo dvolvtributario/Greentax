@@ -1,10 +1,8 @@
 import type { MetadataRoute } from "next";
-import { listarSlugs } from "@/lib/blog";
+import { listarArtigos } from "@/lib/blog";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const agora = new Date();
-
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paginas: { rota: string; prioridade: number; frequencia: "weekly" | "monthly" | "yearly" }[] = [
     { rota: "", prioridade: 1, frequencia: "weekly" },
     { rota: "/quem-somos", prioridade: 0.8, frequencia: "monthly" },
@@ -18,16 +16,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { rota: "/politica-de-privacidade", prioridade: 0.3, frequencia: "yearly" },
   ];
 
+  // Páginas fixas: sem lastModified — não dá para afirmar data de alteração real
+  // (marcar a data do build mentiria para o Google).
   const estaticas: MetadataRoute.Sitemap = paginas.map((pagina) => ({
     url: `${site.url}${pagina.rota}`,
-    lastModified: agora,
     changeFrequency: pagina.frequencia,
     priority: pagina.prioridade,
   }));
 
-  const artigos: MetadataRoute.Sitemap = listarSlugs().map((slug) => ({
-    url: `${site.url}/blog/${slug}`,
-    lastModified: agora,
+  const artigos: MetadataRoute.Sitemap = (await listarArtigos()).map((artigo) => ({
+    url: `${site.url}/blog/${artigo.slug}`,
+    lastModified: new Date(artigo.data),
     changeFrequency: "yearly",
     priority: 0.6,
   }));
