@@ -178,7 +178,18 @@ Para migrar para um CMS no futuro, o único arquivo a mudar é `lib/blog.ts`.
 React Hook Form no cliente (validação em `onTouched`, sem re-render
 desnecessário) e uma Server Action que **revalida tudo no servidor** — a
 validação do cliente é conveniência, não segurança. Tem honeypot anti-spam e
-exige consentimento LGPD explícito.
+reCAPTCHA Enterprise: widget checkbox com render explícito (a Google
+recomenda explicit render em frameworks; auto-render tem race condition com o
+React) carregado só nesta página via `next/script`, ação `envio_contato` e
+validação no servidor pelo endpoint clássico `recaptcha/api/siteverify` (o
+`recaptcha/enterprise/siteverify` não existe — retorna 404; a validade, a
+`action` e o `score >= 0.5` vêm do mesmo JSON). A verificação é **fail-closed**: sem a
+env `RECAPTCHA_SECRET`, sem token, com timeout ou resposta inesperada, o envio
+é recusado com log e o lead não sai. O token é de uso único e expira em 2
+minutos, então qualquer recusa reinicia o widget. Env necessárias:
+`NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (pública) e `RECAPTCHA_SECRET`. Exige
+consentimento LGPD explícito. O reCAPTCHA está declarado na categoria
+"Necessários" da política §7 e de `lib/cookies.ts`.
 
 **A entrega do lead ainda não está configurada.** Para ativar sem escolher um
 CRM agora, crie um `.env.local`:

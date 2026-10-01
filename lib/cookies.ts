@@ -38,8 +38,8 @@ export const CATEGORIAS: CategoriaInfo[] = [
     id: "necessarios",
     titulo: "Necessários",
     descricao:
-      "Essenciais para o site funcionar: registro da sua escolha de cookies. Sempre ativos, não pedem consentimento.",
-    cookies: ["greentax_consent"],
+      "Essenciais para o site funcionar: registro da sua escolha de cookies e proteção anti-spam do formulário de contato. Sempre ativos, não pedem consentimento.",
+    cookies: ["greentax_consent", "_GRECAPTCHA (Google, no formulário de contato)"],
     obrigatoria: true,
   },
   {

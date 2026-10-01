@@ -1,20 +1,103 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { useForm } from "react-hook-form";
 import { enviarContato, type DadosContato } from "@/app/contato/acoes";
 import { servicosInteresse } from "@/lib/conteudo";
+import { ACAO_RECAPTCHA } from "@/lib/recaptcha";
 import { whatsappLink } from "@/lib/site";
 import { BotaoAcao } from "@/components/ui/Button";
 import { Whatsapp } from "@/components/ui/Icons";
 import estilos from "./FormularioContato.module.css";
+
+type GRecaptchaEnterprise = {
+  render: (container: HTMLElement, params: Record<string, unknown>) => number;
+  reset: (id?: number) => void;
+};
+
+declare global {
+  interface Window {
+    grecaptcha?: { enterprise?: GRecaptchaEnterprise };
+  }
+}
 
 const juntar = (...c: (string | false | undefined)[]) => c.filter(Boolean).join(" ");
 
 export function FormularioContato() {
   const [enviado, setEnviado] = useState(false);
   const [erroGeral, setErroGeral] = useState<string | null>(null);
+
+  const [token, setToken] = useState<string | null>(null);
+  const [recaptchaIndisponivel, setRecaptchaIndisponivel] = useState(false);
+  const [idWidget, setIdWidget] = useState<number | null>(null);
+  const caixaRecaptchaRef = useRef<HTMLDivElement>(null);
+  const erroGeralRef = useRef<HTMLParagraphElement>(null);
+
+  // O alerta fica no topo do formulário; foca para garantir que quem clicou
+  // em "Enviar" (lá embaixo) veja a mensagem.
+  useEffect(() => {
+    if (erroGeral) erroGeralRef.current?.focus();
+  }, [erroGeral]);
+
+  function renderizarRecaptcha() {
+    // O enterprise.js dispara o load antes de expor os métodos (render) no
+    // objeto — então espera ficar pronto, tentando por até ~10s.
+    let tentativas = 0;
+
+    const tentar = () => {
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+      if (!siteKey) {
+        setRecaptchaIndisponivel(true);
+        return;
+      }
+
+      const caixa = caixaRecaptchaRef.current;
+      if (!caixa || caixa.children.length > 0) return; // descartado ou já renderizado
+
+      const api = window.grecaptcha?.enterprise;
+      if (api && typeof api.render === "function") {
+        try {
+          setIdWidget(
+            api.render(caixa, {
+              sitekey: siteKey,
+              action: ACAO_RECAPTCHA,
+              callback: (resultado: string) => setToken(resultado),
+              "expired-callback": () => setToken(null),
+              "error-callback": () => setToken(null),
+            }),
+          );
+        } catch {
+          setRecaptchaIndisponivel(true);
+        }
+        return;
+      }
+
+      tentativas += 1;
+      if (tentativas > 100) {
+        setRecaptchaIndisponivel(true);
+        return;
+      }
+      window.setTimeout(tentar, 100);
+    };
+
+    tentar();
+  }
+
+  // O token é de uso único: depois de qualquer recusa do servidor é preciso
+  // gerar outro (e o token expira em 2 minutos).
+  function reiniciarRecaptcha() {
+    setToken(null);
+    const widget = window.grecaptcha?.enterprise;
+    if (widget && idWidget !== null) {
+      try {
+        widget.reset(idWidget);
+      } catch {
+        // widget já descartado — o próximo render cuida disso
+      }
+    }
+  }
 
   function ajustarAltura(evento: React.FormEvent<HTMLTextAreaElement>) {
     const area = evento.currentTarget;
@@ -35,12 +118,27 @@ export function FormularioContato() {
 
   async function aoEnviar(dados: DadosContato) {
     setErroGeral(null);
-    const resultado = await enviarContato(dados);
+
+    if (recaptchaIndisponivel) {
+      setErroGeral(
+        "Não foi possível carregar a proteção anti-spam. Recarregue a página e tente novamente.",
+      );
+      return;
+    }
+
+    if (!token) {
+      setErroGeral("Marque o campo “Não sou um robô” para enviar a solicitação.");
+      return;
+    }
+
+    const resultado = await enviarContato({ ...dados, recaptchaToken: token });
 
     if (resultado.ok) {
       setEnviado(true);
       return;
     }
+
+    reiniciarRecaptcha();
 
     if (resultado.campo) {
       setError(resultado.campo, { type: "server", message: resultado.mensagem });
@@ -73,7 +171,7 @@ export function FormularioContato() {
   return (
     <form onSubmit={handleSubmit(aoEnviar)} noValidate className={estilos.form}>
       {erroGeral ? (
-        <p role="alert" className={estilos.aviso}>
+        <p role="alert" tabIndex={-1} ref={erroGeralRef} className={estilos.aviso}>
           {erroGeral}
         </p>
       ) : null}
@@ -261,9 +359,19 @@ export function FormularioContato() {
         ) : null}
       </div>
 
+      {/* reCAPTCHA Enterprise — widget checkbox renderizado explicitamente */}
+      <div ref={caixaRecaptchaRef} />
+
       <BotaoAcao type="submit" disabled={isSubmitting} className={estilos.envio}>
         {isSubmitting ? "Enviando…" : "Enviar solicitação"}
       </BotaoAcao>
+
+      <Script
+        src="https://www.google.com/recaptcha/enterprise.js?render=explicit"
+        strategy="afterInteractive"
+        onReady={renderizarRecaptcha}
+        onError={() => setRecaptchaIndisponivel(true)}
+      />
     </form>
   );
 }

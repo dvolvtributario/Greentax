@@ -148,8 +148,18 @@ export default function PoliticaDePrivacidade() {
             nele, o que vale como consentimento pontual para aquele carregamento.
             A cada carregamento, o Google pode instalar cookies sob o domínio
             dele e tratar dados como o seu endereço IP, conforme a política de
-            privacidade do Google. Nenhum outro conteúdo de terceiros é
+            privacidade do Google. Nenhum outro mapa ou mídia de terceiros é
             incorporado a este site.
+          </p>
+          <p>
+            <strong>Proteção anti-spam.</strong> O formulário de contato é
+            protegido pelo reCAPTCHA Enterprise da Google, que ajuda a impedir
+            envios automatizados. O widget só é carregado na página de contato
+            e o token é validado no nosso servidor antes de qualquer envio.
+            Por ser essencial à segurança do formulário, ele integra a
+            categoria Necessários e pode definir cookies da Google (por
+            exemplo, <code>_GRECAPTCHA</code>) sem consentimento prévio,
+            conforme descrito na política de privacidade do Google.
           </p>
           <p>
             <strong>Como revogar.</strong> Abra “Preferências de cookies” no
@@ -158,7 +168,7 @@ export default function PoliticaDePrivacidade() {
             dela, nos termos do art. 8º, § 5º, da LGPD.
           </p>
           <p className={estilos.atualizacao}>
-            Última atualização desta seção: 30 de setembro de 2026.
+            Última atualização desta seção: 1 de outubro de 2026.
           </p>
 
           <h2>8. Segurança</h2>

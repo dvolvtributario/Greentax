@@ -1,6 +1,12 @@
 "use server";
 
+import { headers } from "next/headers";
 import { servicosInteresse } from "@/lib/conteudo";
+import {
+  ACAO_RECAPTCHA,
+  PONTUACAO_MINIMA_RECAPTCHA,
+  URL_RECAPTCHA_SITEVERIFY,
+} from "@/lib/recaptcha";
 
 export type DadosContato = {
   nome: string;
@@ -12,6 +18,7 @@ export type DadosContato = {
   mensagem?: string;
   consentimento: boolean;
   website?: string;
+  recaptchaToken?: string;
 };
 
 export type Resultado =
@@ -19,6 +26,70 @@ export type Resultado =
   | { ok: false; mensagem: string; campo?: keyof DadosContato };
 
 const soDigitos = (v: string) => v.replace(/\D/g, "");
+
+type RespostaSiteverify = {
+  success?: boolean;
+  score?: number;
+  action?: string;
+  "error-codes"?: string[];
+};
+
+// Fail-closed: sem secret, sem token, com erro de rede ou com resposta que
+// não passe em success/action/score, o envio é recusado — o lead não sai.
+async function verificarRecaptcha(
+  token: string,
+  ip?: string | null,
+): Promise<{ ok: true; score?: number } | { ok: false; motivo: string }> {
+  const secret = process.env.RECAPTCHA_SECRET;
+  if (!secret) return { ok: false, motivo: "RECAPTCHA_SECRET não configurada" };
+  if (!token) return { ok: false, motivo: "token ausente" };
+
+  try {
+    const corpo = new URLSearchParams({ secret, response: token });
+    if (ip) corpo.set("remoteip", ip);
+
+    const resposta = await fetch(URL_RECAPTCHA_SITEVERIFY, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: corpo,
+      signal: AbortSignal.timeout(5000),
+    });
+
+    if (!resposta.ok) {
+      return { ok: false, motivo: `siteverify respondeu ${resposta.status}` };
+    }
+
+    const dados = (await resposta.json()) as RespostaSiteverify;
+
+    if (dados.success !== true) {
+      const codigos = dados["error-codes"]?.join(", ") ?? "success=false";
+      return { ok: false, motivo: `recusado (${codigos})` };
+    }
+
+    if (dados.action && dados.action !== ACAO_RECAPTCHA) {
+      return { ok: false, motivo: `action divergente: ${dados.action}` };
+    }
+
+    if (
+      typeof dados.score === "number" &&
+      dados.score < PONTUACAO_MINIMA_RECAPTCHA
+    ) {
+      return {
+        ok: false,
+        motivo: `score ${dados.score} abaixo de ${PONTUACAO_MINIMA_RECAPTCHA}`,
+      };
+    }
+
+    return { ok: true, score: dados.score };
+  } catch (erro) {
+    return {
+      ok: false,
+      motivo: `falha ao chamar o siteverify: ${
+        erro instanceof Error ? erro.message : String(erro)
+      }`,
+    };
+  }
+}
 
 export async function enviarContato(dados: DadosContato): Promise<Resultado> {
   // Um chamador malicioso pode invocar a action com argumentos fora do formato
@@ -74,6 +145,29 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
         campo,
       };
   }
+
+  // reCAPTCHA Enterprise — depois das validações baratas (a avaliação custa
+  // dinheiro) e antes de qualquer entrega do lead.
+  const cabecalhos = await headers();
+  const ip =
+    cabecalhos.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    cabecalhos.get("x-real-ip");
+
+  const verificacao = await verificarRecaptcha(
+    String(dados.recaptchaToken ?? "").trim(),
+    ip,
+  );
+
+  if (!verificacao.ok) {
+    console.warn(`[contato] reCAPTCHA recusado — ${verificacao.motivo}`);
+    return {
+      ok: false,
+      mensagem:
+        "Não foi possível confirmar que você é humano. Marque o campo “Não sou um robô” e tente novamente.",
+    };
+  }
+
+  console.log("[contato] reCAPTCHA validado", { score: verificacao.score });
 
   const lead = {
     nome,
