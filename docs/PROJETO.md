@@ -266,8 +266,11 @@ de privacidade. Único terceiro embarcado: o iframe do Google Maps em `/contato`
 nomeado na mesma seção — com gate híbrido em
 `components/sections/MapaGoogle`: se a categoria “terceiros” foi aceita ele
 carrega sozinho; se não (ou se o visitante ainda não escolheu), aparece um
-placeholder com botão, e o clique vale como consentimento pontual (registrado
-no log por `registrarCliqueMapa`). O iframe nunca é renderizado no servidor.
+placeholder com botão, e o clique vale como consentimento pontual para aquele
+carregamento da página — sem persistir em `sessionStorage`, ele morre ao
+navegar/recarregar, e salvar as preferências sem "terceiros" descarrega o mapa
+na hora (registrado no log por `registrarCliqueMapa`). O iframe nunca é
+renderizado no servidor.
 
 **Painel administrativo é local e nunca vai ao ar.** `app/admin/` está no
 `.gitignore`, então `/admin` e `/admin/login` não existem no deploy — a rota vira
