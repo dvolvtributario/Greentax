@@ -15,7 +15,7 @@ Site Greentax, v1.0*.
 | CSS | **CSS Modules + uma folha global de tokens** — sem Tailwind |
 | Ícones | SVG próprio (`components/ui/Icons.tsx`) — sem biblioteca |
 | Animações | Apenas transições de cor de 120 ms |
-| Fonte | Inter variável, hospedada no projeto |
+| Fonte | Instrument Sans variável (corpo) + Montserrat (títulos), hospedadas no projeto |
 | Formulário | React Hook Form + Server Action |
 | Backend | Next.js (Server Actions) |
 
@@ -63,7 +63,7 @@ app/
 ├─ paginas.module.css         padrões compartilhados pelas páginas internas
 ├─ layout.tsx                 layout raiz, metadata global, JSON-LD
 ├─ page.tsx / page.module.css Home
-├─ fonts/                     Inter variável (woff2) + licença OFL
+├─ fonts/                     Instrument Sans (woff2) + Montserrat (ttf)
 ├─ quem-somos/
 ├─ solucoes/
 │  ├─ page.tsx                hub das duas frentes
@@ -242,9 +242,10 @@ nomes de classe escopados. Os valores compartilhados (cor, tipo, espaço) vivem
 como custom properties no `:root` de `globals.css` — mudar a paleta inteira é
 editar um bloco.
 
-**Fonte hospedada localmente.** A Inter vem de um `.woff2` dentro do projeto em
-vez de ser baixada do Google Fonts no build. O build funciona offline e não
-depende de serviço externo. Licença OFL incluída.
+**Fonte hospedada localmente.** A Instrument Sans (corpo) e a Montserrat
+(títulos) vêm de arquivos `.woff2`/`.ttf` dentro do projeto em vez de serem
+baixadas do Google Fonts no build. O build funciona offline e não depende de
+serviço externo. A licença OFL de cada fonte está ao lado dos arquivos.
 
 **Ícones em SVG próprio.** São doze ícones; nenhuma biblioteca justificaria o
 peso. Traço de 1,5px com terminações retas, coerente com a ausência de cantos

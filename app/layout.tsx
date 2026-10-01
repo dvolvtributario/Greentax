@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Atkinson_Hyperlegible } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -10,11 +9,20 @@ import ChatbotContabilidade from "./chatbotcontabilidade";
 import { site } from "@/lib/site";
 
 
-const atkinson = Atkinson_Hyperlegible({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const instrumentSans = localFont({
+  src: [
+    {
+      path: "./fonts/instrument-sans/instrument-sans-variable-wght-normal.woff2",
+      style: "normal",
+    },
+    {
+      path: "./fonts/instrument-sans/instrument-sans-variable-wght-italic.woff2",
+      style: "italic",
+    },
+  ],
+  weight: "400 700",
   display: "swap",
-  variable: "--font-atkinson",
+  variable: "--font-corpo",
 });
 
 const montserrat = localFont({
@@ -96,7 +104,7 @@ const dadosEstruturados = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${atkinson.variable} ${montserrat.variable}`}>
+    <html lang="pt-BR" data-scroll-behavior="smooth" className={`${instrumentSans.variable} ${montserrat.variable}`}>
       <body>
         <script
           type="application/ld+json"

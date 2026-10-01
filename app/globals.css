@@ -27,7 +27,7 @@
   --erro: #a4261d;
 
   /* --- Tipografia --- */
-  --fonte: var(--font-atkinson), "Atkinson Hyperlegible", "Segoe UI", Roboto, Helvetica, Arial,
+  --fonte: var(--font-corpo), "Instrument Sans", "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
 
   --fs-display: clamp(2.75rem, 1.6rem + 3.4vw, 4.25rem);
