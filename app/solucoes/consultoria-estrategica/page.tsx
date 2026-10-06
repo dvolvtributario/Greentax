@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
-import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
+import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
+import { Abas } from "@/components/sections/Abas";
 import { FAQ } from "@/components/sections/FAQ";
-import { Ponto, Seta, Whatsapp } from "@/components/ui/Icons";
+import { Seta, Whatsapp } from "@/components/ui/Icons";
 import { servicosConsultoria } from "@/lib/conteudo";
 import { whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
@@ -50,29 +51,6 @@ const cenarios = [
     texto:
       "Intimações respondidas com organização, fundamento e no prazo. Organizamos os documentos, avaliamos a situação e conduzimos a resposta até a conclusão.",
     imagem: "/marca/consultoria-defesa.jpg",
-  },
-];
-
-const passos = [
-  {
-    numero: "01",
-    titulo: "Levantamento do caso",
-    texto: "Entendemos a situação, os documentos disponíveis e o objetivo da empresa.",
-  },
-  {
-    numero: "02",
-    titulo: "Análise técnica",
-    texto: "Estudamos o problema e as alternativas possíveis dentro da lei.",
-  },
-  {
-    numero: "03",
-    titulo: "Escopo e proposta",
-    texto: "Definimos o trabalho e o valor, com transparência antes de começar.",
-  },
-  {
-    numero: "04",
-    titulo: "Execução e acompanhamento",
-    texto: "Conduzimos o trabalho e acompanhamos até a conclusão.",
   },
 ];
 
@@ -171,61 +149,14 @@ export default function ConsultoriaEstrategica() {
         </Section>
       </Revelar>
 
-      <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="O que a consultoria cobre"
-            titulo="Trabalhos que realizamos"
-            lead="Serviços contratados separadamente, para quando a situação pede um trabalho específico."
-          />
-          <Grade colunas={3} className={`${p.gradeEspacada} ${estilos.afastarCards}`}>
-            {servicosConsultoria.map((bloco) => (
-              <div key={bloco.titulo} className={p.inclusos}>
-                <h3 className={p.inclusosTitulo}>{bloco.titulo}</h3>
-                <ul>
-                  {bloco.itens.map((item) => (
-                    <li key={item}>
-                      <Ponto />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </Grade>
-          <div className={p.aviso}>
-            <p>
-              Esses serviços são contratados separadamente. Primeiro entendemos o
-              caso, os documentos disponíveis e o objetivo da empresa; depois
-              definimos o trabalho necessário.
-            </p>
-          </div>
-          <p className={p.nota}>
-            <strong>Atendimento a pessoa física.</strong> Também fazemos a
-            Declaração de Imposto de Renda para sócios e clientes das empresas
-            atendidas. Os detalhes são alinhados no primeiro contato.
-          </p>
-        </Section>
-      </Revelar>
-
-      <Revelar>
-        <Section className={estilos.surgirTexto}>
-          <CabecalhoSecao
-            rotulo="Como funciona"
-            titulo="Do levantamento do caso à conclusão"
-            lead="A experiência em consultoria tributária na origem da Greentax continua viva em cada trabalho: entender a fundo, avaliar alternativas e conduzir até o fim."
-          />
-          <div className={`${p.passos} ${estilos.afastarCards}`}>
-            {passos.map((passo) => (
-              <div key={passo.numero} className={p.passo}>
-                <span className={p.passoNumero}>{passo.numero}</span>
-                <h3>{passo.titulo}</h3>
-                <p>{passo.texto}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-      </Revelar>
+      <Section>
+        <CabecalhoSecao
+          rotulo="O que a consultoria cobre"
+          titulo="Trabalhos que realizamos"
+          lead="Serviços contratados separadamente, para quando a situação pede um trabalho específico."
+        />
+        <Abas abas={servicosConsultoria} tituloCard="O que a consultoria cobre" />
+      </Section>
 
       <Revelar>
         <Section fundo="papel2" className={estilos.apareceEsquerda}>

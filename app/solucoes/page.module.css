@@ -81,19 +81,11 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  font-size: var(--fs-rotulo);
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.5rem);
   font-weight: 700;
   letter-spacing: var(--ls-rotulo);
   text-transform: uppercase;
   color: var(--verde-100);
-}
-
-.rotulo::before,
-.rotulo::after {
-  content: "";
-  width: 40px;
-  height: 2px;
-  background: var(--verde-400);
 }
 
 .titulo {
@@ -111,90 +103,104 @@
   justify-content: center;
 }
 
-/* --- vitrine de serviços (estilo Alexi: imagem + texto lado a lado) --- */
+/* --- serviços: faixas numeradas (referência: bandas 01/02 + caixa com contorno verde) --- */
+
+.cabecalhoCentral {
+  margin-inline: auto;
+  text-align: center;
+}
 
 .servicos {
   margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
   display: grid;
-  gap: clamp(3rem, 2rem + 4vw, 5.5rem);
+  gap: clamp(3.5rem, 2rem + 4vw, 6rem);
 }
 
 .servico {
   display: grid;
-  gap: 28px;
+  gap: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+}
+
+.faixa {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: clamp(8px, 1vw, 14px);
 }
 
-@media (min-width: 900px) {
-  .servico {
-    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
-    gap: clamp(3rem, 2rem + 4vw, 6rem);
-  }
-
-  .servicoInvertido .servicoImagem {
-    order: -1;
-  }
+.faixaNumero {
+  flex: none;
+  font-family: var(--font-titulo), "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 2rem + 6.5vw, 7.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  color: var(--filete-forte);
 }
 
-.servicoImagem {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  background: var(--papel-2);
-  border: 1px solid var(--filete);
-  overflow: hidden;
-}
-
-.servicoImagem img {
-  object-fit: cover;
-  object-position: center;
-}
-
-.servicoConteudo {
+.faixaTitulo {
   display: grid;
-  gap: 18px;
-  justify-items: start;
+  gap: 8px;
+  justify-items: center;
+  min-width: 0;
 }
 
-.servicoTag {
-  align-items: center;
-  gap: 16px;
-  font-size: var(--fs-rotulo);
+.faixaTituloTexto {
+  color: var(--verde-700);
+  font-size: clamp(1.25rem, 1.05rem + 1vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.faixaCategoria {
+  font-size: var(--fs-mini);
   font-weight: 700;
   letter-spacing: var(--ls-rotulo);
   text-transform: uppercase;
-  color: var(--verde-700);
+  color: var(--tinta-500);
 }
 
-.servicoTag::before {
-  content: "";
-  width: 56px;
-  height: 2px;
-  background: var(--verde-700);
+.servicoCorpo {
+  display: grid;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
 }
 
-.servicoTitulo {
-  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.4rem);
-  font-weight: 600;
-  line-height: 1.15;
+@media (min-width: 900px) {
+  .servicoCorpo {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+.servicoCaixa {
+  padding: clamp(4px, 1vw, 8px) 0;
 }
 
 .servicoTexto {
-  color: var(--tinta-600);
+  color: var(--tinta-800);
   font-size: var(--fs-corpo-g);
   line-height: 1.6;
-  max-width: 48ch;
+}
+
+.servicoLado {
+  display: grid;
+  gap: 26px;
+  justify-items: end;
+  text-align: right;
 }
 
 .servicoLista {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .servicoLista li {
   display: flex;
   gap: 12px;
-  font-size: var(--fs-pequeno);
-  color: var(--tinta-700);
+  font-size: var(--fs-corpo);
+  color: var(--tinta-800);
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -202,7 +208,7 @@
   width: 16px;
   height: 16px;
   flex: none;
-  margin-top: 4px;
+  margin-top: 5px;
   color: var(--verde-600);
 }
 
@@ -210,5 +216,4 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 8px;
 }

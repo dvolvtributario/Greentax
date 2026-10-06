@@ -40,23 +40,30 @@ export function CabecalhoSecao({
   lead,
   claro = false,
   largo = false,
+  className,
   nivel: Tag = "h2",
 }: {
   rotulo?: string;
-  titulo: React.ReactNode;
+  titulo?: React.ReactNode;
   lead?: React.ReactNode;
   claro?: boolean;
   largo?: boolean;
+  className?: string;
   nivel?: "h1" | "h2" | "h3";
 }) {
   return (
     <div
-      className={[estilos.cabecalho, claro ? estilos.claro : "", largo ? estilos.largo : ""]
+      className={[
+        estilos.cabecalho,
+        claro ? estilos.claro : "",
+        largo ? estilos.largo : "",
+        className,
+      ]
         .filter(Boolean)
         .join(" ")}
     >
       {rotulo ? <span className={estilos.rotulo}>{rotulo}</span> : null}
-      <Tag className={estilos.titulo}>{titulo}</Tag>
+      {titulo ? <Tag className={estilos.titulo}>{titulo}</Tag> : null}
       {lead ? <p className={estilos.lead}>{lead}</p> : null}
     </div>
   );

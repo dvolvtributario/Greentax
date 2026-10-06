@@ -1,0 +1,77 @@
+.raiz {
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: 0;
+}
+
+.botoes {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: -1px;
+}
+
+.botao {
+  height: 46px;
+  padding-inline: clamp(18px, 2vw, 26px);
+  background: var(--papel);
+  border: 1px solid var(--filete-forte);
+  border-bottom: 0;
+  color: var(--tinta-600);
+  font-family: inherit;
+  font-size: var(--fs-pequeno);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    background-color 120ms linear,
+    border-color 120ms linear,
+    color 120ms linear;
+}
+
+.botao:hover {
+  color: var(--verde-700);
+}
+
+.botao.ativo {
+  background: var(--papel-2);
+  color: var(--verde-700);
+}
+
+.card {
+  background: var(--papel-2);
+  border: 1px solid var(--filete);
+  padding: clamp(28px, 4vw, 56px);
+}
+
+.cardTitulo {
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--verde-700);
+}
+
+.lista {
+  margin-top: clamp(20px, 2.5vw, 30px);
+  display: grid;
+  gap: 14px;
+}
+
+.lista li {
+  display: flex;
+  gap: 12px;
+  font-size: var(--fs-corpo-g);
+  color: var(--tinta-800);
+  line-height: 1.55;
+}
+
+.lista svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  margin-top: 6px;
+  color: var(--verde-600);
+}

@@ -48,19 +48,19 @@
 /* --- blocos editoriais numerados (estilo MNTN) --- */
 
 .secaoVerdeClaro {
-  background: var(--verde-400);
+  background: var(--verde-700);
 }
 
 .cabecalhoGrama span {
-  color: #0b3f21;
+  color: #fff;
 }
 
 .cabecalhoGrama h2 {
-  color: #14181a;
+  color: #fff;
 }
 
 .cabecalhoGrama p {
-  color: var(--verde-100);
+  color: #fff;
   border: 0;
 }
 
@@ -98,7 +98,7 @@
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
-  color: var(--verde-900);
+  color: #fff;
   font-variant-numeric: tabular-nums;
 }
 
@@ -110,24 +110,18 @@
   font-weight: 700;
   letter-spacing: var(--ls-rotulo);
   text-transform: uppercase;
-  color: var(--verde-900);
-}
-
-.blocoTag::before {
-  content: "";
-  width: 56px;
-  height: 2px;
-  background: var(--verde-900);
+  color: #fff;
 }
 
 .blocoTitulo {
   font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.4rem);
   font-weight: 600;
   line-height: 1.15;
+  color: #fff;
 }
 
 .blocoTexto p {
-  color: var(--verde-900);
+  color: #fff;
   font-size: var(--fs-corpo-g);
   line-height: 1.6;
   max-width: 46ch;
@@ -142,12 +136,12 @@
   font-weight: 700;
   letter-spacing: var(--ls-rotulo);
   text-transform: uppercase;
-  color: var(--verde-900);
+  color: #fff;
   transition: color 120ms linear;
 }
 
 .blocoLeiaMais:hover {
-  color: #fff;
+  color: var(--verde-400);
 }
 
 .blocoLeiaMais svg {
@@ -167,8 +161,4 @@
 .blocoImagem img {
   object-fit: cover;
   object-position: center;
-}
-
-.afastarCards {
-  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
 }

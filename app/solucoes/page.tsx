@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Container } from "@/components/ui/Container";
@@ -28,8 +27,6 @@ const servicos = [
       "Apuração de tributos pela operação real",
       "Folha, eSocial e EFD-Reinf processados no prazo",
     ],
-    imagem: "/marca/contabil-fiscal-trabalhista.jpg",
-    alt: "Equipe da Greentax em reunião com cliente",
     href: "/solucoes/contabil-fiscal-trabalhista",
     ctaPrincipal: "Conhecer a rotina",
     ctaMensagem:
@@ -45,8 +42,6 @@ const servicos = [
       "Levantamento e recuperação de créditos",
       "Transação, parcelamento e defesa em fiscalizações",
     ],
-    imagem: "/marca/consultoria-estrategica.jpg",
-    alt: "Análise de documentos para planejamento tributário",
     href: "/solucoes/consultoria-estrategica",
     ctaPrincipal: "Conhecer a consultoria",
     ctaMensagem:
@@ -104,48 +99,47 @@ export default function Solucoes() {
         <Section className={estilos.deslizaEsquerda}>
           <CabecalhoSecao
             rotulo="Nossos serviços"
-            titulo="Duas frentes para cuidar da sua empresa"
-            lead="A rotina mensal e as situações que pedem um olhar dedicado. Escolha a frente que atende ao momento do seu negócio."
+            className={estilos.cabecalhoCentral}
           />
           <div className={estilos.servicos}>
             {servicos.map((servico, indice) => (
-              <article
-                key={servico.titulo}
-                className={`${estilos.servico} ${indice % 2 === 1 ? estilos.servicoInvertido : ""}`}
-              >
-                <div className={estilos.servicoImagem}>
-                  <Image
-                    src={servico.imagem}
-                    alt={servico.alt}
-                    fill
-                    sizes="(max-width: 899px) 100vw, 50vw"
-                  />
-                </div>
-                <div className={estilos.servicoConteudo}>
-                  <span className={estilos.servicoTag}>{servico.tag}</span>
-                  <h2 className={estilos.servicoTitulo}>{servico.titulo}</h2>
-                  <p className={estilos.servicoTexto}>{servico.texto}</p>
-                  <ul className={estilos.servicoLista}>
-                    {servico.destaques.map((item) => (
-                      <li key={item}>
-                        <Ponto />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className={estilos.servicoAcoes}>
-                    <Botao href={servico.href} porte="md">
-                      {servico.ctaPrincipal}
-                    </Botao>
-                    <Botao
-                      href={whatsappLink(servico.ctaMensagem)}
-                      externo
-                      variante="contorno"
-                      porte="md"
-                    >
-                      <Whatsapp className={p.iconeBotao} />
-                      Conversar no WhatsApp
-                    </Botao>
+              <article key={servico.titulo} className={estilos.servico}>
+                <header className={estilos.faixa}>
+                  <span className={estilos.faixaNumero} aria-hidden="true">
+                    {String(indice + 1).padStart(2, "0")}
+                  </span>
+                  <div className={estilos.faixaTitulo}>
+                    <h3 className={estilos.faixaTituloTexto}>{servico.titulo}</h3>
+                    <span className={estilos.faixaCategoria}>{servico.tag}</span>
+                  </div>
+                </header>
+                <div className={estilos.servicoCorpo}>
+                  <div className={estilos.servicoCaixa}>
+                    <p className={estilos.servicoTexto}>{servico.texto}</p>
+                  </div>
+                  <div className={estilos.servicoLado}>
+                    <ul className={estilos.servicoLista}>
+                      {servico.destaques.map((item) => (
+                        <li key={item}>
+                          <Ponto />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className={estilos.servicoAcoes}>
+                      <Botao href={servico.href} porte="md">
+                        {servico.ctaPrincipal}
+                      </Botao>
+                      <Botao
+                        href={whatsappLink(servico.ctaMensagem)}
+                        externo
+                        variante="contorno"
+                        porte="md"
+                      >
+                        <Whatsapp className={p.iconeBotao} />
+                        Conversar no WhatsApp
+                      </Botao>
+                    </div>
                   </div>
                 </div>
               </article>

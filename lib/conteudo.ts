@@ -199,13 +199,6 @@ export const servicosConsultoria = [
       "Declaração de Imposto de Renda (pessoa física), para clientes e sócios das empresas atendidas",
     ],
   },
-  {
-    titulo: "Recursos Humanos",
-    itens: [
-      "Cadastro de empregado doméstico",
-      "Suporte no preenchimento de cadastros bancários para captação de recursos e abertura de contas",
-    ],
-  },
 ];
 
 export const servicosInteresse = [
