@@ -149,12 +149,14 @@ export default function Solucoes() {
       </Revelar>
 
       <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="Perguntas frequentes"
-            titulo="Dúvidas de quem está decidindo"
-          />
-          <FAQ itens={faq} />
+        <Section fundo="papel2" className={estilos.secaoFaq}>
+          <div className={estilos.textosEsquerda}>
+            <CabecalhoSecao
+              rotulo="Perguntas frequentes"
+              titulo="Dúvidas de quem está decidindo"
+            />
+          </div>
+          <FAQ itens={faq} className={estilos.cartoesEsquerda} />
         </Section>
       </Revelar>
     </>

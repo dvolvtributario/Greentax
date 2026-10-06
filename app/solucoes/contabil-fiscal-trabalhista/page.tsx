@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Calculator,
@@ -8,8 +9,8 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { PageHero } from "@/components/sections/PageHero";
-import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
+import { CabecalhoSecao, Section } from "@/components/ui/Section";
+import { Container } from "@/components/ui/Container";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
@@ -35,7 +36,8 @@ const beneficios = [
   {
     icone: Calculator,
     titulo: "Imposto sem excesso",
-    texto: "Apuração pela operação real, com segregação de receitas para não pagar a mais no PGDAS-D.",
+    texto:
+      "Apuração pela operação real, com segregação de receitas para não pagar a mais no PGDAS-D.",
   },
   {
     icone: Users,
@@ -68,7 +70,8 @@ const passos = [
   {
     numero: "02",
     titulo: "Análise da documentação",
-    texto: "Conferimos a situação fiscal, trabalhista e societária e os arquivos com o contador anterior.",
+    texto:
+      "Conferimos a situação fiscal, trabalhista e societária e os arquivos com o contador anterior.",
   },
   {
     numero: "03",
@@ -120,63 +123,133 @@ const faq = [
 const estatisticas = [
   { valor: `${site.indicadores.anosDeMercado}+`, rotulo: "anos de atuação" },
   { valor: `${site.indicadores.empresasAtendidas}+`, rotulo: "empresas atendidas" },
-  { valor: `${site.indicadores.obrigacoesNoPrazo}%`, rotulo: "obrigações entregues no prazo" },
+  {
+    valor: `${site.indicadores.obrigacoesNoPrazo}%`,
+    rotulo: "obrigações entregues no prazo",
+  },
 ];
+
+const mensagemRotina =
+  "Olá! Quero entender como funciona a contabilidade recorrente da Greentax.";
 
 export default function ContabilFiscalTrabalhista() {
   return (
     <>
-<PageHero
-        rotulo="Contábil, Fiscal e Trabalhista"
-        titulo="A rotina da sua empresa em ordem, sem pagar imposto a mais."
-        lead="Da escrituração e dos tributos no prazo à folha de pagamento e às obrigações acessórias, tudo com quem conhece o seu negócio."
-      >
-        <div className={estilos.heroAcoes}>
-          <Botao
-            href={whatsappLink("Olá! Quero entender como funciona a contabilidade recorrente da Greentax.")}
-            externo
-            porte="lg"
-          >
-            <Whatsapp className={p.iconeBotao} />
-            Quero conversar sobre a rotina
-          </Botao>
-        </div>
-      </PageHero>
+      <section className={estilos.hero}>
+        <Container>
+          <div className={estilos.heroGrade}>
+            <div className={estilos.heroTexto}>
+              <p className={estilos.heroRotulo}>Contábil, Fiscal e Trabalhista</p>
+              <h1 className={estilos.heroTitulo}>
+                A rotina da sua empresa em ordem, sem pagar imposto a mais.
+              </h1>
+              <p className={estilos.heroLead}>
+                Da escrituração e dos tributos no prazo à folha de pagamento e às
+                obrigações acessórias, tudo com quem conhece o seu negócio.
+              </p>
+              <div className={estilos.heroAcoes}>
+                <Botao href={whatsappLink(mensagemRotina)} externo porte="lg">
+                  <Whatsapp className={p.iconeBotao} />
+                  Quero conversar sobre a rotina
+                </Botao>
+              </div>
+            </div>
+
+            <div className={estilos.heroColagem}>
+              <div className={estilos.heroFotoGrande}>
+                <Image
+                  src="/marca/reuniao.jpg"
+                  alt="Equipe em reunião de trabalho com clientes"
+                  fill
+                  priority
+                  sizes="(max-width: 939px) 100vw, 44vw"
+                />
+              </div>
+              <div className={estilos.heroFotoPequena}>
+                <Image
+                  src="/marca/contabil-fiscal-trabalhista.jpg"
+                  alt="Mesa de trabalho com notebook e calculadora"
+                  fill
+                  priority
+                  sizes="(max-width: 939px) 46vw, 20vw"
+                />
+              </div>
+              <span className={estilos.heroSelo}>
+                <Image
+                  src="/marca/greentax-icone.png"
+                  alt=""
+                  width={120}
+                  height={62}
+                  priority
+                />
+              </span>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       <Revelar>
         <Section className={estilos.surgirTexto}>
           <CabecalhoSecao
             rotulo="Benefícios"
             titulo="O que muda quando a Greentax cuida da sua rotina"
+            className={estilos.cabecalhoCentral}
           />
-          <Grade colunas={3} className={`${p.gradeEspacada} ${p.espaco}`}>
+          <div className={estilos.gradeBeneficios}>
             {beneficios.map((beneficio) => (
-              <div key={beneficio.titulo} className={p.beneficio}>
-                <span className={estilos.beneficioIconeChip}>
-                  <beneficio.icone aria-hidden="true" size={26} strokeWidth={1.5} />
+              <article key={beneficio.titulo} className={estilos.beneficio}>
+                <span className={estilos.beneficioSelo} aria-hidden="true">
+                  <beneficio.icone size={26} strokeWidth={1.5} />
                 </span>
-                <h3>{beneficio.titulo}</h3>
-                <p>{beneficio.texto}</p>
-              </div>
+                <div className={estilos.beneficioTexto}>
+                  <h3>{beneficio.titulo}</h3>
+                  <p>{beneficio.texto}</p>
+                </div>
+              </article>
             ))}
-          </Grade>
+          </div>
         </Section>
       </Revelar>
 
       <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="O que está incluso"
-            titulo="A parte técnica, resumida para conferir"
-            lead="Três frentes cobertas pelo trabalho de rotina: contábil, fiscal e trabalhista."
-          />
-          <div className={estilos.servicos}>
+        <Section fundo="verde" className={estilos.secaoRota}>
+          <div className={estilos.surgirTexto}>
+            <CabecalhoSecao
+              claro
+              rotulo="Como funciona"
+              titulo="Da conversa inicial à rotina no prazo"
+              lead="Quatro passos, na mesma ordem, do primeiro contato até a rotina rodando mês a mês."
+              className={estilos.cabecalhoCentral}
+            />
+          </div>
+          <div className={estilos.rota}>
+            {passos.map((passo) => (
+              <article key={passo.numero} className={estilos.rotaItem}>
+                <span className={estilos.rotaNo}>{passo.numero}</span>
+                <h3 className={estilos.rotaTitulo}>{passo.titulo}</h3>
+                <p className={estilos.rotaTexto}>{passo.texto}</p>
+              </article>
+            ))}
+          </div>
+        </Section>
+      </Revelar>
+
+      <Revelar>
+        <Section fundo="papel2" className={estilos.secaoEsquerda}>
+          <div className={estilos.textosEsquerda}>
+            <CabecalhoSecao
+              rotulo="O que está incluso"
+              titulo="A parte técnica, resumida para conferir"
+              lead="Três frentes cobertas pelo trabalho de rotina: contábil, fiscal e trabalhista."
+            />
+          </div>
+          <div className={`${estilos.servicos} ${estilos.cartoesEsquerda}`}>
             {servicosRecorrentes.map((bloco, indice) => {
               const Icone = inclusosIcones[indice];
               return (
                 <article key={bloco.titulo} className={estilos.servico}>
-                  <span className={estilos.servicoChip}>
-                    <Icone aria-hidden="true" size={24} strokeWidth={1.5} />
+                  <span className={estilos.servicoSelo} aria-hidden="true">
+                    <Icone size={26} strokeWidth={1.5} />
                   </span>
                   <h3 className={estilos.servicoTitulo}>{bloco.titulo}</h3>
                   <ul className={estilos.servicoLista}>
@@ -189,7 +262,9 @@ export default function ContabilFiscalTrabalhista() {
                   </ul>
                   <a
                     className={estilos.servicoLink}
-                    href={whatsappLink(`Olá! Quero entender o que está incluso na ${bloco.titulo} da Greentax.`)}
+                    href={whatsappLink(
+                      `Olá! Quero entender o que está incluso na ${bloco.titulo} da Greentax.`,
+                    )}
                   >
                     Entender o meu caso
                     <Seta />
@@ -198,7 +273,7 @@ export default function ContabilFiscalTrabalhista() {
               );
             })}
           </div>
-          <div className={p.aviso}>
+          <div className={`${p.aviso} ${estilos.itemEsquerda}`}>
             <p>
               O escopo e o valor do serviço dependem do porte, da atividade e do
               enquadramento tributário da empresa. A proposta é montada depois de
@@ -209,30 +284,15 @@ export default function ContabilFiscalTrabalhista() {
       </Revelar>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
-          <CabecalhoSecao
-            rotulo="Como funciona"
-            titulo="Da conversa inicial à rotina no prazo"
-          />
-          <div className={estilos.passos}>
-            {passos.map((passo) => (
-              <article key={passo.numero} className={estilos.passo}>
-                <span className={estilos.passoNumero}>{passo.numero}</span>
-                <h3 className={estilos.passoTitulo}>{passo.titulo}</h3>
-                <p className={estilos.passoTexto}>{passo.texto}</p>
-              </article>
-            ))}
+        <Section className={estilos.secaoEsquerda}>
+          <div className={estilos.textosEsquerda}>
+            <CabecalhoSecao
+              rotulo="A Greentax"
+              titulo="Números que acompanham o trabalho"
+              className={estilos.cabecalhoCentral}
+            />
           </div>
-        </Section>
-      </Revelar>
-
-      <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="A Greentax"
-            titulo="Números que acompanham o trabalho"
-          />
-          <div className={estilos.estatisticas}>
+          <div className={`${estilos.estatisticas} ${estilos.cartoesEsquerda}`}>
             {estatisticas.map((estatistica) => (
               <div key={estatistica.rotulo} className={estilos.estatistica}>
                 <span className={estilos.estatisticaValor}>{estatistica.valor}</span>
@@ -254,7 +314,9 @@ export default function ContabilFiscalTrabalhista() {
             />
             <div className={estilos.ctaAcoes}>
               <Botao
-                href={whatsappLink("Olá! Quero entender como a Greentax pode cuidar da rotina contábil, fiscal e trabalhista da minha empresa.")}
+                href={whatsappLink(
+                  "Olá! Quero entender como a Greentax pode cuidar da rotina contábil, fiscal e trabalhista da minha empresa.",
+                )}
                 externo
                 porte="lg"
                 variante="claro"
@@ -276,12 +338,14 @@ export default function ContabilFiscalTrabalhista() {
       </Revelar>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
-          <CabecalhoSecao
-            rotulo="Perguntas frequentes"
-            titulo="Dúvidas comuns sobre a rotina"
-          />
-          <FAQ itens={faq} />
+        <Section className={estilos.secaoFaq}>
+          <div className={estilos.textosEsquerda}>
+            <CabecalhoSecao
+              rotulo="Perguntas frequentes"
+              titulo="Dúvidas comuns sobre a rotina"
+            />
+          </div>
+          <FAQ itens={faq} className={estilos.cartoesEsquerda} />
         </Section>
       </Revelar>
     </>

@@ -11,9 +11,10 @@ type FaqItem = {
 
 type FAQProps = {
   itens: FaqItem[];
+  className?: string;
 };
 
-export function FAQ({ itens }: FAQProps) {
+export function FAQ({ itens, className }: FAQProps) {
   const [expandido, setExpandido] = useState<number | null>(null);
 
   function toggle(index: number) {
@@ -21,7 +22,7 @@ export function FAQ({ itens }: FAQProps) {
   }
 
   return (
-    <div className={estilos.faq}>
+    <div className={[estilos.faq, className].filter(Boolean).join(" ")}>
       {itens.map((item, index) => (
         <div
           key={item.pergunta}

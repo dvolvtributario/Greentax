@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PageHero } from "@/components/sections/PageHero";
+import { Botao } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import ShapeDivider from "@/components/ui/ShapeDivider";
@@ -19,15 +20,31 @@ export const metadata: Metadata = {
 export default function QuemSomos() {
   return (
     <>
-      <PageHero
-        rotulo="Quem Somos"
-        titulo="Contabilidade faz mais sentido quando você entende o que os números estão dizendo."
-        lead=""
-        imagem={{
-          src: "/marca/reuniao.jpg",
-          alt: "",
-        }}
-      />
+      <section className={estilos.hero}>
+        <div className={estilos.heroImagem}>
+          <Image
+            src="/marca/reuniao.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
+        <div className={estilos.heroFaixa} aria-hidden="true" />
+        <div className={estilos.heroFaixaFina} aria-hidden="true" />
+        <Container>
+          <p className={estilos.heroRotulo}>Quem Somos</p>
+          <h1 className={estilos.heroTitulo}>
+            Contabilidade faz mais sentido quando você entende o que os números
+            estão dizendo.
+          </h1>
+          <div className={estilos.heroAcoes}>
+            <Botao href="/contato" variante="claro" porte="lg">
+              Falar com a equipe
+            </Botao>
+          </div>
+        </Container>
+      </section>
 
       <Revelar>
         <Section className={estilos.apareceEsquerda}>
@@ -151,14 +168,18 @@ export default function QuemSomos() {
       <Revelar>
         <Section
           fundo="nenhum"
-          className={`${estilos.apareceEsquerda} ${estilos.time}`}>
+          className={`${estilos.secaoEsquerda} ${estilos.time}`}>
           <div className={p.duasColunas}>
             <CabecalhoSecao
               rotulo="Time"
               titulo="As pessoas por trás da Greentax"
               lead="Queremos mostrar quem atende você. Por isso, esta área receberá fotos e informações reais da equipe."
+              className={estilos.textosEsquerda}
             />
-            <Pendente titulo="Fotos e dados da equipe">
+            <Pendente
+              titulo="Fotos e dados da equipe"
+              className={estilos.itemEsquerda}
+            >
               <p>
                 Para cada pessoa: foto real, nome, cargo e, quando houver, registro
                 profissional (CRC).

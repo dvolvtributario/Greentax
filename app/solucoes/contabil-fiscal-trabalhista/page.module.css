@@ -22,6 +22,26 @@
   }
 }
 
+@keyframes cresceLinha {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes cresceLinhaY {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
 [data-visivel="false"] .surgirTexto :is(h1, h2, h3, p, li, span, a, button),
 [data-visivel="false"] .apareceEsquerda :is(h1, h2, h3, p, li, span, a, button) {
   opacity: 0;
@@ -39,43 +59,226 @@
   overflow: hidden;
 }
 
+/* --- títulos e cards revelando da esquerda --- */
+
+.secaoFaq,
+.secaoEsquerda {
+  overflow: hidden;
+}
+
+[data-visivel="false"] .textosEsquerda :is(h1, h2, h3, p, li, span, a, button) {
+  opacity: 0;
+}
+
+[data-visivel="true"] .textosEsquerda :is(h1, h2, h3, p, li, span, a, button) {
+  animation: apareceEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-visivel="false"] .cartoesEsquerda > * {
+  opacity: 0;
+}
+
+[data-visivel="true"] .cartoesEsquerda > * {
+  animation: apareceEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-visivel="false"] .itemEsquerda {
+  opacity: 0;
+}
+
+[data-visivel="true"] .itemEsquerda {
+  animation: apareceEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.cabecalhoCentral {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* --- hero (referência: colagem de fotos com selo da marca) --- */
+
+.hero {
+  background: var(--papel-2);
+  padding-block: clamp(3rem, 1.5rem + 4vw, 5.5rem);
+}
+
+.heroGrade {
+  display: grid;
+  gap: clamp(44px, 5vw, 76px);
+  align-items: center;
+}
+
+@media (min-width: 940px) {
+  .heroGrade {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
+}
+
+.heroTexto {
+  min-width: 0;
+}
+
+.heroRotulo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-700);
+}
+
+.heroTitulo {
+  margin-top: 22px;
+  font-size: var(--fs-h1);
+  max-width: 20ch;
+}
+
+.heroLead {
+  margin-top: 20px;
+  font-size: var(--fs-corpo-g);
+  color: var(--tinta-500);
+  max-width: 46ch;
+}
+
 .heroAcoes {
+  margin-top: 34px;
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
 }
 
-/* --- cards de benefício com chip de ícone (estilo Biztop) --- */
+.heroColagem {
+  position: relative;
+  aspect-ratio: 5 / 4.4;
+}
 
-.beneficioIconeChip {
+.heroFotoGrande,
+.heroFotoPequena {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.heroFotoGrande {
+  top: 0;
+  right: 0;
+  width: 78%;
+  height: 80%;
+}
+
+.heroFotoPequena {
+  left: 0;
+  bottom: 0;
+  width: 54%;
+  height: 64%;
+  border: 8px solid var(--papel-2);
+}
+
+.heroFotoGrande img,
+.heroFotoPequena img {
+  object-fit: cover;
+}
+
+.heroFotoGrande img {
+  object-position: 55% 45%;
+}
+
+.heroSelo {
+  position: absolute;
+  left: 42%;
+  bottom: 10%;
+  width: clamp(76px, 8vw, 104px);
+  aspect-ratio: 1;
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 14px 34px rgba(11, 63, 33, 0.16);
+}
+
+.heroSelo img {
+  width: 56%;
+  height: auto;
+}
+
+/* --- benefícios (referência: cartões em pílula com selo de ícone) --- */
+
+.gradeBeneficios {
+  position: relative;
+  margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
+  display: grid;
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+@media (min-width: 760px) {
+  .gradeBeneficios {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.beneficio {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 58px;
-  height: 58px;
-  background: var(--verde-050);
-  color: var(--verde-800);
+  gap: clamp(16px, 2vw, 24px);
+  background: var(--papel);
   border: 1px solid var(--filete);
-  margin-bottom: 18px;
+  border-radius: 999px;
+  padding: clamp(14px, 1.4vw, 18px) clamp(20px, 2.4vw, 30px);
 }
 
-.beneficioIconeChip svg {
+@media (min-width: 760px) {
+  .beneficio:nth-of-type(even) {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+}
+
+.beneficioSelo {
+  flex: none;
+  width: clamp(52px, 4.4vw, 60px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--verde-700);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+
+.beneficioSelo svg {
   width: 26px;
   height: 26px;
-  flex: none;
 }
 
-/* --- cards de serviço (inclusos) estilo Biztop --- */
+.beneficioTexto {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.beneficioTexto h3 {
+  font-size: 1.0625rem;
+}
+
+.beneficioTexto p {
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-500);
+  line-height: 1.5;
+}
+
+/* --- o que está incluso --- */
 
 .servicos {
   margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
   display: grid;
-  gap: 18px;
+  gap: clamp(16px, 2vw, 22px);
 }
 
 @media (min-width: 900px) {
   .servicos {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -85,23 +288,23 @@
   gap: 18px;
   background: var(--papel);
   border: 1px solid var(--filete);
-  padding: 34px 30px;
+  border-radius: 14px;
+  padding: clamp(26px, 2.6vw, 34px);
 }
 
-.servicoChip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background: var(--verde-100);
-  color: var(--verde-800);
+.servicoSelo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--verde-700);
+  color: #fff;
+  display: grid;
+  place-items: center;
 }
 
-.servicoChip svg {
-  width: 24px;
-  height: 24px;
-  flex: none;
+.servicoSelo svg {
+  width: 26px;
+  height: 26px;
 }
 
 .servicoTitulo {
@@ -117,7 +320,7 @@
   display: flex;
   gap: 12px;
   font-size: var(--fs-pequeno);
-  color: var(--tinta-700);
+  color: var(--tinta-600);
   line-height: 1.5;
 }
 
@@ -134,7 +337,7 @@
   align-items: center;
   gap: 10px;
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: 6px;
   font-size: var(--fs-pequeno);
   font-weight: 700;
   letter-spacing: var(--ls-rotulo);
@@ -153,58 +356,143 @@
   flex: none;
 }
 
-/* --- passos (estilo Biztop: numerais grandes "01") --- */
+/* --- rota (referência: roadmap com trilha e nós circulares) --- */
 
-.passos {
+.secaoRota {
+  overflow: hidden;
+}
+
+.rota {
+  position: relative;
   margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
   display: grid;
-  gap: 18px;
+  gap: clamp(34px, 4vw, 44px);
 }
 
-@media (min-width: 700px) {
-  .passos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1000px) {
-  .passos {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.passo {
+.rotaItem {
+  position: relative;
   display: grid;
-  gap: 12px;
+  gap: 14px;
+  justify-items: start;
   align-content: start;
-  background: var(--papel);
-  border: 1px solid var(--filete);
-  padding: 34px 28px;
 }
 
-.passoNumero {
-  font-size: clamp(2.5rem, 2rem + 1.5vw, 3.25rem);
+.rotaNo {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--verde-900);
+  border: 2px solid var(--verde-400);
+  color: #fff;
+  display: grid;
+  place-items: center;
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--verde-400);
-  opacity: 0.85;
+  font-size: var(--fs-corpo);
+  letter-spacing: 0.06em;
   font-variant-numeric: tabular-nums;
-  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-.passoTitulo {
+.rotaTitulo {
   font-size: 1.125rem;
+  color: #fff;
 }
 
-.passoTexto {
-  color: var(--tinta-500);
+.rotaTexto {
   font-size: var(--fs-pequeno);
-  line-height: 1.55;
+  color: var(--verde-100);
+  line-height: 1.6;
 }
 
-/* --- estatísticas (estilo Biztop: resultado com filete de destaque) --- */
+@media (max-width: 899px) {
+  .rota::before {
+    content: "";
+    position: absolute;
+    left: 33px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--verde-400), var(--verde-700));
+  }
+
+  .rotaItem {
+    padding-left: 96px;
+    min-height: 72px;
+  }
+
+  .rotaNo {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .rota {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 40px);
+  }
+
+  .rota::before {
+    content: "";
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 33px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-400), var(--verde-700));
+  }
+
+  .rotaItem {
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+[data-visivel="false"] .rotaItem {
+  opacity: 0;
+}
+
+[data-visivel="true"] .rotaItem {
+  animation: surgirTexto 900ms ease-out both;
+}
+
+[data-visivel="true"] .rotaItem:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+[data-visivel="true"] .rotaItem:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+[data-visivel="true"] .rotaItem:nth-child(4) {
+  animation-delay: 420ms;
+}
+
+@media (max-width: 899px) {
+  [data-visivel="false"] .rota::before {
+    transform: scaleY(0);
+  }
+
+  [data-visivel="true"] .rota::before {
+    animation: cresceLinhaY 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 900px) {
+  [data-visivel="false"] .rota::before {
+    transform: scaleX(0);
+  }
+
+  [data-visivel="true"] .rota::before {
+    animation: cresceLinha 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    transform-origin: left center;
+  }
+}
+
+/* --- estatísticas --- */
 
 .estatisticas {
   margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
@@ -214,7 +502,7 @@
 
 @media (min-width: 700px) {
   .estatisticas {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -222,10 +510,12 @@
   background: var(--papel);
   border: 1px solid var(--filete);
   border-top: 3px solid var(--verde-500);
-  padding: 40px 28px;
+  border-radius: 14px;
+  padding: clamp(30px, 3vw, 40px) clamp(24px, 2.6vw, 32px);
   display: grid;
   gap: 12px;
-  justify-items: start;
+  justify-items: center;
+  text-align: center;
 }
 
 .estatisticaValor {
@@ -243,7 +533,7 @@
   line-height: 1.45;
 }
 
-/* --- faixa CTA (estilo Biztop) --- */
+/* --- faixa CTA --- */
 
 .cta {
   display: grid;

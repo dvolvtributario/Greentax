@@ -8,6 +8,8 @@ export function PageHero({
   lead,
   imagem,
   cobertura = false,
+  corte,
+  decoracao,
   children,
 }: {
   rotulo: string;
@@ -18,17 +20,19 @@ export function PageHero({
     alt: string;
   };
   cobertura?: boolean;
+  corte?: "diagonal";
+  decoracao?: React.ReactNode;
   children?: React.ReactNode;
 }) {
   return (
     <section
-      className={`${estilos.hero} ${
-        imagem
-          ? cobertura
-            ? estilos.heroCobertura
-            : estilos.heroComImagem
-          : ""
-      }`}
+      className={[
+        estilos.hero,
+        imagem ? (cobertura ? estilos.heroCobertura : estilos.heroComImagem) : "",
+        corte === "diagonal" ? estilos.heroCorteDiagonal : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {imagem ? (
         <div className={estilos.imagemWrap}>
@@ -38,8 +42,28 @@ export function PageHero({
             alt={imagem.alt}
             fill
             priority
-            sizes={cobertura ? "100vw" : "(max-width: 939px) 100vw, 58vw"}
+            sizes={
+              cobertura
+                ? "100vw"
+                : corte === "diagonal"
+                  ? "(max-width: 939px) 100vw, 50vw"
+                  : "(max-width: 939px) 100vw, 58vw"
+            }
           />
+        </div>
+      ) : null}
+      {corte === "diagonal" ? (
+        <svg aria-hidden="true" focusable="false" className={estilos.corteSvg}>
+          <defs>
+            <clipPath id="pagehero-corte-diagonal" clipPathUnits="objectBoundingBox">
+              <path d="M0,0 L1,0 L1,0.716 C0.62,0.775 0.42,0.8 0.3,0.822 C0.22,0.838 0.17,0.847 0.118,0.847 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+      ) : null}
+      {decoracao ? (
+        <div className={estilos.decoracao} aria-hidden="true">
+          {decoracao}
         </div>
       ) : null}
       <Container>

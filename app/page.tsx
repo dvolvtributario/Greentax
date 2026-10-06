@@ -149,9 +149,9 @@ export default async function Home() {
       <Revelar>
         <Section
           fundo="nenhum"
-          className={`${estilos.apareceEsquerda} ${estilos.blog}`}
+          className={`${estilos.secaoEsquerda} ${estilos.blog}`}
         >
-          <div className={estilos.blogTopo}>
+          <div className={`${estilos.blogTopo} ${estilos.textosEsquerda}`}>
             <CabecalhoSecao
               rotulo="Central de conteúdo"
               titulo="Informação para quem precisa decidir"
@@ -163,7 +163,7 @@ export default async function Home() {
           </div>
 
           {destaques.length > 0 ? (
-            <div className={estilos.blogGrade}>
+            <div className={`${estilos.blogGrade} ${estilos.cartoesEsquerda}`}>
               {destaques.map((artigo) => (
                 <CartaoArtigo key={artigo.slug} artigo={artigo} />
               ))}
@@ -215,12 +215,14 @@ export default async function Home() {
       </Revelar>
 
       <Revelar>
-        <Section className={estilos.surgirTexto}>
-          <CabecalhoSecao
-            rotulo="Perguntas frequentes"
-            titulo="Dúvidas comuns sobre contabilidade"
-          />
-          <FAQ itens={faq} />
+        <Section className={estilos.secaoFaq}>
+          <div className={estilos.textosEsquerda}>
+            <CabecalhoSecao
+              rotulo="Perguntas frequentes"
+              titulo="Dúvidas comuns sobre contabilidade"
+            />
+          </div>
+          <FAQ itens={faq} className={estilos.cartoesEsquerda} />
         </Section>
       </Revelar>
     </>

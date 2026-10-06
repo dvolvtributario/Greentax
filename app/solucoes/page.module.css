@@ -51,6 +51,28 @@
   overflow: hidden;
 }
 
+/* --- perguntas frequentes: título e cards revelando da esquerda --- */
+
+.secaoFaq {
+  overflow: hidden;
+}
+
+[data-visivel="false"] .textosEsquerda :is(h1, h2, h3, p, li, span, a, button) {
+  opacity: 0;
+}
+
+[data-visivel="true"] .textosEsquerda :is(h1, h2, h3, p, li, span, a, button) {
+  animation: apareceEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-visivel="false"] .cartoesEsquerda > * {
+  opacity: 0;
+}
+
+[data-visivel="true"] .cartoesEsquerda > * {
+  animation: apareceEsquerda 1700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .deslizaEsquerda {
   overflow: hidden;
 }

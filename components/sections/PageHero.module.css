@@ -63,6 +63,50 @@
   z-index: 2;
 }
 
+.hero > .decoracao {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- corte diagonal: foto na direita, textos numa coluna só à esquerda --- */
+
+.heroCorteDiagonal .grade {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.heroCorteDiagonal .lead {
+  padding-left: 0;
+}
+
+.heroCorteDiagonal .imagemWrap {
+  inset: 0 0 0 50%;
+  clip-path: url("#pagehero-corte-diagonal");
+}
+
+.heroCorteDiagonal .imagem {
+  object-position: 50% 30%;
+}
+
+.corteSvg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@media (min-width: 940px) {
+  .heroCorteDiagonal::before {
+    background: none;
+  }
+}
+
+@media (max-width: 939px) {
+  .heroCorteDiagonal .imagemWrap {
+    clip-path: polygon(0 16%, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
 @media (max-width: 939px) {
   .heroComImagem::before {
     background: linear-gradient(

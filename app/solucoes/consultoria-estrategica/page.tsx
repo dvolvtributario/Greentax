@@ -94,6 +94,11 @@ export default function ConsultoriaEstrategica() {
         rotulo="Consultoria Estratégica"
         titulo="Quando surge uma questão que pede um olhar dedicado."
         lead="Cada situação tributária tem um caminho próprio. Antes de decidir qualquer coisa, entendemos o caso, os prazos e o que você espera do resultado."
+        imagem={{
+          src: "/marca/hero-consultoria.jpg",
+          alt: "Equipe da Greentax em reunião de consultoria",
+        }}
+        corte="diagonal"
       >
         <div className={estilos.heroAcoes}>
           <Botao
@@ -108,8 +113,8 @@ export default function ConsultoriaEstrategica() {
       </PageHero>
 
       <Revelar>
-        <Section fundo="nenhum" className={`${estilos.secaoVerdeClaro} ${estilos.apareceEsquerda}`}>
-          <div className={estilos.cabecalhoGrama}>
+        <Section fundo="nenhum" className={estilos.secaoVerdeClaro}>
+          <div className={`${estilos.cabecalhoGrama} ${estilos.textosEsquerda}`}>
             <CabecalhoSecao
               rotulo="Quando a consultoria entra"
               titulo="Situações que pedem um olhar dedicado"
@@ -159,12 +164,14 @@ export default function ConsultoriaEstrategica() {
       </Section>
 
       <Revelar>
-        <Section fundo="papel2" className={estilos.apareceEsquerda}>
-          <CabecalhoSecao
-            rotulo="Perguntas frequentes"
-            titulo="Dúvidas comuns sobre consultoria"
-          />
-          <FAQ itens={faq} />
+        <Section fundo="papel2" className={estilos.secaoFaq}>
+          <div className={estilos.textosEsquerda}>
+            <CabecalhoSecao
+              rotulo="Perguntas frequentes"
+              titulo="Dúvidas comuns sobre consultoria"
+            />
+          </div>
+          <FAQ itens={faq} className={estilos.cartoesEsquerda} />
         </Section>
       </Revelar>
     </>
