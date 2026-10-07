@@ -95,113 +95,12 @@
   text-align: center;
 }
 
-/* --- hero (referência: colagem de fotos com selo da marca) --- */
-
-.hero {
-  background: var(--papel-2);
-  padding-block: clamp(3rem, 1.5rem + 4vw, 5.5rem);
-}
-
-.heroGrade {
-  display: grid;
-  gap: clamp(44px, 5vw, 76px);
-  align-items: center;
-}
-
-@media (min-width: 940px) {
-  .heroGrade {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  }
-}
-
-.heroTexto {
-  min-width: 0;
-}
-
-.heroRotulo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: var(--fs-rotulo);
-  font-weight: 700;
-  letter-spacing: var(--ls-rotulo);
-  text-transform: uppercase;
-  color: var(--verde-700);
-}
-
-.heroTitulo {
-  margin-top: 22px;
-  font-size: var(--fs-h1);
-  max-width: 20ch;
-}
-
-.heroLead {
-  margin-top: 20px;
-  font-size: var(--fs-corpo-g);
-  color: var(--tinta-500);
-  max-width: 46ch;
-}
+/* --- hero (PageHero compartilhado) --- */
 
 .heroAcoes {
-  margin-top: 34px;
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-}
-
-.heroColagem {
-  position: relative;
-  aspect-ratio: 5 / 4.4;
-}
-
-.heroFotoGrande,
-.heroFotoPequena {
-  position: absolute;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.heroFotoGrande {
-  top: 0;
-  right: 0;
-  width: 78%;
-  height: 80%;
-}
-
-.heroFotoPequena {
-  left: 0;
-  bottom: 0;
-  width: 54%;
-  height: 64%;
-  border: 8px solid var(--papel-2);
-}
-
-.heroFotoGrande img,
-.heroFotoPequena img {
-  object-fit: cover;
-}
-
-.heroFotoGrande img {
-  object-position: 55% 45%;
-}
-
-.heroSelo {
-  position: absolute;
-  left: 42%;
-  bottom: 10%;
-  width: clamp(76px, 8vw, 104px);
-  aspect-ratio: 1;
-  background: var(--papel);
-  border: 1px solid var(--filete);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 14px 34px rgba(11, 63, 33, 0.16);
-}
-
-.heroSelo img {
-  width: 56%;
-  height: auto;
 }
 
 /* --- benefícios (referência: cartões em pílula com selo de ícone) --- */

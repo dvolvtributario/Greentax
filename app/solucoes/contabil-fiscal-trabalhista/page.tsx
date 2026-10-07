@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import {
-  Calculator,
-  CalendarCheck,
-  MessagesSquare,
-  Timer,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+import {Calculator, CalendarCheck, MessagesSquare, Timer, TrendingUp, Users,} from "lucide-react";
+import { PageHero } from "@/components/sections/PageHero";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
-import { Container } from "@/components/ui/Container";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
@@ -135,58 +127,23 @@ const mensagemRotina =
 export default function ContabilFiscalTrabalhista() {
   return (
     <>
-      <section className={estilos.hero}>
-        <Container>
-          <div className={estilos.heroGrade}>
-            <div className={estilos.heroTexto}>
-              <p className={estilos.heroRotulo}>Contábil, Fiscal e Trabalhista</p>
-              <h1 className={estilos.heroTitulo}>
-                A rotina da sua empresa em ordem, sem pagar imposto a mais.
-              </h1>
-              <p className={estilos.heroLead}>
-                Da escrituração e dos tributos no prazo à folha de pagamento e às
-                obrigações acessórias, tudo com quem conhece o seu negócio.
-              </p>
-              <div className={estilos.heroAcoes}>
-                <Botao href={whatsappLink(mensagemRotina)} externo porte="lg">
-                  <Whatsapp className={p.iconeBotao} />
-                  Quero conversar sobre a rotina
-                </Botao>
-              </div>
-            </div>
-
-            <div className={estilos.heroColagem}>
-              <div className={estilos.heroFotoGrande}>
-                <Image
-                  src="/marca/reuniao.jpg"
-                  alt="Equipe em reunião de trabalho com clientes"
-                  fill
-                  priority
-                  sizes="(max-width: 939px) 100vw, 44vw"
-                />
-              </div>
-              <div className={estilos.heroFotoPequena}>
-                <Image
-                  src="/marca/contabil-fiscal-trabalhista.jpg"
-                  alt="Mesa de trabalho com notebook e calculadora"
-                  fill
-                  priority
-                  sizes="(max-width: 939px) 46vw, 20vw"
-                />
-              </div>
-              <span className={estilos.heroSelo}>
-                <Image
-                  src="/marca/greentax-icone.png"
-                  alt=""
-                  width={120}
-                  height={62}
-                  priority
-                />
-              </span>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        rotulo="Contábil, Fiscal e Trabalhista"
+        titulo="A rotina da sua empresa em ordem, sem pagar imposto a mais."
+        lead="Da escrituração e dos tributos no prazo à folha de pagamento e às obrigações acessórias, tudo com quem conhece o seu negócio."
+        imagem={{
+          src: "/marca/corporativa.jpg",
+          alt: "Equipe em reunião de trabalho com clientes",
+        }}
+        corte="diagonal"
+      >
+        <div className={estilos.heroAcoes}>
+          <Botao href={whatsappLink(mensagemRotina)} externo porte="lg">
+            <Whatsapp className={p.iconeBotao} />
+            Quero conversar sobre a rotina
+          </Botao>
+        </div>
+      </PageHero>
 
       <Revelar>
         <Section className={estilos.surgirTexto}>
@@ -272,13 +229,6 @@ export default function ContabilFiscalTrabalhista() {
                 </article>
               );
             })}
-          </div>
-          <div className={`${p.aviso} ${estilos.itemEsquerda}`}>
-            <p>
-              O escopo e o valor do serviço dependem do porte, da atividade e do
-              enquadramento tributário da empresa. A proposta é montada depois de
-              entendermos a realidade do negócio.
-            </p>
           </div>
         </Section>
       </Revelar>
