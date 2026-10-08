@@ -363,14 +363,6 @@
   color: var(--verde-100);
 }
 
-.faixaCtaRotulo::before,
-.faixaCtaRotulo::after {
-  content: "";
-  width: 40px;
-  height: 2px;
-  background: var(--verde-400);
-}
-
 .faixaCtaTitulo {
   margin-top: 24px;
   max-width: 24ch;

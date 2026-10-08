@@ -5,9 +5,15 @@ import {
   BriefcaseBusiness,
   Calculator,
   Cpu,
+  Factory,
   Handshake,
   Lightbulb,
+  Megaphone,
+  ShoppingCart,
+  Store,
+  Target,
   TrendingUp,
+  Wallet,
 } from "lucide-react";
 
 export type Solucao = {
@@ -197,6 +203,124 @@ export const servicosConsultoria = [
       "Elaboração de PER/DCOMP",
       "Suporte em fiscalizações e perícias",
       "Declaração de Imposto de Renda (pessoa física), para clientes e sócios das empresas atendidas",
+    ],
+  },
+];
+
+export type Nicho = {
+  slug: string;
+  titulo: string;
+  tag: string;
+  problema: string;
+  atendimento: string;
+  pontos: string[];
+  icone: LucideIcon;
+};
+
+export const nichos: Nicho[] = [
+  {
+    slug: "prestador-de-servicos",
+    titulo: "Prestador de Serviços",
+    tag: "Serviços",
+    icone: Handshake,
+    problema:
+      "Quem presta serviço emite nota, recebe com retenção e precisa provar o que fez. Sem controle por competência, o mês fecha com imposto a mais ou com guia esquecida.",
+    atendimento:
+      "Acompanhamos a emissão, as retenções e a escrituração mês a mês, para que o serviço prestado vire receita conferida e prazo cumprido.",
+    pontos: [
+      "Retenções de IRRF, ISS e INSS na fonte: quanto foi retido e onde compensar",
+      "Classificação do serviço por CNAE e alíquota do ISS de cada município",
+      "Regime tributário escolhido pelo faturamento real, não por estimativa",
+    ],
+  },
+  {
+    slug: "industria",
+    titulo: "Indústria",
+    tag: "Produção",
+    icone: Factory,
+    problema:
+      "Estoque, insumos e tributos indiretos andam juntos. Um cálculo fora do lugar atrasa a apuração e come a margem sem que a operação perceba.",
+    atendimento:
+      "Conferimos a apuração com atenção ao estoque, aos créditos e às operações com substituição tributária, sempre pela escrituração real.",
+    pontos: [
+      "Substituição tributária e antecipação de ICMS nas entradas e saídas",
+      "Créditos de PIS/COFINS sobre insumos, embalagens e frete",
+      "Escrituração fiscal eletrônica e controle de estoque em dia",
+    ],
+  },
+  {
+    slug: "comercio",
+    titulo: "Comércio",
+    tag: "Vendas",
+    icone: Store,
+    problema:
+      "Produto com NCM diferente, alíquota diferente e promoção o mês inteiro. O erro de classificação passa despercebido e aparece na fiscalização.",
+    atendimento:
+      "Separamos as receitas por operação e conferimos a classificação fiscal dos produtos antes que a pendência apareça.",
+    pontos: [
+      "Classificação fiscal do produto (NCM e CEST) e alíquota correta",
+      "Produtos monofásicos e regras de substituição tributária",
+      "ICMS-ST, DIFAL nas vendas para fora do estado e obrigações do SPED",
+    ],
+  },
+  {
+    slug: "e-commerces",
+    titulo: "E-commerces",
+    tag: "Vendas online",
+    icone: ShoppingCart,
+    problema:
+      "Venda pelo site, marketplace e gateway: cada canal emite, retém e reporta de um jeito. O faturamento quase nunca chega como um número só.",
+    atendimento:
+      "Conciliamos os canais por competência e tratamos cada operação pelo destino da venda, com a nota emitida no momento certo.",
+    pontos: [
+      "ICMS nas vendas interestaduais para o consumidor final e o DIFAL",
+      "Taxas e retenções de marketplace e gateway conciliadas com a nota",
+      "Obrigações acessórias digitais entregues no prazo",
+    ],
+  },
+  {
+    slug: "gestor-de-trafego",
+    titulo: "Gestor de Tráfego",
+    tag: "Marketing digital",
+    icone: Target,
+    problema:
+      "A agência atende cliente de outro estado ou do exterior, recebe por plataforma e assina contrato digital. Sem entender a operação, o enquadramento sai errado.",
+    atendimento:
+      "Organizamos contratos, notas e recebimentos por cliente para que cada pagamento seja entendido antes de apurar.",
+    pontos: [
+      "ISS e retenções conforme o município do cliente e o tipo de serviço",
+      "Receita de clientes fora do país: câmbio, documentação e apuração",
+      "Pró-labore, distribuição de lucros e obrigações da folha",
+    ],
+  },
+  {
+    slug: "mei",
+    titulo: "MEI",
+    tag: "Pequeno negócio",
+    icone: Wallet,
+    problema:
+      "O MEI é simples até o faturamento crescer, chegar um empregado ou a atividade não estar entre as permitidas. Aí a guia mensal deixa de ser a certa.",
+    atendimento:
+      "Acompanhamos o limite e o momento de migrar para ME, sem perder prazo nem descobrir a situação quando a fiscalização chegar.",
+    pontos: [
+      "Limite de faturamento do MEI e o que fazer em caso de excesso",
+      "Atividades permitidas e vedadas, e a regra do MEI com empregado",
+      "Migração de MEI para ME no Simples: prazos e comunicações aos órgãos",
+    ],
+  },
+  {
+    slug: "criador-de-conteudo",
+    titulo: "Criador(a) de Conteúdo",
+    tag: "Criadores",
+    icone: Megaphone,
+    problema:
+      "Publicidade, marca, publi e plataforma pagam de formas diferentes, e quase nada chega como salário. Sem nota e sem controle, a receita vira confusão no fechamento.",
+    atendimento:
+      "Mapeamos cada fonte de receita, emitimos as notas e mostramos quanto entrou, quanto foi retido e quanto sobra.",
+    pontos: [
+      "Retenções de IRRF e ISS por cliente, plataforma e verba de publicidade",
+      "Relação entre PJ e contrato com marca ou agência, sem risco trabalhista",
+      "Receita vinda do exterior e o que declarar em cada competência",
     ],
   },
 ];

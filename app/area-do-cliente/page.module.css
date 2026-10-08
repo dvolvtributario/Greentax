@@ -1,0 +1,259 @@
+/* --- cabeçalho --- */
+
+.cabecalhoCentral {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* --- linha pontilhada central + etapas alternadas --- */
+
+.passos {
+  position: relative;
+  margin-top: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
+  display: grid;
+  gap: clamp(30px, 3.4vw, 52px);
+}
+
+.passos::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 27px;
+  border-left: 2px dashed var(--filete-forte);
+}
+
+.passo {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  grid-template-rows: auto;
+  column-gap: 20px;
+  align-items: start;
+}
+
+.passoNo {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--papel);
+  border: 2px solid var(--verde-700);
+  color: var(--verde-700);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.passoLado {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  border-radius: 16px;
+}
+
+@media (min-width: 900px) {
+  .passos::before {
+    left: 50%;
+  }
+
+  .passo {
+    grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr);
+    column-gap: clamp(24px, 3vw, 44px);
+  }
+
+  .passoNo {
+    grid-column: 2;
+    justify-self: center;
+  }
+
+  .passoLado {
+    grid-column: 1;
+  }
+
+  .passo:nth-child(even) .passoLado {
+    grid-column: 3;
+  }
+}
+
+/* --- texto da etapa --- */
+
+.passoTitulo {
+  padding: clamp(24px, 2.6vw, 36px) clamp(24px, 2.6vw, 36px) 0;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+}
+
+.passoDescricao {
+  margin-top: 14px;
+  padding-inline: clamp(24px, 2.6vw, 36px);
+  color: var(--tinta-600);
+  line-height: 1.7;
+}
+
+.codigo {
+  padding: 2px 8px;
+  border: 1px solid var(--verde-100);
+  border-radius: 6px;
+  background: var(--verde-050);
+  color: var(--verde-800);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* --- imagem da etapa em moldura de navegador --- */
+
+.passoImagem {
+  margin: 26px 0 0;
+  display: grid;
+  gap: 0;
+}
+
+.janela {
+  overflow: hidden;
+  background: var(--papel);
+  border: 0;
+  border-top: 1px solid var(--filete);
+  border-radius: 0;
+}
+
+.janelaBarra {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 16px;
+  background: var(--papel-2);
+  border-bottom: 1px solid var(--filete);
+}
+
+.janelaPonto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--filete-forte);
+}
+
+.janelaUrl {
+  margin-left: 10px;
+  padding: 4px 14px;
+  border: 1px solid var(--filete);
+  border-radius: 999px;
+  background: var(--papel);
+  font-size: var(--fs-mini);
+  color: var(--tinta-500);
+}
+
+.area {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--papel);
+}
+
+.area img {
+  object-fit: contain;
+  object-position: top center;
+}
+
+.placeholder {
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  padding: 28px;
+  text-align: center;
+  background: var(--papel-2);
+  border-top: 2px dashed var(--filete-forte);
+}
+
+.placeholderRotulo {
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--alerta-texto);
+}
+
+.placeholderTitulo {
+  max-width: 34ch;
+  font-size: var(--fs-pequeno);
+  font-weight: 600;
+  color: var(--tinta-800);
+}
+
+.placeholderTexto {
+  max-width: 42ch;
+  font-size: var(--fs-mini);
+  color: var(--tinta-500);
+}
+
+.placeholderTexto code {
+  word-break: break-all;
+}
+
+.legenda {
+  padding: 14px clamp(24px, 2.6vw, 36px) clamp(24px, 2.6vw, 36px);
+  font-size: var(--fs-mini);
+  color: var(--tinta-500);
+  line-height: 1.55;
+}
+
+/* --- animação de entrada --- */
+
+@keyframes sobe {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.revelar[data-visivel="false"] .cabecalhoCentral,
+.revelar[data-visivel="false"] .passo {
+  opacity: 0;
+}
+
+.revelar[data-visivel="true"] .cabecalhoCentral,
+.revelar[data-visivel="true"] .passo {
+  animation: sobe 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.revelar[data-visivel="true"] .passo:nth-child(1) {
+  animation-delay: 160ms;
+}
+
+.revelar[data-visivel="true"] .passo:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+/* --- bloco final de acesso --- */
+
+.cta {
+  max-width: 52ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ctaAcoes {
+  margin-top: 30px;
+  display: grid;
+}
+
+.botaoPortal {
+  width: 100%;
+  height: 60px;
+  padding-inline: 24px;
+  font-size: var(--fs-corpo-g);
+}

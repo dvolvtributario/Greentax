@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/sections/PageHero";
-import { Section } from "@/components/ui/Section";
-import { Pendente } from "@/components/ui/Pendente";
+import { CabecalhoSecao, Section } from "@/components/ui/Section";
+import { Revelar } from "@/components/ui/Revelar";
+import { Botao } from "@/components/ui/Button";
+import { Ponto, Whatsapp } from "@/components/ui/Icons";
+import { nichos } from "@/lib/conteudo";
+import { whatsappLink } from "@/lib/site";
+import p from "@/app/paginas.module.css";
+import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Nichos de Atendimento",
@@ -10,38 +15,87 @@ export const metadata: Metadata = {
   alternates: { canonical: "/nichos" },
 };
 
+const mensagemNicho =
+  "Olá! Quero entender como a Greentax atende o segmento da minha empresa.";
+
 export default function Nichos() {
   return (
     <>
-      <PageHero
-        rotulo="Nichos de atendimento"
-        titulo="Especialistas no seu tipo de negócio"
-        lead="Entendemos que cada setor tem suas próprias particularidades fiscais e de gestão, por isso desenvolvemos conhecimento aprofundado nos segmentos que mais atendemos."
-      />
 
-      <Section largura="estreito">
-        <Pendente titulo="Segmentos prioritários a definir">
-          <p>
-            O briefing pede a escolha de 3 a 6 nichos com base na carteira atual. Essa
-            confirmação precisa vir antes da publicação para evitar uma página genérica.
-          </p>
+      <Revelar className={estilos.revelar}>
+        <Section>
+          <CabecalhoSecao
+            nivel="h1"
+            rotulo="Nichos de atendimento"
+            titulo="Especialistas no seu tipo de negócio"
+            lead="Cada setor tem suas próprias particularidades fiscais e de gestão. Nos sete segmentos abaixo, o problema comum de cada atividade, como a Greentax trabalha esse ponto e as questões que merecem atenção no seu caso."
+            className={estilos.cabecalhoCentral}
+          />
 
-          <p>
-            <strong>Para cada segmento, o conteúdo terá:</strong>
-          </p>
-          <ol>
-            <li>Nome do segmento</li>
-            <li>Um problema comum da atividade e como a Greentax trabalha esse ponto</li>
-            <li>De 2 a 3 questões fiscais ou tributárias que merecem atenção</li>
+          <nav className={estilos.indice} aria-label="Índice de nichos">
+            {nichos.map((nicho) => (
+              <a key={nicho.slug} className={estilos.indiceItem} href={`#${nicho.slug}`}>
+                <nicho.icone size={16} strokeWidth={1.6} aria-hidden="true" />
+                <span>{nicho.titulo}</span>
+              </a>
+            ))}
+          </nav>
+
+          <ol className={estilos.lista}>
+            {nichos.map((nicho, indice) => (
+              <li key={nicho.slug} id={nicho.slug} className={estilos.nicho}>
+                <div className={estilos.nichoInfo}>
+                  <div className={estilos.nichoTopo}>
+                    <span className={estilos.nichoNumero} aria-hidden="true">
+                      {String(indice + 1).padStart(2, "0")}
+                    </span>
+                    <span className={estilos.nichoTag}>{nicho.tag}</span>
+                  </div>
+                  <h3 className={estilos.nichoTitulo}>{nicho.titulo}</h3>
+                  <p className={estilos.nichoTexto}>{nicho.problema}</p>
+                  <p className={`${estilos.nichoTexto} ${estilos.nichoAtendimento}`}>
+                    <strong>Como a Greentax trabalha:</strong> {nicho.atendimento}
+                  </p>
+                </div>
+
+                <div className={estilos.nichoPontos}>
+                  <p className={estilos.nichoPontosTitulo}>
+                    <nicho.icone size={18} strokeWidth={1.6} aria-hidden="true" />
+                    Questões que merecem atenção
+                  </p>
+                  <ul className={estilos.nichoLista}>
+                    {nicho.pontos.map((ponto) => (
+                      <li key={ponto}>
+                        <Ponto />
+                        <span>{ponto}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
           </ol>
+        </Section>
+      </Revelar>
 
-          <p>
-            A referência a operações com produtos monofásicos e substituição tributária
-            indica que comércio e revenda podem estar entre os segmentos a considerar.
-            Isso precisa ser confirmado pela equipe antes de entrar no site.
-          </p>
-        </Pendente>
-      </Section>
+      <Revelar>
+        <Section fundo="verde">
+          <div className={estilos.cta}>
+            <CabecalhoSecao
+              claro
+              rotulo="Falar com a Greentax"
+              titulo="O seu segmento está na lista?"
+              lead="Conte como é a operação da sua empresa e mostramos como fica a parte contábil, fiscal e trabalhista no seu tipo de atividade."
+            />
+            <div className={estilos.ctaAcoes}>
+              <Botao href={whatsappLink(mensagemNicho)} externo porte="lg" variante="claro">
+                <Whatsapp className={p.iconeBotao} />
+                Conversar sobre o meu segmento
+              </Botao>
+            </div>
+          </div>
+        </Section>
+      </Revelar>
     </>
   );
 }
