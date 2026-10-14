@@ -167,92 +167,14 @@
   line-height: 1.5;
 }
 
-/* --- o que está incluso --- */
+/* --- o que está incluso (moldura do carrossel de frentes) --- */
 
-.servicos {
+.inclusos {
   margin-top: clamp(2.75rem, 1.5rem + 2.5vw, 4rem);
-  display: grid;
-  gap: clamp(16px, 2vw, 22px);
-}
-
-@media (min-width: 900px) {
-  .servicos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.servico {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
   background: var(--papel);
   border: 1px solid var(--filete);
-  border-radius: 14px;
-  padding: clamp(26px, 2.6vw, 34px);
-}
-
-.servicoSelo {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--verde-700);
-  color: #fff;
-  display: grid;
-  place-items: center;
-}
-
-.servicoSelo svg {
-  width: 26px;
-  height: 26px;
-}
-
-.servicoTitulo {
-  font-size: 1.25rem;
-}
-
-.servicoLista {
-  display: grid;
-  gap: 12px;
-}
-
-.servicoLista li {
-  display: flex;
-  gap: 12px;
-  font-size: var(--fs-pequeno);
-  color: var(--tinta-600);
-  line-height: 1.5;
-}
-
-.servicoLista svg {
-  width: 16px;
-  height: 16px;
-  flex: none;
-  margin-top: 4px;
-  color: var(--verde-600);
-}
-
-.servicoLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: auto;
-  padding-top: 6px;
-  font-size: var(--fs-pequeno);
-  font-weight: 700;
-  letter-spacing: var(--ls-rotulo);
-  text-transform: uppercase;
-  color: var(--verde-700);
-  transition: color 120ms linear;
-}
-
-.servicoLink:hover {
-  color: var(--verde-900);
-}
-
-.servicoLink svg {
-  width: 16px;
-  height: 16px;
-  flex: none;
+  border-radius: 28px;
+  padding: clamp(24px, 3vw, 40px);
 }
 
 /* --- rota (referência: roadmap com trilha e nós circulares) --- */

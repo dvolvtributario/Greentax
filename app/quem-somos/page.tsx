@@ -6,7 +6,10 @@ import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import ShapeDivider from "@/components/ui/ShapeDivider";
 import { Pendente } from "@/components/ui/Pendente";
+import { Contador } from "@/components/ui/Contador";
+import { Whatsapp } from "@/components/ui/Icons";
 import { pilares } from "@/lib/conteudo";
+import { site, whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
@@ -16,6 +19,27 @@ export const metadata: Metadata = {
     "Conheça a forma de trabalho da Greentax e como contabilidade, atendimento e tecnologia se encontram na rotina das empresas.",
   alternates: { canonical: "/quem-somos" },
 };
+
+const estatisticas = [
+  {
+    valor: site.indicadores.anosDeMercado,
+    sufixo: "+",
+    rotulo: "anos de atuação",
+  },
+  {
+    valor: site.indicadores.empresasAtendidas,
+    sufixo: "+",
+    rotulo: "empresas atendidas",
+  },
+  {
+    valor: site.indicadores.obrigacoesNoPrazo,
+    sufixo: "%",
+    rotulo: "obrigações entregues no prazo",
+  },
+];
+
+const mensagemQuemSomos =
+  "Olá! Vim pela página Quem Somos e gostaria de conversar com a equipe da Greentax.";
 
 export default function QuemSomos() {
   return (
@@ -205,17 +229,48 @@ export default function QuemSomos() {
 
       <Revelar>
         <Section className={estilos.surgirTexto}>
-          <div className={p.duasColunas}>
+          <CabecalhoSecao
+            rotulo="Em números"
+            titulo="O trabalho de todo dia, em números"
+            className={estilos.cabecalhoCentral}
+          />
+          <Grade colunas={3} className={p.espacoG}>
+            {estatisticas.map((estatistica) => (
+              <div key={estatistica.rotulo} className={estilos.estatistica}>
+                <Contador
+                  valor={estatistica.valor}
+                  sufixo={estatistica.sufixo}
+                  className={estilos.estatisticaValor}
+                />
+                <span className={estilos.estatisticaRotulo}>
+                  {estatistica.rotulo}
+                </span>
+              </div>
+            ))}
+          </Grade>
+        </Section>
+      </Revelar>
+
+      <Revelar>
+        <Section fundo="verde" className={estilos.apareceEsquerda}>
+          <div className={estilos.cta}>
             <CabecalhoSecao
-              rotulo="Nossa origem"
-              titulo="Da consultoria tributária à contabilidade completa"
-              lead="A história da Greentax deve mostrar como a consultoria tributária abriu caminho para a estrutura contábil atual."
+              claro
+              rotulo="Próximo passo"
+              titulo="Vamos conversar sobre a sua empresa?"
+              lead="Conte como é a operação da sua empresa e entenda como fica a parte contábil, fiscal e trabalhista no seu dia a dia."
             />
-            <Pendente titulo="Marcos da história">
-              Datas e acontecimentos da trajetória ainda precisam ser confirmados:
-              fundação da consultoria tributária, abertura do segundo CNPJ e evolução da
-              carteira de clientes.
-            </Pendente>
+            <div className={estilos.ctaAcoes}>
+              <Botao
+                href={whatsappLink(mensagemQuemSomos)}
+                externo
+                porte="lg"
+                variante="claro"
+              >
+                <Whatsapp className={p.iconeBotao} />
+                Falar com a Greentax
+              </Botao>
+            </div>
           </div>
         </Section>
       </Revelar>

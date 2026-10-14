@@ -286,3 +286,48 @@
 .time {
   background: var(--papel-2);
 }
+
+/* --- números --- */
+
+.cabecalhoCentral {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.estatistica {
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  border-top: 3px solid var(--verde-500);
+  border-radius: 14px;
+  padding: clamp(30px, 3vw, 40px) clamp(24px, 2.6vw, 32px);
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  text-align: center;
+}
+
+.estatisticaValor {
+  font-size: clamp(3rem, 2rem + 2.5vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--verde-700);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.estatisticaRotulo {
+  font-size: var(--fs-pequeno);
+  color: var(--tinta-600);
+  line-height: 1.45;
+}
+
+/* --- faixa CTA final --- */
+
+.cta {
+  display: grid;
+  justify-items: start;
+}
+
+.ctaAcoes {
+  margin-top: 36px;
+}

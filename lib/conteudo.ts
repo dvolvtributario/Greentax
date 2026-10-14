@@ -153,31 +153,25 @@ export const servicosRecorrentes = [
   {
     titulo: "Área Contábil",
     itens: [
-      "Escrituração contábil regular, conforme a legislação vigente",
-      "Balancetes, balanço patrimonial e demonstrações contábeis obrigatórias",
-      "Apuração de resultados e encerramento de exercícios",
-      "Atendimento a fiscalizações e intimações contábeis, quando previamente comunicadas",
-      "Entrega das obrigações acessórias contábeis (DEFIS anual)",
+      "Escrituração contábil regular",
+      "Balancetes, balanço e demonstrações contábeis",
+      "Apuração de resultados e encerramento de exercício",
     ],
   },
   {
     titulo: "Área Fiscal e Tributária",
     itens: [
-      "Escrituração dos livros fiscais exigidos por lei",
-      "Apuração de tributos federais, estaduais e municipais, com análise de segregação de receitas para otimização do PGDAS-D",
-      "Emissão de guias de recolhimento de impostos e taxas",
-      "Entrega das obrigações acessórias fiscais (PGDAS-D e DCTFWeb)",
-      "Orientação tributária de rotina para empresas do Simples Nacional",
-      "Declaração de faturamento, com atualização trimestral",
+      "Livros fiscais e guias de recolhimento",
+      "Apuração de tributos com segregação de receitas no PGDAS-D",
+      "Obrigações acessórias no prazo (PGDAS-D e DCTFWeb)",
     ],
   },
   {
     titulo: "Área Trabalhista e Previdenciária",
     itens: [
-      "Folha de pagamento e recibos de pró-labore",
-      "Cálculo de encargos sociais, trabalhistas e provisões",
-      "Transmissão de obrigações acessórias (eSocial e EFD-Reinf)",
-      "Processamento de admissões, rescisões e férias",
+      "Folha de pagamento, pró-labore e encargos",
+      "Admissões, rescisões e férias",
+      "eSocial e EFD-Reinf no prazo",
     ],
   },
 ];
@@ -229,7 +223,6 @@ export const nichos: Nicho[] = [
       "Acompanhamos a emissão, as retenções e a escrituração mês a mês, para que o serviço prestado vire receita conferida e prazo cumprido.",
     pontos: [
       "Retenções de IRRF, ISS e INSS na fonte: quanto foi retido e onde compensar",
-      "Classificação do serviço por CNAE e alíquota do ISS de cada município",
       "Regime tributário escolhido pelo faturamento real, não por estimativa",
     ],
   },
@@ -244,7 +237,6 @@ export const nichos: Nicho[] = [
       "Conferimos a apuração com atenção ao estoque, aos créditos e às operações com substituição tributária, sempre pela escrituração real.",
     pontos: [
       "Substituição tributária e antecipação de ICMS nas entradas e saídas",
-      "Créditos de PIS/COFINS sobre insumos, embalagens e frete",
       "Escrituração fiscal eletrônica e controle de estoque em dia",
     ],
   },
@@ -259,7 +251,6 @@ export const nichos: Nicho[] = [
       "Separamos as receitas por operação e conferimos a classificação fiscal dos produtos antes que a pendência apareça.",
     pontos: [
       "Classificação fiscal do produto (NCM e CEST) e alíquota correta",
-      "Produtos monofásicos e regras de substituição tributária",
       "ICMS-ST, DIFAL nas vendas para fora do estado e obrigações do SPED",
     ],
   },
@@ -275,7 +266,6 @@ export const nichos: Nicho[] = [
     pontos: [
       "ICMS nas vendas interestaduais para o consumidor final e o DIFAL",
       "Taxas e retenções de marketplace e gateway conciliadas com a nota",
-      "Obrigações acessórias digitais entregues no prazo",
     ],
   },
   {
@@ -290,7 +280,6 @@ export const nichos: Nicho[] = [
     pontos: [
       "ISS e retenções conforme o município do cliente e o tipo de serviço",
       "Receita de clientes fora do país: câmbio, documentação e apuração",
-      "Pró-labore, distribuição de lucros e obrigações da folha",
     ],
   },
   {
@@ -305,7 +294,6 @@ export const nichos: Nicho[] = [
     pontos: [
       "Limite de faturamento do MEI e o que fazer em caso de excesso",
       "Atividades permitidas e vedadas, e a regra do MEI com empregado",
-      "Migração de MEI para ME no Simples: prazos e comunicações aos órgãos",
     ],
   },
   {
@@ -320,7 +308,6 @@ export const nichos: Nicho[] = [
     pontos: [
       "Retenções de IRRF e ISS por cliente, plataforma e verba de publicidade",
       "Relação entre PJ e contrato com marca ou agência, sem risco trabalhista",
-      "Receita vinda do exterior e o que declarar em cada competência",
     ],
   },
 ];

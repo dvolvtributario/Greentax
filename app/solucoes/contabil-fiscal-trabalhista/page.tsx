@@ -6,8 +6,9 @@ import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
-import { Ponto, Seta, Whatsapp } from "@/components/ui/Icons";
-import { servicosRecorrentes } from "@/lib/conteudo";
+import { CarrosselInclusos } from "@/components/sections/CarrosselInclusos";
+import { Whatsapp } from "@/components/ui/Icons";
+import { Contador } from "@/components/ui/Contador";
 import { site, whatsappLink } from "@/lib/site";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
@@ -77,8 +78,6 @@ const passos = [
   },
 ];
 
-const inclusosIcones = [Calculator, TrendingUp, Users];
-
 const faq = [
   {
     pergunta: "Como funciona a troca de contador?",
@@ -113,10 +112,19 @@ const faq = [
 ];
 
 const estatisticas = [
-  { valor: `${site.indicadores.anosDeMercado}+`, rotulo: "anos de atuação" },
-  { valor: `${site.indicadores.empresasAtendidas}+`, rotulo: "empresas atendidas" },
   {
-    valor: `${site.indicadores.obrigacoesNoPrazo}%`,
+    valor: site.indicadores.anosDeMercado,
+    sufixo: "+",
+    rotulo: "anos de atuação",
+  },
+  {
+    valor: site.indicadores.empresasAtendidas,
+    sufixo: "+",
+    rotulo: "empresas atendidas",
+  },
+  {
+    valor: site.indicadores.obrigacoesNoPrazo,
+    sufixo: "%",
     rotulo: "obrigações entregues no prazo",
   },
 ];
@@ -192,43 +200,14 @@ export default function ContabilFiscalTrabalhista() {
       </Revelar>
 
       <Revelar>
-        <Section fundo="papel2" className={estilos.secaoEsquerda}>
-          <div className={estilos.textosEsquerda}>
-            <CabecalhoSecao
-              rotulo="O que está incluso"
-              titulo="A parte técnica, resumida para conferir"
-              lead="Três frentes cobertas pelo trabalho de rotina: contábil, fiscal e trabalhista."
-            />
-          </div>
-          <div className={`${estilos.servicos} ${estilos.cartoesEsquerda}`}>
-            {servicosRecorrentes.map((bloco, indice) => {
-              const Icone = inclusosIcones[indice];
-              return (
-                <article key={bloco.titulo} className={estilos.servico}>
-                  <span className={estilos.servicoSelo} aria-hidden="true">
-                    <Icone size={26} strokeWidth={1.5} />
-                  </span>
-                  <h3 className={estilos.servicoTitulo}>{bloco.titulo}</h3>
-                  <ul className={estilos.servicoLista}>
-                    {bloco.itens.map((item) => (
-                      <li key={item}>
-                        <Ponto />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    className={estilos.servicoLink}
-                    href={whatsappLink(
-                      `Olá! Quero entender o que está incluso na ${bloco.titulo} da Greentax.`,
-                    )}
-                  >
-                    Entender o meu caso
-                    <Seta />
-                  </a>
-                </article>
-              );
-            })}
+        <Section fundo="papel2">
+          <CabecalhoSecao
+            rotulo="O que está incluso"
+            titulo="A parte técnica, resumida para conferir"
+            lead="Três frentes cobertas pelo trabalho de rotina: contábil, fiscal e trabalhista."
+          />
+          <div className={estilos.inclusos}>
+            <CarrosselInclusos />
           </div>
         </Section>
       </Revelar>
@@ -245,7 +224,11 @@ export default function ContabilFiscalTrabalhista() {
           <div className={`${estilos.estatisticas} ${estilos.cartoesEsquerda}`}>
             {estatisticas.map((estatistica) => (
               <div key={estatistica.rotulo} className={estilos.estatistica}>
-                <span className={estilos.estatisticaValor}>{estatistica.valor}</span>
+                <Contador
+                  valor={estatistica.valor}
+                  sufixo={estatistica.sufixo}
+                  className={estilos.estatisticaValor}
+                />
                 <span className={estilos.estatisticaRotulo}>{estatistica.rotulo}</span>
               </div>
             ))}

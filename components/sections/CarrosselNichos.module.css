@@ -1,0 +1,415 @@
+/* --- raiz --- */
+
+.lab {
+  --peek: 64px;
+  position: relative;
+  margin-top: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
+  display: grid;
+  gap: clamp(24px, 2.5vw, 44px);
+}
+
+/* --- forma decorativa ao fundo --- */
+
+.blob {
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  top: 4%;
+  width: min(580px, 64%);
+  aspect-ratio: 1.05 / 1;
+  background: var(--verde-050);
+  border-radius: 58% 42% 55% 45% / 52% 46% 54% 48%;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+/* --- índice lateral --- */
+
+.menu {
+  position: relative;
+  z-index: 1;
+}
+
+.menuRotulo {
+  display: block;
+  font-size: var(--fs-rotulo);
+  font-weight: 600;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--tinta-500);
+}
+
+.menuItens {
+  margin-top: clamp(16px, 1.8vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 22px);
+}
+
+.menuItem {
+  display: grid;
+  justify-items: start;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.menuTitulo {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  font-family: var(--font-titulo), "Montserrat", sans-serif;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: var(--ls-titulo);
+  color: var(--tinta-600);
+  transition: color 160ms linear;
+}
+
+.menuMarca {
+  position: absolute;
+  z-index: -1;
+  top: -8px;
+  bottom: -8px;
+  left: -14px;
+  width: clamp(56px, 5vw, 70px);
+  background: var(--verde-500);
+  border-radius: 4px;
+}
+
+.menuSub {
+  font-size: var(--fs-rotulo);
+  font-weight: 600;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--tinta-500);
+  transition: color 160ms linear;
+}
+
+.menuItem:hover .menuTitulo {
+  color: var(--tinta-900);
+}
+
+.menuAtivo .menuTitulo {
+  font-weight: 700;
+  color: var(--tinta-900);
+}
+
+.menuAtivo .menuSub {
+  color: var(--verde-700);
+}
+
+/* --- estágio e pilha de cards --- */
+
+.estagio {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.pilha {
+  position: relative;
+  display: grid;
+  padding-block: var(--peek);
+  overflow: hidden;
+}
+
+.pilha::before,
+.pilha::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--peek);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.pilha::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--papel) 14%, rgba(255, 255, 255, 0));
+}
+
+.pilha::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--papel) 14%, rgba(255, 255, 255, 0));
+}
+
+.slide {
+  grid-area: 1 / 1;
+  display: grid;
+  align-items: center;
+  gap: clamp(18px, 2.2vw, 36px);
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+  transition:
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 460ms linear;
+}
+
+.slideAntes {
+  opacity: 0.32;
+  transform: translateY(-100%);
+}
+
+.slideDepois {
+  opacity: 0.32;
+  transform: translateY(100%);
+}
+
+.slideAtivo {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* --- camada de título + CTA (fica atrás, encostando no card) --- */
+
+.tituloCamada {
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: clamp(16px, 2vw, 26px);
+}
+
+.titulo {
+  margin: 0;
+  font-size: clamp(1.7rem, 1.1rem + 2.3vw, 2.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--tinta-900);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 20px;
+  background: var(--papel);
+  border: 1px solid var(--filete-forte);
+  box-shadow: 0 10px 26px rgba(20, 24, 26, 0.07);
+  font-size: var(--fs-rotulo);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--tinta-900);
+  text-decoration: none;
+  transition:
+    border-color 160ms linear,
+    color 160ms linear,
+    background-color 160ms linear;
+}
+
+.cta:hover {
+  border-color: var(--verde-600);
+  background: var(--verde-050);
+  color: var(--verde-700);
+}
+
+.ctaSeta {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+/* --- card de conteúdo --- */
+
+.cartao {
+  display: grid;
+  align-content: start;
+  gap: clamp(20px, 2.4vw, 30px);
+  padding: clamp(26px, 3vw, 44px);
+  background: var(--papel);
+  border: 1px solid var(--filete);
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(20, 24, 26, 0.07);
+}
+
+.texto {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--tinta-600);
+  line-height: 1.7;
+}
+
+.atendimento strong {
+  color: var(--verde-700);
+}
+
+.painel {
+  background: var(--verde-050);
+  border: 1px solid var(--verde-100);
+  border-radius: 14px;
+  padding: clamp(20px, 2.2vw, 28px);
+}
+
+.painelTitulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: var(--fs-mini);
+  font-weight: 700;
+  letter-spacing: var(--ls-rotulo);
+  text-transform: uppercase;
+  color: var(--verde-700);
+}
+
+.painelTitulo svg {
+  flex: none;
+  color: var(--verde-600);
+}
+
+.lista {
+  margin-top: 16px;
+  display: grid;
+  gap: 13px;
+}
+
+.lista li {
+  display: flex;
+  gap: 12px;
+  font-size: var(--fs-pequeno);
+  line-height: 1.55;
+  color: var(--tinta-600);
+}
+
+.lista li svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  margin-top: 6px;
+  color: var(--verde-600);
+}
+
+/* --- trilha vertical com marcador --- */
+
+.trilho {
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+
+.trilhoLinha {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--filete);
+}
+
+.trilhoThumb {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--papel);
+  border: 1.5px solid var(--verde-500);
+  box-shadow: 0 8px 20px rgba(20, 24, 26, 0.1);
+  cursor: pointer;
+  transition:
+    top 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 160ms linear,
+    background-color 160ms linear;
+}
+
+.trilhoThumb:hover,
+.trilhoThumb:focus-visible {
+  border-color: var(--verde-700);
+  background: var(--verde-050);
+}
+
+.trilhoPonto {
+  width: 20px;
+  height: 20px;
+  color: var(--verde-600);
+}
+
+.trilhoSetas {
+  display: none;
+  color: var(--verde-700);
+}
+
+.trilhoThumb:hover .trilhoPonto,
+.trilhoThumb:focus-visible .trilhoPonto {
+  display: none;
+}
+
+.trilhoThumb:hover .trilhoSetas,
+.trilhoThumb:focus-visible .trilhoSetas {
+  display: block;
+}
+
+/* --- desktop: menu à esquerda, card ao centro, trilha à direita --- */
+
+@media (min-width: 1000px) {
+  .lab {
+    grid-template-columns: minmax(170px, 230px) minmax(0, 1fr) 56px;
+  }
+
+  .menu {
+    padding-top: calc(var(--peek) - 4px);
+  }
+
+  .slide {
+    grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+  }
+
+  .tituloCamada {
+    grid-column: 1;
+    justify-self: end;
+    width: max-content;
+    max-width: 100%;
+    margin-right: calc(-1 * (clamp(18px, 2.2vw, 36px) + 16px));
+  }
+
+  .cartao {
+    grid-column: 2;
+  }
+
+  .trilho {
+    display: block;
+    width: 56px;
+    justify-self: center;
+  }
+}
+
+/* --- mobile: menu em fileira, título acima do card --- */
+
+@media (max-width: 999px) {
+  .lab {
+    --peek: 44px;
+    gap: clamp(20px, 4vw, 32px);
+  }
+
+  .menuItens {
+    flex-direction: row;
+    gap: clamp(20px, 5vw, 32px);
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .menuItens::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  .trilhoThumb {
+    transition-duration: 120ms;
+  }
+}
