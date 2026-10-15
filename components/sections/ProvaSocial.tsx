@@ -153,8 +153,8 @@ export function ProvaSocial({
                         <Image
                           src={logo.src}
                           alt={logo.alt}
-                          width={280}
-                          height={160}
+                          width={200}
+                          height={180}
                           loading="eager"
                           className={estilos.clienteLogo}
                         />

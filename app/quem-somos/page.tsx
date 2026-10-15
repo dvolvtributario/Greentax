@@ -5,7 +5,6 @@ import { Container } from "@/components/ui/Container";
 import { CabecalhoSecao, Grade, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import ShapeDivider from "@/components/ui/ShapeDivider";
-import { Pendente } from "@/components/ui/Pendente";
 import { Contador } from "@/components/ui/Contador";
 import { Whatsapp } from "@/components/ui/Icons";
 import { pilares } from "@/lib/conteudo";
@@ -184,7 +183,7 @@ export default function QuemSomos() {
         </Section>
       </Revelar>
 
-      {/* Arco cinza sobe no branco e entra na faixa do Time. */}
+      {/* Arco cinza sobe no branco e entra na faixa dos números. */}
       <Revelar>
         <ShapeDivider forma="arco" cor="var(--papel-2)" />
       </Revelar>
@@ -192,43 +191,8 @@ export default function QuemSomos() {
       <Revelar>
         <Section
           fundo="nenhum"
-          className={`${estilos.secaoEsquerda} ${estilos.time}`}>
-          <div className={p.duasColunas}>
-            <CabecalhoSecao
-              rotulo="Time"
-              titulo="As pessoas por trás da Greentax"
-              lead="Queremos mostrar quem atende você. Por isso, esta área receberá fotos e informações reais da equipe."
-              className={estilos.textosEsquerda}
-            />
-            <Pendente
-              titulo="Fotos e dados da equipe"
-              className={estilos.itemEsquerda}
-            >
-              <p>
-                Para cada pessoa: foto real, nome, cargo e, quando houver, registro
-                profissional (CRC).
-              </p>
-              <p>
-                As imagens vão em <code>public/equipe/</code> e os dados em{" "}
-                <code>lib/conteudo.ts</code>.
-              </p>
-            </Pendente>
-          </div>
-        </Section>
-      </Revelar>
-
-      {/* Arco cinza espelha a curva de entrada: o domo desce para fora, fechando a faixa do Time. */}
-      <Revelar>
-        <ShapeDivider
-          forma="arco"
-          cor="var(--papel-2)"
-          fundo="var(--papel)"
-          espelhado
-        />
-      </Revelar>
-
-      <Revelar>
-        <Section className={estilos.surgirTexto}>
+          className={`${estilos.secaoEsquerda} ${estilos.numeros}`}
+        >
           <CabecalhoSecao
             rotulo="Em números"
             titulo="O trabalho de todo dia, em números"
@@ -251,11 +215,20 @@ export default function QuemSomos() {
         </Section>
       </Revelar>
 
+      {/* Arco cinza espelha a curva de entrada: o domo desce para fora, fechando a faixa. */}
       <Revelar>
-        <Section fundo="verde" className={estilos.apareceEsquerda}>
+        <ShapeDivider
+          forma="arco"
+          cor="var(--papel-2)"
+          fundo="var(--papel)"
+          espelhado
+        />
+      </Revelar>
+
+      <Revelar>
+        <Section className={estilos.apareceEsquerda}>
           <div className={estilos.cta}>
             <CabecalhoSecao
-              claro
               rotulo="Próximo passo"
               titulo="Vamos conversar sobre a sua empresa?"
               lead="Conte como é a operação da sua empresa e entenda como fica a parte contábil, fiscal e trabalhista no seu dia a dia."
@@ -265,7 +238,6 @@ export default function QuemSomos() {
                 href={whatsappLink(mensagemQuemSomos)}
                 externo
                 porte="lg"
-                variante="claro"
               >
                 <Whatsapp className={p.iconeBotao} />
                 Falar com a Greentax

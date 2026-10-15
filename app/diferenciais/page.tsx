@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { Files, MessagesSquare, Receipt, RefreshCw } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
+import { CarrosselTelas } from "@/components/sections/CarrosselTelas";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import { Pendente } from "@/components/ui/Pendente";
 import { Revelar } from "@/components/ui/Revelar";
-import { diferenciais } from "@/lib/conteudo";
-import p from "@/app/paginas.module.css";
+import { aplicativo, diferenciais } from "@/lib/conteudo";
 import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -14,6 +15,32 @@ export const metadata: Metadata = {
     "Veja como a Greentax trabalha com rotina contábil, informação, tecnologia e atendimento próximo.",
   alternates: { canonical: "/diferenciais" },
 };
+
+const recursosApp = [
+  {
+    icone: Receipt,
+    titulo: "Pagamentos pendentes",
+    texto:
+      "Acompanhe os processos com pagamento pendente e se mantenha em dia.",
+  },
+  {
+    icone: Files,
+    titulo: "Documentos de qualquer lugar",
+    texto:
+      "Envie e acompanhe os documentos com a contabilidade de onde estiver.",
+  },
+  {
+    icone: MessagesSquare,
+    titulo: "Conversa direta",
+    texto:
+      "Converse direto com a contabilidade pelo aplicativo, sem intermediários.",
+  },
+  {
+    icone: RefreshCw,
+    titulo: "Guias em poucos toques",
+    texto: "Atualize guias de pagamento de forma prática e rápida.",
+  },
+];
 
 export default function Diferenciais() {
   return (
@@ -83,35 +110,43 @@ export default function Diferenciais() {
       </div>
 
       <Section fundo="papel2">
-        <div className={p.duasColunas}>
-          <CabecalhoSecao
-            rotulo="Tecnologia"
-            titulo="Ferramenta boa é a que deixa o trabalho mais claro."
-            lead="A Greentax usa recursos digitais para acompanhar documentos, informações e prazos, mantendo o contato com a equipe por perto."
-          />
-          <Pendente titulo="Detalhes da plataforma do cliente">
-            <p>
-              Esta área será preenchida com o nome da plataforma, as funções disponíveis
-              para o cliente e, se autorizado, imagens da interface.
-            </p>
-            <ul>
-              <li>Nome da plataforma e situação atual</li>
-              <li>Funções disponíveis hoje</li>
-              <li>Possível link de acesso pelo menu do site</li>
-              <li>Prints ou mockups autorizados para divulgação</li>
+        <div className={estilos.appGrade}>
+          <div>
+            <CabecalhoSecao
+              rotulo="Aplicativo Greentax"
+              titulo="A sua contabilidade no bolso"
+              lead="Processos, documentos, conversas e guias em um aplicativo só. O cliente acompanha o que importa de qualquer lugar e resolve o pendente em poucos toques."
+            />
+            <ul className={estilos.appRecursos}>
+              {recursosApp.map((recurso) => (
+                <li key={recurso.titulo} className={estilos.appRecurso}>
+                  <span
+                    className={estilos.appRecursoIcone}
+                    aria-hidden="true"
+                  >
+                    <recurso.icone size={22} strokeWidth={1.7} />
+                  </span>
+                  <div>
+                    <h3>{recurso.titulo}</h3>
+                    <p>{recurso.texto}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
-          </Pendente>
-        </div>
-      </Section>
+          </div>
 
-      <Section>
-        <div className={p.duasColunas}>
-          <CabecalhoSecao rotulo="Prova social" titulo="O que dizem nossos clientes" />
-          <Pendente titulo="Depoimentos e cases">
-            O bloco entra no site quando houver depoimentos autorizados. O ideal é
-            informar nome, empresa, cargo e, quando possível, um resultado que possa ser
-            comprovado.
-          </Pendente>
+          <div className={estilos.appVisual}>
+            <div className={estilos.appPrincipal}>
+              <Image
+                src={aplicativo.principal.src}
+                alt={aplicativo.principal.alt}
+                width={738}
+                height={1600}
+                sizes="240px"
+              />
+            </div>
+            <CarrosselTelas className={estilos.appCarrossel} />
+          </div>
         </div>
       </Section>
     </>

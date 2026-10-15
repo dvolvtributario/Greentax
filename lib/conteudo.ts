@@ -318,3 +318,40 @@ export const servicosInteresse = [
   "Pessoa Física (Imposto de Renda)",
   "Ainda não sei",
 ] as const;
+
+export const aplicativo = {
+  principal: {
+    src: "/aplicativo/principal.jpg",
+    alt: "Tela inicial do aplicativo Greentax",
+  },
+  telas: [
+    {
+      src: "/aplicativo/pagamentos.jpg",
+      alt: "Processos com pagamento pendente no aplicativo Greentax",
+    },
+    {
+      src: "/aplicativo/documentos.jpg",
+      alt: "Documentos acompanhados com a contabilidade pelo aplicativo",
+    },
+    {
+      src: "/aplicativo/conversa.jpg",
+      alt: "Conversa direta com a contabilidade pelo aplicativo",
+    },
+    {
+      src: "/aplicativo/guias.jpg",
+      alt: "Guias de pagamento atualizadas pelo aplicativo",
+    },
+    {
+      src: "/aplicativo/tela-5.jpg",
+      alt: "Tela do aplicativo Greentax",
+    },
+    {
+      src: "/aplicativo/tela-6.jpg",
+      alt: "Tela do aplicativo Greentax",
+    },
+    {
+      src: "/aplicativo/tela-7.jpg",
+      alt: "Tela do aplicativo Greentax",
+    },
+  ],
+};
