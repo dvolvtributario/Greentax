@@ -198,7 +198,7 @@ export default function QuemSomos() {
             titulo="O trabalho de todo dia, em números"
             className={estilos.cabecalhoCentral}
           />
-          <Grade colunas={3} className={p.espacoG}>
+          <Grade colunas={3} className={estilos.gradeNumeros}>
             {estatisticas.map((estatistica) => (
               <div key={estatistica.rotulo} className={estilos.estatistica}>
                 <Contador

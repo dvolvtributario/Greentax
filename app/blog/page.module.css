@@ -35,6 +35,17 @@
   background: var(--verde-700);
 }
 
+@media (max-width: 640px) {
+  .filtros {
+    gap: 6px 20px;
+  }
+
+  .filtro {
+    padding-bottom: 10px;
+    margin-bottom: 0;
+  }
+}
+
 .grade {
   margin-top: 40px;
   display: grid;
@@ -61,16 +72,4 @@
   padding: 48px;
   text-align: center;
   color: var(--tinta-500);
-}
-
-.materiais {
-  display: grid;
-  gap: 36px;
-}
-
-@media (min-width: 940px) {
-  .materiais {
-    grid-template-columns: 5fr 7fr;
-    gap: 80px;
-  }
 }

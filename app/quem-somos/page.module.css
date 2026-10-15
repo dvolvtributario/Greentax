@@ -271,6 +271,17 @@
   background: var(--papel-2);
 }
 
+.gradeNumeros {
+  margin-top: 56px;
+  gap: 25px !important;
+  background: var(--papel-2) !important;
+  border: 0 !important;
+}
+
+.gradeNumeros > * {
+  background: var(--papel) !important;
+}
+
 .cabecalhoCentral {
   margin-inline: auto;
   text-align: center;

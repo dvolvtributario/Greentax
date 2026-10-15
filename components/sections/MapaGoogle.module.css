@@ -21,6 +21,16 @@
   border: 1px dashed var(--filete-forte);
 }
 
+@media (max-width: 640px) {
+  .frame {
+    height: 300px;
+  }
+
+  .placeholder {
+    min-height: 300px;
+  }
+}
+
 .titulo {
   font-size: var(--fs-pequeno);
   font-weight: 700;

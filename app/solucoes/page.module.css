@@ -208,8 +208,13 @@
 .servicoLado {
   display: grid;
   gap: 26px;
-  justify-items: end;
-  text-align: right;
+}
+
+@media (min-width: 900px) {
+  .servicoLado {
+    justify-items: end;
+    text-align: right;
+  }
 }
 
 .servicoLista {

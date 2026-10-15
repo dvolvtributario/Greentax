@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
+  min-width: 0;
 }
 
 .duplo {
   display: grid;
   gap: 28px;
+  min-width: 0;
 }
 
 @media (min-width: 620px) {
@@ -18,6 +20,7 @@
 .campo {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .rotulo {
@@ -103,7 +106,8 @@
 
 .opcoes {
   display: flex;
-  gap: 28px;
+  flex-wrap: wrap;
+  gap: 12px 28px;
   margin-top: 12px;
 }
 
@@ -156,6 +160,7 @@
   border: 0;
   padding: 0;
   margin: 0;
+  min-width: 0;
 }
 
 .honeypot {
@@ -185,7 +190,7 @@
   border: 1px solid var(--verde-700);
   border-left-width: 3px;
   background: var(--verde-050);
-  padding: 40px;
+  padding: clamp(24px, 6vw, 40px);
 }
 
 .sucessoRotulo {

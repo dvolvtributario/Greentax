@@ -32,6 +32,24 @@
     color 120ms linear;
 }
 
+@media (max-width: 640px) {
+  .botoes {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-bottom: 0;
+    scrollbar-width: none;
+  }
+
+  .botoes::-webkit-scrollbar {
+    display: none;
+  }
+
+  .botao {
+    flex: none;
+    border-bottom: 1px solid var(--filete-forte);
+  }
+}
+
 .botao:hover {
   color: var(--verde-700);
 }

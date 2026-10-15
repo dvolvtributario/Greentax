@@ -4,6 +4,7 @@
 
 .grade {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 56px;
 }
 
@@ -63,6 +64,7 @@
   padding-block: 16px;
   font-size: var(--fs-pequeno);
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .dado svg {

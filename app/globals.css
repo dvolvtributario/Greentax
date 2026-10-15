@@ -112,6 +112,7 @@ h4 {
   letter-spacing: var(--ls-titulo);
   line-height: 1.12;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 h1 {
@@ -185,6 +186,7 @@ code {
 }
 
 .pular-para-conteudo:focus {
+  position: fixed;
   left: var(--gutter);
   top: 12px;
   background: var(--verde-700);
@@ -192,6 +194,14 @@ code {
   padding: 12px 20px;
   font-size: var(--fs-pequeno);
   font-weight: 600;
+}
+
+#conteudo {
+  scroll-margin-top: 84px;
+}
+
+html {
+  overflow-x: clip;
 }
 
 @keyframes chatbotBotaoEntrada {

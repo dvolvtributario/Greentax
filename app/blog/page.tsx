@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/sections/PageHero";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
-import { CabecalhoSecao, Section } from "@/components/ui/Section";
-import { Pendente } from "@/components/ui/Pendente";
+import { Section } from "@/components/ui/Section";
 import { CATEGORIAS, listarArtigos } from "@/lib/blog";
 import estilos from "./page.module.css";
 
@@ -59,33 +58,6 @@ export default async function Blog({ searchParams }: PageProps<"/blog">) {
         ) : (
           <p className={estilos.vazio}>Nenhum artigo nesta categoria ainda.</p>
         )}
-      </Section>
-
-      <Section fundo="papel2">
-        <div className={estilos.materiais}>
-          <CabecalhoSecao
-            rotulo="Materiais"
-            titulo="Materiais para baixar"
-            lead="Planilhas, tabelas e vídeos para simplificar a gestão da sua empresa."
-          />
-          <Pendente titulo="Materiais ricos e captura de e-mail">
-            <p>
-              O briefing prevê planilhas, tabelas e vídeo institucional para download
-              mediante cadastro de e-mail. Faltam duas coisas para montar:
-            </p>
-            <ul>
-              <li>Os arquivos em si (planilhas, tabelas, vídeo)</li>
-              <li>
-                Onde os e-mails capturados devem cair — mesma decisão de CRM pendente
-                no formulário de contato
-              </li>
-            </ul>
-            <p>
-              Importante para a LGPD: a captura precisa de consentimento explícito e
-              link para a Política de Privacidade no próprio formulário.
-            </p>
-          </Pendente>
-        </div>
       </Section>
     </>
   );

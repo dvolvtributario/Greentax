@@ -26,8 +26,14 @@
 .diferencial {
   display: grid;
   gap: 8px;
-  padding: 4px 42px;
+  padding: 4px 0;
   background: none;
+}
+
+@media (min-width: 700px) {
+  .diferencial {
+    padding: 4px 42px;
+  }
 }
 
 .numero {

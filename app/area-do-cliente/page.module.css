@@ -32,6 +32,24 @@
   align-items: start;
 }
 
+@media (max-width: 560px) {
+  .passo {
+    grid-template-columns: 44px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  .passoNo {
+    width: 44px;
+    height: 44px;
+    font-size: 0.9375rem;
+  }
+
+  .passoTitulo,
+  .passoDescricao {
+    padding-inline: 18px;
+  }
+}
+
 .passoNo {
   grid-column: 1;
   grid-row: 1;

@@ -46,18 +46,18 @@
   display: none;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .nav {
     display: block;
     margin-right: auto;
-    margin-left: 48px;
+    margin-left: clamp(20px, 3vw, 48px);
   }
 }
 
 .lista {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: clamp(16px, 1.6vw, 30px);
 }
 
 .link {
@@ -200,7 +200,7 @@
   cursor: pointer;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1180px) {
   .alternador {
     display: none;
   }
@@ -216,9 +216,18 @@
 .painel {
   border-top: 1px solid var(--filete);
   background: var(--papel);
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
+  .painel {
+    max-height: calc(100dvh - 84px);
+  }
+}
+
+@media (min-width: 1180px) {
   .painel {
     display: none;
   }

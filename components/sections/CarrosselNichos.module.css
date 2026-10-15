@@ -6,6 +6,7 @@
   margin-top: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
   display: grid;
   gap: clamp(24px, 2.5vw, 44px);
+  overflow-x: clip;
 }
 
 /* --- forma decorativa ao fundo --- */
@@ -13,13 +14,13 @@
 .blob {
   position: absolute;
   z-index: 0;
-  left: 8%;
-  top: 4%;
-  width: min(580px, 64%);
-  aspect-ratio: 1.05 / 1;
+  left: 50%;
+  top: 50%;
+  width: 600px;
+  height: 280px;
   background: var(--verde-050);
-  border-radius: 58% 42% 55% 45% / 52% 46% 54% 48%;
-  transform: rotate(-12deg);
+  border-radius: 45% 55% 35% 65% / 35% 25% 75% 65%;
+  transform: translate(-50%, -50%) rotate(-45deg);
   pointer-events: none;
 }
 
@@ -398,8 +399,16 @@
     flex-direction: row;
     gap: clamp(20px, 5vw, 32px);
     overflow-x: auto;
-    padding-bottom: 4px;
+    padding: 0 16px 4px;
+    margin-inline: -16px;
+    scroll-padding-left: 16px;
+    scroll-snap-type: x proximity;
     scrollbar-width: none;
+  }
+
+  .menuItem {
+    flex: none;
+    scroll-snap-align: start;
   }
 
   .menuItens::-webkit-scrollbar {

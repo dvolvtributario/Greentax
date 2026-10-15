@@ -18,6 +18,16 @@
   gap: 16px;
 }
 
+@media (max-width: 640px) {
+  .banner {
+    padding-block: 14px;
+  }
+
+  .conteudo {
+    gap: 12px;
+  }
+}
+
 @media (min-width: 900px) {
   .conteudo {
     grid-template-columns: 1fr auto;

@@ -5,6 +5,19 @@
   padding-block: clamp(3rem, 1.5rem + 4vw, 5rem);
 }
 
+@media (min-width: 940px) {
+  .heroComImagem,
+  .heroCorteDiagonal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .heroCorteDiagonal {
+    min-height: clamp(680px, 78vh, 760px);
+  }
+}
+
 .heroComImagem::before {
   content: "";
   position: absolute;
@@ -20,6 +33,19 @@
   pointer-events: none;
 }
 
+.heroCobertura::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 63, 33, 0.55) 0%,
+    rgba(11, 63, 33, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
 .heroCobertura .imagemWrap {
   inset: 0;
 }
@@ -30,6 +56,7 @@
 
 .heroCobertura .rotulo {
   justify-content: flex-end;
+  color: var(--verde-100);
 }
 
 .heroCobertura .grade {
@@ -76,6 +103,12 @@
   grid-template-columns: minmax(0, 1fr);
 }
 
+@media (min-width: 940px) {
+  .heroCorteDiagonal .grade {
+    max-width: 46%;
+  }
+}
+
 .heroCorteDiagonal .lead {
   padding-left: 0;
 }
@@ -103,22 +136,21 @@
 
 @media (max-width: 939px) {
   .heroCorteDiagonal .imagemWrap {
+    inset: 42% 0 0;
     clip-path: polygon(0 16%, 100% 0, 100% 100%, 0 100%);
   }
-}
 
-@media (max-width: 939px) {
+  .heroCorteDiagonal .imagem {
+    object-position: 50% 30%;
+  }
+
   .heroComImagem::before {
     background: linear-gradient(
       180deg,
       var(--papel) 0%,
-      rgba(255, 255, 255, 0.94) 55%,
-      rgba(255, 255, 255, 0.36) 100%
+      rgba(255, 255, 255, 0.96) 45%,
+      rgba(255, 255, 255, 0.55) 100%
     );
-  }
-
-  .imagemWrap {
-    inset: 42% 0 0;
   }
 }
 

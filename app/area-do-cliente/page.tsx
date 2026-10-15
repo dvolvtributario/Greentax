@@ -36,7 +36,7 @@ const passos: Passo[] = [
     texto: (
       <>
         Ao acessar o portal, digite no campo o nome da contabilidade{" "}
-        <code className={estilos.codigo}>greentaxcontabilidade</code> e, em seguida, clique em
+        <code className={estilos.codigo}>@greentaxcontabilidade</code> e, em seguida, clique em
         Continuar.
       </>
     ),

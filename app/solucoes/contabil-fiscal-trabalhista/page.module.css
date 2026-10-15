@@ -128,6 +128,12 @@
   padding: clamp(14px, 1.4vw, 18px) clamp(20px, 2.4vw, 30px);
 }
 
+@media (max-width: 759px) {
+  .beneficio {
+    border-radius: 28px;
+  }
+}
+
 @media (min-width: 760px) {
   .beneficio:nth-of-type(even) {
     flex-direction: row-reverse;
