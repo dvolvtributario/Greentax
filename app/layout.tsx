@@ -80,6 +80,24 @@ export const viewport: Viewport = {
   themeColor: "#166936",
 };
 
+// GitHub Pages não permite definir headers HTTP de segurança (só arquivos
+// estáticos), então a CSP entra como <meta http-equiv> no HTML — suporte
+// oficial do React 19/Next 16 (ver docs: Unsupported Metadata). "frame-ancestors"
+// não pode vir por meta (limitação do spec) e só é possível em servidor.
+const csp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://www.google.com https://www.gstatic.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://hook.us2.make.com https://www.google.com https://www.gstatic.com",
+  "frame-src https://www.google.com https://www.gstatic.com https://maps.google.com",
+  "worker-src 'self' blob:",
+  "form-action 'self'",
+].join("; ");
+
 const dadosEstruturados = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
@@ -106,6 +124,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" data-scroll-behavior="smooth" className={`${instrumentSans.variable} ${montserrat.variable}`}>
       <body>
+        {process.env.NODE_ENV === "production" && (
+          <meta httpEquiv="Content-Security-Policy" content={csp} />
+        )}
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -28,6 +28,23 @@ const nextConfig: NextConfig = {
   ...(!estatico
     ? {
         async headers() {
+          // Mantido em sincronia com a meta tag em app/layout.tsx (que cobre o
+          // export estático do GitHub Pages); aqui é possível incluir também
+          // frame-ancestors, que o spec de meta http-equiv ignora.
+          const csp = [
+            "default-src 'self'",
+            "base-uri 'self'",
+            "object-src 'none'",
+            "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
+            "style-src 'self' 'unsafe-inline'",
+            "img-src 'self' data: blob: https://www.google.com https://www.gstatic.com",
+            "font-src 'self' data: https://fonts.gstatic.com",
+            "connect-src 'self' https://hook.us2.make.com https://www.google.com https://www.gstatic.com",
+            "frame-src https://www.google.com https://www.gstatic.com https://maps.google.com",
+            "worker-src 'self' blob:",
+            "form-action 'self'",
+            "frame-ancestors 'none'",
+          ].join("; ");
           return [
             {
               source: "/:path*",
@@ -35,6 +52,7 @@ const nextConfig: NextConfig = {
                 { key: "X-Content-Type-Options", value: "nosniff" },
                 { key: "X-Frame-Options", value: "DENY" },
                 { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+                { key: "Content-Security-Policy", value: csp },
                 {
                   key: "Permissions-Policy",
                   value: "camera=(), microphone=(), geolocation=()",
