@@ -1,12 +1,4 @@
-"use server";
-
-import { headers } from "next/headers";
 import { servicosInteresse } from "@/lib/conteudo";
-import {
-  ACAO_RECAPTCHA,
-  PONTUACAO_MINIMA_RECAPTCHA,
-  URL_RECAPTCHA_SITEVERIFY,
-} from "@/lib/recaptcha";
 
 export type DadosContato = {
   nome: string;
@@ -27,73 +19,15 @@ export type Resultado =
 
 const soDigitos = (v: string) => v.replace(/\D/g, "");
 
-type RespostaSiteverify = {
-  success?: boolean;
-  score?: number;
-  action?: string;
-  "error-codes"?: string[];
-};
+const MENSAGEM_FALHA_ENVIO =
+  "Não conseguimos enviar sua solicitação agora. Tente novamente ou fale com a gente pelo WhatsApp.";
 
-// Fail-closed: sem secret, sem token, com erro de rede ou com resposta que
-// não passe em success/action/score, o envio é recusado — o lead não sai.
-async function verificarRecaptcha(
-  token: string,
-  ip?: string | null,
-): Promise<{ ok: true; score?: number } | { ok: false; motivo: string }> {
-  const secret = process.env.RECAPTCHA_SECRET;
-  if (!secret) return { ok: false, motivo: "RECAPTCHA_SECRET não configurada" };
-  if (!token) return { ok: false, motivo: "token ausente" };
-
-  try {
-    const corpo = new URLSearchParams({ secret, response: token });
-    if (ip) corpo.set("remoteip", ip);
-
-    const resposta = await fetch(URL_RECAPTCHA_SITEVERIFY, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: corpo,
-      signal: AbortSignal.timeout(5000),
-    });
-
-    if (!resposta.ok) {
-      return { ok: false, motivo: `siteverify respondeu ${resposta.status}` };
-    }
-
-    const dados = (await resposta.json()) as RespostaSiteverify;
-
-    if (dados.success !== true) {
-      const codigos = dados["error-codes"]?.join(", ") ?? "success=false";
-      return { ok: false, motivo: `recusado (${codigos})` };
-    }
-
-    if (dados.action && dados.action !== ACAO_RECAPTCHA) {
-      return { ok: false, motivo: `action divergente: ${dados.action}` };
-    }
-
-    if (
-      typeof dados.score === "number" &&
-      dados.score < PONTUACAO_MINIMA_RECAPTCHA
-    ) {
-      return {
-        ok: false,
-        motivo: `score ${dados.score} abaixo de ${PONTUACAO_MINIMA_RECAPTCHA}`,
-      };
-    }
-
-    return { ok: true, score: dados.score };
-  } catch (erro) {
-    return {
-      ok: false,
-      motivo: `falha ao chamar o siteverify: ${
-        erro instanceof Error ? erro.message : String(erro)
-      }`,
-    };
-  }
-}
-
+// O site é estático (GitHub Pages): não há servidor para segurar a secret do
+// reCAPTCHA. O token Enterprise vai junto com o lead e a verificação
+// (siteverify — success/action/score) acontece no cenário do Make, que é
+// onde a secret fica guardada. Aqui ficam as validações baratas, o honeypot
+// e a entrega.
 export async function enviarContato(dados: DadosContato): Promise<Resultado> {
-  // Um chamador malicioso pode invocar a action com argumentos fora do formato
-  // esperado — nunca assumir tipos dos campos recebidos.
   if (!dados || typeof dados !== "object") {
     return { ok: false, mensagem: "Dados inválidos." };
   }
@@ -106,9 +40,8 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
   const email = String(dados.email ?? "").trim();
   const servico = String(dados.servico ?? "");
   const mensagem = String(dados.mensagem ?? "").trim();
+  const recaptchaToken = String(dados.recaptchaToken ?? "").trim();
 
-  // Revalidação no servidor — o React Hook Form já validou no cliente, mas
-  // nunca se confia só nisso.
   if (nome.length < 3)
     return { ok: false, mensagem: "Informe seu nome completo.", campo: "nome" };
 
@@ -128,7 +61,6 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
       campo: "consentimento",
     };
 
-  // Limites no servidor (o cliente já usa maxLength, mas não se confia nele).
   const limites: [keyof DadosContato, number][] = [
     ["nome", 100],
     ["empresa", 100],
@@ -146,29 +78,6 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
       };
   }
 
-  // reCAPTCHA Enterprise — depois das validações baratas (a avaliação custa
-  // dinheiro) e antes de qualquer entrega do lead.
-  const cabecalhos = await headers();
-  const ip =
-    cabecalhos.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    cabecalhos.get("x-real-ip");
-
-  const verificacao = await verificarRecaptcha(
-    String(dados.recaptchaToken ?? "").trim(),
-    ip,
-  );
-
-  if (!verificacao.ok) {
-    console.warn(`[contato] reCAPTCHA recusado — ${verificacao.motivo}`);
-    return {
-      ok: false,
-      mensagem:
-        "Não foi possível confirmar que você é humano. Marque o campo “Não sou um robô” e tente novamente.",
-    };
-  }
-
-  console.log("[contato] reCAPTCHA validado", { score: verificacao.score });
-
   const lead = {
     nome,
     empresa,
@@ -179,26 +88,21 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
     mensagem,
     recebidoEm: new Date().toISOString(),
     // Prova do consentimento LGPD do formulário: vai junto com o lead
-    // (webhook ou log do servidor), para registrar quando e que ele aceitou.
+    // (webhook ou log), para registrar quando e que ele aceitou.
     consentimentoAceito: true,
     consentimentoEm: new Date().toISOString(),
+    // Token Enterprise de uso único (~2 min): o Make chama o siteverify com a
+    // secret antes de criar o lead (fail-closed lá).
+    recaptchaToken,
   };
 
-  // ---------------------------------------------------------------------
-  // ENTREGA DO LEAD — via CONTATO_WEBHOOK_URL (.env.local e env do OnRender),
-  // hoje apontando para o cenário do Make.com.
-  //
-  // Sem essa variável, o lead É APENAS REGISTRADO NO LOG DO SERVIDOR — na
-  // prática, ele se perde.
-  // ---------------------------------------------------------------------
-  const webhook = process.env.CONTATO_WEBHOOK_URL;
+  const webhook = process.env.NEXT_PUBLIC_CONTATO_WEBHOOK_URL;
 
   if (!webhook) {
-    console.warn(
-      "[contato] CONTATO_WEBHOOK_URL não configurada — lead só no log:",
-      lead,
+    console.error(
+      "[contato] NEXT_PUBLIC_CONTATO_WEBHOOK_URL não configurada — lead descartado",
     );
-    return { ok: true };
+    return { ok: false, mensagem: MENSAGEM_FALHA_ENVIO };
   }
 
   try {
@@ -210,12 +114,26 @@ export async function enviarContato(dados: DadosContato): Promise<Resultado> {
     });
     if (!resposta.ok) throw new Error(`Webhook respondeu ${resposta.status}`);
   } catch (erro) {
-    console.error("[contato] falha ao entregar o lead:", erro);
-    return {
-      ok: false,
-      mensagem:
-        "Não conseguimos enviar sua solicitação agora. Tente novamente ou fale com a gente pelo WhatsApp.",
-    };
+    // TypeError = falha de rede/CORS (um status HTTP ruim não cai aqui).
+    // Repete em no-cors (content-type simples, resposta opaca) — o Make
+    // recebe o corpo bruto mesmo assim.
+    if (erro instanceof TypeError) {
+      try {
+        await fetch(webhook, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
+          body: JSON.stringify(lead),
+          signal: AbortSignal.timeout(10_000),
+        });
+        return { ok: true };
+      } catch {
+        console.error("[contato] falha ao entregar o lead (no-cors):", erro);
+      }
+    } else {
+      console.error("[contato] falha ao entregar o lead:", erro);
+    }
+    return { ok: false, mensagem: MENSAGEM_FALHA_ENVIO };
   }
 
   return { ok: true };

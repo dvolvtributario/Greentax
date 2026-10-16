@@ -1,29 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
 
+// Tipos, categorias e helpers de data são isomórficos (usados no cliente,
+// ex.: filtro do blog) e vivem em lib/blog-tipos.ts; este módulo só existe
+// no servidor (fs).
+export {
+  CATEGORIAS,
+  formatarData,
+  type Artigo,
+  type ArtigoComSlug,
+  type Categoria,
+} from "./blog-tipos";
 
-export const CATEGORIAS = [
-  "Tributário",
-  "Trabalhista",
-  "Gestão",
-  "Tecnologia",
-] as const;
-
-export type Categoria = (typeof CATEGORIAS)[number];
-
-export type Artigo = {
-  titulo: string;
-  resumo: string;
-  categoria: Categoria;
-  data: string; 
-  autor?: string;
-  imagem?: {
-    src: string;
-    alt: string;
-  };
-};
-
-export type ArtigoComSlug = Artigo & { slug: string };
+import type { Artigo } from "./blog-tipos";
 
 const DIRETORIO = path.join(process.cwd(), "content", "blog");
 
@@ -47,7 +36,7 @@ export async function carregarArtigo(slug: string) {
   };
 }
 
-export async function listarArtigos(): Promise<ArtigoComSlug[]> {
+export async function listarArtigos() {
   const artigos = await Promise.all(
     listarSlugs().map(async (slug) => {
       const { artigo } = await carregarArtigo(slug);
@@ -56,12 +45,4 @@ export async function listarArtigos(): Promise<ArtigoComSlug[]> {
   );
 
   return artigos.sort((a, b) => b.data.localeCompare(a.data));
-}
-
-export function formatarData(iso: string): string {
-  return new Date(`${iso}T12:00:00`).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
 }

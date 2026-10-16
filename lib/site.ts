@@ -4,7 +4,7 @@ export const site = {
   assinatura: "Contabilidade e Assessoria Empresarial",
   cnpj: "37.026.778/0001-80",
 
-  url: "https://www.greentax.com.br",
+  url: "https://greentaxcontabilidade.com.br",
 
   conceito: "Contabilidade para quem precisa entender o próprio negócio.",
   promessa:

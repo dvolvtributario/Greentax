@@ -16,8 +16,8 @@ Site Greentax, v1.0*.
 | Ícones | SVG próprio (`components/ui/Icons.tsx`) — sem biblioteca |
 | Animações | Apenas transições de cor de 120 ms |
 | Fonte | Instrument Sans variável (corpo) + Montserrat (títulos), hospedadas no projeto |
-| Formulário | React Hook Form + Server Action |
-| Backend | Next.js (Server Actions) |
+| Formulário | React Hook Form + envio client-side ao webhook (Make) |
+| Backend | Sem servidor — deploy estático (GitHub Pages); verificação do reCAPTCHA no Make |
 
 ---
 
@@ -29,6 +29,25 @@ npm run dev     # http://localhost:3000
 npm run build
 npx eslint .
 ```
+
+---
+
+## Publicação (GitHub Pages)
+
+O site é publicado como **export estático** no GitHub Pages (repositório
+`dvolvtributario/Greentax`, domínio `greentaxcontabilidade.com.br` — DNS já
+apontando; nenhum ajuste de domínio é preciso). O CI
+(`.github/workflows/deploy.yml`) roda `NEXT_OUTPUT=export npm run build` no push
+para `main` e publica a pasta `out/` com `actions/deploy-pages`. No GitHub:
+**Settings → Pages → Source = GitHub Actions** e as variáveis de build
+`NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, `NEXT_PUBLIC_CONTATO_WEBHOOK_URL` e
+`NEXT_PUBLIC_CONSENT_WEBHOOK_URL` (repo → Settings → Secrets and variables →
+Actions → tab Variables). O flag `NEXT_OUTPUT=export` é lido pelo
+`next.config.ts` e só liga `output: 'export'`, `trailingSlash`,
+`images.unoptimized` e a remoção de `headers()` no CI — o dev local (com
+`app/admin`, `proxy.ts` e server features) continua igual. O deploy estático
+não tem servidor: webhooks são chamados pelo navegador e a secret do reCAPTCHA
+fica no Make.
 
 ---
 
@@ -73,10 +92,11 @@ app/
 ├─ nichos/
 ├─ blog/
 │  ├─ page.tsx                listagem com filtro por categoria
+│  ├─ FiltroArtigos.tsx       filtro ?categoria= (client, Suspense)
 │  └─ [slug]/                 artigo (estilos de prosa no módulo)
 ├─ contato/
 │  ├─ page.tsx
-│  └─ acoes.ts                Server Action do formulário
+│  └─ acoes.ts                validações + entrega do lead (client)
 ├─ politica-de-privacidade/
 ├─ sitemap.ts, robots.ts
 └─ icon.png, apple-icon.png, favicon.ico
@@ -89,7 +109,8 @@ components/
 lib/
 ├─ site.ts       DADOS INSTITUCIONAIS — edite aqui
 ├─ conteudo.ts   copy das páginas
-└─ blog.ts       leitura dos artigos MDX
+├─ blog.ts       leitura dos artigos MDX (servidor)
+└─ blog-tipos.ts tipos/categorias/formatarData (isomórfico)
 
 content/blog/    artigos em .mdx
 public/marca/    arquivos do logotipo
@@ -176,33 +197,35 @@ Para migrar para um CMS no futuro, o único arquivo a mudar é `lib/blog.ts`.
 ## Formulário de contato
 
 React Hook Form no cliente (validação em `onTouched`, sem re-render
-desnecessário) e uma Server Action que **revalida tudo no servidor** — a
-validação do cliente é conveniência, não segurança. Tem honeypot anti-spam e
-reCAPTCHA Enterprise: widget checkbox com render explícito (a Google
-recomenda explicit render em frameworks; auto-render tem race condition com o
-React) carregado só nesta página via `next/script`, ação `envio_contato` e
-validação no servidor pelo endpoint clássico `recaptcha/api/siteverify` (o
-`recaptcha/enterprise/siteverify` não existe — retorna 404; a validade, a
-`action` e o `score >= 0.5` vêm do mesmo JSON). A verificação é **fail-closed**: sem a
-env `RECAPTCHA_SECRET`, sem token, com timeout ou resposta inesperada, o envio
-é recusado com log e o lead não sai. O token é de uso único e expira em 2
-minutos, então qualquer recusa reinicia o widget. Env necessárias:
-`NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (pública) e `RECAPTCHA_SECRET`. Exige
+desnecessário) e o módulo `app/contato/acoes.ts` — também no cliente — que
+**revalida tudo antes de enviar**: a validação do campo é conveniência, não
+segurança. Tem honeypot anti-spam e reCAPTCHA Enterprise: widget checkbox com
+render explícito (a Google recomenda explicit render em frameworks; auto-render
+tem race condition com o React) carregado só nesta página via `next/script`, ação
+`envio_contato`. Como o deploy é estático (GitHub Pages) não existe servidor para
+segurar a `RECAPTCHA_SECRET`: o token de uso único (~2 min) vai no payload do
+lead e a verificação (`recaptcha/api/siteverify` — success, `action` e
+`score >= 0.5`; o endpoint `enterprise/siteverify` não existe) acontece **no
+cenário do Make**, fail-closed, antes de criar o lead. O site exige o token no
+cliente antes de habilitar o envio; qualquer recusa reinicia o widget. Env
+necessária no build: `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (pública). Exige
 consentimento LGPD explícito. O reCAPTCHA está declarado na categoria
 "Necessários" da política §7 e de `lib/cookies.ts`.
 
-**A entrega do lead ainda não está configurada.** Para ativar sem escolher um
-CRM agora, crie um `.env.local`:
+**A entrega do lead depende do webhook.** Configure no repositório (Actions
+variables) e no `.env.local`:
 
 ```
-CONTATO_WEBHOOK_URL=https://…
+NEXT_PUBLIC_CONTATO_WEBHOOK_URL=https://…
 ```
 
 Pode apontar para Zapier, Make, n8n, WhatsApp Business API ou um endpoint
-próprio. O lead vai como JSON via POST.
+próprio. O lead vai como JSON via POST, com `recaptchaToken` junto. URL
+visível no bundle JS é inerente ao hosting estático — mantenha a verificação do
+reCAPTCHA ligada no Make para não virar alvo de spam.
 
-> 🚨 **Sem essa variável, o lead é apenas registrado no log do servidor — na
-> prática, ele se perde.** Não publique em produção sem configurar a entrega.
+> 🚨 **Sem essa variável, o envio falha visivelmente e o lead não sai.** Não
+> publique em produção sem configurar a entrega.
 
 ---
 
@@ -230,7 +253,7 @@ grep -rn "<Pendente" app components
 | 11 | **Materiais ricos** para download + captura de e-mail | `/blog` |
 | 12 | **Política de Privacidade** — revisão jurídica, DPO, retenção | `/politica-de-privacidade` |
 | 13 | ~~**Banner de cookies**~~ — **resolvido**: banner de 2 camadas no ar (ver “Decisões técnicas”) | global |
-| 14 | **Domínio definitivo** | `lib/site.ts` → `site.url` |
+| 14 | ~~**Domínio definitivo**~~ — **resolvido**: `greentaxcontabilidade.com.br` no ar via GitHub Pages | `lib/site.ts` → `site.url` |
 | 15 | **Linha do tempo** da empresa (opcional) | `/quem-somos` |
 
 ---
@@ -251,9 +274,11 @@ serviço externo. A licença OFL de cada fonte está ao lado dos arquivos.
 peso. Traço de 1,5px com terminações retas, coerente com a ausência de cantos
 arredondados.
 
-**Filtro do blog por URL.** As categorias usam `?categoria=` com links reais em
-vez de estado no cliente: funciona sem JavaScript, é indexável e o link filtrado
-pode ser compartilhado.
+**Filtro do blog por URL.** As categorias usam `?categoria=` com links reais:
+o link filtrado é compartilhável e indexável. O deploy estático não permite
+ler `searchParams` no servidor, então o filtro roda no cliente
+(`app/blog/FiltroArtigos.tsx`, com Suspense); o HTML estático sai com a lista
+completa de artigos e a filtragem acontece após a hidratação.
 
 **Dados estruturados.** `AccountingService` (schema.org) no layout raiz e
 `BlogPosting` em cada artigo, para busca local em Araçatuba/SP.
@@ -265,10 +290,11 @@ com um toggle por categoria (necessários travados ativos; análise, marketing e
 conteúdo de terceiros desligados por padrão). A escolha fica no cookie
 `greentax_consent` (12 meses, `SameSite=Lax`, legível pelo cliente), que guarda
 também a origem da decisão (banner/rodapé) e a data, e é lida pelo hook
-`useConsentimento`. A prova vai ao servidor pela server action
-`app/consentimento/actions.ts`: sempre no log do servidor e, quando
-`CONSENT_WEBHOOK_URL` estiver definida, também num webhook — a falha do webhook
-nunca bloqueia o visitante. Categorias e scripts por categoria vivem em
+`useConsentimento`. A prova é registrada pelo módulo client
+`app/consentimento/actions.ts`: sempre no `console.log` do navegador e, quando
+`NEXT_PUBLIC_CONSENT_WEBHOOK_URL` estiver definida (envs de build no Actions e
+no `.env.local`), também num webhook — a falha do webhook nunca bloqueia o
+visitante. Categorias e scripts por categoria vivem em
 `lib/cookies.ts`: as listas de análise, marketing e terceiros estão vazias,
 então nenhum script de terceiro é injetado; ao ligar o GA4 ou o Pixel, basta
 lançar o script na lista da categoria certa. Aumentar `VERSAO_POLITICA` faz o
@@ -284,15 +310,17 @@ navegar/recarregar, e salvar as preferências sem "terceiros" descarrega o mapa
 na hora (registrado no log por `registrarCliqueMapa`). O iframe nunca é
 renderizado no servidor.
 
-**Painel administrativo é local e nunca vai ao ar.** `app/admin/` está no
-`.gitignore`, então `/admin` e `/admin/login` não existem no deploy — a rota vira
-404 lá. As envs `ADMIN_SENHA` e `ADMIN_SESSION_SECRET` só existem no
-`.env.local` (sem elas a checagem falha fechado: tudo redireciona pro login). O
-fluxo de publicação é: texto escrito no painel local → `content/blog/<slug>.mdx`
-e `public/blog/imagens/*` versionados → build/deploy. `proxy.ts`, a sessão em
-`greentax_admin` (8h, `httpOnly`) e o `disallow: /admin` do `robots.ts`
-permanecem como trava extra caso o painel seja ligado em produção — por isso
-esse cookie não aparece na tabela da §7 da política.
+**Painel administrativo é local e nunca vai ao ar.** `app/admin/` e `proxy.ts`
+estão no `.gitignore` (versionados apenas localmente), então `/admin`,
+`/admin/login` e o middleware não existem no deploy — a rota vira 404 lá. As
+envs `ADMIN_SENHA` e `ADMIN_SESSION_SECRET` só existem no `.env.local` (sem elas
+a checagem falha fechado: tudo redireciona pro login). O fluxo de publicação é:
+texto escrito no painel local → `content/blog/<slug>.mdx` e
+`public/blog/imagens/*` versionados → build/deploy. `proxy.ts` e a sessão em
+`greentax_admin` (8h, `httpOnly`) seguem protegendo o painel **no dev local** —
+o deploy é estático (GitHub Pages) e nunca executaria middleware, e o
+`disallow: /admin` do `robots.ts` permanece como trava residual — por isso esse
+cookie não aparece na tabela da §7 da política.
 
 **Acessibilidade.** Skip link, foco visível, `aria-current` na navegação,
 `aria-invalid` e mensagens de erro associadas nos campos, `prefers-reduced-motion`

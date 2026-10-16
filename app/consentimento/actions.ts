@@ -1,6 +1,3 @@
-"use server";
-
-import { cookies } from "next/headers";
 import {
   COOKIE_CONSENTIMENTO,
   DURACAO_CONSENTIMENTO,
@@ -42,7 +39,7 @@ function interpretar(formData: FormData): Preferencias {
 async function registrarProva(registro: Record<string, unknown>): Promise<void> {
   console.log("[consentimento]", JSON.stringify(registro));
 
-  const webhook = process.env.CONSENT_WEBHOOK_URL;
+  const webhook = process.env.NEXT_PUBLIC_CONSENT_WEBHOOK_URL;
   if (!webhook) return;
 
   try {
@@ -57,6 +54,9 @@ async function registrarProva(registro: Record<string, unknown>): Promise<void> 
   }
 }
 
+// O site é estático (GitHub Pages): o cookie é gravado no próprio navegador
+// (a versão de servidor usava o mesmo valor, httpOnly: false) e a prova vai
+// para o webhook definido em NEXT_PUBLIC_CONSENT_WEBHOOK_URL.
 export async function salvarPreferencias(
   _estadoAnterior: EstadoConsentimento,
   formData: FormData,
@@ -70,18 +70,13 @@ export async function salvarPreferencias(
 
   const aceitoEm = new Date().toISOString();
 
-  const armario = await cookies();
-  armario.set(
-    COOKIE_CONSENTIMENTO,
-    serializarPreferencias(preferencias, origem),
-    {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: DURACAO_CONSENTIMENTO,
-      path: "/",
-    },
-  );
+  document.cookie = [
+    `${COOKIE_CONSENTIMENTO}=${encodeURIComponent(serializarPreferencias(preferencias, origem))}`,
+    "path=/",
+    `max-age=${DURACAO_CONSENTIMENTO}`,
+    "SameSite=Lax",
+    ...(location.protocol === "https:" ? ["Secure"] : []),
+  ].join("; ");
 
   await registrarProva({
     versao: VERSAO_POLITICA,
@@ -93,7 +88,7 @@ export async function salvarPreferencias(
   return { ok: true, preferencias };
 }
 
-export async function registrarCliqueMapa(): Promise<void> {
+export function registrarCliqueMapa(): void {
   console.log(
     "[mapa]",
     JSON.stringify({

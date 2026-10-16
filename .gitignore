@@ -43,3 +43,7 @@ next-env.d.ts
 # blog
 admin/
 novo-artigo/
+
+# local-only: painel é local e o proxy protege rotas do painel; o deploy
+# estático no GitHub Pages nunca executa middleware
+proxy.ts

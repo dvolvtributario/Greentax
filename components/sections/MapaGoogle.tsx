@@ -29,7 +29,7 @@ export function MapaGoogle() {
 
   function carregarPorClique() {
     setPorClique(true);
-    registrarCliqueMapa().catch(() => {});
+    registrarCliqueMapa();
   }
 
   if (carregar) {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatarData, type ArtigoComSlug } from "@/lib/blog";
+import { formatarData, type ArtigoComSlug } from "@/lib/blog-tipos";
 import { Seta } from "@/components/ui/Icons";
 import estilos from "./CartaoArtigo.module.css";
 
