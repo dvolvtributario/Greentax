@@ -414,6 +414,14 @@
   .menuItens::-webkit-scrollbar {
     display: none;
   }
+
+  /* No mobile os vizinhos translúcidos (0.32) ficavam visíveis e pareciam
+     títulos empilhados acima do "Saiba mais": aqui só o nicho selecionado
+     aparece. O desktop mantém o visual com os fantasmas. */
+  .slideAntes,
+  .slideDepois {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

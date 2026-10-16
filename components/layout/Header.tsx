@@ -14,11 +14,17 @@ export function Header() {
   const pathname = usePathname();
   const [aberto, setAberto] = useState(false);
 
-  // Trava o scroll da página enquanto o menu mobile está aberto.
+  // Trava a rolagem da página enquanto o menu mobile está aberto. A trava vai
+  // no <html> (documentElement) e não no <body>: o globals.css usa
+  // `html { overflow-x: clip }`, o que impede a propagação do overflow do body
+  // para a viewport — com `overflow: hidden` no body ele viraria um scroll
+  // container próprio e o header sticky reancoraria nele (pulando para o topo
+  // do documento quando o menu abre longe do topo, "escondendo" o menu).
   useEffect(() => {
-    document.body.style.overflow = aberto ? "hidden" : "";
+    const raiz = document.documentElement;
+    raiz.style.overflow = aberto ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      raiz.style.overflow = "";
     };
   }, [aberto]);
 

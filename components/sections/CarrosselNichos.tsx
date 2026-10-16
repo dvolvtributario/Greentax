@@ -29,6 +29,7 @@ export function CarrosselNichos({ className }: { className?: string }) {
   const ativo = escolhaManual ?? (indiceHash >= 0 ? indiceHash : 0);
 
   const raiz = useRef<HTMLDivElement>(null);
+  const faixa = useRef<HTMLDivElement>(null);
   const travaRolar = useRef(false);
   const acumulado = useRef(0);
 
@@ -79,9 +80,93 @@ export function CarrosselNichos({ className }: { className?: string }) {
       }
     };
 
+    // Touch: espelha a lógica do wheel — rolar o dedo sobre a seção troca o
+    // nicho automaticamente; nas pontas (primeiro/último) não intercepta e a
+    // página rola normal. O eixo do gesto é decidido no início (ruído de 8px)
+    // para não brigar com o arrasto horizontal da faixa de abas.
+    let inicioX = 0;
+    let inicioY = 0;
+    let ultimoY = 0;
+    let eixo: "vertical" | "horizontal" | null = null;
+
+    const aoTocarIniciar = (evento: TouchEvent) => {
+      const toque = evento.touches[0];
+      if (!toque) return;
+      inicioX = toque.clientX;
+      inicioY = toque.clientY;
+      ultimoY = toque.clientY;
+      eixo = null;
+      acumulado.current = 0;
+    };
+
+    const aoTocarMover = (evento: TouchEvent) => {
+      const toque = evento.touches[0];
+      if (!toque) return;
+
+      if (eixo === null) {
+        const dx = Math.abs(toque.clientX - inicioX);
+        const dy = Math.abs(toque.clientY - inicioY);
+        if (dx < 8 && dy < 8) return;
+        eixo = dy > dx ? "vertical" : "horizontal";
+        if (eixo === "horizontal") return; // arrasto da faixa: deixa nativo
+      }
+      if (eixo !== "vertical") return;
+
+      const delta = ultimoY - toque.clientY; // dedo para cima => positivo
+      ultimoY = toque.clientY;
+      if (delta === 0) return;
+
+      const descendo = delta > 0;
+      const semMargem =
+        (descendo && ativo >= total - 1) || (!descendo && ativo <= 0);
+      if (semMargem) {
+        acumulado.current = 0;
+        return; // sem preventDefault: a página rola normalmente
+      }
+
+      evento.preventDefault();
+      if (travaRolar.current) return;
+
+      acumulado.current += delta;
+      if (Math.abs(acumulado.current) >= 30) {
+        const proximo = acumulado.current > 0 ? ativo + 1 : ativo - 1;
+        acumulado.current = 0;
+        travaRolar.current = true;
+        irPara(proximo);
+        window.setTimeout(() => {
+          travaRolar.current = false;
+        }, 800);
+      }
+    };
+
+    const aoTocarFim = () => {
+      eixo = null;
+      acumulado.current = 0;
+    };
+
     elemento.addEventListener("wheel", aoRolar, { passive: false });
-    return () => elemento.removeEventListener("wheel", aoRolar);
+    elemento.addEventListener("touchstart", aoTocarIniciar, { passive: true });
+    elemento.addEventListener("touchmove", aoTocarMover, { passive: false });
+    elemento.addEventListener("touchend", aoTocarFim, { passive: true });
+    elemento.addEventListener("touchcancel", aoTocarFim, { passive: true });
+    return () => {
+      elemento.removeEventListener("wheel", aoRolar);
+      elemento.removeEventListener("touchstart", aoTocarIniciar);
+      elemento.removeEventListener("touchmove", aoTocarMover);
+      elemento.removeEventListener("touchend", aoTocarFim);
+      elemento.removeEventListener("touchcancel", aoTocarFim);
+    };
   }, [ativo, total, irPara]);
+
+  // Mantém a aba ativa visível na faixa horizontal (mobile) sem exigir arrasto.
+  useEffect(() => {
+    const container = faixa.current;
+    if (!container) return;
+    const aba = container.querySelector<HTMLElement>(`#aba-nicho-${ativo}`);
+    if (!aba) return;
+    const alvo = aba.offsetLeft - (container.clientWidth - aba.offsetWidth) / 2;
+    container.scrollTo({ left: alvo, behavior: "smooth" });
+  }, [ativo]);
 
   const aoTeclar = (evento: React.KeyboardEvent) => {
     if (evento.key === "ArrowDown" || evento.key === "ArrowRight") {
@@ -112,7 +197,7 @@ export function CarrosselNichos({ className }: { className?: string }) {
 
       <div className={estilos.menu} role="tablist" aria-label="Índice de nichos">
         <span className={estilos.menuRotulo}>Nichos</span>
-        <div className={estilos.menuItens}>
+        <div className={estilos.menuItens} ref={faixa}>
           {nichos.map((nicho, indice) => (
             <button
               key={nicho.slug}
