@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import Script from "next/script";
 import { scriptsPorCategoria } from "@/lib/cookies";
 import { useConsentimento } from "./useConsentimento";
@@ -21,7 +22,20 @@ export function ScriptsConsentimento() {
   return (
     <>
       {autorizados.map((script) => (
-        <Script key={script.id} src={script.src} strategy="afterInteractive" />
+        <Fragment key={script.id}>
+          {script.codigo && (
+            <Script id={`${script.id}-config`} strategy="afterInteractive">
+              {script.codigo}
+            </Script>
+          )}
+          {script.src && (
+            <Script
+              id={script.id}
+              src={script.src}
+              strategy="afterInteractive"
+            />
+          )}
+        </Fragment>
       ))}
     </>
   );

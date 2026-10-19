@@ -8,7 +8,10 @@ export type Preferencias = Record<Categoria, boolean>;
 
 export type ScriptConsentido = {
   id: string;
-  src: string;
+  /** URL do script externo. Pode ser omitido se houver apenas código inline. */
+  src?: string;
+  /** Código JavaScript inline (executado depois do src, se houver). */
+  codigo?: string;
   categoria: Exclude<Categoria, "necessarios">;
 };
 
@@ -16,7 +19,7 @@ export const COOKIE_CONSENTIMENTO = "greentax_consent";
 
 export const DURACAO_CONSENTIMENTO = 60 * 60 * 24 * 365;
 
-export const VERSAO_POLITICA = "2026-09-2";
+export const VERSAO_POLITICA = "2026-10-1";
 
 export const PREFERENCIAS_PADRAO: Preferencias = {
   necessarios: true,
@@ -46,8 +49,8 @@ export const CATEGORIAS: CategoriaInfo[] = [
     id: "analise",
     titulo: "Análise",
     descricao:
-      "Medem como o site é usado — páginas vistas, origem do tráfego — de forma agregada. Nenhuma ferramenta está ativa hoje; quando houver, só carrega depois do seu aceite.",
-    cookies: [],
+      "Medem como o site é usado — páginas vistas, origem do tráfego — de forma agregada. Usamos o Google Analytics; só carrega depois do seu aceite.",
+    cookies: ["_ga", "_ga_* (Google Analytics)"],
     obrigatoria: false,
   },
   {
@@ -68,11 +71,25 @@ export const CATEGORIAS: CategoriaInfo[] = [
   },
 ];
 
+export const GA_ID = "G-J0LPGRNEGG";
+
 export const scriptsPorCategoria: Record<
   Exclude<Categoria, "necessarios">,
   ScriptConsentido[]
 > = {
-  analise: [],
+  analise: [
+    {
+      id: "ga4",
+      src: `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`,
+      codigo: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}');
+      `,
+      categoria: "analise",
+    },
+  ],
   marketing: [],
   terceiros: [],
 };

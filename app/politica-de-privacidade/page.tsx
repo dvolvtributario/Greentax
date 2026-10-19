@@ -126,6 +126,18 @@ export default function PoliticaDePrivacidade() {
                   </td>
                   <td>12 meses</td>
                 </tr>
+                <tr>
+                  <td>
+                    <code>_ga</code>, <code>_ga_*</code>
+                  </td>
+                  <td>Análise</td>
+                  <td>
+                    Google Analytics — identifica visitantes de forma anônima e
+                    mede páginas vistas e origem do tráfego. Só instalados com o
+                    seu consentimento.
+                  </td>
+                  <td>Até 2 anos</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -135,10 +147,13 @@ export default function PoliticaDePrivacidade() {
             há três categorias que só são ativadas com o seu aceite:{" "}
             <strong>Análise</strong> (medição agregada de uso do site),{" "}
             <strong>Marketing</strong> (publicidade e remarketing) e{" "}
-            <strong>Conteúdo de terceiros</strong> (mapas incorporados). As
-            duas primeiras estão vazias hoje; quando uma ferramenta for
-            adicionada, ela passa a constar nesta tabela e só será carregada
-            depois do seu consentimento.
+            <strong>Conteúdo de terceiros</strong> (mapas incorporados). A
+            categoria Análise usa o <strong>Google Analytics</strong> (cookies{" "}
+            <code>_ga</code> e <code>_ga_*</code>), que mede páginas vistas e
+            origem do tráfego de forma agregada; o script só é carregado depois
+            do seu consentimento. As demais categorias estão vazias hoje;
+            quando uma ferramenta for adicionada, ela passa a constar nesta
+            tabela e só será carregada depois do seu consentimento.
           </p>
           <p>
             <strong>Conteúdo de terceiros.</strong> A página de contato exibe
@@ -168,7 +183,7 @@ export default function PoliticaDePrivacidade() {
             dela, nos termos do art. 8º, § 5º, da LGPD.
           </p>
           <p className={estilos.atualizacao}>
-            Última atualização desta seção: 1 de outubro de 2026.
+            Última atualização desta seção: 19 de outubro de 2026.
           </p>
 
           <h2>8. Segurança</h2>
@@ -196,10 +211,10 @@ export default function PoliticaDePrivacidade() {
               armazenados.
             </li>
             <li>
-              <strong>Ferramentas de terceiros:</strong> o mapa do Google Maps já
-              está nomeado na seção 7. Se o site passar a usar Google Analytics,
-              Meta Pixel ou similares, elas precisam ser nomeadas aqui, lançadas
-              em <code>lib/cookies.ts</code> e — como o banner já está no ar —
+              <strong>Ferramentas de terceiros:</strong> o mapa do Google Maps e
+              o Google Analytics já estão nomeados na seção 7. Meta Pixel ou
+              similares, se adicionados, precisam ser nomeados aqui, lançados em{" "}
+              <code>lib/cookies.ts</code> e — como o banner já está no ar —
               passam a exigir aceite prévio do visitante.
             </li>
             <li>
