@@ -31,11 +31,18 @@ const nextConfig: NextConfig = {
           // Mantido em sincronia com a meta tag em app/layout.tsx (que cobre o
           // export estático do GitHub Pages); aqui é possível incluir também
           // frame-ancestors, que o spec de meta http-equiv ignora.
+          // Em desenvolvimento o React 19 usa eval() para debugging — sem
+          // 'unsafe-eval' o dev server quebra com erro de CSP. A meta tag de
+          // produção (layout.tsx) nunca inclui unsafe-eval.
+          const scriptSrc =
+            process.env.NODE_ENV === "development"
+              ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com"
+              : "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com";
           const csp = [
             "default-src 'self'",
             "base-uri 'self'",
             "object-src 'none'",
-            "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
+            scriptSrc,
             "style-src 'self' 'unsafe-inline'",
             "img-src 'self' data: blob: https://www.google.com https://www.gstatic.com",
             "font-src 'self' data: https://fonts.gstatic.com",
