@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Container } from "@/components/ui/Container";
@@ -6,15 +5,16 @@ import { Botao } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
 import { Ponto, Whatsapp } from "@/components/ui/Icons";
 import { whatsappLink } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Soluções",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Soluções Contábeis e Tributárias em Araçatuba/SP",
+  descricao:
     "Da escrituração e dos tributos no prazo ao planejamento tributário e à recuperação de créditos: soluções contábeis, fiscais, trabalhistas e de consultoria para a sua empresa.",
-  alternates: { canonical: "/solucoes" },
-};
+  rota: "/solucoes",
+});
 
 const servicos = [
   {

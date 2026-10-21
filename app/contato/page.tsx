@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
 import { FormularioContato } from "@/components/sections/FormularioContato";
 import { Container } from "@/components/ui/Container";
 import { Envelope, Escudo, Instagram, Local, Whatsapp } from "@/components/ui/Icons";
 import { PageHero } from "@/components/sections/PageHero";
 import { MapaGoogle } from "@/components/sections/MapaGoogle";
 import { site, whatsappLink } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Contato",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Contato: Contabilidade em Araçatuba/SP",
+  descricao:
     "Conte o que sua empresa precisa. A Greentax avalia o cenário e retorna com um diagnóstico inicial.",
-  alternates: { canonical: "/contato" },
-};
+  rota: "/contato",
+});
 
 export default function Contato() {
   return (

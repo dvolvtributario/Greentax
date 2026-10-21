@@ -7,6 +7,7 @@ import { BannerCookies } from "@/components/cookies/BannerCookies";
 import { ScriptsConsentimento } from "@/components/cookies/ScriptsConsentimento";
 import ChatbotContabilidade from "./chatbotcontabilidade";
 import { site } from "@/lib/site";
+import { imagemCompartilhamento } from "@/lib/seo";
 
 
 const instrumentSans = localFont({
@@ -68,11 +69,13 @@ export const metadata: Metadata = {
     siteName: site.nome,
     title: `${site.nome} — ${site.conceito}`,
     description: site.descricao,
+    images: [imagemCompartilhamento],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.nome} — ${site.conceito}`,
     description: site.descricao,
+    images: [imagemCompartilhamento],
   },
   robots: { index: true, follow: true },
 };

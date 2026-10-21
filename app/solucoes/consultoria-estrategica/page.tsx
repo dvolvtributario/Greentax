@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/sections/PageHero";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
@@ -9,15 +8,16 @@ import { FAQ } from "@/components/sections/FAQ";
 import { Seta, Whatsapp } from "@/components/ui/Icons";
 import { servicosConsultoria } from "@/lib/conteudo";
 import { whatsappLink } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Consultoria Estratégica",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Consultoria e Planejamento Tributário",
+  descricao:
     "Planejamento tributário, recuperação de créditos, transações, defesa em fiscalizações e serviços societários para situações que pedem um olhar dedicado.",
-  alternates: { canonical: "/solucoes/consultoria-estrategica" },
-};
+  rota: "/solucoes/consultoria-estrategica",
+});
 
 const cenarios = [
   {

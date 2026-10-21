@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { Files, MessagesSquare, Receipt, RefreshCw } from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
@@ -7,14 +6,15 @@ import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { Revelar } from "@/components/ui/Revelar";
 import { aplicativo, diferenciais } from "@/lib/conteudo";
+import { metadadosPagina } from "@/lib/seo";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Diferenciais",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Diferenciais da Nossa Contabilidade",
+  descricao:
     "Veja como a Greentax trabalha com rotina contábil, informação, tecnologia e atendimento próximo.",
-  alternates: { canonical: "/diferenciais" },
-};
+  rota: "/diferenciais",
+});
 
 const recursosApp = [
   {

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Seta } from "@/components/ui/Icons";
 import { carregarArtigo, formatarData, listarSlugs } from "@/lib/blog";
+import { metadadosPagina } from "@/lib/seo";
 import { site } from "@/lib/site";
 import estilos from "./page.module.css";
 
@@ -20,17 +21,18 @@ export async function generateMetadata({
 
   try {
     const { artigo } = await carregarArtigo(slug);
-    return {
-      title: artigo.titulo,
-      description: artigo.resumo,
-      alternates: { canonical: `/blog/${slug}` },
+    return metadadosPagina({
+      titulo: artigo.titulo,
+      descricao: artigo.resumo,
+      rota: `/blog/${slug}`,
+      imagem: artigo.imagem,
       openGraph: {
         type: "article",
-        title: artigo.titulo,
-        description: artigo.resumo,
         publishedTime: artigo.data,
+        authors: [artigo.autor ?? site.nome],
+        section: artigo.categoria,
       },
-    };
+    });
   } catch {
     return { title: "Artigo não encontrado" };
   }
@@ -55,8 +57,13 @@ export default async function ArtigoPage({ params }: PageProps<"/blog/[slug]">) 
     description: artigo.resumo,
     datePublished: artigo.data,
     author: { "@type": "Organization", name: artigo.autor ?? site.nome },
-    publisher: { "@type": "Organization", name: site.nome },
-    mainEntityOfPage: `${site.url}/blog/${slug}`,
+    publisher: {
+      "@type": "Organization",
+      name: site.nome,
+      logo: { "@type": "ImageObject", url: `${site.url}/icon.png` },
+    },
+    mainEntityOfPage: `${site.url}/blog/${slug}/`,
+    ...(artigo.imagem ? { image: `${site.url}${artigo.imagem.src}` } : {}),
   };
 
   return (

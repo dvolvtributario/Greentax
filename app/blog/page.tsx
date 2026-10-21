@@ -1,16 +1,16 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
 import { PageHero } from "@/components/sections/PageHero";
 import { Section } from "@/components/ui/Section";
 import { listarArtigos } from "@/lib/blog";
+import { metadadosPagina } from "@/lib/seo";
 import { FiltroArtigos, ListaArtigos } from "./FiltroArtigos";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Blog de Contabilidade, Tributos e Gestão",
+  descricao:
     "Tributário, gestão e tecnologia explicados de forma simples, para você tomar decisões melhores para o seu negócio.",
-  alternates: { canonical: "/blog" },
-};
+  rota: "/blog",
+});
 
 export default async function Blog() {
   const artigos = await listarArtigos();

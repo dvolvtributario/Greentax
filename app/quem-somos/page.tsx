@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { Botao } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -9,15 +8,16 @@ import { Contador } from "@/components/ui/Contador";
 import { Whatsapp } from "@/components/ui/Icons";
 import { pilares } from "@/lib/conteudo";
 import { site, whatsappLink } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Quem Somos",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Quem Somos: Contabilidade em Araçatuba/SP",
+  descricao:
     "Conheça a forma de trabalho da Greentax e como contabilidade, atendimento e tecnologia se encontram na rotina das empresas.",
-  alternates: { canonical: "/quem-somos" },
-};
+  rota: "/quem-somos",
+});
 
 const estatisticas = [
   {

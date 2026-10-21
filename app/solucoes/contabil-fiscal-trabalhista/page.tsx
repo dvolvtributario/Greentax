@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {Calculator, CalendarCheck, MessagesSquare, Timer, TrendingUp, Users,} from "lucide-react";
 import { PageHero } from "@/components/sections/PageHero";
@@ -10,15 +9,16 @@ import { CarrosselInclusos } from "@/components/sections/CarrosselInclusos";
 import { Whatsapp } from "@/components/ui/Icons";
 import { Contador } from "@/components/ui/Contador";
 import { site, whatsappLink } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Contábil, Fiscal e Trabalhista",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Contábil, Fiscal e Trabalhista em Araçatuba/SP",
+  descricao:
     "A rotina contábil, fiscal e trabalhista da sua empresa em ordem: escrituração, tributos, folha e obrigações no prazo, com alguém para conversar.",
-  alternates: { canonical: "/solucoes/contabil-fiscal-trabalhista" },
-};
+  rota: "/solucoes/contabil-fiscal-trabalhista",
+});
 
 const beneficios = [
   {

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -6,14 +5,15 @@ import { LogIn } from "lucide-react";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
+import { metadadosPagina } from "@/lib/seo";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Área do Cliente",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Área do Cliente: acesso ao portal",
+  descricao:
     "Passo a passo para entrar no portal da Greentax: nome da contabilidade, CPF ou CNPJ, senha e acesso ao painel do cliente.",
-  alternates: { canonical: "/area-do-cliente" },
-};
+  rota: "/area-do-cliente",
+});
 
 const portal = "https://portal.hubstrom.com/";
 

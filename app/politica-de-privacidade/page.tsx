@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Pendente } from "@/components/ui/Pendente";
 import { enderecoLinhaUnica, site } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Política de Privacidade",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Política de Privacidade",
+  descricao:
     "Como a Greentax coleta, usa e protege os dados pessoais tratados por meio deste site, em conformidade com a Lei nº 13.709/2018 (LGPD).",
-  alternates: { canonical: "/politica-de-privacidade" },
+  rota: "/politica-de-privacidade",
   robots: { index: true, follow: false },
-};
+});
 
 export default function PoliticaDePrivacidade() {
   return (

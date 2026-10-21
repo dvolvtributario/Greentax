@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
 import { CabecalhoSecao, Section } from "@/components/ui/Section";
 import { Revelar } from "@/components/ui/Revelar";
 import { Botao } from "@/components/ui/Button";
 import { Whatsapp } from "@/components/ui/Icons";
 import { CarrosselNichos } from "@/components/sections/CarrosselNichos";
 import { whatsappLink } from "@/lib/site";
+import { metadadosPagina } from "@/lib/seo";
 import p from "@/app/paginas.module.css";
 import estilos from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Nichos de Atendimento",
-  description:
+export const metadata = metadadosPagina({
+  titulo: "Contabilidade por Segmento: Nichos Atendidos",
+  descricao:
     "Conheça os setores atendidos pela Greentax e os pontos fiscais e de gestão que merecem atenção em cada atividade.",
-  alternates: { canonical: "/nichos" },
-};
+  rota: "/nichos",
+});
 
 const mensagemNicho =
   "Olá! Quero entender como a Greentax atende o segmento da minha empresa.";
