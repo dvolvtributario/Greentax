@@ -59,9 +59,9 @@ export default async function Home() {
       <Revelar>
         <section className={estilos.hero}>
           <Container className={estilos.heroConteudo}>
-            <p className={estilos.rotulo}>Contabilidade consultiva</p>
+            <p className={estilos.rotulo}>Contabilidade consultiva em Araçatuba/SP</p>
             <h1 className={estilos.titulo}>
-              Contabilidade que acompanha a{" "}
+              Contabilidade em Araçatuba que acompanha a{" "}
               <span className={estilos.destaque}>evolução</span> da sua empresa.
             </h1>
             <p className={estilos.lead}>{site.promessa}</p>

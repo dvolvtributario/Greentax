@@ -20,8 +20,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { rota: "/politica-de-privacidade", prioridade: 0.3, frequencia: "yearly" },
   ];
 
-  // Barra final igual à do canonical: o export usa trailingSlash (GitHub Pages
-  // serve /rota/index.html) e URL sem barra no sitemap seria redirecionada.
   const estaticas: MetadataRoute.Sitemap = paginas.map((pagina) => ({
     url: `${site.url}${pagina.rota}/`,
     changeFrequency: pagina.frequencia,
