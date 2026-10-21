@@ -65,8 +65,8 @@ export const CATEGORIAS: CategoriaInfo[] = [
     id: "terceiros",
     titulo: "Conteúdo de terceiros",
     descricao:
-      "Conteúdos incorporados de outros sites, como o mapa da Google na página de contato. Sem o seu aceite, o mapa só é carregado se você clicar em carregar.",
-    cookies: ["Definidos pela Google ao carregar o mapa (ex.: NID)"],
+      "Conteúdos incorporados de outros sites. Nenhum depende deste aceite hoje; o mapa da página de contato carrega sempre (veja a política de privacidade).",
+    cookies: [],
     obrigatoria: false,
   },
 ];

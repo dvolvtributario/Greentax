@@ -9,61 +9,8 @@
   border: 0;
 }
 
-.placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 14px;
-  min-height: 450px;
-  padding: 28px;
-  background: var(--papel-2);
-  border: 1px dashed var(--filete-forte);
-}
-
 @media (max-width: 640px) {
   .frame {
     height: 300px;
   }
-
-  .placeholder {
-    min-height: 300px;
-  }
-}
-
-.titulo {
-  font-size: var(--fs-pequeno);
-  font-weight: 700;
-  color: var(--tinta-900);
-}
-
-.texto {
-  font-size: var(--fs-mini);
-  line-height: 1.65;
-  color: var(--tinta-500);
-}
-
-.botao {
-  padding: 12px 22px;
-  background: var(--verde-700);
-  color: var(--papel);
-  font-size: var(--fs-mini);
-  font-weight: 600;
-  border: 0;
-  cursor: pointer;
-}
-
-.botao:hover {
-  background: var(--verde-600);
-}
-
-.botao:focus-visible {
-  outline: 2px solid var(--verde-700);
-  outline-offset: 2px;
-}
-
-.link {
-  font-size: var(--fs-mini);
-  color: var(--verde-700);
-  font-weight: 600;
 }

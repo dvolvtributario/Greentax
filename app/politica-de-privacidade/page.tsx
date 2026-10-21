@@ -99,7 +99,8 @@ export default function PoliticaDePrivacidade() {
             Este site usa cookies próprios, estritamente necessários ao seu
             funcionamento. Cookies de análise, de publicidade ou de conteúdo
             de terceiros só são ativados mediante o seu consentimento,
-            manifestado no aviso exibido no primeiro acesso. Você pode revogar
+            manifestado no aviso exibido no primeiro acesso — com exceção do
+            mapa da página de contato, descrito abaixo. Você pode revogar
             essa escolha a qualquer momento, sem custo, pelo link{" "}
             <strong>“Preferências de cookies”</strong> no rodapé.
           </p>
@@ -147,7 +148,7 @@ export default function PoliticaDePrivacidade() {
             há três categorias que só são ativadas com o seu aceite:{" "}
             <strong>Análise</strong> (medição agregada de uso do site),{" "}
             <strong>Marketing</strong> (publicidade e remarketing) e{" "}
-            <strong>Conteúdo de terceiros</strong> (mapas incorporados). A
+            <strong>Conteúdo de terceiros</strong> (conteúdos incorporados). A
             categoria Análise usa o <strong>Google Analytics</strong> (cookies{" "}
             <code>_ga</code> e <code>_ga_*</code>), que mede páginas vistas e
             origem do tráfego de forma agregada; o script só é carregado depois
@@ -157,14 +158,13 @@ export default function PoliticaDePrivacidade() {
           </p>
           <p>
             <strong>Conteúdo de terceiros.</strong> A página de contato exibe
-            um mapa do Google Maps incorporado. O mapa só é carregado de forma
-            automática se você aceitar a categoria Conteúdo de terceiros; sem
-            essa aceite, ele aparece com um botão e só carrega se você clicar
-            nele, o que vale como consentimento pontual para aquele carregamento.
+            um mapa do Google Maps incorporado, carregado automaticamente ao
+            abrir a página, independentemente das suas preferências de cookies.
             A cada carregamento, o Google pode instalar cookies sob o domínio
             dele e tratar dados como o seu endereço IP, conforme a política de
-            privacidade do Google. Nenhum outro mapa ou mídia de terceiros é
-            incorporado a este site.
+            privacidade do Google. Se preferir evitar isso, não acesse a página
+            de contato; os mesmos dados de contato estão no rodapé do site.
+            Nenhum outro mapa ou mídia de terceiros é incorporado a este site.
           </p>
           <p>
             <strong>Proteção anti-spam.</strong> O formulário de contato é

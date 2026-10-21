@@ -87,14 +87,3 @@ export async function salvarPreferencias(
 
   return { ok: true, preferencias };
 }
-
-export function registrarCliqueMapa(): void {
-  console.log(
-    "[mapa]",
-    JSON.stringify({
-      evento: "mapa-carregado-sob-demanda",
-      em: new Date().toISOString(),
-      origem: "clique",
-    }),
-  );
-}
