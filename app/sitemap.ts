@@ -2,8 +2,7 @@ import type { MetadataRoute } from "next";
 import { listarArtigos } from "@/lib/blog";
 import { site } from "@/lib/site";
 
-// Obrigatório no export estático (output: 'export'): route handlers precisam
-// declarar força estática.
+
 export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -20,8 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { rota: "/politica-de-privacidade", prioridade: 0.3, frequencia: "yearly" },
   ];
 
-  // Páginas fixas: sem lastModified — não dá para afirmar data de alteração real
-  // (marcar a data do build mentiria para o Google).
   const estaticas: MetadataRoute.Sitemap = paginas.map((pagina) => ({
     url: `${site.url}${pagina.rota}`,
     changeFrequency: pagina.frequencia,

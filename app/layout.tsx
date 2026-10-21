@@ -51,6 +51,7 @@ export const metadata: Metadata = {
   applicationName: site.nome,
   authors: [{ name: site.razaoSocial }],
   keywords: [
+    "Greentax",
     "contabilidade Araçatuba",
     "escritório de contabilidade",
     "consultoria tributária",
@@ -98,11 +99,25 @@ const csp = [
   "form-action 'self'",
 ].join("; ");
 
+// WebSite: diz ao Google que o nome do site é "Greentax" (sem "contabilidade"),
+// usado no nome exibido no resultado e para casar a busca pela marca isolada.
+const dadosSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.nome,
+  alternateName: ["Greentax Contabilidade", "Green Tax"],
+  url: `${site.url}/`,
+  inLanguage: "pt-BR",
+};
+
 const dadosEstruturados = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
   name: site.nome,
+  alternateName: "Greentax Contabilidade",
   legalName: site.razaoSocial,
+  logo: `${site.url}/icon.png`,
+  image: `${site.url}/icon.png`,
   taxID: site.cnpj,
   description: site.descricao,
   url: site.url,
@@ -131,7 +146,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(dadosEstruturados).replace(/</g, "\\u003c"),
+            __html: JSON.stringify([dadosSite, dadosEstruturados]).replace(/</g, "\\u003c"),
           }}
         />
 
