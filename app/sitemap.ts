@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { listarArtigos } from "@/lib/blog";
-import { site } from "@/lib/site";
+import { politicaPublicada, site } from "@/lib/site";
 
 
 export const dynamic = "force-static";
@@ -17,7 +17,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { rota: "/blog", prioridade: 0.8, frequencia: "weekly" },
     { rota: "/contato", prioridade: 0.9, frequencia: "monthly" },
     { rota: "/area-do-cliente", prioridade: 0.5, frequencia: "yearly" },
-    { rota: "/politica-de-privacidade", prioridade: 0.3, frequencia: "yearly" },
+    ...(politicaPublicada
+      ? [{ rota: "/politica-de-privacidade", prioridade: 0.3, frequencia: "yearly" as const }]
+      : []),
   ];
 
   const estaticas: MetadataRoute.Sitemap = paginas.map((pagina) => ({

@@ -42,6 +42,11 @@ export const site = {
   },
 } as const;
 
+// Enquanto a minuta da Política de Privacidade não passa por revisão jurídica,
+// a página não é gerada no build e os links para ela ficam ocultos. Mude para
+// true para publicar.
+export const politicaPublicada = false;
+
 export const navegacao = [
   { titulo: "Quem Somos", href: "/quem-somos" },
   { titulo: "Soluções", href: "/solucoes" },

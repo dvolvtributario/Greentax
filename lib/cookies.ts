@@ -65,7 +65,7 @@ export const CATEGORIAS: CategoriaInfo[] = [
     id: "terceiros",
     titulo: "Conteúdo de terceiros",
     descricao:
-      "Conteúdos incorporados de outros sites. Nenhum depende deste aceite hoje; o mapa da página de contato carrega sempre (veja a política de privacidade).",
+      "Conteúdos incorporados de outros sites. Nenhum depende deste aceite hoje; o mapa da página de contato carrega sempre.",
     cookies: [],
     obrigatoria: false,
   },

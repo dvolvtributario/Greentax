@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { enderecoLinhaUnica, navegacao, site, whatsappLink } from "@/lib/site";
+import {
+  enderecoLinhaUnica,
+  navegacao,
+  politicaPublicada,
+  site,
+  whatsappLink,
+} from "@/lib/site";
 import { Botao } from "@/components/ui/Button";
 import { Envelope, Escudo, Instagram, Local, Seta, Whatsapp } from "@/components/ui/Icons";
 import { Pendente } from "@/components/ui/Pendente";
@@ -138,7 +144,9 @@ export function Footer() {
             CNPJ {site.cnpj} — {enderecoLinhaUnica}
           </p>
           <div className={estilos.legalLinks}>
-            <Link href="/politica-de-privacidade">Política de Privacidade</Link>
+            {politicaPublicada ? (
+              <Link href="/politica-de-privacidade">Política de Privacidade</Link>
+            ) : null}
             <BotaoPreferencias />
             <span>© {ano}</span>
           </div>

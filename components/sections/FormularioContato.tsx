@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { enviarContato, type DadosContato } from "@/app/contato/acoes";
 import { servicosInteresse } from "@/lib/conteudo";
 import { ACAO_RECAPTCHA } from "@/lib/recaptcha";
-import { whatsappLink } from "@/lib/site";
+import { politicaPublicada, whatsappLink } from "@/lib/site";
 import { BotaoAcao } from "@/components/ui/Button";
 import { Whatsapp } from "@/components/ui/Icons";
 import estilos from "./FormularioContato.module.css";
@@ -348,8 +348,14 @@ export function FormularioContato() {
           />
           <span>
             Concordo que a Greentax trate meus dados para responder a esta
-            solicitação, conforme a{" "}
-            <Link href="/politica-de-privacidade">Política de Privacidade</Link>.
+            solicitação
+            {politicaPublicada ? (
+              <>
+                , conforme a{" "}
+                <Link href="/politica-de-privacidade">Política de Privacidade</Link>
+              </>
+            ) : null}
+            .
           </span>
         </label>
         {errors.consentimento ? (
