@@ -17,7 +17,7 @@ import { listarLogosClientes } from "@/lib/clientes";
 import estilos from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: `${site.nome} | Contabilidade em Araçatuba/SP | Greentax`,
+  title: { absolute: "Contabilidade em Araçatuba/SP | Greentax" },
   description: site.descricao,
   alternates: { canonical: "/" },
 };
@@ -59,7 +59,7 @@ export default async function Home() {
       <Revelar>
         <section className={estilos.hero}>
           <Container className={estilos.heroConteudo}>
-            <p className={estilos.rotulo}>Contabilidade em Araçatuba/SP | Greentax</p>
+            <p className={estilos.rotulo}>Contabilidade consultiva em Araçatuba/SP</p>
             <h1 className={estilos.titulo}>
               Contabilidade em Araçatuba que acompanha a{" "}
               <span className={estilos.destaque}>evolução</span> da sua empresa.

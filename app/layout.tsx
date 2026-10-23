@@ -45,7 +45,7 @@ const montserrat = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.nome} | Contabilidade em Araçatuba/SP | Greentax`,
+    default: "Contabilidade em Araçatuba/SP | Greentax",
     template: `%s | ${site.nome}`,
   },
   description: site.descricao,
