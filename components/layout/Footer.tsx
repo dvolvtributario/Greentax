@@ -139,6 +139,8 @@ export function Footer() {
 
         <div className={estilos.legal}>
           <p>
+            {site.nome} · Contabilidade em {site.endereco.cidade}/{site.endereco.estado}
+            <br />
             {site.razaoSocial}
             <br />
             CNPJ {site.cnpj} — {enderecoLinhaUnica}

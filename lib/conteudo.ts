@@ -316,7 +316,9 @@ export const servicosInteresse = [
   "Contábil, Fiscal e Trabalhista",
   "Consultoria Estratégica",
   "Pessoa Física (Imposto de Renda)",
-  "Ainda não sei",
+  "Abertura de empresa",
+  "Troca de contador",
+  "Ainda não sei"
 ] as const;
 
 export const aplicativo = {

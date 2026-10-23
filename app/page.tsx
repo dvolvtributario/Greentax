@@ -59,7 +59,7 @@ export default async function Home() {
       <Revelar>
         <section className={estilos.hero}>
           <Container className={estilos.heroConteudo}>
-            <p className={estilos.rotulo}>Contabilidade consultiva em Araçatuba/SP</p>
+            <p className={estilos.rotulo}>Contabilidade em Araçatuba/SP | Greentax</p>
             <h1 className={estilos.titulo}>
               Contabilidade em Araçatuba que acompanha a{" "}
               <span className={estilos.destaque}>evolução</span> da sua empresa.
