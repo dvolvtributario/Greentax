@@ -21,15 +21,13 @@ function interpretar(formData: FormData): Preferencias {
   const operacao = String(formData.get("operacao") ?? "");
 
   if (operacao === "aceitar") {
-    return { necessarios: true, analise: true, marketing: true, terceiros: true };
+    return { necessarios: true, analise: true };
   }
 
   if (operacao === "personalizar") {
     return {
       necessarios: true,
       analise: formData.get("analise") === "sim",
-      marketing: formData.get("marketing") === "sim",
-      terceiros: formData.get("terceiros") === "sim",
     };
   }
 

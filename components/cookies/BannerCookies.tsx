@@ -84,9 +84,8 @@ export function BannerCookies() {
           <div className={estilos.conteudo}>
             <p className={estilos.texto}>
               Usamos cookies. Os necessários mantêm o site funcionando; os de
-              análise, publicidade e conteúdo de terceiros só são ativados se
-              você permitir. Você pode mudar de ideia quando quiser pelo
-              rodapé.{" "}
+              análise só são ativados se você permitir. Você pode mudar de
+              ideia quando quiser pelo rodapé.{" "}
               <Link
                 href="/politica-de-privacidade#cookies"
                 className={estilos.link}
@@ -181,12 +180,6 @@ export function BannerCookies() {
                       </div>
 
                       <p className={estilos.descricao}>{categoria.descricao}</p>
-
-                      <p className={estilos.listaCookies}>
-                        {categoria.cookies.length > 0
-                          ? `Cookies: ${categoria.cookies.join(", ")}`
-                          : "Cookies desta categoria: nenhum no momento."}
-                      </p>
                     </li>
                   );
                 })}

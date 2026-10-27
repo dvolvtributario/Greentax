@@ -221,13 +221,6 @@
   color: var(--tinta-600);
 }
 
-.listaCookies {
-  margin-top: 8px;
-  font-size: var(--fs-mini);
-  line-height: 1.6;
-  color: var(--tinta-500);
-}
-
 .erro {
   margin-top: 16px;
   border: 1px solid var(--erro);

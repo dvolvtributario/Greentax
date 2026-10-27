@@ -1,8 +1,4 @@
-export type Categoria =
-  | "necessarios"
-  | "analise"
-  | "marketing"
-  | "terceiros";
+export type Categoria = "necessarios" | "analise";
 
 export type Preferencias = Record<Categoria, boolean>;
 
@@ -24,15 +20,12 @@ export const VERSAO_POLITICA = "2026-10-1";
 export const PREFERENCIAS_PADRAO: Preferencias = {
   necessarios: true,
   analise: false,
-  marketing: false,
-  terceiros: false,
 };
 
 export type CategoriaInfo = {
   id: Categoria;
   titulo: string;
   descricao: string;
-  cookies: string[];
   obrigatoria: boolean;
 };
 
@@ -42,31 +35,13 @@ export const CATEGORIAS: CategoriaInfo[] = [
     titulo: "Necessários",
     descricao:
       "Essenciais para o site funcionar: registro da sua escolha de cookies e proteção anti-spam do formulário de contato. Sempre ativos, não pedem consentimento.",
-    cookies: ["greentax_consent", "_GRECAPTCHA (Google, no formulário de contato)"],
     obrigatoria: true,
   },
   {
     id: "analise",
     titulo: "Análise",
     descricao:
-      "Medem como o site é usado — páginas vistas, origem do tráfego — de forma agregada. Usamos o Google Analytics; só carrega depois do seu aceite.",
-    cookies: ["_ga", "_ga_* (Google Analytics)"],
-    obrigatoria: false,
-  },
-  {
-    id: "marketing",
-    titulo: "Marketing",
-    descricao:
-      "Publicidade e remarketing, como o Meta Pixel. Nenhuma ferramenta está ativa hoje; quando houver, só carrega depois do seu aceite.",
-    cookies: [],
-    obrigatoria: false,
-  },
-  {
-    id: "terceiros",
-    titulo: "Conteúdo de terceiros",
-    descricao:
-      "Conteúdos incorporados de outros sites. Nenhum depende deste aceite hoje; o mapa da página de contato carrega sempre.",
-    cookies: [],
+      "Medem como o site é usado como páginas vistas e origem do tráfego de forma agregada. Usamos o Google Analytics, só carrega depois do seu aceite.",
     obrigatoria: false,
   },
 ];
@@ -90,8 +65,6 @@ export const scriptsPorCategoria: Record<
       categoria: "analise",
     },
   ],
-  marketing: [],
-  terceiros: [],
 };
 
 export function serializarPreferencias(
@@ -136,8 +109,6 @@ export function analisarPreferencias(
       preferencias: {
         necessarios: true,
         analise: bruto.c.analise === true,
-        marketing: bruto.c.marketing === true,
-        terceiros: bruto.c.terceiros === true,
       },
       versao: String(bruto.v),
       ...(typeof bruto.o === "string" ? { origem: bruto.o } : {}),
