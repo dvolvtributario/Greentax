@@ -8,7 +8,6 @@ import {
   CATEGORIAS,
 } from "@/lib/cookies";
 import { salvarPreferencias } from "@/app/consentimento/actions";
-import { politicaPublicada } from "@/lib/site";
 import { useConsentimento } from "./useConsentimento";
 import estilos from "./BannerCookies.module.css";
 
@@ -87,18 +86,13 @@ export function BannerCookies() {
               Usamos cookies. Os necessários mantêm o site funcionando; os de
               análise, publicidade e conteúdo de terceiros só são ativados se
               você permitir. Você pode mudar de ideia quando quiser pelo
-              rodapé.
-              {politicaPublicada ? (
-                <>
-                  {" "}
-                  <Link
-                    href="/politica-de-privacidade#cookies"
-                    className={estilos.link}
-                  >
-                    Saiba mais
-                  </Link>
-                </>
-              ) : null}
+              rodapé.{" "}
+              <Link
+                href="/politica-de-privacidade#cookies"
+                className={estilos.link}
+              >
+                Saiba mais
+              </Link>
             </p>
 
             <form action={aoEnviar} className={estilos.acoes}>
@@ -224,13 +218,11 @@ export function BannerCookies() {
               </div>
             </form>
 
-            {politicaPublicada ? (
-              <p className={estilos.rodape}>
-                <Link href="/politica-de-privacidade#cookies">
-                  Ver a política de privacidade
-                </Link>
-              </p>
-            ) : null}
+            <p className={estilos.rodape}>
+              <Link href="/politica-de-privacidade#cookies">
+                Ver a política de privacidade
+              </Link>
+            </p>
           </div>
         </div>
       )}

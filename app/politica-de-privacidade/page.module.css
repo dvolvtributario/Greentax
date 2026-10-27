@@ -57,50 +57,29 @@
   margin-top: 6px;
 }
 
-.tabelaWrap {
-  margin-top: 20px;
-  overflow-x: auto;
+.texto h3 {
+  margin-top: 32px;
+  font-size: 1.0625rem;
+  scroll-margin-top: 96px;
 }
 
-.tabela {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--fs-pequeno);
+.texto h4 {
+  margin-top: 24px;
+  font-size: 1rem;
 }
 
-.tabela th,
-.tabela td {
-  padding: 10px 12px;
-  text-align: left;
-  vertical-align: top;
-  border-bottom: 1px solid var(--filete);
-}
-
-.tabela th {
-  font-size: var(--fs-mini);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.texto a {
   color: var(--verde-700);
-  white-space: nowrap;
+  text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
-.tabela td {
-  color: var(--tinta-600);
-  line-height: 1.6;
+.texto .incisos {
+  padding-left: 24px;
+  list-style: none;
 }
 
-.tabela tbody tr:last-child td {
-  border-bottom: none;
-}
-
-.tabela code {
-  font-size: var(--fs-mini);
-  color: var(--tinta-800);
-  white-space: nowrap;
-}
-
-.texto .atualizacao {
-  font-size: var(--fs-mini);
-  color: var(--tinta-500);
+.texto .links {
+  padding-left: 0;
+  list-style: none;
 }
