@@ -162,11 +162,11 @@
   }
 }
 
-.botaoHeroContorno {
-  border-color: var(--tinta-900);
-}
-
-.botaoHeroContorno:hover {
+/* Classe repetida para ganhar especificidade sobre .contorno (Button.module.css):
+   em produção a ordem dos CSS no bundle muda e, com peso igual, a borda clara
+   do botão vencia — só aparecia preta no hover. */
+.botaoHeroContorno.botaoHeroContorno,
+.botaoHeroContorno.botaoHeroContorno:hover {
   border-color: var(--tinta-900);
 }
 
