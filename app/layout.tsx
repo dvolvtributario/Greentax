@@ -94,9 +94,12 @@ const csp = [
   "object-src 'none'",
   "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com",
+  // Domínios do GA4 conforme o guia de CSP do Google: a coleta vai para
+  // *.analytics.google.com / *.google-analytics.com e, com Google Signals,
+  // para stats.g.doubleclick.net e google.com.br.
+  "img-src 'self' data: blob: https://www.google.com https://www.google.com.br https://www.gstatic.com https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "connect-src 'self' https://hook.us2.make.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com",
+  "connect-src 'self' https://hook.us2.make.com https://www.google.com https://www.gstatic.com https://*.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.g.doubleclick.net",
   "frame-src https://www.google.com https://www.gstatic.com https://maps.google.com",
   "worker-src 'self' blob:",
   "form-action 'self'",

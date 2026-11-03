@@ -6,6 +6,7 @@ import {
   EVENTO_ABRIR_PREFERENCIAS,
   EVENTO_CONSENTIMENTO,
   CATEGORIAS,
+  aplicarConsentimentoAnalise,
 } from "@/lib/cookies";
 import { salvarPreferencias } from "@/app/consentimento/actions";
 import { useConsentimento } from "./useConsentimento";
@@ -52,6 +53,8 @@ export function BannerCookies() {
       setEstado(resultado);
 
       if (resultado.ok && resultado.preferencias) {
+        aplicarConsentimentoAnalise(resultado.preferencias.analise);
+
         window.dispatchEvent(
           new CustomEvent(EVENTO_CONSENTIMENTO, {
             detail: resultado.preferencias,

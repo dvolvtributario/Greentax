@@ -67,6 +67,37 @@ export const scriptsPorCategoria: Record<
   ],
 };
 
+/**
+ * Revogação do consentimento de análise na mesma página: o gtag.js já
+ * carregado continuaria enviando eventos até um reload. A flag oficial
+ * `ga-disable-<ID>` faz o gtag parar de coletar na hora, e os cookies _ga*
+ * são apagados (o GA os grava no domínio raiz, então tenta as variações).
+ */
+export function aplicarConsentimentoAnalise(permitido: boolean): void {
+  if (typeof window === "undefined") return;
+
+  // Também desfaz a flag se a pessoa voltar a aceitar sem recarregar a página.
+  (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = !permitido;
+  if (permitido) return;
+
+  const partes = location.hostname.split(".");
+  const dominios = [""];
+  for (let i = 0; i < partes.length - 1; i++) {
+    const dominio = partes.slice(i).join(".");
+    dominios.push(`; domain=${dominio}`, `; domain=.${dominio}`);
+  }
+
+  document.cookie
+    .split("; ")
+    .map((linha) => linha.split("=")[0])
+    .filter((nome) => nome === "_ga" || nome.startsWith("_ga_") || nome === "_gid")
+    .forEach((nome) => {
+      for (const dominio of dominios) {
+        document.cookie = `${nome}=; max-age=0; path=/${dominio}`;
+      }
+    });
+}
+
 export function serializarPreferencias(
   preferencias: Preferencias,
   origem?: string,

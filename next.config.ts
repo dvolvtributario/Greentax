@@ -36,17 +36,17 @@ const nextConfig: NextConfig = {
           // produção (layout.tsx) nunca inclui unsafe-eval.
           const scriptSrc =
             process.env.NODE_ENV === "development"
-              ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com"
-              : "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com";
+              ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com"
+              : "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com";
           const csp = [
             "default-src 'self'",
             "base-uri 'self'",
             "object-src 'none'",
             scriptSrc,
             "style-src 'self' 'unsafe-inline'",
-            "img-src 'self' data: blob: https://www.google.com https://www.gstatic.com",
+            "img-src 'self' data: blob: https://www.google.com https://www.google.com.br https://www.gstatic.com https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net",
             "font-src 'self' data: https://fonts.gstatic.com",
-            "connect-src 'self' https://hook.us2.make.com https://www.google.com https://www.gstatic.com",
+            "connect-src 'self' https://hook.us2.make.com https://www.google.com https://www.gstatic.com https://*.googletagmanager.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://*.g.doubleclick.net",
             "frame-src https://www.google.com https://www.gstatic.com https://maps.google.com",
             "worker-src 'self' blob:",
             "form-action 'self'",

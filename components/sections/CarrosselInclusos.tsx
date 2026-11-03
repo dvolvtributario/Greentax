@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Calculator, TrendingUp, Users } from "lucide-react";
 import { servicosRecorrentes } from "@/lib/conteudo";
 import estilos from "./CarrosselInclusos.module.css";
@@ -9,13 +9,31 @@ const icones = [Calculator, TrendingUp, Users];
 
 const INTERVALO = 4500;
 
+const CONSULTA_MOVIMENTO = "(prefers-reduced-motion: reduce)";
+
+// Com movimento reduzido o CSS empilha todas as frentes visíveis; o
+// aria-hidden dos slides inativos precisa acompanhar, senão leitores de tela
+// ignoram duas das três frentes que estão na tela.
+function useMovimentoReduzido() {
+  return useSyncExternalStore(
+    (aoMudar) => {
+      const consulta = window.matchMedia(CONSULTA_MOVIMENTO);
+      consulta.addEventListener("change", aoMudar);
+      return () => consulta.removeEventListener("change", aoMudar);
+    },
+    () => window.matchMedia(CONSULTA_MOVIMENTO).matches,
+    () => false,
+  );
+}
+
 export function CarrosselInclusos() {
   const total = servicosRecorrentes.length;
   const raiz = useRef<HTMLDivElement>(null);
   const [ativo, setAtivo] = useState(0);
+  const movimentoReduzido = useMovimentoReduzido();
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (movimentoReduzido) return;
 
     let naTela = true;
     const observador =
@@ -37,7 +55,7 @@ export function CarrosselInclusos() {
       window.clearInterval(intervalo);
       observador?.disconnect();
     };
-  }, [total]);
+  }, [total, movimentoReduzido]);
 
   return (
     <div
@@ -68,7 +86,7 @@ export function CarrosselInclusos() {
             role="group"
             aria-roledescription="slide"
             aria-label={bloco.titulo}
-            aria-hidden={distancia !== 0}
+            aria-hidden={!movimentoReduzido && distancia !== 0}
           >
             <div className={estilos.frenteTopo}>
               <span className={estilos.frenteSelo} aria-hidden="true">

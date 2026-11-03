@@ -140,7 +140,7 @@ export default function ChatbotContabilidade() {
             alignItems: "center",
             justifyContent: "center",
             cursor: "pointer",
-            zIndex: 9999,
+            zIndex: 150, // abaixo do banner de cookies (200) e do diálogo de preferências (300)
           }}
         >
           <MessageCircle size={24} color="#F7F5F0" />
@@ -159,7 +159,7 @@ export default function ChatbotContabilidade() {
               borderRadius: 8,
               fontSize: 14,
               boxShadow: "0 8px 24px rgba(15,43,29,0.35)",
-              zIndex: 9998,
+              zIndex: 149,
               animation: "slideIn 0.3s ease-out",
             }}
           >
@@ -205,7 +205,7 @@ export default function ChatbotContabilidade() {
         flexDirection: "column",
         height: 560,
         maxHeight: "calc(100vh - 48px)",
-        zIndex: 9999,
+        zIndex: 150, // abaixo do banner de cookies (200) e do diálogo de preferências (300)
       }}
     >
       <div

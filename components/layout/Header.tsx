@@ -23,8 +23,16 @@ export function Header() {
   useEffect(() => {
     const raiz = document.documentElement;
     raiz.style.overflow = aberto ? "hidden" : "";
+
+    // Esc fecha o menu mobile (padrão esperado por quem navega pelo teclado).
+    const aoTeclar = (evento: KeyboardEvent) => {
+      if (evento.key === "Escape") setAberto(false);
+    };
+    if (aberto) document.addEventListener("keydown", aoTeclar);
+
     return () => {
       raiz.style.overflow = "";
+      document.removeEventListener("keydown", aoTeclar);
     };
   }, [aberto]);
 
