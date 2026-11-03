@@ -238,4 +238,22 @@
   .cliente:hover {
     transform: rotateX(-16deg) translateZ(48px) scale(1.1);
   }
+
+  /* sem esteira automática: a regra global encurtaria o loop infinito para
+     0.01ms e as logos girariam freneticamente. Vira uma faixa de rolagem manual. */
+  .carrossel {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .carrosselRastro {
+    animation: none;
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  .clienteDuplicado {
+    display: none;
+  }
 }

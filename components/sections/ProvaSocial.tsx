@@ -148,8 +148,14 @@ export function ProvaSocial({
               <div className={estilos.carrosselCena}>
                 <div className={estilos.carrosselRastro}>
                   {[...logos, ...logos].map((logo, i) => {
+                    // a segunda cópia só existe para o loop da esteira ficar contínuo
+                    const duplicado = i >= logos.length;
                     return (
-                      <div key={`${logo.src}-${i}`} className={estilos.cliente}>
+                      <div
+                        key={`${logo.src}-${i}`}
+                        className={`${estilos.cliente} ${duplicado ? estilos.clienteDuplicado : ""}`}
+                        aria-hidden={duplicado || undefined}
+                      >
                         <Image
                           src={logo.src}
                           alt={logo.alt}
