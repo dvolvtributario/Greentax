@@ -13,7 +13,18 @@ export function CarrosselTelas({ className }: { className?: string }) {
   const pista = useRef<HTMLDivElement>(null);
   const parado = useRef(false);
   const visivel = useRef(false);
+  // enquanto a rolagem disparada por seta/bolinha/autoplay acontece,
+  // o indicador fica fixo no destino (evita passar pelas bolinhas do meio)
+  const navegando = useRef(false);
+  const fimNavegacao = useRef<number | undefined>(undefined);
   const [ativo, setAtivo] = useState(0);
+
+  const liberarNavegacao = useCallback((atraso: number) => {
+    window.clearTimeout(fimNavegacao.current);
+    fimNavegacao.current = window.setTimeout(() => {
+      navegando.current = false;
+    }, atraso);
+  }, []);
 
   const passo = useCallback(() => {
     const el = pista.current;
@@ -29,6 +40,8 @@ export function CarrosselTelas({ className }: { className?: string }) {
       if (!el) return;
       const alvo = Math.min(Math.max(indice, 0), total - 1);
       setAtivo(alvo);
+      navegando.current = true;
+      liberarNavegacao(250);
       const reduzir = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
@@ -37,7 +50,7 @@ export function CarrosselTelas({ className }: { className?: string }) {
         behavior: reduzir || instantaneo ? "auto" : "smooth",
       });
     },
-    [passo, total],
+    [passo, total, liberarNavegacao],
   );
 
   useEffect(() => {
@@ -46,6 +59,10 @@ export function CarrosselTelas({ className }: { className?: string }) {
 
     let quadro = 0;
     const aoRolar = () => {
+      if (navegando.current) {
+        liberarNavegacao(150);
+        return;
+      }
       cancelAnimationFrame(quadro);
       quadro = requestAnimationFrame(() => {
         const cartoes = el.querySelectorAll<HTMLElement>("[data-tela]");
@@ -60,7 +77,12 @@ export function CarrosselTelas({ className }: { className?: string }) {
             melhor = indice;
           }
         });
-        setAtivo(melhor);
+        // no fim da pista as últimas telas não conseguem ir para a esquerda,
+        // então não "volta" o indicador se ele já estiver numa delas
+        const noFim = el.scrollLeft >= el.scrollWidth - el.clientWidth - 2;
+        setAtivo((anterior) =>
+          noFim && anterior >= melhor ? anterior : melhor,
+        );
       });
     };
 
@@ -68,8 +90,9 @@ export function CarrosselTelas({ className }: { className?: string }) {
     return () => {
       el.removeEventListener("scroll", aoRolar);
       cancelAnimationFrame(quadro);
+      window.clearTimeout(fimNavegacao.current);
     };
-  }, []);
+  }, [liberarNavegacao]);
 
   // só roda sozinho quando o carrossel está visível na tela
   useEffect(() => {
