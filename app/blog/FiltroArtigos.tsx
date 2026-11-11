@@ -2,14 +2,34 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import type { MouseEvent } from "react";
 import { CartaoArtigo } from "@/components/sections/CartaoArtigo";
 import { CATEGORIAS, type ArtigoComSlug } from "@/lib/blog-tipos";
 import estilos from "./page.module.css";
 
-// Filtro por categoria no cliente: o deploy é estático (GitHub Pages) e a
-// página não pode ler searchParams no servidor. O fallback da Suspense
-// (usada no prerender) mostra a lista completa — o HTML estático sai com
-// todos os artigos, e a filtragem acontece depois da hidratação.
+
+function trocarCategoria(evento: MouseEvent<HTMLAnchorElement>, categoria: string | null) {
+  if (
+    evento.button !== 0 ||
+    evento.metaKey ||
+    evento.ctrlKey ||
+    evento.shiftKey ||
+    evento.altKey
+  ) {
+    return;
+  }
+  evento.preventDefault();
+  const parametros = new URLSearchParams(window.location.search);
+  if (categoria) parametros.set("categoria", categoria);
+  else parametros.delete("categoria");
+  const consulta = parametros.toString();
+  window.history.pushState(
+    null,
+    "",
+    `${window.location.pathname}${consulta ? `?${consulta}` : ""}`,
+  );
+}
+
 export function ListaArtigos({
   artigos,
   filtro,
@@ -24,6 +44,7 @@ export function ListaArtigos({
       <nav aria-label="Filtrar por categoria" className={estilos.filtros}>
         <Link
           href="/blog"
+          onClick={(e) => trocarCategoria(e, null)}
           className={`${estilos.filtro} ${!filtro ? estilos.ativo : ""}`}
           aria-current={!filtro ? "true" : undefined}
         >
@@ -33,6 +54,7 @@ export function ListaArtigos({
           <Link
             key={cat}
             href={`/blog?categoria=${encodeURIComponent(cat)}`}
+            onClick={(e) => trocarCategoria(e, cat)}
             className={`${estilos.filtro} ${filtro === cat ? estilos.ativo : ""}`}
             aria-current={filtro === cat ? "true" : undefined}
           >

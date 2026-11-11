@@ -1,39 +1,30 @@
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
-// O deploy no GitHub Pages roda `next build` com NEXT_OUTPUT=export (site
-// estático, sem servidor). Dev local e builds com servidor ficam iguais —
-// admin, proxy e server features continuam funcionando fora do CI.
+
 const estatico = process.env.NEXT_OUTPUT === "export";
 
 const nextConfig: NextConfig = {
   ...(estatico
     ? {
         output: "export" as const,
-        // GitHub Pages serve diretórios: /blog vira /blog/index.html.
         trailingSlash: true,
       }
     : {}),
-  // Permite que arquivos .mdx sejam tratados como páginas/conteúdo.
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
+  },
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     minimumCacheTTL: 86400,
-    // O loader padrão de imagens exige servidor de otimização — não existe
-    // no export estático.
     ...(estatico ? { unoptimized: true } : {}),
   },
-  // Headers de resposta exigem servidor; não há como defini-los no GitHub
-  // Pages (só arquivos estáticos).
   ...(!estatico
     ? {
         async headers() {
-          // Mantido em sincronia com a meta tag em app/layout.tsx (que cobre o
-          // export estático do GitHub Pages); aqui é possível incluir também
-          // frame-ancestors, que o spec de meta http-equiv ignora.
-          // Em desenvolvimento o React 19 usa eval() para debugging — sem
-          // 'unsafe-eval' o dev server quebra com erro de CSP. A meta tag de
-          // produção (layout.tsx) nunca inclui unsafe-eval.
           const scriptSrc =
             process.env.NODE_ENV === "development"
               ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com"
@@ -73,9 +64,9 @@ const nextConfig: NextConfig = {
 };
 
 const withMDX = createMDX({
-  // Plugins remark/rehype, quando necessários, devem ser passados como strings
-  // (exigência do Turbopack, que é o bundler padrão no Next 16).
-  options: {},
+  options: {
+    remarkPlugins: ["remark-gfm"],
+  },
 });
 
 export default withMDX(nextConfig);
