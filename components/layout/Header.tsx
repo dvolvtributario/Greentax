@@ -1,6 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+
+const semAssinatura = () => () => {};
+function useHidratado() {
+  return useSyncExternalStore(
+    semAssinatura,
+    () => true,
+    () => false,
+  );
+}
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,6 +23,7 @@ import estilos from "./Header.module.css";
 export function Header() {
   const pathname = usePathname();
   const [aberto, setAberto] = useState(false);
+  const hidratado = useHidratado();
 
   // Trava a rolagem da página enquanto o menu mobile está aberto. A trava vai
   // no <html> (documentElement) e não no <body>: o globals.css usa
@@ -118,6 +129,11 @@ export function Header() {
           <button
             type="button"
             onClick={() => setAberto((v) => !v)}
+            // Até a hidratação o onClick ainda não existe: um toque nesse
+            // intervalo era perdido e o menu não abria. Desabilitado, o botão
+            // não "engole" o clique — e ferramentas como o Playwright esperam
+            // ele ficar habilitado antes de clicar.
+            disabled={!hidratado}
             aria-expanded={aberto}
             aria-controls="menu-mobile"
             aria-label={aberto ? "Fechar menu" : "Abrir menu"}
